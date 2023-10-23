@@ -1,0 +1,64 @@
+* {
+    font-family: 'Nunito Sans', sans-serif;
+}
+
+.btn-primary {
+    background-color: #7e1502 !important;
+    border: none !important;
+}
+.default-btn {
+    background-color: #000000;
+    color: #fff;
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 3px;
+    font-size: 15px;
+    font-weight: 500;
+    animation: change 3s infinite;
+}
+
+.login-page {
+    width: 100%;
+    height: 100vh;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+}
+
+/* side bar style */
+.sidebar {
+    transition: left 0.2s;
+    position: fixed;
+    top: 0;
+    left: -16rem;
+    width: 16rem;
+    height: 100vh;
+    background-color: #091023;
+    overflow-y: auto;
+    z-index: 1;
+    padding-top: 20px;
+}
+
+.sidebar.open {
+    left: 0px;
+}
+
+.main-content {
+    transition: margin-left 0.2s;
+    margin-left: 84px;
+    padding: 20px;
+    z-index: 0;
+}
+
+.sidebar.open+.main-content {
+    margin-left: auto;
+}
+
+.toggle-button {
+    position: fixed;
+    top: 10px;
+    left: 15rem;
+    z-index: 2;
+}
+
+/* close side bar style */
