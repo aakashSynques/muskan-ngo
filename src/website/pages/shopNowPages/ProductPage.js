@@ -6,21 +6,22 @@ import FilterSideNav from './FilterSideNav';
 const ProductPage = () => {
     return (
         <>
-            <div className='product-banner'>
+            {/* <div className='product-banner'>
                 <Image src={require('../../assets/images/produtBanner.png')} alt="blog post" className='w-100' />
-            </div>
+            </div> */}
+            <hr />
 
             <Container className='py-5'>
                 <Row>
                     <Col sm={3} style={{ borderRight: "1px solid #dddddd" }} className='px-5'>
                         <h4><b>Filter</b> </h4>
-                        <Col sm={12} className='pt-3'>
+                        <Col sm={12} className='pt-2'>
                             <FilterSideNav />
                         </Col>
                     </Col>
 
                     <Col sm={9}>
-                        <h4><b>Product List</b> </h4>
+                        <h4><b>English Graded Readers</b> </h4>
                         <Row className='pt-3'>
                             <Col sm={3} className='pb-5'>
                                 <div className='product-item'>

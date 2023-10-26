@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Container, Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap';
+
 import logo from '../../Muskaan-logo.png'
 
 
@@ -38,10 +39,30 @@ const MainHeader = () => {
                                     <Link to="/connect" className='nav-link'>Connect</Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Link to="/shopNow" className='nav-link'>
-                                        Shop Now
+                                    <Link to="/shopNow" className='nav-link'>Shop Now</Link>
+                                </Nav.Item>
+
+
+                                <Nav.Item className='px-1'>
+                                    <Link to="/wishlist" className='nav-link pt-2 px-1 whishlist-nav'>
+                                        <Badge bg="danger" className='rounded-5'>0</Badge>
+                                        <i className="fa fa-heart-o" aria-hidden="true">
+                                        </i>
                                     </Link>
                                 </Nav.Item>
+                                <Nav.Item className='px-1'>
+                                    <Link to="/cart" className='nav-link pt-2 px-1 whishlist-nav'>
+                                        <Badge bg="danger" className='rounded-5'>0</Badge>
+                                        <i className="fa fa-shopping-bag" aria-hidden="true"></i>
+                                    </Link>
+                                </Nav.Item>
+                                <Nav.Item className='px-1'>
+                                    <Link to="/account/login" className='nav-link pt-2 px-1 whishlist-nav'>
+                                        <i className="fa fa-user-o px-2" aria-hidden="true"></i>
+                                    </Link>
+                                </Nav.Item>
+
+
                             </Nav>
                         </Navbar.Collapse>
                     </Container>

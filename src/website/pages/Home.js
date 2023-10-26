@@ -28,7 +28,7 @@ const Home = () => {
             </div>
           </Col>
           <Col sm={6}>
-            <div className="about-image about-one-img">
+            <div className="about-image about-one-img d-none d-sm-block">
               <img src={about1} alt="muskaan ngo" className="shadow d-none d-sm-block" />
               <img src={about2} alt="muskaan ngo" className="shadow" />
             </div>

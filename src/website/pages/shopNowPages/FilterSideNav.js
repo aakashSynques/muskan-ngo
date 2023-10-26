@@ -5,9 +5,9 @@ import Form from 'react-bootstrap/Form';
 const FilterSideNav = () => {
   return (
     <div>
-
-      <ul>
-        <li>Books</li>
+      <h6>CATEGORIES</h6>
+      <ul className='px-1'>
+        <li className='f-w-6 pt-1 pb-1'>Books</li>
         <ul>
           <li>
             English Graded Readers
@@ -32,7 +32,7 @@ const FilterSideNav = () => {
 
       <hr />
       <h6>PRICE</h6>
-      <Form.Range />
+        
       <hr />
       <h6>BRANDS</h6>
       <ul>

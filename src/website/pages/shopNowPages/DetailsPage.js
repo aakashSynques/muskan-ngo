@@ -27,8 +27,6 @@ const DetailsPage = () => {
                 <Row className='pt-4'>
                     <Col sm={5}>
                         <Image src="https://store.muskaan.org/wp-content/uploads/2021/11/54-300x300.png" alt="" className='w-100' />
-
-
                     </Col>
                     <Col sm={6}>
                         <div>

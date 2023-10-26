@@ -6,9 +6,9 @@ function HeaderTop() {
     <section className="header-top">
       <Container>
         <Row className="top-content-wrap">
-          <Col lg={8}>
-            <ul className="left-info m-0 pt-2">
-              <li>
+          <Col lg={8} sm={12} xs={12}>
+            <ul className="m-0 p-0">
+              <li className='pt-1'>
                 <a href="#" className='text-white text-decoration-none'>
                   <i className="fa fa-envelope"></i> muskaan@muskaan.org
                 </a>
@@ -20,7 +20,7 @@ function HeaderTop() {
               </li>
             </ul>
           </Col>
-          <Col lg={4} className="text-end d-none d-md-block">
+          <Col lg={4} sm={4} xs={4}  className="text-end d-none d-md-block">
             <a href="#" className="default-btn text-white text-decoration-none">
               DONATE NOW <i className="fa fa-money"></i>
             </a>

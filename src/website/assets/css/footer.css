@@ -3,6 +3,7 @@ footer, .copyright {
     padding: 0;
     font-size: 14px;
     color: #fff;
+    margin-top: 130px;
 }
 .links-footer h6 {
     position: relative;
@@ -72,4 +73,12 @@ footer a, .copyright a {
     background: #000;
     padding: 15px 0;
     margin-top: 0px;
+}.grid-container .grid-item i{
+    border: 1px solid gray;
+    border-color: rgb(126 21 2);
+    color: #7e1502;
+    border-radius: 50%;
+    padding: 8px 10px;
+    margin: 5px 20px 1px 0px;
+    font-weight: 800;
 }
