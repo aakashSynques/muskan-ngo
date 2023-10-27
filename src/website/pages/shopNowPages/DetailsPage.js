@@ -4,6 +4,7 @@ import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { Link } from 'react-router-dom';
 
+
 const DetailsPage = () => {
     const [quantity, setQuantity] = useState(1);
 
@@ -22,6 +23,8 @@ const DetailsPage = () => {
             {/* <div className='product-banner'>
                 <Image src={require('../../assets/images/produtBanner.png')} alt="blog post" className='w-100' />
             </div> */}
+            <div></div>
+        
             <Container className='pb-5'>
                 <font> Home›Books › Single Story Books › Mirchi Ka Choora</font>
                 <Row className='pt-4'>

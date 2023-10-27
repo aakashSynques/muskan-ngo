@@ -3,7 +3,6 @@ import { Col, Container, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import FilterSideNav from './FilterSideNav';
 import { fetch } from '../../../utils';
-import axios from 'axios';
 
 const ProductPage = () => {
     const [categoryList, setCategoryList] = useState([]);
@@ -26,21 +25,16 @@ const ProductPage = () => {
 
 
 
-    const [productList, setProductList] = useState([]);
+
     const getProductList = async () => {
         try {
-            const headers = { 'Content-Type': 'application/json' };
-            const body = {
-                category_slug: 'books',
-                sub_category_slug: 'english-graded-readers',
-            };
             const response = await fetch(
                 "/product/get-products-by-category",
-                "POST",
-                body,
-                headers, // headers
+                "get",
+                null,
+                null, // headers
             );
-            setProductList(response.data.data.product_list);
+            setCategoryList(response.data.data.category);
         } catch (err) {
             console.log(err)
         }
@@ -48,9 +42,6 @@ const ProductPage = () => {
     useEffect(() => {
         getProductList();
     }, []);
-    console.log('product', productList)
-
-
 
 
 
@@ -67,12 +58,12 @@ const ProductPage = () => {
                             <ul>
                                 {categoryList.map(category => (
                                     <li key={category.category_id} className='pt-2'>
-                                        <Link to="">{category.category_name}</Link>
+                                        {category.category_name}
                                         {category.sub_categorys && category.sub_categorys.length > 0 && (
                                             <ul>
                                                 {category.sub_categorys.map(subCategory => (
                                                     <li key={subCategory.category_id}>
-                                                        <Link to="/" className='text-dark'>{subCategory.category_name}</Link>
+                                                        <Link to="/details" className='text-dark'>{subCategory.category_name}</Link>
                                                     </li>
                                                 ))}
                                             </ul>
@@ -82,8 +73,6 @@ const ProductPage = () => {
                             </ul>
                         </Col>
                     </Col>
-
-
 
                     <Col sm={9} className='ps-4'>
                         <h4><b>English Graded Readers</b> </h4>

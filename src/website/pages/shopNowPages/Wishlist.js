@@ -8,7 +8,7 @@ const Wishlist = () => {
       <Container>
         <font> Home › WishList</font>
         <div className='mt-3 pb-3 text-center' > <h3>My wishlist</h3> </div>
-        <Row className='mt-5 pb-2 border-b'>
+        <Row className='mt-3 pb-2 border-b'>
           <Col sm={4}>
             <b> Product Name</b>
           </Col>
@@ -48,11 +48,11 @@ const Wishlist = () => {
             <button className='btn p-0'>  + </button>
           </Col>
           <Col sm={2} className='pt-4'>
-            <font size="2" className="text-success"><i class="fa fa-check" aria-hidden="true"></i> In Stock</font>
+            <font size="2" className="text-success"><i className="fa fa-check" aria-hidden="true"></i> In Stock</font>
           </Col>
           <Col sm={2} className='pt-4'>
             <button className='btn btn-sm btn-danger rounded-1 main-bg' style={{ padding: "0 5px", lineHeight: "20px" }}> +  Add to cart</button>
-            <button className='btn'> <i class="fa fa-times" aria-hidden="true"></i> </button>
+            <button className='btn'> <i className="fa fa-times" aria-hidden="true"></i> </button>
           </Col>
         </Row>
 
@@ -78,11 +78,11 @@ const Wishlist = () => {
             <button className='btn p-0'>  + </button>
           </Col>
           <Col sm={2} className='pt-4'>
-            <font size="2" className="text-success"><i class="fa fa-check" aria-hidden="true"></i> In Stock</font>
+            <font size="2" className="text-success"><i className="fa fa-check" aria-hidden="true"></i> In Stock</font>
           </Col>
           <Col sm={2} className='pt-4'>
             <button className='btn btn-sm btn-danger rounded-1 main-bg' style={{ padding: "0 5px", lineHeight: "20px" }}> +  Add to cart</button>
-            <button className='btn'> <i class="fa fa-times" aria-hidden="true"></i> </button>
+            <button className='btn'> <i className="fa fa-times" aria-hidden="true"></i> </button>
           </Col>
         </Row>
 
@@ -110,11 +110,11 @@ const Wishlist = () => {
             <button className='btn p-0'>  + </button>
           </Col>
           <Col sm={2} className='pt-4'>
-            <font size="2" className="text-success"><i class="fa fa-check" aria-hidden="true"></i> In Stock</font>
+            <font size="2" className="text-success"><i className="fa fa-check" aria-hidden="true"></i> In Stock</font>
           </Col>
           <Col sm={2} className='pt-4'>
             <button className='btn btn-sm btn-danger rounded-1 main-bg' style={{ padding: "0 5px", lineHeight: "20px" }}> +  Add to cart</button>
-            <button className='btn'> <i class="fa fa-times" aria-hidden="true"></i> </button>
+            <button className='btn'> <i className="fa fa-times" aria-hidden="true"></i> </button>
           </Col>
         </Row>
 
@@ -143,11 +143,11 @@ const Wishlist = () => {
             <button className='btn p-0'>  + </button>
           </Col>
           <Col sm={2} className='pt-4'>
-            <font size="2" className="text-success"><i class="fa fa-check" aria-hidden="true"></i> In Stock</font>
+            <font size="2" className="text-success"><i className="fa fa-check" aria-hidden="true"></i> In Stock</font>
           </Col>
           <Col sm={2} className='pt-4'>
             <button className='btn btn-sm btn-danger rounded-1 main-bg' style={{ padding: "0 5px", lineHeight: "20px" }}> +  Add to cart</button>
-            <button className='btn'> <i class="fa fa-times" aria-hidden="true"></i> </button>
+            <button className='btn'> <i className="fa fa-times" aria-hidden="true"></i> </button>
           </Col>
         </Row>
 

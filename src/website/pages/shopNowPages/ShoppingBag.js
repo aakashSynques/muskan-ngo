@@ -103,8 +103,6 @@ const ShoppingBag = () => {
                                 Proceed to checkout</Button>
                         </div>
                     </Col>
-
-
                 </Row>
             </Container>
         </>

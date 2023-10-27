@@ -39,7 +39,7 @@ const MainHeader = () => {
                                     <Link to="/connect" className='nav-link'>Connect</Link>
                                 </Nav.Item>
                                 <Nav.Item>
-                                    <Link to="/shopNow" className='nav-link'>Shop Now</Link>
+                                    <Link to="/products" className='nav-link'>Shop Now</Link>
                                 </Nav.Item>
 
 

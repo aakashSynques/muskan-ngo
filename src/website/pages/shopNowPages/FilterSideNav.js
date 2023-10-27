@@ -1,46 +1,48 @@
-import React from 'react'
-import Form from 'react-bootstrap/Form';
-
-
+import React, { useState, useEffect } from 'react';
+import { Col, Row } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { fetch } from '../../../utils';
 const FilterSideNav = () => {
+  const [categoryList, setCategoryList] = useState([]);
+  const getCategryList = async () => {
+    try {
+      const response = await fetch(
+        "/category/hierarchy",
+        "get",
+        null,
+        null, // headers
+      );
+      setCategoryList(response.data.data.category);
+    } catch (err) {
+      console.log(err)
+    }
+  }
+  useEffect(() => {
+    getCategryList();
+  }, []);
+
+
   return (
     <div>
-      <h6>CATEGORIES</h6>
-      <ul className='px-1'>
-        <li className='f-w-6 pt-1 pb-1'>Books</li>
-        <ul>
-          <li>
-            English Graded Readers
-          </li>
-          <li>
-            Padho Rakho Series
-          </li>
-          <li>
-            Single Story Books
-          </li>
-          <li>
-            Reports
-          </li>
-        </ul>
-        <li>Handmade Products</li>
-        <ul>
-          <li>Diaries</li>
-          <li>Masks and Scrunchies</li>
-          <li>Soaps</li>
-        </ul>
-      </ul>
-
-      <hr />
-      <h6>PRICE</h6>
-        
-      <hr />
-      <h6>BRANDS</h6>
+      <h6 className='f-w-6 main-color'>CATEGORIES</h6>
       <ul>
-        <li>Brand A</li>
-        <li>Brand B</li>
-        <li>Brand C</li>
-        <li>Brand D</li>
+        {categoryList.map(category => (
+          <li key={category.category_id} className='pt-2'>
+            {category.category_name}
+            {category.sub_categorys && category.sub_categorys.length > 0 && (
+              <ul>
+                {category.sub_categorys.map(subCategory => (
+                  <li key={subCategory.category_id}>
+                    <Link to="/details" className='text-dark'>{subCategory.category_name}</Link>                    
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
+        ))}
       </ul>
+      <hr />
+
     </div>
   )
 }

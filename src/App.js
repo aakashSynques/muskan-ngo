@@ -1,7 +1,6 @@
 import React from 'react';
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './website/pages/Home';
-// import Login from './admin/pages/Login';
 import './admin/assets/style.css'
 import AdminDashboard from './admin/pages/AdminDashboard';
 import Footer from './website/layout/Footer';
@@ -30,7 +29,7 @@ function App() {
         <Route path='/work' element={<Work />} />
         <Route path='/communicables' element={<Communicables />} />
         <Route path='/connect' element={<Connect />} />
-        <Route path='/shopNow' element={<ShopNow />} />
+        <Route path='/products' element={<ShopNow />} />
         <Route path='/product/details' element={<DetailsPage />} />
         <Route path='/wishlist' element={<Wishlist />} />
         <Route path='/cart' element={<Cart />} />
@@ -40,7 +39,6 @@ function App() {
         {/* admin Routes */}
         <Route path='/admin' element={<LoginForm />} />
         <Route path='/admin/dashboard' element={<AdminDashboard />} />
-
       </Routes>
       <Footer />
 
