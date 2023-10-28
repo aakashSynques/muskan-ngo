@@ -3,9 +3,12 @@ import { Col, Container, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom';
 import FilterSideNav from './FilterSideNav';
 import { fetch } from '../../../utils';
+import axios from 'axios';
 
 const ProductPage = () => {
     const [categoryList, setCategoryList] = useState([]);
+    const [selectedSubCategory, setSelectedSubCategory] = useState(null);
+
     const getCategryList = async () => {
         try {
             const response = await fetch(
@@ -25,16 +28,21 @@ const ProductPage = () => {
 
 
 
-
+    const [productList, setProductList] = useState([]);
     const getProductList = async () => {
         try {
+            const headers = { 'Content-Type': 'application/json' };
+            const body = {
+                category_slug: 'books',
+                // sub_category_slug: 'english-graded-readers',
+            };
             const response = await fetch(
                 "/product/get-products-by-category",
-                "get",
-                null,
-                null, // headers
+                "POST",
+                body,
+                headers, // headers
             );
-            setCategoryList(response.data.data.category);
+            setProductList(response.data.data.product_list);
         } catch (err) {
             console.log(err)
         }
@@ -42,6 +50,9 @@ const ProductPage = () => {
     useEffect(() => {
         getProductList();
     }, []);
+    console.log('product', productList)
+
+
 
 
 
@@ -58,21 +69,32 @@ const ProductPage = () => {
                             <ul>
                                 {categoryList.map(category => (
                                     <li key={category.category_id} className='pt-2'>
-                                        {category.category_name}
+                                        <Link to="" onClick={() => setSelectedSubCategory(null)}>
+                                            {category.category_name}
+                                        </Link>
                                         {category.sub_categorys && category.sub_categorys.length > 0 && (
                                             <ul>
                                                 {category.sub_categorys.map(subCategory => (
                                                     <li key={subCategory.category_id}>
-                                                        <Link to="/details" className='text-dark'>{subCategory.category_name}</Link>
+                                                        <Link
+                                                            to=""
+                                                            className={`text-dark ${selectedSubCategory === subCategory.category_slug? 'active' : ''}`}
+                                                            onClick={() => setSelectedSubCategory(subCategory.category_slug)}
+                                                        >
+                                                            {subCategory.category_name}
+                                                        </Link>
                                                     </li>
                                                 ))}
                                             </ul>
                                         )}
                                     </li>
                                 ))}
+
                             </ul>
                         </Col>
                     </Col>
+
+
 
                     <Col sm={9} className='ps-4'>
                         <h4><b>English Graded Readers</b> </h4>

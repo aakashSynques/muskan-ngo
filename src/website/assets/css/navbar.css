@@ -82,8 +82,7 @@ p {
 
 .navigation nav .nav-link {
     display: block;
-    padding: 25px 50px;
-    background: #fff;
+    padding: 18px 50px;
     color: #000;
     text-decoration: none;
     font-family: "Nunito", sans-serif;
@@ -100,7 +99,6 @@ p {
 }
 
 .navigation .nav-item {
-    line-height: 0;
     padding: 0 20px;
 }
 
@@ -110,7 +108,10 @@ p {
 }
 
 
-
+.center-logo{
+    width: 100px;
+    margin: -25px;
+}
 
 
 .carousel-caption {
@@ -359,4 +360,6 @@ span.date {
 }.section-title h2{font-size: 25px;
     line-height: 0;
     padding-bottom: 21px;}
+}.image-height{
+    height: 260px;
 }

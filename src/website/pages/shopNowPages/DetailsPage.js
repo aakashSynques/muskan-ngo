@@ -1,17 +1,40 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Image, Col, Row, Button } from 'react-bootstrap'
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
-import { Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
+import { fetch } from '../../../utils';
+import Parser from 'html-react-parser';
 
 
 const DetailsPage = () => {
-    const [quantity, setQuantity] = useState(1);
+    const [productDetails, setProductDetails] = useState([])
 
+    const { product_slug } = useParams();
+    const getProductDetails = async () => {
+        try {
+            const headers = { 'Content-Type': 'application/json' };
+            const response = await fetch(
+                `product/get-product-by-slug/${product_slug}`,
+                "get",
+                null,
+                headers,
+            );
+            setProductDetails(response.data.data.product);
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    useEffect(() => {
+        getProductDetails();
+    }, []);
+    console.log("productDetails", productDetails)
+
+
+    const [quantity, setQuantity] = useState(1);
     const incrementQuantity = () => {
         setQuantity(quantity + 1);
     };
-
     const decrementQuantity = () => {
         if (quantity > 1) {
             setQuantity(quantity - 1);
@@ -20,20 +43,15 @@ const DetailsPage = () => {
     return (
         <>
             <hr />
-            {/* <div className='product-banner'>
-                <Image src={require('../../assets/images/produtBanner.png')} alt="blog post" className='w-100' />
-            </div> */}
-            <div></div>
-        
             <Container className='pb-5'>
-                <font> Home›Books › Single Story Books › Mirchi Ka Choora</font>
+                <font> Home › Books › Single Story Books › {productDetails.product_name}</font>
                 <Row className='pt-4'>
                     <Col sm={5}>
-                        <Image src="https://store.muskaan.org/wp-content/uploads/2021/11/54-300x300.png" alt="" className='w-100' />
+                        <Image src={productDetails.product_thumbnail} alt="" className='w-100' />
                     </Col>
                     <Col sm={6}>
                         <div>
-                            <h3>Basti mein Chor / thief in the Basti</h3>
+                            <h3>{productDetails.product_name}</h3>
                             <span>
                                 <i className="fa fa-star five-star" style={{ fontSize: '14px' }} aria-hidden="true"></i>
                                 <i className="fa fa-star five-star" style={{ fontSize: '14px' }} aria-hidden="true"></i>
@@ -43,23 +61,19 @@ const DetailsPage = () => {
                             </span>
                             <font size="2">
                                 Status:
-                                <span className="text-success">In Stock</span>
+                                <span className="text-success">{productDetails.in_stock_status}</span>
                             </font>
-                            <p className='pt-1'>One day, Ritik lost his slippers. A few days later, Arman lost his slippers. Then Anokhi also lost her slippers. Has someone been stealing their slippers. Who could it be?</p>
-
-                            <strong>Highlights:</strong>
-                            <ul>
-                                <li>Language: Hindi</li>
-                                <li>Story Book</li>
-                                <li>Kid Friendly</li>
-                            </ul>
+                            <p className='pt-1'>
+                                {Parser(`${productDetails.product_description}`)}
+                            </p>
+                         
                             <div className="pt-2">
-                                <span className='main-color price-font'><i className="fa fa-inr"></i> 200.00
+                                <span className='main-color price-font'><i className="fa fa-inr"></i> {productDetails.product_MSP}
                                 </span> &nbsp;
                                 <font size="2" className="text-secondary">
-                                    <del><i className="fa fa-inr"></i> 250.00</del>
+                                    <del><i className="fa fa-inr"></i> {productDetails.product_MRP} </del>
                                 </font> &nbsp;
-                                <font size="2" className='text-white px-2 rounded-1 main-bg'> 2 %</font>
+                                <font size="2" className='text-white px-2 rounded-1 main-bg'> 0 %</font>
                             </div>
 
                             <div className='mt-4'>
@@ -92,16 +106,8 @@ const DetailsPage = () => {
                         className="mb-3"
                     >
                         <Tab eventKey="description" title="Description">
-                            <div>
-                                <p>One day, Ritik lost his slippers. A few days later, Arman lost his slippers. Then Anokhi also lost her slippers. Has someone been stealing their slippers. Who could it be?
-                                </p>
-                                <strong>Highlights:</strong>
-                                <ul>
-                                    <li>Language: Hindi</li>
-                                    <li>Story Book</li>
-                                    <li>Kid Friendly</li>
-                                </ul>
-                            </div>
+                        
+                        
                         </Tab>
                         <Tab eventKey="information" title="Additional information">
                             <table className='table'>

@@ -16,6 +16,7 @@ import Cart from './website/pages/shopNowPages/Cart';
 import LoginForm from './admin/pages/Login';
 import Login from './website/pages/shopNowPages/myAccount/Login';
 import Register from './website/pages/shopNowPages/myAccount/Register';
+import SubCategroy from './website/pages/shopNowPages/SubCategroy';
 
 
 function App() {
@@ -30,7 +31,8 @@ function App() {
         <Route path='/communicables' element={<Communicables />} />
         <Route path='/connect' element={<Connect />} />
         <Route path='/products' element={<ShopNow />} />
-        <Route path='/product/details' element={<DetailsPage />} />
+        <Route path="/product-category/:category_slug" element={<SubCategroy />} />
+        <Route path='/product/:product_slug' element={<DetailsPage />} />
         <Route path='/wishlist' element={<Wishlist />} />
         <Route path='/cart' element={<Cart />} />
         <Route path='/account/login' element={<Login />} />
@@ -39,6 +41,8 @@ function App() {
         {/* admin Routes */}
         <Route path='/admin' element={<LoginForm />} />
         <Route path='/admin/dashboard' element={<AdminDashboard />} />
+
+
       </Routes>
       <Footer />
 
@@ -47,3 +51,6 @@ function App() {
 }
 
 export default App;
+
+
+

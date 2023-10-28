@@ -1,13 +1,31 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap';
-
 import logo from '../../Muskaan-logo.png'
-
-
 import HeaderTop from './HeaderTop'
 import { Link } from 'react-router-dom';
+import { fetch } from '../../utils';
 
 const MainHeader = () => {
+    const [categoryList, setCategoryList] = useState([]);
+    const getCategryList = async () => {
+        try {
+            const response = await fetch(
+                "/category/hierarchy",
+                "get",
+                null,
+                null, // headers
+            );
+            setCategoryList(response.data.data.category);
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    useEffect(() => {
+        getCategryList();
+    }, []);
+
+
+
     return (
         <div>
             <HeaderTop />
@@ -29,18 +47,27 @@ const MainHeader = () => {
                                 <Nav.Item>
                                     <Link to="/work" className='nav-link'>Work</Link>
                                 </Nav.Item>
-                                <Navbar.Brand className="d-none d-md-block" href="#">
+                                {/* <Navbar.Brand className="d-none d-md-block" href="#">
                                     <img src={logo} alt="Logo" className="logo-width" />
-                                </Navbar.Brand>
+                                </Navbar.Brand> */}
+                                <Nav.Item>
+                                    <Link to="/" className="d-none d-md-block"> <img src={logo} alt="Logo" className='center-logo' /> </Link>
+                                </Nav.Item>
+
                                 <Nav.Item>
                                     <Link to="/communicables" className='nav-link'>Communicables</Link>
                                 </Nav.Item>
                                 <Nav.Item>
                                     <Link to="/connect" className='nav-link'>Connect</Link>
                                 </Nav.Item>
-                                <Nav.Item>
-                                    <Link to="/products" className='nav-link'>Shop Now</Link>
-                                </Nav.Item>
+
+                                <NavDropdown title="Shop Now" id="basic-nav-dropdown">
+                                    {categoryList.map((category, index) => (
+                                        <NavDropdown.Item key={index}>
+                                            <Link to={`/product-category/${category.category_slug}`} className='text-dark'>{category.category_name}</Link>
+                                        </NavDropdown.Item>
+                                    ))}
+                                </NavDropdown>
 
 
                                 <Nav.Item className='px-1'>
@@ -61,6 +88,8 @@ const MainHeader = () => {
                                         <i className="fa fa-user-o px-2" aria-hidden="true"></i>
                                     </Link>
                                 </Nav.Item>
+
+
 
 
                             </Nav>
