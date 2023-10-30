@@ -43,7 +43,9 @@ h6 {
 a {
     text-decoration: none !important;
 }
-
+select:focus-visible {
+    outline: none;
+  }
 p {
     font-weight: 400;
     margin-bottom: 20px;
@@ -362,4 +364,8 @@ span.date {
     padding-bottom: 21px;}
 }.image-height{
     height: 260px;
+}.rc-slider-track, .rc-slider-tracks {
+       background-color: #7e1502!important;
 }
+.rc-slider-handle {
+    border: solid 2px #7e1502!important;}

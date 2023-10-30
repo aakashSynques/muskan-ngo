@@ -66,7 +66,7 @@ const DetailsPage = () => {
                             <p className='pt-1'>
                                 {Parser(`${productDetails.product_description}`)}
                             </p>
-                         
+
                             <div className="pt-2">
                                 <span className='main-color price-font'><i className="fa fa-inr"></i> {productDetails.product_MSP}
                                 </span> &nbsp;
@@ -92,12 +92,11 @@ const DetailsPage = () => {
 
                             <div className='pt-4'>
                                 <font size='2'><i className="fa fa-heart-o" aria-hidden="true"></i> Add To WishList</font>   <br />
-                                <div className='mt-3'><b>SKU : </b> A10</div>
+                                <div className='mt-3'><b>SKU : </b> {productDetails.product_sku}</div>
                             </div>
                         </div>
                     </Col>
                 </Row>
-
 
                 <div className='details-page-tab mt-5'>
                     <Tabs
@@ -106,28 +105,18 @@ const DetailsPage = () => {
                         className="mb-3"
                     >
                         <Tab eventKey="description" title="Description">
-                        
-                        
+                            {Parser(`${productDetails.product_additional_information}`)}
+
                         </Tab>
                         <Tab eventKey="information" title="Additional information">
                             <table className='table'>
                                 <tbody>
-                                    <tr>
-                                        <th>Dimensions</th>
-                                        <td className='ps-5'>21.5 × 18 cm</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Author(s)</th>
-                                        <td className='ps-5'>Several</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Illustrator(s)</th>
-                                        <td className='ps-5'>Ubitha Leela Unni</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Language(s)</th>
-                                        <td className='ps-5'>Bilingual H/E</td>
-                                    </tr>
+                                    {productDetails && productDetails.attributes && productDetails.attributes.map((att, index) => (
+                                        <tr key={index}>
+                                            <th>{att.attribute_name}</th>
+                                            <td className='ps-5'>{att.attribute_value}</td>
+                                        </tr>
+                                    ))}
                                 </tbody>
                             </table>
                         </Tab>
@@ -230,6 +219,8 @@ const DetailsPage = () => {
                         </Col>
                     </Row>
                 </div>
+
+
             </Container>
         </>
     )

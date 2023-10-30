@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Row } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Button, Col, Row } from 'react-bootstrap';
+import { useParams, Link } from 'react-router-dom';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import { fetch } from '../../../utils';
-const FilterSideNav = () => {
+const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
+  const { category_slug } = useParams();
   const [categoryList, setCategoryList] = useState([]);
+
   const getCategryList = async () => {
     try {
       const response = await fetch(
@@ -14,26 +18,32 @@ const FilterSideNav = () => {
       );
       setCategoryList(response.data.data.category);
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
+
   useEffect(() => {
     getCategryList();
   }, []);
 
-
   return (
-    <div>
-      <h6 className='f-w-6 main-color'>CATEGORIES</h6>
+    <>
+      <h4>Filter</h4>
+      <h6 className='f-w-6 main-color pt-1'>All CATEGORIES</h6>
       <ul>
         {categoryList.map(category => (
-          <li key={category.category_id} className='pt-2'>
-            {category.category_name}
+          <li key={`${category.category_id}-${category.sub_category_id}`} className='pt-1'>
+            <b>  {category.category_name}</b>
             {category.sub_categorys && category.sub_categorys.length > 0 && (
               <ul>
                 {category.sub_categorys.map(subCategory => (
-                  <li key={subCategory.category_id}>
-                    <Link to="/details" className='text-dark'>{subCategory.category_name}</Link>                    
+                  <li key={subCategory.sub_category_id}>
+                    <Link
+                      to={`/product-category/${category.category_slug}/${subCategory.sub_category_slug}`}
+                      className='text-dark'
+                    >
+                      {subCategory.sub_category_name}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -43,8 +53,68 @@ const FilterSideNav = () => {
       </ul>
       <hr />
 
-    </div>
+      <h6 className='f-w-6 main-color pt-1 pb-1'>PRICE</h6>
+      <Slider
+        range
+        min={0}
+        max={100}
+        value={range}
+        onChange={handleSliderChange}
+      />
+      <div className='pt-3'>
+        <span className='pull-right'> <font className="pt-1 text-secondary">
+          Price: &nbsp; <i className="fa fa-inr"></i> {range[0]} - {range[1]}
+        </font></span>
+        <span className='pull-left'>
+          <Button className='btn btn-sm' onClick={resetPriceRange}>Reset</Button> {/* Add the Reset button */}
+        </span>
+      </div>
+      <div className="clearfix"></div>
+      <div className='pt-4'>
+        <hr />
+        <h6 className='f-w-6 main-color pt-1 pb-1'> BEST  SELLERS !</h6>
+        <Row className='py-2'>
+          <Col sm={3}>
+            <img src='https://store.muskaan.org/wp-content/uploads/2021/11/41-300x300.png' alt="" className='w-100' />
+          </Col>
+          <Col sm={9}>
+            <p className='m-0 f-w-6'>Somaru Misses Home</p>
+            <span className='main-color'>  <i className="fa fa-inr"></i> 200.00</span>
+          </Col>
+        </Row>
+
+        <Row className='py-2'>
+          <Col sm={3}>
+            <img src='https://store.muskaan.org/wp-content/uploads/2021/11/41-300x300.png' alt="" className='w-100' />
+          </Col>
+          <Col sm={9}>
+            <p className='m-0 f-w-6'>Somaru Misses Home</p>
+            <span className='main-color'>  <i className="fa fa-inr"></i> 200.00</span>
+          </Col>
+        </Row>
+        <Row className='py-2'>
+          <Col sm={3}>
+            <img src='https://store.muskaan.org/wp-content/uploads/2021/11/41-300x300.png' alt="" className='w-100' />
+          </Col>
+          <Col sm={9}>
+            <p className='m-0 f-w-6'>Somaru Misses Home</p>
+            <span className='main-color'>  <i className="fa fa-inr"></i> 200.00</span>
+          </Col>
+        </Row>
+        <Row className='py-2'>
+          <Col sm={3}>
+            <img src='https://store.muskaan.org/wp-content/uploads/2021/11/41-300x300.png' alt="" className='w-100' />
+          </Col>
+          <Col sm={9}>
+            <p className='m-0 f-w-6'>Somaru Misses Home</p>
+            <span className='main-color'>  <i className="fa fa-inr"></i> 200.00</span>
+          </Col>
+        </Row>
+      </div>
+
+
+    </>
   )
 }
 
-export default FilterSideNav
+export default FilterSideNav;

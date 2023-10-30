@@ -17,6 +17,7 @@ import LoginForm from './admin/pages/Login';
 import Login from './website/pages/shopNowPages/myAccount/Login';
 import Register from './website/pages/shopNowPages/myAccount/Register';
 import SubCategroy from './website/pages/shopNowPages/SubCategroy';
+import ProductPage from './website/pages/shopNowPages/ProductPage';
 
 
 function App() {
@@ -30,7 +31,12 @@ function App() {
         <Route path='/work' element={<Work />} />
         <Route path='/communicables' element={<Communicables />} />
         <Route path='/connect' element={<Connect />} />
-        <Route path='/products' element={<ShopNow />} />
+
+
+        <Route path='/product-category/:category_slug/:subcategory_slug' element={<ProductPage />} />
+
+
+
         <Route path="/product-category/:category_slug" element={<SubCategroy />} />
         <Route path='/product/:product_slug' element={<DetailsPage />} />
         <Route path='/wishlist' element={<Wishlist />} />
