@@ -1,6 +1,4 @@
 import React from 'react'
-import '../assets/css/navbar.css'
-import '../assets/css/footer.css'
 import Slider from '../component/Slider'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import about1 from '../assets/images/about1.jpg'
@@ -8,7 +6,7 @@ import about2 from '../assets/images/about2.jpg'
 import ShopNowItem from '../component/ShopNowItem'
 import { Link } from 'react-router-dom'
 import WorkBox from '../component/WorkBox'
-import Footer from '../layout/Footer'
+import '../assets/css/style.css'
 
 const Home = () => {
   return (

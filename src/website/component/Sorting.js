@@ -9,7 +9,8 @@ const Sorting = ({ handleSortChange }) => {
                 <option value="price-high-to-low">Price: High to Low</option>
                 <option value="name-ascending">Name: A to Z</option>
                 <option value="name-descending">Name: Z to A</option>
-            </select></>
+            </select>
+        </>
     )
 }
 

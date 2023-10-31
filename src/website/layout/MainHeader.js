@@ -47,9 +47,6 @@ const MainHeader = () => {
                                 <Nav.Item>
                                     <Link to="/work" className='nav-link'>Work</Link>
                                 </Nav.Item>
-                                {/* <Navbar.Brand className="d-none d-md-block" href="#">
-                                    <img src={logo} alt="Logo" className="logo-width" />
-                                </Navbar.Brand> */}
                                 <Nav.Item>
                                     <Link to="/" className="d-none d-md-block"> <img src={logo} alt="Logo" className='center-logo' /> </Link>
                                 </Nav.Item>

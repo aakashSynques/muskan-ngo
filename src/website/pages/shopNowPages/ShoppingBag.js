@@ -49,7 +49,7 @@ const ShoppingBag = () => {
                                 <font >250.00</font>
                             </Col>
                             <Col sm={1} className='pt-4'>
-                                <button className='btn'> <i class="fa fa-times" aria-hidden="true"></i> </button>
+                                <button className='btn'> <i className="fa fa-times" aria-hidden="true"></i> </button>
                             </Col>
                         </Row>
 
@@ -78,7 +78,7 @@ const ShoppingBag = () => {
                                 <font >250.00</font>
                             </Col>
                             <Col sm={1} className='pt-4'>
-                                <button className='btn'> <i class="fa fa-times" aria-hidden="true"></i> </button>
+                                <button className='btn'> <i className="fa fa-times" aria-hidden="true"></i> </button>
                             </Col>
                         </Row>
                         <br /> <br />

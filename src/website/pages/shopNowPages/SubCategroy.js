@@ -136,10 +136,6 @@
 // export default SubCategory;
 
 
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { fetch } from '../../../utils';
 import { useParams, Link } from 'react-router-dom';
@@ -155,7 +151,9 @@ const SubCategory = () => {
     const { category_slug } = useParams();
     const [sortingOption, setSortingOption] = useState('price-low-to-high');
     const [currentPage, setCurrentPage] = useState(1);
-    const productsPerPage = 4;
+    const productsPerPage = 3;
+
+
 
     const getProductList = async (newCategorySlug) => {
         try {
@@ -175,6 +173,8 @@ const SubCategory = () => {
             console.log(err);
         }
     };
+
+
 
     const handleSliderChange = (newRange) => {
         setRange(newRange);
@@ -234,7 +234,6 @@ const SubCategory = () => {
             setCurrentPage(currentPage + 1);
         }
     };
-
     const paginatedProducts = paginateProducts(filteredProducts, currentPage, productsPerPage);
 
     return (
@@ -290,7 +289,7 @@ const SubCategory = () => {
                                 </Col>
                             ))}
                         </Row>
-                        <div className="text-center mt-4">
+                        <div className="text-end mt-4">
                             <button
                                 className="btn btn-primary me-2"
                                 onClick={handlePrevPage}
