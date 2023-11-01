@@ -1,8 +1,50 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Container, Row, Col, Button, Card, CardBody, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import MyAccoutSideBar from './MyAccoutSideBar'
+import { fetch } from '../../../../utils'
 const Register = () => {
+    const [formData, setFormData] = useState({
+        customer_password: '',
+        customer_mobile: '',
+        customer_address: '',
+        customer_email: '',
+        customer_fname: '',
+        customer_lname: '',
+    });
+    const [registrationMessage, setRegistrationMessage] = useState("");
+    const registerUser = async (e) => {
+        e.preventDefault();
+
+        if (Object.values(formData).some(value => value === "")) {
+            setRegistrationMessage("Please fill in all fields.");
+            return;
+        }
+        try {
+            const body = {
+                customer_password: formData.customer_password,
+                customer_mobile: formData.customer_mobile,
+                customer_address: formData.customer_address,
+                customer_email: formData.customer_email,
+                customer_fname: formData.customer_fname,
+                customer_lname: formData.customer_lname,
+            };
+            const response = await fetch('/customer/register', 'POST', body, null);
+            if (response.data.success) {
+                const { data, token } = response.data.data;
+                setRegistrationMessage(`Registration successful. Customer ID: ${data.customer_id}`);
+                setRegistrationMessage(response.data.message);
+            } else {
+                setRegistrationMessage(response.data.message);
+            }
+        } catch (err) {
+            setRegistrationMessage("An error occurred. Please try again later.");
+        }
+    };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+    };
     return (
         <>
             <hr />
@@ -14,10 +56,10 @@ const Register = () => {
                             <CardBody className='pe-4'>
                                 <h3 className='border-bottom pb-2 text-uppercase main-color'>Register Account</h3>
                                 <p className='f-w-6'>Your Personal Details</p>
-                                <Form className='pt-4'>
+                                <Form className='pt-4' onSubmit={registerUser}>
                                     <Form.Group as={Row} className="mb-3">
                                         <Form.Label column sm="2">
-                                            Full Name <span className="text-danger">*</span>
+                                            First Name <span className="text-danger">*</span>
                                         </Form.Label>
                                         <Col sm="10">
                                             <div className="input-group">
@@ -26,7 +68,29 @@ const Register = () => {
                                                 </div>
                                                 <Form.Control
                                                     type="text"
-                                                    placeholder="Enter your Name"
+                                                    name="customer_fname"
+                                                    value={formData.customer_fname}
+                                                    onChange={handleChange}
+                                                    placeholder="First Name"
+                                                />
+                                            </div>
+                                        </Col>
+                                    </Form.Group>
+                                    <Form.Group as={Row} className="mb-3">
+                                        <Form.Label column sm="2">
+                                            Last Name <span className="text-danger">*</span>
+                                        </Form.Label>
+                                        <Col sm="10">
+                                            <div className="input-group">
+                                                <div className="input-group-text" style={{ background: "#7e1502" }}>
+                                                    <i className="fa fa-user-o text-white" aria-hidden="true"></i>
+                                                </div>
+                                                <Form.Control
+                                                    type="text"
+                                                    name="customer_lname"
+                                                    value={formData.customer_lname}
+                                                    onChange={handleChange}
+                                                    placeholder="Last Name"
                                                 />
                                             </div>
                                         </Col>
@@ -43,7 +107,10 @@ const Register = () => {
                                                 </div>
                                                 <Form.Control
                                                     type="text"
-                                                    placeholder="Enter your Email"
+                                                    name="customer_email"
+                                                    value={formData.customer_email}
+                                                    onChange={handleChange}
+                                                    placeholder="Email"
                                                 />
                                             </div>
                                         </Col>
@@ -60,7 +127,11 @@ const Register = () => {
                                                 </div>
                                                 <Form.Control
                                                     type="number"
-                                                    placeholder="Enter Phone No."
+                                                    name="customer_mobile"
+                                                    value={formData.customer_mobile}
+                                                    onChange={handleChange}
+                                                    placeholder="Mobile Number"
+
                                                 />
                                             </div>
                                         </Col>
@@ -77,7 +148,10 @@ const Register = () => {
                                                 </div>
                                                 <Form.Control
                                                     type="password"
-                                                    placeholder="Enter Password"
+                                                    name="customer_password"
+                                                    value={formData.customer_password}
+                                                    onChange={handleChange}
+                                                    placeholder="Password"
                                                 />
                                             </div>
                                         </Col>
@@ -85,14 +159,19 @@ const Register = () => {
 
                                     <Form.Group as={Row} className="mb-3">
                                         <Form.Label column sm="2">
-                                            Address <span className="text-danger">*</span>
+                                            Address
                                         </Form.Label>
                                         <Col sm="10">
                                             <div className="input-group">
                                                 <div className="input-group-text" style={{ background: "#7e1502" }}>
                                                     <i className="fa fa-map-marker text-white" aria-hidden="true"></i>
                                                 </div>
-                                                <Form.Control as="textarea" rows={2} placeholder="Enter your Address" />
+                                                <Form.Control as="textarea" rows={2}
+                                                    name="customer_address"
+                                                    value={formData.customer_address}
+                                                    onChange={handleChange}
+                                                    placeholder="Address"
+                                                />
                                             </div>
                                         </Col>
                                     </Form.Group>
@@ -105,9 +184,12 @@ const Register = () => {
                                             <p className='pt-1 m-0 p-0'>Already have an account ? <Link to='/account/login'>Login</Link>  </p>
                                             <div className='text-end'>
                                                 <Button
-                                                    type="submit"
+
+                                                    type="submit" // Add type="button" to prevent form submission
+
                                                     variant="primary"
                                                     className="bg-main-color px-5"
+
                                                 >
                                                     Register
                                                 </Button>
@@ -115,8 +197,8 @@ const Register = () => {
 
                                         </Col>
                                     </Form.Group>
-                                </Form>
 
+                                </Form>
                             </CardBody>
                         </Card>
                     </Col>
@@ -130,3 +212,4 @@ const Register = () => {
 }
 
 export default Register
+

@@ -4,8 +4,12 @@ import logo from '../../Muskaan-logo.png'
 import HeaderTop from './HeaderTop'
 import { Link } from 'react-router-dom';
 import { fetch } from '../../utils';
+import { useSelector, useDispatch } from 'react-redux';
 
 const MainHeader = () => {
+    const cart = useSelector((state) => state.cart);
+    console.log('cart length', cart.length);
+
     const [categoryList, setCategoryList] = useState([]);
     const getCategryList = async () => {
         try {
@@ -76,7 +80,7 @@ const MainHeader = () => {
                                 </Nav.Item>
                                 <Nav.Item className='px-1'>
                                     <Link to="/cart" className='nav-link pt-2 px-1 whishlist-nav'>
-                                        <Badge bg="danger" className='rounded-5'>0</Badge>
+                                        <Badge bg="danger" className='rounded-5'>{cart.length}</Badge>
                                         <i className="fa fa-shopping-bag" aria-hidden="true"></i>
                                     </Link>
                                 </Nav.Item>
@@ -85,10 +89,6 @@ const MainHeader = () => {
                                         <i className="fa fa-user-o px-2" aria-hidden="true"></i>
                                     </Link>
                                 </Nav.Item>
-
-
-
-
                             </Nav>
                         </Navbar.Collapse>
                     </Container>

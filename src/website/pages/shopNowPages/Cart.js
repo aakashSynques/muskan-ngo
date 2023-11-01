@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import ShoppingBag from './ShoppingBag';
+import CartItems from './CartItems';
 import CheckOut from './CheckOut';
 
 const Cart = () => {
@@ -54,12 +54,10 @@ const Cart = () => {
                     </div>
                 </div>
 
-
-
                 <div className='mt-2'>
                     {activeSection === 'shoppingBag' && (
                         <div className='pt-5'>
-                            <ShoppingBag />
+                            <CartItems />
                         </div>
                     )}
 

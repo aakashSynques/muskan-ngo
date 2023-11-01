@@ -7,11 +7,9 @@ import ShopNowItem from '../component/ShopNowItem'
 import { Link } from 'react-router-dom'
 import WorkBox from '../component/WorkBox'
 import '../assets/css/style.css'
-
 const Home = () => {
   return (
     <div>
-
       <Slider />
       {/* About section */}
       <Container className='pt-5'>
@@ -37,52 +35,6 @@ const Home = () => {
       {/* Shop now section */}
       <ShopNowItem />
 
-
-      {/* <section className="about-section bd-bottom shape circle padding">
-        <Container>
-          <Row>
-            <Col lg={12} className="text-center section-title">
-              <h2>Our Work</h2>
-              <p>We work in a wide range of areas to maximize the impact we can create.</p>
-            </Col>
-          </Row>
-          <Row>
-            <Col lg={4} className="mrgn-top20">
-              <div className="work-box">
-                <Image src={require('../assets/images/workimges/education.png')} width={200} alt="Education" />
-                <h3 className='f-w-6 pt-2'>EDUCATION</h3>
-                <p>More than 90% of children of marginalized communities do not finish school.</p>
-                <Link to="/" className='text-dark'>
-                  Read More
-                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-                </Link>
-              </div>
-            </Col>
-            <Col lg={4} className="mrgn-top20">
-              <div className="work-box">
-                <Image src={require('../assets/images/workimges/capable.png')} width={200} alt="Education" />
-                <h3 className='f-w-6 pt-2'>EMPOWERING CHILDREN AND YOUTH</h3>
-                <p>We believe that with the kind of energy that youth contains</p>
-                <Link to="/" className='text-dark'>
-                  Read More
-                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-                </Link>
-              </div>
-            </Col>
-            <Col lg={4} className="mrgn-top20">
-              <div className="work-box">
-                <Image src={require('../assets/images/workimges/life.png')} width={200} alt="Education" />
-                <h3 className='f-w-6 pt-2'>ISSUES OF DIGNITY AND SURVIVAL</h3>
-                <p>The current atmosphere demands documentation that proves the.</p>
-                <Link to="/" className='text-dark'>
-                  Read More
-                  <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-                </Link>
-              </div>
-            </Col>
-          </Row>
-        </Container>
-      </section> */}
       <section className="about-section bd-bottom shape circle padding">
         <Container>
           <Row>

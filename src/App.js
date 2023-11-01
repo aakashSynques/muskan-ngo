@@ -100,7 +100,7 @@ function App() {
         <Route path='/work' element={<Work />} />
         <Route path='/communicables' element={<Communicables />} />
         <Route path='/connect' element={<Connect />} />
-        <Route path='/product-category/:category_slug/:subcategory_slug' element={<ProductPage />} />
+        <Route path='/product-category/:category_slug/:subcategory_slug' element={<SubCategroy />} />
         <Route path="/product-category/:category_slug" element={<SubCategroy />} />
         <Route path='/product/:product_slug' element={<DetailsPage />} />
         <Route path='/wishlist' element={<Wishlist />} />

@@ -4,8 +4,6 @@ import { useParams, Link } from 'react-router-dom';
 import FilterSideNav from './FilterSideNav';
 import { fetch } from '../../../utils';
 import Sorting from '../../component/Sorting';
-import axios from 'axios';
-
 const ProductPage = () => {
     const [productList, setProductList] = useState([]);
     const [loading, setLoading] = useState(true); // State for loading
@@ -36,12 +34,10 @@ const ProductPage = () => {
         setLoading(true);
         getProductList(category_slug, subcategory_slug);
     }, [category_slug, subcategory_slug]);
-
-
+    
     const handleSliderChange = (newRange) => {
         setRange(newRange);
     };
-
     const filterProductsByPrice = () => {
         const [minPrice, maxPrice] = range;
         const filtered = productList.filter(
@@ -49,19 +45,15 @@ const ProductPage = () => {
         );
         setFilteredProducts(filtered);
     };
-
     useEffect(() => {
         filterProductsByPrice();
-    }, [range, productList]); // Ensure 'range' and 'productList' are in the dependency array
+    }, [range, productList]); 
     const resetPriceRange = () => {
         setRange([0, 100]);
     };
-
-
     const handleSortChange = (e) => {
         const selectedOption = e.target.value;
         setSortingOption(selectedOption);
-        // Sort the filtered products based on the selected sorting option
         if (selectedOption === 'price-low-to-high') {
             setFilteredProducts([...filteredProducts].sort((a, b) => a.product_MSP - b.product_MSP));
         } else if (selectedOption === 'price-high-to-low') {
@@ -73,14 +65,11 @@ const ProductPage = () => {
         }
     };
     const [sortingOption, setSortingOption] = useState('price-low-to-high'); // Initial sorting option
-
-
     return (
         <>
             <hr />
             <Container className='py-2' style={{ height: "100vh" }}>
                 <font> Home › {category_slug} / {subcategory_slug}</font>
-
                 <Row className='pt-5'>
                     <Col sm={3} className='pe-5'>
                         <FilterSideNav
@@ -89,9 +78,7 @@ const ProductPage = () => {
                             resetPriceRange={resetPriceRange} // Pass the reset function
                         />
                     </Col>
-
                     <Col sm={9} className='border-left  ps-4' style={{ borderLeft: "1px solid" }}>
-                        {/* <h4 className="text-capitalize">{subcategory_slug} </h4> */}
                         <Row>
                             <Col sm={8}>
                                 <h4 className="text-capitalize">{category_slug} / {subcategory_slug} </h4>
@@ -123,7 +110,8 @@ const ProductPage = () => {
                                             <br />
                                             <hr className='my-2' style={{ color: "gray" }} />
                                             <font>
-                                                <span className='pull-left'><a href='#' className='font-14 text-dark'>+ Add To Cart</a></span>
+                                                <span className='pull-left'>
+                                                    <a href='#' className='font-14 text-dark'>+ Add To Cart</a></span>
                                                 <span className='pull-right'><i className="fa fa-heart-o" aria-hidden="true"></i></span>
                                             </font>
                                         </div>
@@ -134,13 +122,7 @@ const ProductPage = () => {
                     </Col>
                 </Row>
             </Container>
-
         </>
     )
 }
-
 export default ProductPage
-
-
-
-
