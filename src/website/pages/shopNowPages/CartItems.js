@@ -1,13 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Container, Col, Row, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateQuantity, removeFromCart } from '../../../reducers/cart';
 
 const CartItems = () => {
+        const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart);
     console.log('cart', cart);
 
-    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        const cartJSON = JSON.stringify(cart);
+        localStorage.setItem('cart', cartJSON);
+    }, [cart]); 
+
+
+
     const handleIncrement = (item) => {
         dispatch(updateQuantity({ product_id: item.product_id, quantity: item.quantity + 1 }));
     };

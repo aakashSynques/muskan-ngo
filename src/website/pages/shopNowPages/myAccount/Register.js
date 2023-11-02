@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import MyAccoutSideBar from './MyAccoutSideBar'
 import { fetch } from '../../../../utils'
 const Register = () => {
+
     const [formData, setFormData] = useState({
         customer_password: '',
         customer_mobile: '',
@@ -12,12 +13,13 @@ const Register = () => {
         customer_fname: '',
         customer_lname: '',
     });
-    const [registrationMessage, setRegistrationMessage] = useState("");
+    const [registrationMessage, setRegistrationMessage] = useState('');
+
     const registerUser = async (e) => {
         e.preventDefault();
 
-        if (Object.values(formData).some(value => value === "")) {
-            setRegistrationMessage("Please fill in all fields.");
+        if (Object.values(formData).some((value) => value === '')) {
+            setRegistrationMessage('Please fill in all fields.');
             return;
         }
         try {
@@ -31,16 +33,19 @@ const Register = () => {
             };
             const response = await fetch('/customer/register', 'POST', body, null);
             if (response.data.success) {
-                const { data, token } = response.data.data;
-                setRegistrationMessage(`Registration successful. Customer ID: ${data.customer_id}`);
-                setRegistrationMessage(response.data.message);
+                setRegistrationMessage(response.message); // Display the response message
+                console.log(response.message);
             } else {
-                setRegistrationMessage(response.data.message);
+                setRegistrationMessage(response.message);
+                console.log(response.message);
             }
         } catch (err) {
-            setRegistrationMessage("An error occurred. Please try again later.");
+            setRegistrationMessage('Email is already in use.');
         }
     };
+
+
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
@@ -183,18 +188,18 @@ const Register = () => {
                                         <Col sm="10">
                                             <p className='pt-1 m-0 p-0'>Already have an account ? <Link to='/account/login'>Login</Link>  </p>
                                             <div className='text-end'>
+                                                {registrationMessage && (
+                                                    <p>{registrationMessage}</p>
+
+                                                )}
                                                 <Button
-
                                                     type="submit" // Add type="button" to prevent form submission
-
                                                     variant="primary"
                                                     className="bg-main-color px-5"
-
                                                 >
                                                     Register
                                                 </Button>
                                             </div>
-
                                         </Col>
                                     </Form.Group>
 
@@ -213,3 +218,89 @@ const Register = () => {
 
 export default Register
 
+
+
+// import React, { useState } from 'react';
+// import { Container, Row, Col, Button, Card, CardBody, Form } from 'react-bootstrap';
+// import { Link } from 'react-router-dom';
+// import MyAccoutSideBar from './MyAccoutSideBar';
+// import { fetch } from '../../../../utils';
+
+// const Register = () => {
+//     const [formData, setFormData] = useState({
+//         customer_password: '',
+//         customer_mobile: '',
+//         customer_address: '',
+//         customer_email: '',
+//         customer_fname: '',
+//         customer_lname: '',
+//     });
+//     const [registrationMessage, setRegistrationMessage] = useState('');
+
+//     const registerUser = async (e) => {
+//         e.preventDefault();
+
+//         if (Object.values(formData).some((value) => value === '')) {
+//             setRegistrationMessage('Please fill in all fields.');
+//             return;
+//         }
+//         try {
+//             const body = {
+//                 customer_password: formData.customer_password,
+//                 customer_mobile: formData.customer_mobile,
+//                 customer_address: formData.customer_address,
+//                 customer_email: formData.customer_email,
+//                 customer_fname: formData.customer_fname,
+//                 customer_lname: formData.customer_lname,
+//             };
+//             const response = await fetch('/customer/register', 'POST', body, null);
+//             if (response.data.success) {
+//                 setRegistrationMessage(response.message); // Display the response message
+//                 console.log(response.message);
+//             } else {
+//                 setRegistrationMessage(response.message);
+//                 console.log(response.message);
+//             }
+//         } catch (err) {
+//             setRegistrationMessage(response.message);
+//         }
+//     };
+
+//     const handleChange = (e) => {
+//         const { name, value } = e.target;
+//         setFormData({ ...formData, [name]: value });
+//     };
+
+//     return (
+//         <>
+//             <hr />
+//             <Container>
+//                 <font> Home › My Account › Register</font>
+//                 <Row className="pt-5">
+//                     <Col sm={9}>
+//                         <Card className="mb-3 pe-3" style={{ border: 'none' }}>
+//                             <CardBody className="pe-4">
+//                                 <h3 className="border-bottom pb-2 text-uppercase main-color">Register Account</h3>
+//                                 <p className="f-w-6">Your Personal Details</p>
+//                                 <Form className="pt-4" onSubmit={registerUser}>
+//                                     {/* Form fields here */}
+//                                 </Form>
+//                                 {/* Display the registration message */}
+//                                 {registrationMessage && (
+//                                     <div className="mt-3">
+//                                         <p>{registrationMessage}</p>
+//                                     </div>
+//                                 )}
+//                             </CardBody>
+//                         </Card>
+//                     </Col>
+//                     <Col sm={3}>
+//                         <MyAccoutSideBar />
+//                     </Col>
+//                 </Row>
+//             </Container>
+//         </>
+//     );
+// };
+
+// export default Register;

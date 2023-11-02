@@ -8,7 +8,10 @@ import { useSelector, useDispatch } from 'react-redux';
 
 const MainHeader = () => {
     const cart = useSelector((state) => state.cart);
-    console.log('cart length', cart.length);
+    const wishlistData = useSelector((state) => state.wishlistData);
+
+  
+
 
     const [categoryList, setCategoryList] = useState([]);
     const getCategryList = async () => {
@@ -70,10 +73,9 @@ const MainHeader = () => {
                                     ))}
                                 </NavDropdown>
 
-
                                 <Nav.Item className='px-1'>
                                     <Link to="/wishlist" className='nav-link pt-2 px-1 whishlist-nav'>
-                                        <Badge bg="danger" className='rounded-5'>0</Badge>
+                                        <Badge bg="danger" className='rounded-5'>{wishlistData.wishListDataCount.length}</Badge>
                                         <i className="fa fa-heart-o" aria-hidden="true">
                                         </i>
                                     </Link>

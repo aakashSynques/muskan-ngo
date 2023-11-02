@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addToCart, removeFromCart } from '../../../reducers/cart';
+import { addToCart } from '../../../reducers/cart';
 import { fetch } from '../../../utils';
 import { useParams, Link } from 'react-router-dom';
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import FilterSideNav from './FilterSideNav';
 import Sorting from '../../component/Sorting';
-
 const SubCategory = () => {
     const [productList, setProductList] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -43,7 +42,6 @@ const SubCategory = () => {
         );
         setFilteredProducts(filtered);
     };
-
     const handleSortChange = (e) => {
         const selectedOption = e.target.value;
         setSortingOption(selectedOption);
@@ -64,15 +62,12 @@ const SubCategory = () => {
     useEffect(() => {
         filterProductsByPrice();
     }, [range, productList]);
-
-    console.log('productList', productList)
     useEffect(() => {
         setLoading(true);
         getProductList(category_slug, subcategory_slug);
     }, [category_slug, subcategory_slug]);
-
-    // const cart = useSelector((state) => state.cart);
     const dispatch = useDispatch();
+
     const handleAddToCart = (product) => {
         const cartItemData = {
             attributes: product.attributes,
@@ -86,7 +81,6 @@ const SubCategory = () => {
             in_stock_status: product.in_stock_status,
             is_delete: product.is_delete,
             product_MRP: product.product_MRP,
-            product_MSP: product.product_MSP,
             product_additional_information: product.product_additional_information,
             product_code: product.product_code,
             product_description: product.product_description,
@@ -97,12 +91,37 @@ const SubCategory = () => {
             product_thumbnail: product.product_thumbnail,
             sub_category_id: product.sub_category_id,
             quantity: 1,
-            subTotal: product.product_MSP * 1, // Calculate the subtotal
-
+            subTotal: product.product_MSP,
         };
-        dispatch(addToCart(cartItemData));
-        console.log('Added to cart:', cartItemData);
+        dispatch(addToCart(cartItemData));  
     };
+
+    const handleAddWhishList = async (productId) => {
+        try {
+            const token = localStorage.getItem("muskan_token");
+            const headers = {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            };
+            const body = {
+                product_id: productId,
+            };
+            const response = await fetch(
+                "/wishlist/add",
+                "POST",
+                body,
+                headers,
+            );
+            if (response.data && response.data.success) {
+                alert(response.data.message);
+            } else {
+                console.log('Response not successful:', response);
+            }
+            setLoading(false);
+        } catch (err) {
+            console.log(err);
+        }
+    }
 
     return (
         <>
@@ -128,8 +147,7 @@ const SubCategory = () => {
                                 </span>
                             </Col>
                         </Row>
-
-                        <Row sm={3} className='pt-3'>
+                        <Row sm={2} lg={3} xs={2} className='pt-3'>
                             {filteredProducts.map((product, index) => (
                                 <Col className='pb-5' key={index}>
                                     {loading ? (
@@ -150,6 +168,7 @@ const SubCategory = () => {
                                             <br />
                                             <hr className='my-2' style={{ color: "gray" }} />
                                             <button className='btn border-0' onClick={() => handleAddToCart(product)}>+ Add to Cart</button>
+                                            <button className='btn pull-right' onClick={() => handleAddWhishList(product.product_id)}><i className="fa fa-heart-o" aria-hidden="true"></i></button>
                                         </div>
                                     )}
                                 </Col>

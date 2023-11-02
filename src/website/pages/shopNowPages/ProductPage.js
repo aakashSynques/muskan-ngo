@@ -24,7 +24,6 @@ const ProductPage = () => {
                 headers,
             );
             setProductList(response.data.data.product_list);
-            console.log('sub cat', response.data.data.product_list)
             setLoading(false); // Set loading to false when data is fetched
         } catch (err) {
             console.log(err);
