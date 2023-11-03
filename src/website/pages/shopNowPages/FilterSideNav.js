@@ -1,12 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Col, Row } from 'react-bootstrap';
 import { useParams, Link } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import { fetch } from '../../../utils';
 const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
+  const bestSeller = useSelector((state) => state.productsList.productList)
+  console.log('bestSeller', bestSeller)
+
   const { category_slug } = useParams();
   const [categoryList, setCategoryList] = useState([]);
+  // const cart = useSelector((state) => state.cart.items);
+
 
   const getCategryList = async () => {
     try {
@@ -73,43 +79,24 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
       <div className='pt-4'>
         <hr />
         <h6 className='f-w-6 main-color pt-1 pb-1'> BEST  SELLERS !</h6>
-        <Row className='py-2'>
-          <Col sm={3}>
-            <img src='https://store.muskaan.org/wp-content/uploads/2021/11/41-300x300.png' alt="" className='w-100' />
-          </Col>
-          <Col sm={9}>
-            <p className='m-0 f-w-6'>Somaru Misses Home</p>
-            <span className='main-color'>  <i className="fa fa-inr"></i> 200.00</span>
-          </Col>
-        </Row>
+        {bestSeller
+          .filter(item => item.desktop_display === 1) // Filter products where desktop_display is 1
+          .map((item, index) => (
+            <>
+               <Link to={`/product/${item.product_slug}`}>
+              <Row className='py-2'>
+                <Col sm={3}>
+                  <img src={item.product_thumbnail} alt="" className='w-100' />
+                </Col>
+                <Col sm={9}>
+                  <p className='m-0 f-w-6 text-secondary'>{item.product_name}</p>
+                  <span className='main-color'>  <i className="fa fa-inr"></i> {item.product_MSP}</span>
+                </Col>
+              </Row>
+              </Link>
+            </>
+          ))}
 
-        <Row className='py-2'>
-          <Col sm={3}>
-            <img src='https://store.muskaan.org/wp-content/uploads/2021/11/41-300x300.png' alt="" className='w-100' />
-          </Col>
-          <Col sm={9}>
-            <p className='m-0 f-w-6'>Somaru Misses Home</p>
-            <span className='main-color'>  <i className="fa fa-inr"></i> 200.00</span>
-          </Col>
-        </Row>
-        <Row className='py-2'>
-          <Col sm={3}>
-            <img src='https://store.muskaan.org/wp-content/uploads/2021/11/41-300x300.png' alt="" className='w-100' />
-          </Col>
-          <Col sm={9}>
-            <p className='m-0 f-w-6'>Somaru Misses Home</p>
-            <span className='main-color'>  <i className="fa fa-inr"></i> 200.00</span>
-          </Col>
-        </Row>
-        <Row className='py-2'>
-          <Col sm={3}>
-            <img src='https://store.muskaan.org/wp-content/uploads/2021/11/41-300x300.png' alt="" className='w-100' />
-          </Col>
-          <Col sm={9}>
-            <p className='m-0 f-w-6'>Somaru Misses Home</p>
-            <span className='main-color'>  <i className="fa fa-inr"></i> 200.00</span>
-          </Col>
-        </Row>
       </div>
 
 

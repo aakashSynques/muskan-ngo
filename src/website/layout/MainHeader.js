@@ -7,7 +7,7 @@ import { fetch } from '../../utils';
 import { useSelector, useDispatch } from 'react-redux';
 
 const MainHeader = () => {
-    const cart = useSelector((state) => state.cart);
+    const cart = useSelector((state) => state.cart.items);
     const wishlistData = useSelector((state) => state.wishlistData);
 
   

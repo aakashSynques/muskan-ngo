@@ -3,13 +3,11 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux';
 import { setWishListDataCount } from '../../../reducers/wishlistSlice';
 import { fetch } from '../../../utils'
-
-
+import { addToCart, initializeCart } from '../../../reducers/cart';
 
 const Wishlist = () => {
   const [wishListData, setWishListData] = useState([]); // State to hold wishlist data
   const dispatch = useDispatch();
-
   const getWishListData = async () => {
     try {
       const token = localStorage.getItem("muskan_token");
@@ -25,9 +23,6 @@ const Wishlist = () => {
       if (response.data) {
         setWishListData(response.data.data.wishlist);
         dispatch(setWishListDataCount(response.data.data.wishlist));
-        // console.log('dis', dispatch(setWishListDataCount(response.data.data.wishlist)))
-
-
       } else {
         console.log('Failed to fetch wishlist data:', response);
       }
@@ -40,7 +35,6 @@ const Wishlist = () => {
   }, []);
   dispatch(setWishListDataCount(wishListData));
   // console.log('dois', dispatch(setWishListDataCount(wishListData)))
-  
 
   const handleRemoveWishList = async (product_id) => {
     try {
@@ -54,7 +48,7 @@ const Wishlist = () => {
       const response = await fetch("/wishlist/remove", "post", body, headers);
       if (response.data) {
         getWishListData();
-        alert(response.data.message);
+        // alert(response.data.message);
       } else {
         console.log('Failed to remove product from wishlist:', response);
       }
@@ -65,6 +59,49 @@ const Wishlist = () => {
   useEffect(() => {
     handleRemoveWishList();
   }, []);
+
+
+
+  const [quantity, setQuantity] = useState(1);
+  const incrementQuantity = () => {
+      setQuantity(quantity + 1);
+  };
+  const decrementQuantity = () => {
+      if (quantity > 1) {
+          setQuantity(quantity - 1);
+      }
+  };
+  const handleAddToCart = (product) => {
+    const cartItemData = {
+      attributes: product.attributes,
+      product_name: product.product_name,
+      product_MSP: product.product_MSP,
+      brand_id: product.brand_id,
+      category_id: product.category_id,
+      gst_id: product.gst_id,
+      gst_percent: product.gst_percent,
+      images: product.images,
+      in_stock_status: product.in_stock_status,
+      is_delete: product.is_delete,
+      product_MRP: product.product_MRP,
+      product_additional_information: product.product_additional_information,
+      product_code: product.product_code,
+      product_description: product.product_description,
+      product_id: product.product_id,
+      product_name_disp: product.product_name_disp,
+      product_sku: product.product_sku,
+      product_slug: product.product_slug,
+      product_thumbnail: product.product_thumbnail,
+      sub_category_id: product.sub_category_id,
+      quantity: quantity,
+      subTotal: product.product_MSP,
+    };
+    dispatch(addToCart(cartItemData));
+    handleRemoveWishList(product.product_id);
+    getWishListData();
+  };
+
+ 
   return (
     <>
       <hr />
@@ -78,9 +115,9 @@ const Wishlist = () => {
           <Col sm={2}>
             <b>Unit Price</b>
           </Col>
-          <Col sm={2}>
+          {/* <Col sm={2}>
             <b>Quantity</b>
-          </Col>
+          </Col> */}
           <Col sm={2}>
             <b>Stock Status</b>
           </Col>
@@ -108,13 +145,25 @@ const Wishlist = () => {
               <button className='btn p-0'>  + </button>
             </Col> */}
 
+            {/* <Col sm={2} className='pt-4'>
+              <button className='btn p-0 font-14' onClick={() => handleDecrement(item)}>-</button>
+              <span className='px-3'> {item.quantity}</span>
+              <button className='btn p-0' onClick={() => handleIncrement(item)}>+</button>
+            </Col> */}
+
 
             <Col sm={2} className='pt-4'>
               <font size="2" className="text-success"><i className="fa fa-check" aria-hidden="true"></i>{item.in_stock_status}</font>
             </Col>
             <Col sm={2} className='pt-4'>
-              {/* <button className='btn btn-sm btn-danger rounded-1 main-bg' style={{ padding: "0 5px", lineHeight: "20px" }}> +  Add to cart</button> */}
-              {/* <button className='btn btn-sm btn-danger rounded-1 main-bg' style={{ padding: "0 5px", lineHeight: "20px" }} onClick={() => handleAddToCart(product)}>+ Add to Cart</button> */}
+              {/* <button className='btn border-0' onClick={() => handleAddToCart(product)}>+ Add to Cart</button> */}
+              <button
+                className='btn btn-sm btn-danger rounded-1 main-bg'
+                style={{ padding: "0 5px", lineHeight: "20px" }}
+                onClick={() => handleAddToCart(item)}
+              >
+                + Add to Cart
+              </button>
               <button className='btn' onClick={() => handleRemoveWishList(item.product_id)}><i className="fa fa-times" aria-hidden="true"></i> </button>
             </Col>
           </Row>

@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Image, Col, Row, Button } from 'react-bootstrap'
 import Tab from 'react-bootstrap/Tab';
+import { useSelector, useDispatch } from 'react-redux';
 import Tabs from 'react-bootstrap/Tabs';
 import { useParams, Link } from 'react-router-dom';
 import { fetch } from '../../../utils';
 import Parser from 'html-react-parser';
-
-
+import { addToCart, initializeCart } from '../../../reducers/cart';
+import Loader from '../../component/Loader';
 const DetailsPage = () => {
     const [productDetails, setProductDetails] = useState([])
-
+    const dispatch = useDispatch();
     const { product_slug } = useParams();
     const getProductDetails = async () => {
         try {
@@ -40,6 +41,36 @@ const DetailsPage = () => {
             setQuantity(quantity - 1);
         }
     };
+
+    const handleAddToCart = (product) => {
+        const cartItemData = {
+            attributes: product.attributes,
+            product_name: product.product_name,
+            product_MSP: product.product_MSP,
+            brand_id: product.brand_id,
+            category_id: product.category_id,
+            gst_id: product.gst_id,
+            gst_percent: product.gst_percent,
+            images: product.images,
+            in_stock_status: product.in_stock_status,
+            is_delete: product.is_delete,
+            product_MRP: product.product_MRP,
+            product_additional_information: product.product_additional_information,
+            product_code: product.product_code,
+            product_description: product.product_description,
+            product_id: product.product_id,
+            product_name_disp: product.product_name_disp,
+            product_sku: product.product_sku,
+            product_slug: product.product_slug,
+            product_thumbnail: product.product_thumbnail,
+            sub_category_id: product.sub_category_id,
+            quantity: quantity,
+            subTotal: product.product_MSP,
+        };
+        dispatch(addToCart(cartItemData));
+        console.log('updatede qty', cartItemData)
+    };
+
     return (
         <>
             <hr />
@@ -83,11 +114,11 @@ const DetailsPage = () => {
                                     <button className='btn btn-sm' style={{ fontSize: "20px" }} onClick={incrementQuantity}>+</button>
                                 </span> &nbsp;
                                 <span>
-                                    <button className='btn btn-danger rounded-1 main-bg px-4'> +  Add to cart</button>
+                                    <button className='btn btn-danger rounded-1 main-bg px-4' onClick={() => handleAddToCart(productDetails)}> +  Add to cart</button>
                                 </span>
-                                <span> &nbsp;
+                                {/* <span> &nbsp;
                                     <button className='btn btn btn-outline-secondary rounded-1 px-4'>Buy Now</button>
-                                </span>
+                                </span> */}
                             </div>
 
                             <div className='pt-4'>
@@ -126,99 +157,6 @@ const DetailsPage = () => {
                     </Tabs>
                 </div>
 
-
-                <div className='mt-5'>
-                    <h3 className='pt-5'><b>Related Product</b></h3>
-                    <Row className='pt-4'>
-                        <Col sm={3} className='pb-5'>
-                            <div className='product-item'>
-                                <Link to="/product/details">
-                                    <img src='https://store.muskaan.org/wp-content/uploads/2021/11/41-300x300.png' alt="" className='w-100' />
-                                </Link>
-                                <div>
-                                    <p className='m-0 pt-3'>Somaru Misses Home</p>
-                                    <span>  <i className="fa fa-inr"></i> 200.00</span>
-                                    <span className='pull-right'><i className="fa fa-star five-star" aria-hidden="true"></i>
-                                        <i className="fa fa-star five-star" aria-hidden="true"></i>
-                                        <i className="fa fa-star five-star" aria-hidden="true"></i>
-                                        <i className="fa fa-star five-star" aria-hidden="true"></i></span>
-                                    <br />
-
-                                    <hr className='my-2' style={{ color: "gray" }} />
-                                    <font>
-                                        <span className='pull-left'><a href='#' className='font-14 text-dark'>+ Add To Cart</a></span>
-                                        <span className='pull-right'><i className="fa fa-heart-o" aria-hidden="true"></i></span>
-                                    </font>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col sm={3} className='pb-5'>
-                            <div className='product-item'>
-                                <Link to="/product/details">
-                                    <img src='https://store.muskaan.org/wp-content/uploads/2021/11/41-300x300.png' alt="" className='w-100' />
-                                </Link>
-                                <div>
-                                    <p className='m-0 pt-3'>Somaru Misses Home</p>
-                                    <span>  <i className="fa fa-inr"></i> 200.00</span>
-                                    <span className='pull-right'><i className="fa fa-star five-star" aria-hidden="true"></i>
-                                        <i className="fa fa-star five-star" aria-hidden="true"></i>
-                                        <i className="fa fa-star five-star" aria-hidden="true"></i>
-                                        <i className="fa fa-star five-star" aria-hidden="true"></i></span>
-                                    <br />
-
-                                    <hr className='my-2' style={{ color: "gray" }} />
-                                    <font>
-                                        <span className='pull-left'><a href='#' className='font-14 text-dark'>+ Add To Cart</a></span>
-                                        <span className='pull-right'><i className="fa fa-heart-o" aria-hidden="true"></i></span>
-                                    </font>
-                                </div>
-                            </div>
-                        </Col>
-                        <Col sm={3} className='pb-5'>
-                            <div className='product-item'>
-                                <Link to="/product/details">
-                                    <img src='https://store.muskaan.org/wp-content/uploads/2021/11/41-300x300.png' alt="" className='w-100' />
-                                </Link>
-                                <div>
-                                    <p className='m-0 pt-3'>Somaru Misses Home</p>
-                                    <span>  <i className="fa fa-inr"></i> 200.00</span>
-                                    <span className='pull-right'><i className="fa fa-star five-star" aria-hidden="true"></i>
-                                        <i className="fa fa-star five-star" aria-hidden="true"></i>
-                                        <i className="fa fa-star five-star" aria-hidden="true"></i>
-                                        <i className="fa fa-star five-star" aria-hidden="true"></i></span>
-                                    <br />
-                                    <hr className='my-2' style={{ color: "gray" }} />
-                                    <font>
-                                        <span className='pull-left'><a href='#' className='font-14 text-dark'>+ Add To Cart</a></span>
-                                        <span className='pull-right'><i className="fa fa-heart-o" aria-hidden="true"></i></span>
-                                    </font>
-                                </div>
-                            </div>
-                        </Col>
-
-                        <Col sm={3} className='pb-5'>
-                            <div className='product-item'>
-                                <Link to="/product/details">
-                                    <img src='https://store.muskaan.org/wp-content/uploads/2021/11/41-300x300.png' alt="" className='w-100' />
-                                </Link>
-                                <div>
-                                    <p className='m-0 pt-3'>Somaru Misses Home</p>
-                                    <span>  <i className="fa fa-inr"></i> 200.00</span>
-                                    <span className='pull-right'><i className="fa fa-star five-star" aria-hidden="true"></i>
-                                        <i className="fa fa-star five-star" aria-hidden="true"></i>
-                                        <i className="fa fa-star five-star" aria-hidden="true"></i>
-                                        <i className="fa fa-star five-star" aria-hidden="true"></i></span>
-                                    <br />
-                                    <hr className='my-2' style={{ color: "gray" }} />
-                                    <font>
-                                        <span className='pull-left'><a href='#' className='font-14 text-dark'>+ Add To Cart</a></span>
-                                        <span className='pull-right'><i className="fa fa-heart-o" aria-hidden="true"></i></span>
-                                    </font>
-                                </div>
-                            </div>
-                        </Col>
-                    </Row>
-                </div>
 
 
             </Container>

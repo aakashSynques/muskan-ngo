@@ -88,6 +88,8 @@ import ForgotPassword from './website/pages/shopNowPages/myAccount/ForgotPasswor
 import AddressBook from './website/pages/shopNowPages/myAccount/AddressBook';
 import OrderHistory from './website/pages/shopNowPages/myAccount/OrderHistory';
 import NotFound from './website/component/NotFound';
+import CheckOut from './website/pages/shopNowPages/CheckOut';
+import CartItems from './website/pages/shopNowPages/CartItems';
 
 function App() {
   return (
@@ -104,13 +106,14 @@ function App() {
         <Route path="/product-category/:category_slug" element={<SubCategroy />} />
         <Route path='/product/:product_slug' element={<DetailsPage />} />
         <Route path='/wishlist' element={<Wishlist />} />
-        <Route path='/cart' element={<Cart />} />
+        <Route path='/cart' element={<CartItems />} />
         <Route path='/account/login' element={<Login />} />
         <Route path='/account/register' element={<Register />} />
         <Route path='/account/forgotPwd' element={<ForgotPassword />} />
         <Route path='/account/addressbook' element={<AddressBook />} />
         <Route path='/account/order-history' element={<OrderHistory />} />
         <Route path='/*' element={<NotFound />} />
+        <Route path='/checkout' element={<CheckOut />} />
 
         {/* admin routes */}
         <Route path='/admin' element={<LoginForm />} />
