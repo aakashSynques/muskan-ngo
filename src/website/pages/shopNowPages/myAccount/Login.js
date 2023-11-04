@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Button, Card, CardBody, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { fetch } from '../../../../utils';
@@ -10,6 +10,7 @@ const Login = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email || !password) {
@@ -20,7 +21,7 @@ const Login = () => {
         setError('Wait, checking your details.');
         try {
             const response = await fetch('/customer/login', 'post', {
-                customer_email: email, // Use email and password variables here
+                customer_email: email,
                 customer_password: password,
             });
             if (response.status === 200) {
@@ -28,7 +29,7 @@ const Login = () => {
                 if (responseData && responseData.data.token) {
                     const token = responseData.data.token;
                     localStorage.setItem("muskan_token", token);
-                    navigate('/wishlist');
+                    verifyToken(token); // Verify the token after successful login
                 } else {
                     setError('Invalid response format');
                 }
@@ -46,6 +47,33 @@ const Login = () => {
         }
     };
 
+    const verifyToken = async (token) => {
+        try {
+            const response = await fetch("/customer/verify", "post", null, {
+                Authorization: `Bearer ${token}`,
+            });
+            if (response.status === 200) {
+                const { tokenData } = response.data;
+                const userInfo = tokenData[0];
+                localStorage.setItem("muskaan_user_info", JSON.stringify(userInfo));
+                if (userInfo.role === "customer_email") {
+                    navigate("");
+                } else {
+                    navigate("");
+                }
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+    
+
+    useEffect(() => {
+        const token = localStorage.getItem("muskan_token");
+        if (token) {
+            verifyToken(token);
+        }
+    }, []);
 
 
     return (

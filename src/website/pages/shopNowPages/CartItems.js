@@ -9,13 +9,11 @@ const CartItems = () => {
     // const cart = useSelector((state) => state.cart);
     const cart = useSelector((state) => state.cart.items);
     const totalAmount = useSelector((state) => state.cart.totalAmount);
-
-
-    console.log('cart', cart);
     useEffect(() => {
         const cartJSON = JSON.stringify(cart);
         localStorage.setItem('cart', cartJSON);
     }, [cart]);
+    
 
     const handleIncrement = (item) => {
         dispatch(updateQuantity({ product_id: item.product_id, quantity: item.quantity + 1 }));
@@ -111,8 +109,8 @@ const CartItems = () => {
                         ) : (
 
                             <div className='text-center'>
-                                <i class="fa fa-cart-plus" aria-hidden="true"></i>
-                                <p className='text-center '>Cart is empty.</p>
+                                <i class="fa fa-cart-plus mt-5" aria-hidden="true" style={{ fontSize: "125px", color: "#efefef" }}></i>
+                                <p className='text-center pt-2'>Cart is empty.</p>
                             </div>
                         )}
                     </Col>
@@ -135,7 +133,7 @@ const CartItems = () => {
                             </table>
                             {/* <Button className='btn btn-danger w-100 mt-3'>
                             Proceed to checkout</Button> */}
-                            <Link className='btn  w-100 mt-3 main-bg text-white'>Proceed to checkout</Link>
+                            <Link className='btn  w-100 mt-3 main-bg text-white' to="/CheckOut">Proceed to checkout</Link>
                         </div>
                     </Col>
                 </Row>

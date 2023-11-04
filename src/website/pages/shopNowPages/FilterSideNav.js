@@ -65,13 +65,13 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
         min={0}
         max={100}
         value={range}
-        onChange={handleSliderChange}
+        onChange={handleSliderChange} y
       />
       <div className='pt-3'>
         <span className='pull-right'> <font className="pt-1 text-secondary">
           Price: &nbsp; <i className="fa fa-inr"></i> {range[0]} - {range[1]}
         </font></span>
-        <span className='pull-left'>
+        <span className='pull-left'> 
           <Button className='btn btn-sm' onClick={resetPriceRange}>Reset</Button> {/* Add the Reset button */}
         </span>
       </div>
@@ -83,17 +83,20 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
           .filter(item => item.desktop_display === 1) // Filter products where desktop_display is 1
           .map((item, index) => (
             <>
-               <Link to={`/product/${item.product_slug}`}>
-              <Row className='py-2'>
-                <Col sm={3}>
-                  <img src={item.product_thumbnail} alt="" className='w-100' />
-                </Col>
-                <Col sm={9}>
-                  <p className='m-0 f-w-6 text-secondary'>{item.product_name}</p>
-                  <span className='main-color'>  <i className="fa fa-inr"></i> {item.product_MSP}</span>
-                </Col>
-              </Row>
+              <Link to={`/product/${item.product_slug}`}>
+                <Row className='py-2' key={index}>
+
+                  <Col sm={3}>
+                    <img src={item.product_thumbnail} alt="" className='w-100' />
+                  </Col>
+                  <Col sm={9}>
+                    <p className='m-0 f-w-6 text-secondary'>{item.product_name}</p>
+                    <span className='main-color'>  <i className="fa fa-inr"></i> {item.product_MSP}</span>
+                  </Col>
+
+                </Row>
               </Link>
+
             </>
           ))}
 

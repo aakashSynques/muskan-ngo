@@ -391,4 +391,15 @@ span.date {
     margin-bottom: 0.5rem;
     font-size: 15px;
     font-weight: 600 !important;
+}.checkout-style input{
+    margin: 6px 0;
 }
+
+.checkout-style ::placeholder {
+    color: #858585f0!important;
+    opacity: 1; /* Firefox */
+    font-size: 13px;
+    font-weight: 500;
+
+  }
+  

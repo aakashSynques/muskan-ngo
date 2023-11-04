@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 import MyAccoutSideBar from './MyAccoutSideBar'
 import { fetch } from '../../../../utils'
 const Register = () => {
-
     const [formData, setFormData] = useState({
         customer_password: '',
         customer_mobile: '',
@@ -14,10 +13,8 @@ const Register = () => {
         customer_lname: '',
     });
     const [registrationMessage, setRegistrationMessage] = useState('');
-
     const registerUser = async (e) => {
         e.preventDefault();
-
         if (Object.values(formData).some((value) => value === '')) {
             setRegistrationMessage('Please fill in all fields.');
             return;
@@ -33,6 +30,7 @@ const Register = () => {
             };
             const response = await fetch('/customer/register', 'POST', body, null);
             if (response.data.success) {
+                const token = response.data.token; // Assuming the response contains a unique token
                 setRegistrationMessage(response.message); // Display the response message
                 console.log(response.message);
             } else {
