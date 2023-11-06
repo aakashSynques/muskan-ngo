@@ -78,7 +78,7 @@ import ShopNow from './website/pages/ShopNow';
 import Connect from './website/pages/Connect';
 import DetailsPage from './website/pages/shopNowPages/DetailsPage';
 import Wishlist from './website/pages/shopNowPages/Wishlist';
-import Cart from './website/pages/shopNowPages/Cart';
+
 import LoginForm from './admin/pages/Login';
 import Login from './website/pages/shopNowPages/myAccount/Login';
 import Register from './website/pages/shopNowPages/myAccount/Register';
@@ -90,36 +90,37 @@ import OrderHistory from './website/pages/shopNowPages/myAccount/OrderHistory';
 import NotFound from './website/component/NotFound';
 import CheckOut from './website/pages/shopNowPages/CheckOut';
 import CartItems from './website/pages/shopNowPages/CartItems';
+import Layout from './website/layout/Layout';
 
 function App() {
   return (
     <BrowserRouter>
-      <MainHeader />
-      <Routes>
-        {/* Website Routes */}
-        <Route path='/' element={<Home />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/work' element={<Work />} />
-        <Route path='/communicables' element={<Communicables />} />
-        <Route path='/connect' element={<Connect />} />
-        <Route path='/product-category/:category_slug/:subcategory_slug' element={<SubCategroy />} />
-        <Route path="/product-category/:category_slug" element={<SubCategroy />} />
-        <Route path='/product/:product_slug' element={<DetailsPage />} />
-        <Route path='/wishlist' element={<Wishlist />} />
-        <Route path='/cart' element={<CartItems />} />
-        <Route path='/account/login' element={<Login />} />
-        <Route path='/account/register' element={<Register />} />
-        <Route path='/account/forgotPwd' element={<ForgotPassword />} />
-        <Route path='/account/addressbook' element={<AddressBook />} />
-        <Route path='/account/order-history' element={<OrderHistory />} />
-        <Route path='/*' element={<NotFound />} />
-        <Route path='/checkout' element={<CheckOut />} />
+      <Layout>
+        <Routes>
+          {/* Website Routes */}
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/work' element={<Work />} />
+          <Route path='/communicables' element={<Communicables />} />
+          <Route path='/connect' element={<Connect />} />
+          <Route path='/product-category/:category_slug/:subcategory_slug' element={<SubCategroy />} />
+          <Route path="/product-category/:category_slug" element={<SubCategroy />} />
+          <Route path='/product/:product_slug' element={<DetailsPage />} />
+          <Route path='/wishlist' element={<Wishlist />} />
+          <Route path='/cart' element={<CartItems />} />
+          <Route path='/account/login' element={<Login />} />
+          <Route path='/account/register' element={<Register />} />
+          <Route path='/account/forgotPwd' element={<ForgotPassword />} />
+          <Route path='/account/addressbook' element={<AddressBook />} />
+          <Route path='/account/order-history' element={<OrderHistory />} />
+          <Route path='/*' element={<NotFound />} />
+          <Route path='/checkout' element={<CheckOut />} />
 
-        {/* admin routes */}
-        <Route path='/admin' element={<LoginForm />} />
-        <Route path='/admin/dashboard' element={<AdminDashboard />} />
-      </Routes>
-      <Footer />
+          {/* admin routes */}
+          <Route path='/admin' element={<LoginForm />} />
+          <Route path='/admin/dashboard' element={<AdminDashboard />} />
+        </Routes>
+      </Layout>
 
 
 

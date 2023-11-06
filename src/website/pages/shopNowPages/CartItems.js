@@ -9,11 +9,16 @@ const CartItems = () => {
     // const cart = useSelector((state) => state.cart);
     const cart = useSelector((state) => state.cart.items);
     const totalAmount = useSelector((state) => state.cart.totalAmount);
+
     useEffect(() => {
         const cartJSON = JSON.stringify(cart);
         localStorage.setItem('cart', cartJSON);
     }, [cart]);
-    
+
+    // useEffect(() => {
+    //     const cartJSON =  localStorage.getItem('cart');
+    // }, []);
+
 
     const handleIncrement = (item) => {
         dispatch(updateQuantity({ product_id: item.product_id, quantity: item.quantity + 1 }));
@@ -50,7 +55,7 @@ const CartItems = () => {
                 <div className='mt-2 pb-5 text-center'>
                     <h2 style={{ fontWeight: "500" }}>Cart</h2>
                 </div>
-                <CartNav />
+                {/* <CartNav /> */}
 
                 <Row className='pt-5'>
                     <Col sm={8} className='r-border pr-4'>
@@ -133,7 +138,7 @@ const CartItems = () => {
                             </table>
                             {/* <Button className='btn btn-danger w-100 mt-3'>
                             Proceed to checkout</Button> */}
-                            <Link className='btn  w-100 mt-3 main-bg text-white' to="/CheckOut">Proceed to checkout</Link>
+                            <Link className='btn  w-100 mt-3 main-bg text-white' to="/checkout">Proceed to checkout</Link>
                         </div>
                     </Col>
                 </Row>

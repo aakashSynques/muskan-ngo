@@ -14,8 +14,7 @@ const SubCategory = () => {
     const [loading, setLoading] = useState(true);
 
     const [isInitialLoading, setInitialLoading] = useState(true); // Add isInitialLoading state
-
-    const [range, setRange] = useState([0, 100]);
+      const [range, setRange] = useState([0, 100]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const { category_slug, subcategory_slug } = useParams();
     const [sortingOption, setSortingOption] = useState('price-low-to-high'); // Initial sorting option
@@ -34,8 +33,6 @@ const SubCategory = () => {
             );
             setProductList(response.data.data.product_list);
             dispatch(setProductListData(response.data.data.product_list));
-            // console.log('prod dis', dispatch(setProductListData(response.data.data.product_list)))
-            // console.log('product all', response.data.data.product_list)
             setLoading(false);
         } catch (err) {
             console.log(err);
@@ -104,7 +101,6 @@ const SubCategory = () => {
         }
     }
 
-
     const handleAddToCart = (product) => {
         const cartItemData = {
             attributes: product.attributes,
@@ -113,6 +109,7 @@ const SubCategory = () => {
             brand_id: product.brand_id,
             category_id: product.category_id,
             gst_id: product.gst_id,
+            categroy_name: subcategory_slug,
             gst_percent: product.gst_percent,
             images: product.images,
             in_stock_status: product.in_stock_status,
@@ -131,6 +128,7 @@ const SubCategory = () => {
             subTotal: product.product_MSP,
         };
         dispatch(addToCart(cartItemData));
+        console.log('cart ',   dispatch(addToCart(cartItemData)))
     };
 
 
