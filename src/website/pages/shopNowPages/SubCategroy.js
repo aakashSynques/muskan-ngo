@@ -194,7 +194,7 @@ const SubCategory = () => {
                                             </div>
                                         ) : (
                                             <>
-                                                <Link to={`/product/${product.product_slug}`}>
+                                                <Link to={`/${product.category_slug}/${product.sub_category_slug}/${product.product_slug}`}>
                                                     <img src={product.product_thumbnail} alt="" className='w-100 image-height' />
                                                 </Link>
                                                 <p className='m-0 pt-2 f-w-6'>{product.product_name}</p>

@@ -42,34 +42,34 @@ const DetailsPage = () => {
         }
     };
 
-    // const handleAddToCart = (product) => {
-    //     const cartItemData = {
-    //         attributes: product.attributes,
-    //         product_name: product.product_name,
-    //         product_MSP: product.product_MSP,
-    //         brand_id: product.brand_id,
-    //         category_id: product.category_id,
-    //         gst_id: product.gst_id,
-    //         gst_percent: product.gst_percent,
-    //         images: product.images,
-    //         in_stock_status: product.in_stock_status,
-    //         is_delete: product.is_delete,
-    //         product_MRP: product.product_MRP,
-    //         product_additional_information: product.product_additional_information,
-    //         product_code: product.product_code,
-    //         product_description: product.product_description,
-    //         product_id: product.product_id,
-    //         product_name_disp: product.product_name_disp,
-    //         product_sku: product.product_sku,
-    //         product_slug: product.product_slug,
-    //         product_thumbnail: product.product_thumbnail,
-    //         sub_category_id: product.sub_category_id,
-    //         quantity: quantity,
-    //         subTotal: product.product_MSP,
-    //     };
-    //     dispatch(addToCart(cartItemData));
-    //     console.log('updatede qty', cartItemData)
-    // };
+    const handleAddToCart = (product) => {
+        const cartItemData = {
+            attributes: product.attributes,
+            product_name: product.product_name,
+            product_MSP: product.product_MSP,
+            brand_id: product.brand_id,
+            category_id: product.category_id,
+            gst_id: product.gst_id,
+            gst_percent: product.gst_percent,
+            images: product.images,
+            in_stock_status: product.in_stock_status,
+            is_delete: product.is_delete,
+            product_MRP: product.product_MRP,
+            product_additional_information: product.product_additional_information,
+            product_code: product.product_code,
+            product_description: product.product_description,
+            product_id: product.product_id,
+            product_name_disp: product.product_name_disp,
+            product_sku: product.product_sku,
+            product_slug: product.product_slug,
+            product_thumbnail: product.product_thumbnail,
+            sub_category_id: product.sub_category_id,
+            quantity: quantity,
+            subTotal: product.product_MSP,
+        };
+        dispatch(addToCart(cartItemData));
+        console.log('updatede qty', cartItemData)
+    };
 
     return (
         <>
@@ -113,9 +113,9 @@ const DetailsPage = () => {
                                     <span className='px-4'>{quantity}</span>
                                     <button className='btn btn-sm' style={{ fontSize: "20px" }} onClick={incrementQuantity}>+</button>
                                 </span> &nbsp;
-                                {/* <span>
+                                <span>
                                     <button className='btn btn-danger rounded-1 main-bg px-4' onClick={() => handleAddToCart(productDetails)}> +  Add to cart</button>
-                                </span> */}
+                                </span>
                                 {/* <span> &nbsp;
                                     <button className='btn btn btn-outline-secondary rounded-1 px-4'>Buy Now</button>
                                 </span> */}

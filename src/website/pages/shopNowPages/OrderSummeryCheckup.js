@@ -93,7 +93,7 @@ const OrderSummeryCheckup = () => {
 
 
 
-            <table class="table">
+            <table class="table scroll-content">
                 <tbody>
                     {cart.map((item, index) => (
                         <tr className='py-3' key={index}>

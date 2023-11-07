@@ -20,8 +20,8 @@ const Footer = () => {
                 </ul>
               </div>
             </Col>
-            <Col sm={8}>
-              <Row>
+            <Col sm={8} >
+              <Row className='pt-4'>
                 <Col sm={3} xs={6}>
                   <ul className="links-footer">
                     <h6>Work</h6>

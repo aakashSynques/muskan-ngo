@@ -130,11 +130,9 @@ const MainHeader = () => {
             console.log(err);
         }
     }
-
     useEffect(() => {
         getCategryList();
     }, []);
-
     const openCartSidebar = () => {
         setIsCartSidebarOpen(true);
         setIsOverlayActive(true);
@@ -178,13 +176,17 @@ const MainHeader = () => {
                                 <Nav.Item>
                                     <Link to="/connect" className='nav-link'>Connect</Link>
                                 </Nav.Item>
+
+
                                 <NavDropdown title="Shop Now" id="basic-nav-dropdown">
                                     {categoryList.map((category, index) => (
                                         <NavDropdown.Item key={index}>
-                                            <Link to={`/product-category/${category.category_slug}`} className='text-dark'>{category.category_name}</Link>
+                                            <Link to={`/${category.category_slug}`} className='text-dark'>{category.category_name}</Link>
                                         </NavDropdown.Item>
                                     ))}
                                 </NavDropdown>
+
+
                                 <Nav.Item className='px-1'>
                                     <Link to="/wishlist" className='nav-link pt-2 px-1 whishlist-nav'>
                                         <Badge bg="danger" className='rounded-5'>{wishlistData.wishListDataCount.length}</Badge>
@@ -192,7 +194,7 @@ const MainHeader = () => {
                                     </Link>
                                 </Nav.Item>
                                 <Nav.Item className='px-1'>
-                                    <Link to="/cart" className='nav-link pt-2 px-1 whishlist-nav' onClick={openCartSidebar}>
+                                    <Link className='nav-link pt-2 px-1 whishlist-nav' onClick={openCartSidebar}>
                                         <Badge bg="danger" className='rounded-5'>{cart.length}</Badge>
                                         <i className="fa fa-shopping-bag" aria-hidden="true"></i>
                                     </Link>

@@ -10,14 +10,11 @@ const CartItems = () => {
     const cart = useSelector((state) => state.cart.items);
     const totalAmount = useSelector((state) => state.cart.totalAmount);
 
-    useEffect(() => {
-        const cartJSON = JSON.stringify(cart);
-        localStorage.setItem('cart', cartJSON);
-    }, [cart]);
-
     // useEffect(() => {
-    //     const cartJSON =  localStorage.getItem('cart');
-    // }, []);
+    //     const cartJSON = JSON.stringify(cart);
+    //     localStorage.setItem('cart', cartJSON);
+    // }, [cart]);
+
 
 
     const handleIncrement = (item) => {

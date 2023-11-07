@@ -205,9 +205,9 @@ const Register = () => {
                             </CardBody>
                         </Card>
                     </Col>
-                    <Col sm={3}>
+                    {/* <Col sm={3}>
                         <MyAccoutSideBar />
-                    </Col>
+                    </Col> */}
                 </Row>
             </Container>
         </>

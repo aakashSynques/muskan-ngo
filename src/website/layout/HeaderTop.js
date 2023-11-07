@@ -1,7 +1,38 @@
-import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { Container, Row, Col } from "react-bootstrap";
+import { setIntervalCart } from "../../reducers/cart";
 
 function HeaderTop() {
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const [isInitialRender, setIsInitialRender] = useState(true);
+
+  useEffect(() => {
+    if (isInitialRender) {
+      console.log("cart not save");
+      setIsInitialRender(false);
+      return;
+    }
+    console.log("cart save");
+    const cartjsonString = JSON.stringify(cart);
+    localStorage.setItem("cartjsonString", cartjsonString);
+  }, [cart]);
+
+  useEffect(() => {
+    // If it's the first render
+    const cartjsonString = localStorage.getItem("cartjsonString");
+    if (cartjsonString) {
+      try {
+        console.log("initial cart save");
+        const cartjsonObject = JSON.parse(cartjsonString);
+        dispatch(setIntervalCart(cartjsonObject));
+      } catch (error) {
+        console.log("emty initial cart save");
+        dispatch(setIntervalCart({ items: [], totalAmount: 0 }));
+      }
+    }
+  }, []);
   return (
     <section className="header-top">
       <Container>
@@ -20,7 +51,7 @@ function HeaderTop() {
               </li>
             </ul>
           </Col>
-          <Col lg={4} sm={4} xs={4}  className="text-end d-none d-md-block">
+          <Col lg={4} sm={4} xs={4} className="text-end d-none d-md-block">
             <a href="#" className="default-btn text-white text-decoration-none">
               DONATE NOW <i className="fa fa-money"></i>
             </a>

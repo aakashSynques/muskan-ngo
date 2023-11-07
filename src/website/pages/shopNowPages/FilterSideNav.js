@@ -45,7 +45,7 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
                 {category.sub_categorys.map(subCategory => (
                   <li key={subCategory.sub_category_id}>
                     <Link
-                      to={`/product-category/${category.category_slug}/${subCategory.sub_category_slug}`}
+                      to={`/${category.category_slug}/${subCategory.sub_category_slug}`}
                       className='text-dark'
                     >
                       {subCategory.sub_category_name}
@@ -83,7 +83,7 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
           .filter(item => item.desktop_display === 1) // Filter products where desktop_display is 1
           .map((item, index) => (
             <>
-              <Link to={`/product/${item.product_slug}`}>
+              <Link to={`/${item.category_slug}/${item.sub_category_slug}/${item.product_slug}`}>
                 <Row className='py-2' key={index}>
 
                   <Col sm={3}>

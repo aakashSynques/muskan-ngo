@@ -91,13 +91,13 @@ import NotFound from './website/component/NotFound';
 import CheckOut from './website/pages/shopNowPages/CheckOut';
 import CartItems from './website/pages/shopNowPages/CartItems';
 import Layout from './website/layout/Layout';
+import MyProfile from './website/pages/shopNowPages/myAccount/MyProfile';
 
 function App() {
   return (
     <BrowserRouter>
-      <Layout>
+      {/* <Layout>
         <Routes>
-          {/* Website Routes */}
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/work' element={<Work />} />
@@ -115,6 +115,43 @@ function App() {
           <Route path='/account/order-history' element={<OrderHistory />} />
           <Route path='/*' element={<NotFound />} />
           <Route path='/checkout' element={<CheckOut />} />
+          <Route path='/account/myprofile' element={<MyProfile/>} />
+
+          <Route path='/admin' element={<LoginForm />} />
+          <Route path='/admin/dashboard' element={<AdminDashboard />} />
+        </Routes>
+      </Layout> */}
+
+
+<Layout>
+        <Routes>
+          {/* Website Routes */}
+          <Route path='/' element={<Home />} />
+          <Route path='/about' element={<About />} />
+          <Route path='/work' element={<Work />} />
+          <Route path='/communicables' element={<Communicables />} />
+          <Route path='/connect' element={<Connect />} />
+          {/* <Route path='/product-category/:category_slug/:subcategory_slug' element={<SubCategroy />} />
+          <Route path="/product-category/:category_slug" element={<SubCategroy />} />
+          <Route path='/product/:product_slug' element={<DetailsPage />} /> */}
+          <Route path='/wishlist' element={<Wishlist />} />
+          <Route path='/cart' element={<CartItems />} />
+          <Route path='/account/login' element={<Login />} />
+          <Route path='/account/register' element={<Register />} />
+          <Route path='/account/forgotPwd' element={<ForgotPassword />} />
+          <Route path='/account/addressbook' element={<AddressBook />} />
+          <Route path='/account/order-history' element={<OrderHistory />} />
+
+
+          <Route path="/:category_slug" element={<SubCategroy />} />
+          <Route path='/:category_slug/:subcategory_slug' element={<SubCategroy />} />
+          <Route path='/:category_slug/:subcategory_slug/:product_slug' element={<DetailsPage />} />
+
+
+          <Route path='/*' element={<NotFound />} />
+          <Route path='/checkout' element={<CheckOut />} />
+
+          <Route path='/account/myprofile' element={<MyProfile/>} />
 
           {/* admin routes */}
           <Route path='/admin' element={<LoginForm />} />

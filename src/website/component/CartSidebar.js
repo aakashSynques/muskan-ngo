@@ -10,15 +10,12 @@ const CartSidebar = ({ isOpen, closeSidebar, categoryList }) => {
     // const cart = useSelector((state) => state.cart);
     const cart = useSelector((state) => state.cart.items);
     const totalAmount = useSelector((state) => state.cart.totalAmount);
+    
 
     useEffect(() => {
         const cartJSON = JSON.stringify(cart);
         localStorage.setItem('cart', cartJSON);
     }, [cart]);
-
-    // useEffect(() => {
-    //     const cartJSON =  localStorage.getItem('cart');
-    // }, []);
 
 
     const handleIncrement = (item) => {
@@ -33,6 +30,8 @@ const CartSidebar = ({ isOpen, closeSidebar, categoryList }) => {
         dispatch(removeFromCart(item.product_id));
     };
 
+
+    
     useEffect(() => {
         const calculateTotalAmount = () => {
             let total = 0;
@@ -135,14 +134,11 @@ const CartSidebar = ({ isOpen, closeSidebar, categoryList }) => {
                     ) : (
 
                         <div className='text-center'>
-                            <i class="fa fa-cart-plus mt-5" aria-hidden="true" style={{ fontSize: "125px", color: "#efefef" }}></i>
+                            <i className="fa fa-cart-plus mt-5" aria-hidden="true" style={{ fontSize: "125px", color: "#efefef" }}></i>
                             <h3 className='text-center text-dark pt-5'>Cart is empty.</h3>
 
                         </div>
                     )}
-
-
-
 
                     {/* <table className='table'>
                         <tbody>

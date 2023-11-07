@@ -4,13 +4,18 @@ import { Link } from 'react-router-dom';
 import { fetch } from '../../../../utils';
 import { useNavigate } from 'react-router-dom';
 import MyAccountSideBar from './MyAccoutSideBar';
+import { useDispatch, useSelector } from 'react-redux';
+import { setToken } from '../../../../reducers/tokenSlice';
+
 const Login = () => {
+    const tokenData = useSelector((state) => state.token);
+
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email || !password) {
@@ -30,6 +35,7 @@ const Login = () => {
                     const token = responseData.data.token;
                     localStorage.setItem("muskan_token", token);
                     verifyToken(token); // Verify the token after successful login
+                    navigate("/account/myprofile");
                 } else {
                     setError('Invalid response format');
                 }
@@ -53,20 +59,22 @@ const Login = () => {
                 Authorization: `Bearer ${token}`,
             });
             if (response.status === 200) {
-                const { tokenData } = response.data;
-                const userInfo = tokenData[0];
-                localStorage.setItem("muskaan_user_info", JSON.stringify(userInfo));
-                if (userInfo.role === "customer_email") {
-                    navigate("");
+                const responseData = await response.data;
+                if (responseData) {
+                    const tokenData = responseData.data.token_data;
+                    localStorage.setItem("muskan_token_data", JSON.stringify(tokenData));
+                    dispatch(setToken(tokenData));
+
                 } else {
-                    navigate("");
+                    console.error('Invalid token data format');
                 }
+            } else {
+                console.error('Token verification failed');
             }
         } catch (err) {
             console.error(err);
         }
     };
-    
 
     useEffect(() => {
         const token = localStorage.getItem("muskan_token");
@@ -80,9 +88,13 @@ const Login = () => {
         <>
             <hr />
             <Container>
+
+       
+
+
                 <p> Home › My Account › Login</p>
                 <Row className='pt-5'>
-                    <Col sm={9}>
+                    <Col sm={12}>
                         <Row>
                             <Col sm={6}>
                                 <Card className='mb-3' style={{ border: 'none' }}>
@@ -161,9 +173,6 @@ const Login = () => {
                                 </Card>
                             </Col>
                         </Row>
-                    </Col>
-                    <Col sm={3}>
-                        <MyAccountSideBar />
                     </Col>
                 </Row>
             </Container>
