@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setWishListDataCount } from '../../../reducers/wishlistSlice';
 import { fetch } from '../../../utils'
 import { addToCart, initializeCart } from '../../../reducers/cart';
+import { Link } from 'react-router-dom';
 
 const Wishlist = () => {
   const [wishListData, setWishListData] = useState([]); // State to hold wishlist data
@@ -64,12 +65,12 @@ const Wishlist = () => {
 
   const [quantity, setQuantity] = useState(1);
   const incrementQuantity = () => {
-      setQuantity(quantity + 1);
+    setQuantity(quantity + 1);
   };
   const decrementQuantity = () => {
-      if (quantity > 1) {
-          setQuantity(quantity - 1);
-      }
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
   };
   const handleAddToCart = (product) => {
     const cartItemData = {
@@ -101,7 +102,6 @@ const Wishlist = () => {
     getWishListData();
   };
 
- 
   return (
     <>
       <hr />
@@ -124,51 +124,46 @@ const Wishlist = () => {
           <Col sm={2}>
           </Col>
         </Row>
-        {wishListData.map((item, index) => (
-          <Row className='py-4 border-b' key={index}>
-            <Col sm={4}>
-              <Row>
-                <Col sm={3}>
-                  <img src={item.product_thumbnail} alt="" className='w-100' />
-                </Col>
-                <Col sm={9} className='pt-4'> <p>{item.product_name}</p></Col>
-              </Row>
-            </Col>
-            <Col sm={2} className='pt-4'>
-              <span className='main-color'><i className="fa fa-inr"></i> {item.product_MRP}
-              </span> &nbsp;
-            </Col>
+        {wishListData.length === 0 ? ( // Check if wishlist is empty
+          <>
+            <div className='text-center'>
+              <p className='text-center pt-5'>No products in your wishlist. Select some products to add.</p>
 
-            {/* <Col sm={2} className='pt-4'>
-              <button className='btn p-0 font-14'> - </button>
-              <span className='px-3'> 4 </span>
-              <button className='btn p-0'>  + </button>
-            </Col> */}
+            </div>
+          </>
+        ) : (
+         wishListData.map((item, index) => (
+            <Row className='py-4 border-b' key={index}>
+              <Col sm={4}>
+                <Row>
+                  <Col sm={3}>
+                    <img src={item.product_thumbnail} alt="" className='w-100' />
+                  </Col>
+                  <Col sm={9} className='pt-4'> <p>{item.product_name}</p></Col>
+                </Row>
+              </Col>
+              <Col sm={2} className='pt-4'>
+                <span className='main-color'><i className="fa fa-inr"></i> {item.product_MRP}
+                </span> &nbsp;
+              </Col>
 
-            {/* <Col sm={2} className='pt-4'>
-              <button className='btn p-0 font-14' onClick={() => handleDecrement(item)}>-</button>
-              <span className='px-3'> {item.quantity}</span>
-              <button className='btn p-0' onClick={() => handleIncrement(item)}>+</button>
-            </Col> */}
-
-
-            <Col sm={2} className='pt-4'>
-              <font size="2" className="text-success"><i className="fa fa-check" aria-hidden="true"></i>{item.in_stock_status}</font>
-            </Col>
-            <Col sm={2} className='pt-4'>
-              {/* <button className='btn border-0' onClick={() => handleAddToCart(product)}>+ Add to Cart</button> */}
-              <button
-                className='btn btn-sm btn-danger rounded-1 main-bg'
-                style={{ padding: "0 5px", lineHeight: "20px" }}
-                onClick={() => handleAddToCart(item)}
-              >
-                + Add to Cart
-              </button>
-              <button className='btn' onClick={() => handleRemoveWishList(item.product_id)}><i className="fa fa-times" aria-hidden="true"></i> </button>
-            </Col>
-          </Row>
-
-        ))}
+              <Col sm={2} className='pt-4'>
+                <font size="2" className="text-success"><i className="fa fa-check" aria-hidden="true"></i>{item.in_stock_status}</font>
+              </Col>
+              <Col sm={2} className='pt-4'>
+                {/* <button className='btn border-0' onClick={() => handleAddToCart(product)}>+ Add to Cart</button> */}
+                <button
+                  className='btn btn-sm btn-danger rounded-1 main-bg'
+                  style={{ padding: "0 5px", lineHeight: "20px" }}
+                  onClick={() => handleAddToCart(item)}
+                >
+                  + Add to Cart
+                </button>
+                <button className='btn' onClick={() => handleRemoveWishList(item.product_id)}><i className="fa fa-times" aria-hidden="true"></i> </button>
+              </Col>
+            </Row>
+          ))
+        )}
       </Container>
     </>
   )

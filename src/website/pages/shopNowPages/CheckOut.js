@@ -548,7 +548,6 @@
 import React, { useState, useCallback } from 'react'
 import { Button, Col, Container, Form, FormControl, FormGroup, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import CartNav from './CartNav'
 import { useSelector, useDispatch } from 'react-redux';
 import { fetch } from '../../../utils';
 import useRazorpay from "react-razorpay";
@@ -663,7 +662,7 @@ const CheckOut = () => {
         },
         []
     );
-  
+
     const handlePlaceOrder = async () => {
         if (validateForm()) {
             try {
@@ -674,7 +673,7 @@ const CheckOut = () => {
                     customer_id: '',
                     customer_email: formData.customer_email,
                     cart: JSON.stringify(cart),
-                    ship_is_diff : shipToDifferentAddress?0:1,
+                    ship_is_diff: shipToDifferentAddress ? 0 : 1,
                     ship_fname: formData.ship_fname,
                     ship_lname: formData.ship_lname,
                     ship_company: formData.ship_company,
@@ -685,7 +684,7 @@ const CheckOut = () => {
                     ship_state: formData.ship_state,
                     ship_country: formData.ship_country,
                     ship_mobile: formData.ship_mobile,
-  
+
                     bill_fname: shipToDifferentAddress ? formData.bill_fname : formData.ship_fname,
                     bill_lname: shipToDifferentAddress ? formData.bill_lname : formData.ship_lname,
                     bill_company: shipToDifferentAddress ? formData.bill_company : formData.ship_company,
@@ -803,7 +802,7 @@ const CheckOut = () => {
                             <div className='mb-4'>   <font> Home › Shipping › Payment</font> </div>
                             <h6 className='pull-left'>Contact</h6>
                             <p className='text-end'>
-                                Have an account? <Link className='main-bg text-white px-2 rounded-1'>Log in</Link>
+                                Have an account? <Link className='main-bg text-white px-2 rounded-1' to='/account/login'>Log in</Link>
                             </p>
                             <FormGroup as={Col} md="12">
                                 <FormControl type="text" name='customer_email'

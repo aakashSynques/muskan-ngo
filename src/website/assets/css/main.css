@@ -220,6 +220,9 @@ span.date {
     font-size: 21px;
     font-weight: 800;
 }
+.cursor{
+    cursor: pointer;
+}
 
 .footer-box {
     position: relative;
@@ -322,11 +325,15 @@ span.date {
 
 @media only screen and (max-width: 799px) {
     .logo-width {
-        width: 75px;
-        top: -2px;
-        position: relative;
+        width: 75px!important;
+        top: -3px!important;
     }
-
+    .navbar-nav {
+        background: white!important;
+    }
+    .navigation nav .nav-link {
+        padding: 8px 43px;
+    }
     .top-content-wrap {
         font-size: 14px;
     }
@@ -459,10 +466,10 @@ span.date {
     text-transform: capitalize;
 }
 
-.card-fixed {
+/* .card-fixed {
     position: fixed;
     width: 20%;
-}
+} */
 
 .cart-sidebar {
     position: fixed;
@@ -504,14 +511,20 @@ span.date {
 
 .overlay.active {
     display: block;
-}.cart-drawer .cart-item{
+}
+
+.cart-drawer .cart-item {
     background: #fff;
     margin: 11px 0;
-}.quntity-btn{
+}
+
+.quntity-btn {
     background-color: #f3f3f3;
     text-align: center;
     width: 63%;
-}.address-book-box{
+}
+
+.address-book-box {
     padding: 17px;
     background: #F9F9F9;
     border: 1px solid #7e1502;

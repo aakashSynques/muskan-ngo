@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { Container, Row, Col, Button, Card, CardBody, Form } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import MyAccoutSideBar from './MyAccoutSideBar'
 import { fetch } from '../../../../utils'
 const Register = () => {
-    const [formData, setFormData] = useState({
+    const navigate = useNavigate();
+        const [formData, setFormData] = useState({
         customer_password: '',
         customer_mobile: '',
         customer_address: '',
@@ -32,6 +33,7 @@ const Register = () => {
             if (response.data.success) {
                 const token = response.data.token; // Assuming the response contains a unique token
                 setRegistrationMessage(response.message); // Display the response message
+                navigate("/account/login");
                 console.log(response.message);
             } else {
                 setRegistrationMessage(response.message);

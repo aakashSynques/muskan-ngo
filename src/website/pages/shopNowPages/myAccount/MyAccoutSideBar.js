@@ -5,11 +5,17 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const MyAccountSideBar = () => {
     const tokenData = useSelector((state) => state.token);
+    // Retrieve token data from localStorage
+    const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
+    const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
+
+
     return (
         <div className="">
             <div className="list-group accolumn px-3">
                 {/* <h6 className="pb-2 text-uppercase"><i className="fa fa-user main-color" aria-hidden="true" style={{ fontSize: "22px" }}></i> &nbsp;  ACCOUNT SETTINGS</h6> */}
                 {/* <h5>{tokenData.customer_fname} {tokenData.customer_lname}</h5> */}
+                <h5>{parsedTokenData ? `${parsedTokenData.customer_fname} ${parsedTokenData.customer_lname}` : 'N/A'}</h5>
                 <font size="2">Good to see you again</font>
             </div>
             <div className="list-group accolumn px-3 mt-3">
@@ -21,8 +27,11 @@ const MyAccountSideBar = () => {
                 <Link to="/account/addressbook">
                     Address Book
                 </Link>
-                <Link to="/account/forgotPwd">
+                {/* <Link to="/account/forgotPwd">
                     Forgotten Password
+                </Link> */}
+                <Link to="/account/change-password">
+                   Change Password
                 </Link>
 
                 <Link to="/account/logout">

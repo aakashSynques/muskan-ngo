@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Container, Col, Row, Button } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateQuantity, removeFromCart, updateTotalAmount } from '../../../reducers/cart';
-import CartNav from './CartNav';
+
 import { Link } from 'react-router-dom';
 const CartItems = () => {
     const dispatch = useDispatch();
@@ -133,8 +133,6 @@ const CartItems = () => {
                                     </tr>
                                 </tbody>
                             </table>
-                            {/* <Button className='btn btn-danger w-100 mt-3'>
-                            Proceed to checkout</Button> */}
                             <Link className='btn  w-100 mt-3 main-bg text-white' to="/checkout">Proceed to checkout</Link>
                         </div>
                     </Col>

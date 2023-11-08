@@ -84,7 +84,7 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
           .map((item, index) => (
             <>
               <Link to={`/${item.category_slug}/${item.sub_category_slug}/${item.product_slug}`}>
-                <Row className='py-2' key={index}>
+                <Row  className='py-2 d-m-none' key={index}>
 
                   <Col sm={3}>
                     <img src={item.product_thumbnail} alt="" className='w-100' />
@@ -93,7 +93,6 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
                     <p className='m-0 f-w-6 text-secondary'>{item.product_name}</p>
                     <span className='main-color'>  <i className="fa fa-inr"></i> {item.product_MSP}</span>
                   </Col>
-
                 </Row>
               </Link>
 

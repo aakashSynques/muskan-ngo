@@ -23,7 +23,7 @@
 
 .navigation nav .nav-link {
     display: block;
-    padding: 18px 50px;
+    padding: 18px 43px;
     color: #000;
     text-decoration: none;
     font-family: "Nunito", sans-serif;
@@ -31,16 +31,20 @@
     text-transform: uppercase;
     font-weight: bold;
 }
+hr{
+    margin: 5px 0 11px!important;
+    color: #878787!important;
+}
 
 .logo-width {
-    width: 105px;
-    top: -35px;
-    position: relative;
+    width: 76px;
+    top: -4px;
+    position: absolute;
     z-index: 999;
 }
 
 .navigation .nav-item {
-    padding: 0 20px;
+    padding: 0 9px;
 }
 .center-logo {
     width: 100px;

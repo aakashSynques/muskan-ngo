@@ -92,6 +92,7 @@ import CheckOut from './website/pages/shopNowPages/CheckOut';
 import CartItems from './website/pages/shopNowPages/CartItems';
 import Layout from './website/layout/Layout';
 import MyProfile from './website/pages/shopNowPages/myAccount/MyProfile';
+import ChangePwd from './website/pages/shopNowPages/myAccount/ChangePwd';
 
 function App() {
   return (
@@ -141,6 +142,7 @@ function App() {
           <Route path='/account/forgotPwd' element={<ForgotPassword />} />
           <Route path='/account/addressbook' element={<AddressBook />} />
           <Route path='/account/order-history' element={<OrderHistory />} />
+          <Route path='/account/change-password' element={<ChangePwd/>} />
 
 
           <Route path="/:category_slug" element={<SubCategroy />} />

@@ -7,6 +7,7 @@ import { useParams, Link } from 'react-router-dom';
 import { Container, Row, Col, Spinner } from 'react-bootstrap';
 import FilterSideNav from './FilterSideNav';
 import Sorting from '../../component/Sorting';
+import CartSidebar from '../../component/CartSidebar';
 
 const SubCategory = () => {
     const dispatch = useDispatch();
@@ -101,6 +102,8 @@ const SubCategory = () => {
         }
     }
 
+    const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false); // State for cart sidebar visibility
+
     const handleAddToCart = (product) => {
         const cartItemData = {
             attributes: product.attributes,
@@ -129,14 +132,24 @@ const SubCategory = () => {
         };
         dispatch(addToCart(cartItemData));
         console.log('cart ',   dispatch(addToCart(cartItemData)))
+        openCartSidebar();
     };
 
+
+    const openCartSidebar = () => {
+        setIsCartSidebarOpen(true);
+        // setIsOverlayActive(true);
+    }
+    const closeCartSidebar = () => {
+        setIsCartSidebarOpen(false);
+        // setIsOverlayActive(false);
+    }
 
     return (
         <>
             <hr />
             <Container>
-                <font> Home › {category_slug}</font>
+                <font> <Link to='/' className='text-dark'> Home </Link> › {category_slug}</font>
                 <Row className='pt-5'>
                     <Col sm={3} className='pe-5'>
                         <FilterSideNav
@@ -148,7 +161,11 @@ const SubCategory = () => {
                     <Col sm={9} className='border-left  ps-4' style={{ borderLeft: "1px solid" }}>
                         <Row>
                             <Col sm={6}>
-                                <h4 className="text-capitalize">{category_slug} </h4>
+                                <h5 className="text-capitalize">
+                                    {category_slug}  {subcategory_slug}
+           
+
+                                     </h5>
                             </Col>
                             <Col sm={6} className='text-end'>
                                 <span className='font-14'>Sort by &nbsp; : &nbsp;
@@ -185,7 +202,7 @@ const SubCategory = () => {
                                     </Col>
                                 ))
                             )} */}
-                            {filteredProducts.map((product, index) => (
+                        {filteredProducts.map((product, index) => (
                                 <Col className='pb-5' key={index}>
                                     <div className='product-item' style={{ height: "200px" }}>
                                         {loading ? ( // Render a loading spinner for each product while loading is true
@@ -218,6 +235,9 @@ const SubCategory = () => {
                     </Col>
                 </Row>
             </Container>
+            
+                        <CartSidebar isOpen={isCartSidebarOpen} closeSidebar={closeCartSidebar} />
+
         </>
     )
 }

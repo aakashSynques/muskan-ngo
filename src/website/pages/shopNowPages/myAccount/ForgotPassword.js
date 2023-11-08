@@ -10,13 +10,17 @@ const ForgotPassword = () => {
       <Container >
         <font> Home › My Accoun › Forgot Password</font>
         <Row className='pt-5'>
+        <Col sm={3}>
+            <MyAccountSideBar />
+          </Col>
+
           <Col sm={9} className='pe-5'>
             <div className='pe-5'>
               <h3 className=' pb-2 text-uppercase main-color'>Forgot Your Password?</h3>
               <font className=" pb-2">Enter the e-mail address associated with your account. Click submit to have a password reset link e-mailed to you.</font>
               <p className='f-w-6 pt-3 border-bottom pb-3'>Your E-Mail Address</p>
 
-              <Form className='pt-4'>
+              {/* <Form className='pt-4'>
                 <Form.Group as={Row} className="mb-3">
                   <Form.Label column sm="3">
                     <span className="text-danger">*</span>  E-Mail Address
@@ -38,7 +42,6 @@ const ForgotPassword = () => {
 
                   </Form.Label>
                   <Col sm="10">
-                    {/* <p className='pt-1 m-0 p-0'>Already have an account ? <Link to='/account/login'>Login</Link>  </p> */}
                     <div className='text-end'>
                       <Button
                         type="submit"
@@ -51,11 +54,13 @@ const ForgotPassword = () => {
 
                   </Col>
                 </Form.Group>
-              </Form></div>
+              </Form> */}
+              <Form>
+                
+              </Form>
+            </div>
           </Col>
-          <Col sm={3}>
-            <MyAccountSideBar />
-          </Col>
+        
         </Row>
       </Container>
     </>

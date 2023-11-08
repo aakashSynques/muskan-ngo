@@ -10,7 +10,7 @@ function HeaderTop() {
 
   useEffect(() => {
     if (isInitialRender) {
-      console.log("cart not save");
+
       setIsInitialRender(false);
       return;
     }
@@ -24,17 +24,21 @@ function HeaderTop() {
     const cartjsonString = localStorage.getItem("cartjsonString");
     if (cartjsonString) {
       try {
-        console.log("initial cart save");
+
         const cartjsonObject = JSON.parse(cartjsonString);
         dispatch(setIntervalCart(cartjsonObject));
       } catch (error) {
-        console.log("emty initial cart save");
+
         dispatch(setIntervalCart({ items: [], totalAmount: 0 }));
       }
     }
   }, []);
   return (
-    <section className="header-top">
+
+ 
+
+    <>
+       <section className="header-top">
       <Container>
         <Row className="top-content-wrap">
           <Col lg={8} sm={12} xs={12}>
@@ -59,6 +63,7 @@ function HeaderTop() {
         </Row>
       </Container>
     </section>
+    </>
   );
 }
 
