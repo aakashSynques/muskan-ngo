@@ -529,3 +529,6 @@ span.date {
     background: #F9F9F9;
     border: 1px solid #7e1502;
 }
+.table{
+    --bs-table-bg: none!important;
+}

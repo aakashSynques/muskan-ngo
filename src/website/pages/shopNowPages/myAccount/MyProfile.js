@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, CardHeader, CardBody, Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -6,34 +6,50 @@ import MyAccountSideBar from './MyAccoutSideBar';
 import { fetch } from '../../../../utils';
 
 const MyProfile = () => {
-    // Retrieve token data from localStorage
-    const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
-    const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
     const [show, setShow] = useState(false);
+    const [formData, setFormData] = useState({});
+    const [error, setError] = useState(null);
+
+
+    const tokenDataFromLocalStorage = localStorage.getItem('muskan_token_data');
+    const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
+
+    useEffect(() => {
+        // Retrieve token data from localStorage
+        const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
+        const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
+        setFormData(parsedTokenData);
+    }, []);
+
+
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const handleEditProfile = async () => {
-        const body = {
-            customer_id: parsedTokenData.customer_id,
-            customer_email: '',
-            customer_fname: '',
-            customer_lname: '',
-            customer_mobile: '',
-            customer_address:'',
-        }
-        try {
-            const response = await fetch('/customer/update-profile', 'POST', body, null);
-            if (response) {
-                console.log('updated data success')
-            } else {
-                console.log('updated faild')
-            }
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    }
 
+    const handleEditProfile = async () => {
+        try {
+            const response = await fetch('/customer/update-profile', 'POST', formData, true);
+            if (response) {
+                const updatedTokenData = { ...formData };
+                localStorage.setItem("muskan_token_data", JSON.stringify(updatedTokenData));
+                handleClose();
+                setError(null); // Clear any previous errors
+            } else {
+                setError('Profile update failed. Please try again.');
+            }
         } catch (error) {
-            console.log('errro', error)
+            setError('An error occurred while updating your profile.');
         }
     }
+
     return (
         <div>
             <hr />
@@ -48,69 +64,97 @@ const MyProfile = () => {
                             <CardHeader className='bg-light font-15'><b>Profile Details</b> &nbsp;
                                 <i className='fa fa-edit cursor main-color' onClick={handleShow}></i> </CardHeader>
                             <CardBody>
-                                <font size="3">Your Profile  details</font>
+                                <font size="3">Your Profile details</font>
 
                                 <div className="mt-1 bg-light p-4 border" >
                                     <table className="table table-borderless" style={{ background: "none" }}>
                                         <tbody>
                                             <tr>
                                                 <td>Name :</td>
-                                                <td>{parsedTokenData ? `${parsedTokenData.customer_fname} ${parsedTokenData.customer_lname}` : 'N/A'}</td>
+                                                <td>{formData ? `${formData.customer_fname} ${formData.customer_lname}` : 'N/A'}</td>
                                             </tr>
                                             <tr>
                                                 <td>Email : </td>
-                                                <td>{parsedTokenData ? parsedTokenData.customer_email : 'N/A'}</td>
+                                                <td>{formData ? formData.customer_email : 'N/A'}</td>
                                             </tr>
                                             <tr>
                                                 <td>Phone : </td>
-                                                <td>{parsedTokenData ? parsedTokenData.customer_mobile : 'N/A'}</td>
+                                                <td>{formData ? formData.customer_mobile : 'N/A'}</td>
                                             </tr>
                                             <tr>
                                                 <td>Address :</td>
-                                                <td>{parsedTokenData ? parsedTokenData.customer_address : 'N/A'}</td>
+                                                <td>{formData ? formData.customer_address : 'N/A'}</td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
-
                             </CardBody>
                         </Card>
                     </Col>
                 </Row>
             </Container>
 
-
             <Modal show={show} onHide={handleClose} animation={false}>
                 <Modal.Header closeButton>
-                    <Modal.Title ><h5>Edit Profile Details</h5></Modal.Title>
+                    <Modal.Title><h5>Edit Profile Details</h5></Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form>
-                        <Form.Group className="mb-3" >
-                            <Form.Label>First Name</Form.Label>
-                            <Form.Control type="text" name="" value={parsedTokenData.customer_fname} placeholder="" />
-                        </Form.Group>
+                        <Row>
+                            <Form.Group className="mb-3" as={Col} md="6">
+                                <Form.Label>First Name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="customer_fname"
+                                    value={formData.customer_fname || ''}
+                                    onChange={handleInputChange}
+                                />
+                            </Form.Group>
 
-                        <Form.Group className="mb-3" >
-                            <Form.Label>Last Name</Form.Label>
-                            <Form.Control type="text" placeholder=""  value={parsedTokenData.customer_lname}/>
-                        </Form.Group>
+                            <Form.Group className="mb-3" as={Col} md="6">
+                                <Form.Label>Last Name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="customer_lname"
+                                    value={formData.customer_lname || ''}
+                                    onChange={handleInputChange}
+                                />
+                            </Form.Group>
 
-                        <Form.Group className="mb-3" >
-                            <Form.Label>Mobile</Form.Label>
-                            <Form.Control type="number" placeholder="" value={parsedTokenData.customer_mobile} />
-                        </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Mobile</Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    name="customer_mobile"
+                                    value={formData.customer_mobile || ''}
+                                    onChange={handleInputChange}
+                                />
+                            </Form.Group>
 
+                            <Form.Group className="mb-3">
+                                <Form.Label>Email</Form.Label>
+                                <Form.Control
+                                    type="number"
+                                    name="customer_mobile"
+                                    value={formData.customer_mobile || ''}
+                                    onChange={handleInputChange}
+                                />
+                            </Form.Group>
 
-                        <Form.Group className="mb-3" >
-                            <Form.Label>Address</Form.Label>
-                            <Form.Control type="text" placeholder=""  />
-                        </Form.Group>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Address</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="customer_address"
+                                    value={formData.customer_address || ''}
+                                    onChange={handleInputChange}
+                                />
+                            </Form.Group>
+                        </Row>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-
-                    <Button variant="primary" onClick={handleClose}>
+                    <Button variant="primary" onClick={handleEditProfile}>
                         Save Changes
                     </Button>
                     <Button variant="secondary" onClick={handleClose}>
@@ -118,6 +162,8 @@ const MyProfile = () => {
                     </Button>
                 </Modal.Footer>
             </Modal>
+
+            {error && <div className="text-danger">{error}</div>}
         </div>
     );
 }

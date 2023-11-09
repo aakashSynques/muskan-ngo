@@ -93,6 +93,7 @@ import CartItems from './website/pages/shopNowPages/CartItems';
 import Layout from './website/layout/Layout';
 import MyProfile from './website/pages/shopNowPages/myAccount/MyProfile';
 import ChangePwd from './website/pages/shopNowPages/myAccount/ChangePwd';
+import OrderDetails from './website/pages/shopNowPages/OrderDetails';
 
 function App() {
   return (
@@ -149,7 +150,7 @@ function App() {
           <Route path='/:category_slug/:subcategory_slug' element={<SubCategroy />} />
           <Route path='/:category_slug/:subcategory_slug/:product_slug' element={<DetailsPage />} />
 
-
+          <Route path="/order/:orderId/:enc" element={<OrderDetails />} />
           <Route path='/*' element={<NotFound />} />
           <Route path='/checkout' element={<CheckOut />} />
 
