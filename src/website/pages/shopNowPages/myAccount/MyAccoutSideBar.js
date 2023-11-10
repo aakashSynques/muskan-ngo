@@ -8,13 +8,17 @@ const MyAccountSideBar = () => {
     // Retrieve token data from localStorage
     const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
     const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
-
+    const handleLogout = () => {
+        // Clear and remove parsedTokenData from local storage
+        localStorage.removeItem("muskan_token_data");
+        localStorage.removeItem("muskan_token");
+        // Additional logout logic if needed
+    };
 
     return (
         <div className="">
             <div className="list-group accolumn px-3">
-                {/* <h6 className="pb-2 text-uppercase"><i className="fa fa-user main-color" aria-hidden="true" style={{ fontSize: "22px" }}></i> &nbsp;  ACCOUNT SETTINGS</h6> */}
-                {/* <h5>{tokenData.customer_fname} {tokenData.customer_lname}</h5> */}
+             
                 <h5>{parsedTokenData ? `${parsedTokenData.customer_fname} ${parsedTokenData.customer_lname}` : 'N/A'}</h5>
                 <font size="2">Good to see you again</font>
             </div>
@@ -34,9 +38,8 @@ const MyAccountSideBar = () => {
                    Change Password
                 </Link>
 
-                <Link to="/account/logout">
-                    Log out
-                </Link>
+                <Link to="/" onClick={handleLogout}>Log out</Link>
+
                 <hr />
                 <h6 className="pb-2 text-uppercase"> <i className="fa fa-pencil-square-o main-color" aria-hidden="true" style={{ fontSize: "22px" }}></i>  &nbsp; MY ORDERS</h6>
                 <Link to="/account/order-history">

@@ -133,8 +133,6 @@ const OrderDetails = () => {
                     {orderData && (<>
                         <h4>Order : {orderData.order_no}</h4>
                         {new Date(orderData.order_datetime).toLocaleString().replace("T", " ")}
-
-
                         <Row className='pt-3'>
                             <Col sm={8}>
                                 <div className='bg-light p-4'>
@@ -229,10 +227,7 @@ const OrderDetails = () => {
                                 </div>
                             </Col>
                         </Row>
-
                     </>
-
-
                     )}
                 </div>
 

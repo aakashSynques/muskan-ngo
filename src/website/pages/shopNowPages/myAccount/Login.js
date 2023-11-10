@@ -89,7 +89,7 @@ const Login = () => {
             <hr />
             <Container>
 
-       
+
 
 
                 <p> Home › My Account › Login</p>
@@ -158,9 +158,10 @@ const Login = () => {
                                             )}
 
                                             <div className='text-end'>
-                                                <a href='#' className='text-primary'>
+                                                {/* <a href='#' className='text-primary'>
                                                     Forgot Password?
-                                                </a>
+                                                </a> */}
+                                                <Link to="/account/forgotPwd" className='text-primary'>Forgot Password?</Link>
                                             </div>
 
                                             <Button variant='primary' className='bg-main-color px-5' onClick={handleSubmit}>

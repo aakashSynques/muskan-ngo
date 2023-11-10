@@ -531,4 +531,7 @@ span.date {
 }
 .table{
     --bs-table-bg: none!important;
-}
+}html {
+    scroll-behavior: smooth;
+  }
+  
