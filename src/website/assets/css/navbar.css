@@ -52,4 +52,6 @@ hr{
 }
 
 
-
+.custom-dropdown:hover .dropdown-menu {
+    display: block;
+  }

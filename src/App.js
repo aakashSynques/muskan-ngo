@@ -95,6 +95,11 @@ import MyProfile from './website/pages/shopNowPages/myAccount/MyProfile';
 import ChangePwd from './website/pages/shopNowPages/myAccount/ChangePwd';
 import OrderDetails from './website/pages/shopNowPages/OrderDetails';
 import PrivateRoute from './website/utils/authMiddleware';
+import Career from './website/pages/Career';
+import Volunteer from './website/pages/Volunteer';
+import Internship from './website/pages/Internship';
+import Jobs from './website/pages/Jobs';
+import Education from './website/pages/work/Education';
 
 function App() {
   return (
@@ -109,9 +114,12 @@ function App() {
           <Route path='/work' element={<Work />} />
           <Route path='/communicables' element={<Communicables />} />
           <Route path='/connect' element={<Connect />} />
-          {/* <Route path='/product-category/:category_slug/:subcategory_slug' element={<SubCategroy />} />
-          <Route path="/product-category/:category_slug" element={<SubCategroy />} />
-          <Route path='/product/:product_slug' element={<DetailsPage />} /> */}
+          <Route path='/career' element={<Career />} />
+          <Route path="/volunteer" element={<Volunteer />} />
+          <Route path='/connect/intern' element={<Internship />} />
+          <Route path='/connect/jobs' element={<Jobs />} />
+          <Route path='/work/education' element={<Education />} />
+
           <Route path='/wishlist' element={<Wishlist />} />
           <Route path='/cart' element={<CartItems />} />
           <Route path='/account/login' element={<Login />} />
@@ -121,8 +129,6 @@ function App() {
           <Route path='/account/order-history' element={<PrivateRoute element={<OrderHistory />} />} />
           <Route path='/account/change-password' element={<ChangePwd />} />
           <Route path='/account/myprofile' element={<PrivateRoute element={<MyProfile />} />} />
-
-
           <Route path="/:category_slug" element={<SubCategroy />} />
           <Route path='/:category_slug/:subcategory_slug' element={<SubCategroy />} />
           <Route path='/:category_slug/:subcategory_slug/:product_slug' element={<DetailsPage />} />
@@ -131,7 +137,7 @@ function App() {
           <Route path='/*' element={<NotFound />} />
           <Route path='/checkout' element={<CheckOut />} />
 
-                {/* admin routes */}
+          {/* admin routes */}
           <Route path='/admin' element={<LoginForm />} />
           <Route path='/admin/dashboard' element={<AdminDashboard />} />
         </Routes>

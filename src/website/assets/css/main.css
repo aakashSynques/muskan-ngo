@@ -534,4 +534,14 @@ span.date {
 }html {
     scroll-behavior: smooth;
   }
-  
+.contact-bg{
+    background-image: url(../images/contact-bg.jpg);
+    padding: 150px 0 130px;
+}.contact-input{
+    border: 1px solid #7e1502!important;
+    padding: 16px!important;
+    border-radius: 30px!important;
+    width: 100%!important;
+    font-size: 14px;
+    font-weight: 700;
+}

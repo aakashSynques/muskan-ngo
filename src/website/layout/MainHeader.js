@@ -36,9 +36,10 @@ const MainHeader = () => {
         setIsOverlayActive(false);
     }
     return (
+
         <div>
             <HeaderTop />
-           
+
             {/* Add the overlay with conditional class based on the overlay state */}
             <div className={`overlay ${isOverlayActive ? 'active' : ''}`} onClick={closeCartSidebar}></div>
             <section className='navigation'>
@@ -56,16 +57,53 @@ const MainHeader = () => {
                                 <Nav.Item>
                                     <Link to="/about" className='nav-link'>About</Link>
                                 </Nav.Item>
-                                <Nav.Item>
+                                {/* <Nav.Item>
                                     <Link to="/work" className='nav-link'>Work</Link>
-                                </Nav.Item>
+                                </Nav.Item> */}
+
+                                <NavDropdown title="Work" id="basic-nav-dropdown" className="custom-dropdown">
+                                    <NavDropdown.Item>
+                                        <Link to="/work/education" className="text-dark">
+                                            Education
+                                        </Link>
+                                    </NavDropdown.Item>
+                                </NavDropdown>
+
 
                                 <Nav.Item>
                                     <Link to="/communicables" className='nav-link'>Communicables</Link>
                                 </Nav.Item>
-                                <Nav.Item>
-                                    <Link to="/connect" className='nav-link'>Connect</Link>
-                                </Nav.Item>
+
+
+                                <NavDropdown title="Connect" id="basic-nav-dropdown" className="custom-dropdown">
+                                    <NavDropdown.Item>
+                                        <Link to="/career" className="text-dark">
+                                            Career
+                                        </Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link to="/volunteer" className="text-dark">
+                                            Volunteer
+                                        </Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link to="/connect/jobs" className="text-dark">
+                                            Jobs
+                                        </Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link to="/connect/intern " className="text-dark">
+                                            Intern
+                                        </Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link to="/connect" className="text-dark">
+                                            Connect
+                                        </Link>
+                                    </NavDropdown.Item>
+                                </NavDropdown>
+
+
 
 
                                 <NavDropdown title="Shop Now" id="basic-nav-dropdown">
@@ -75,6 +113,7 @@ const MainHeader = () => {
                                         </NavDropdown.Item>
                                     ))}
                                 </NavDropdown>
+
 
                                 <Nav.Item className='px-1 pt-1'>
                                     <Link to="/wishlist" className='nav-link pt-2 px-1 whishlist-nav'>
@@ -93,7 +132,6 @@ const MainHeader = () => {
                                         <i className="fa fa-user-o px-2" aria-hidden="true"></i>
                                     </Link>
                                 </Nav.Item>
-
 
                             </Nav>
                         </Navbar.Collapse>
