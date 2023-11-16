@@ -220,7 +220,8 @@ span.date {
     font-size: 21px;
     font-weight: 800;
 }
-.cursor{
+
+.cursor {
     cursor: pointer;
 }
 
@@ -325,15 +326,18 @@ span.date {
 
 @media only screen and (max-width: 799px) {
     .logo-width {
-        width: 75px!important;
-        top: -3px!important;
+        width: 75px !important;
+        top: -3px !important;
     }
+
     .navbar-nav {
-        background: white!important;
+        background: white !important;
     }
+
     .navigation nav .nav-link {
         padding: 8px 43px;
     }
+
     .top-content-wrap {
         font-size: 14px;
     }
@@ -529,19 +533,77 @@ span.date {
     background: #F9F9F9;
     border: 1px solid #7e1502;
 }
-.table{
-    --bs-table-bg: none!important;
-}html {
+
+.table {
+    --bs-table-bg: none !important;
+}
+
+html {
     scroll-behavior: smooth;
-  }
-.contact-bg{
+}
+
+.contact-bg {
     background-image: url(../images/contact-bg.jpg);
     padding: 150px 0 130px;
-}.contact-input{
-    border: 1px solid #7e1502!important;
-    padding: 16px!important;
-    border-radius: 30px!important;
-    width: 100%!important;
+}
+
+.contact-input {
+    border: 1px solid #7e1502 !important;
+    padding: 16px !important;
+    border-radius: 30px !important;
+    width: 100% !important;
     font-size: 14px;
     font-weight: 700;
+}
+
+.accordion-button:not(.collapsed) {
+    color: white !important;
+    background-color: #7e1502 !important;
+}
+
+.accordion-button {
+    background-color: #f5f3f3 !important;
+}
+
+.qodef-e-date-in-media {
+    background-color: rgb(4 4 4 / 48%);
+    align-content: center;
+    display: grid;
+    height: 85px;
+    place-items: center;
+    width: 85px;
+    border-radius: 50%;
+    left: 16px;
+    position: absolute;
+    top: 6px;
+    z-index: 1;
+}
+
+.report-date-style {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    vertical-align: top;
+}
+
+.qodef-e-day {
+    font-weight: 400;
+    letter-spacing: -.006em;
+    font-size: 44px;
+    line-height: 18px;
+    padding: 6px 0 0;
+}
+
+.qodef-e-month-year {
+    padding-top: 3px;
+    font-size: 13px;
+}
+
+.communication-tab .nav-link {
+    color: #7e1502 !important;
+    font-weight: 700!important;
+}
+
+.blog-img {
+    max-height: 300px;
 }

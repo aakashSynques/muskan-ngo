@@ -399,8 +399,8 @@ const CheckOut = () => {
                                 )}
 
                                 <Row>
-                                    <Col sm={6}>
-
+                                    <Col sm={6} className='text-center p-3'>
+                                        <p><font color="red" ><b>dfgdfgh{errorMessage}</b></font></p>
                                     </Col>
                                     <Col sm={6} className='text-end'>
                                         <Button

@@ -14,7 +14,6 @@ const Career = () => {
                     <h3 className='main-color'>Career Plan in Muskaan NGO</h3>
                     <p>We are always looking for new and exciting talent to join our team. If you are interested to work with us, please drop us an e-mail with your resume and a brief statement on why you are interested to work with us and how your skills can benefit Muskaan. The more information you provide about yourself (i.e availability, expectations etc),
                         the better we will be able to respond to you. If you are applying for an advertised position, please state this clearly in your communication with us.</p>
-               
                 </div>
                 <Row>
                     <Col sm={6} className='pt-5'>

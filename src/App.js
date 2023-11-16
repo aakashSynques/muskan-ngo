@@ -73,7 +73,6 @@ import Footer from './website/layout/Footer';
 import MainHeader from './website/layout/MainHeader';
 import About from './website/pages/About';
 import Work from './website/pages/Work';
-import Communicables from './website/pages/Communicables';
 import ShopNow from './website/pages/ShopNow';
 import Connect from './website/pages/Connect';
 import DetailsPage from './website/pages/shopNowPages/DetailsPage';
@@ -100,6 +99,9 @@ import Volunteer from './website/pages/Volunteer';
 import Internship from './website/pages/Internship';
 import Jobs from './website/pages/Jobs';
 import Education from './website/pages/work/Education';
+import Communicable from './website/pages/communicables/Communicable';
+import ReportDetails from './website/pages/communicables/ReportDetails';
+
 
 function App() {
   return (
@@ -112,13 +114,20 @@ function App() {
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
           <Route path='/work' element={<Work />} />
-          <Route path='/communicables' element={<Communicables />} />
+
           <Route path='/connect' element={<Connect />} />
+
           <Route path='/career' element={<Career />} />
           <Route path="/volunteer" element={<Volunteer />} />
           <Route path='/connect/intern' element={<Internship />} />
           <Route path='/connect/jobs' element={<Jobs />} />
+
+
           <Route path='/work/education' element={<Education />} />
+
+          <Route path='/communicable' element={<Communicable />} /> 
+          <Route path='/communicable/details' element={<ReportDetails/>} />
+
 
           <Route path='/wishlist' element={<Wishlist />} />
           <Route path='/cart' element={<CartItems />} />

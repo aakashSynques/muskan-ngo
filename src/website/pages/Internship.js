@@ -23,41 +23,41 @@ const Internship = () => {
                         {/* <Image src='https://www.nityango.org/wp-content/uploads/2023/06/Top-sites-to-give-an-edge-to-your-career.png' alt="muskaan" className='w-100' /> */}
                         <div className=''>
                             <h3 className='main-color'>Internship Plan in Muskaan NGO</h3>
-                         <p>
-                         If you are a current university student and looking for an exciting internship opportunity, get in touch with us. We have hosted many interns in the past and are always looking for ways to get people involved in our work. Kindly e-mail your resume, work proposal, duration of internship and intended start date. We require interns to commit for a minimum of 4 weeks.
-                         </p>
-                       
+                            <p>
+                                If you are a current university student and looking for an exciting internship opportunity, get in touch with us. We have hosted many interns in the past and are always looking for ways to get people involved in our work. Kindly e-mail your resume, work proposal, duration of internship and intended start date. We require interns to commit for a minimum of 4 weeks.
+                            </p>
+
                             <div class="elementor-icon-box-wrapper d-flex  pt-4">
-              <div class="main-color pe-3">
-                <i class="fa fa-phone" aria-hidden="true" style={{ fontSize: "34px" }}></i>
-              </div>
-              <div class="elementor-icon-box-content">
-                <h5 class="main-color">
-                  <b>
-                    PHONE NO
-                  </b>
-                </h5>
-                <p class="elementor-icon-box-description">+91 7405297103
-                </p>
-              </div>
-            </div>
+                                <div class="main-color pe-3">
+                                    <i class="fa fa-phone" aria-hidden="true" style={{ fontSize: "34px" }}></i>
+                                </div>
+                                <div class="elementor-icon-box-content">
+                                    <h5 class="main-color">
+                                        <b>
+                                            PHONE NO
+                                        </b>
+                                    </h5>
+                                    <p class="elementor-icon-box-description">+91 7405297103
+                                    </p>
+                                </div>
+                            </div>
 
 
-            <div class="elementor-icon-box-wrapper d-flex  pt-4">
-              <div class="main-color pe-3">
-                <i class="fa fa-envelope" aria-hidden="true" style={{ fontSize: "28px" }}></i>
-              </div>
-              <div class="elementor-icon-box-content">
-                <h5 class="main-color">
-                  <b>
-                    EMAIL ID
-                  </b>
-                </h5>
-                <p class="elementor-icon-box-description">muskaan@muskaan.org
-                </p>
-              </div>
-            </div>
-                       
+                            <div class="elementor-icon-box-wrapper d-flex  pt-4">
+                                <div class="main-color pe-3">
+                                    <i class="fa fa-envelope" aria-hidden="true" style={{ fontSize: "28px" }}></i>
+                                </div>
+                                <div class="elementor-icon-box-content">
+                                    <h5 class="main-color">
+                                        <b>
+                                            EMAIL ID
+                                        </b>
+                                    </h5>
+                                    <p class="elementor-icon-box-description">muskaan@muskaan.org
+                                    </p>
+                                </div>
+                            </div>
+
                         </div>
                     </Col>
                     <Col sm={6}>

@@ -5,6 +5,7 @@ import Language from './workAccordian/Language';
 import Libraries from './workAccordian/Libraries';
 import BuildingPerspectives from './workAccordian/BuildingPerspectives';
 import IndigenousEducation from './workAccordian/IndigenousEducation';
+import Scientific from './workAccordian/Scientific';
 
 
 const Education = () => {
@@ -51,13 +52,7 @@ const Education = () => {
                         <Accordion.Item eventKey="4">
                             <Accordion.Header>Scientific Temper</Accordion.Header>
                             <Accordion.Body>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-                                minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-                                aliquip ex ea commodo consequat. Duis aute irure dolor in
-                                reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                                pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                                culpa qui officia deserunt mollit anim id est laborum.
+                            <Scientific />
                             </Accordion.Body>
                         </Accordion.Item>
 

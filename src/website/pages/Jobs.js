@@ -1,10 +1,14 @@
 import React from 'react'
+import { Container } from 'react-bootstrap'
 
 const Jobs = () => {
   return (
-    <div>
-  <h5 className='text-center'> Jobs</h5>
-    </div>
+    <>
+      <div className='contact-bg fixed-bg'>
+        <Container className='text-center'>
+          <h1>Jobs </h1>
+        </Container>
+      </div></>
   )
 }
 

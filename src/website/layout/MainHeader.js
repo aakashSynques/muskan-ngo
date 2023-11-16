@@ -71,8 +71,50 @@ const MainHeader = () => {
 
 
                                 <Nav.Item>
-                                    <Link to="/communicables" className='nav-link'>Communicables</Link>
+                                    <Link to="/communicable" className='nav-link'>Communicables</Link>
                                 </Nav.Item>
+
+                                {/* 
+
+                                <NavDropdown title="Communicables" id="basic-nav-dropdown" className="custom-dropdown">
+                                    <NavDropdown.Item>
+                                        <Link to="/communicables/reports" className="text-dark">
+                                        Reports
+                                        </Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link to="/communicables/field-realities" className="text-dark">
+                                        Field Realities
+                                        </Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link to="/communicables/community-stories" className="text-dark">
+                                        Community Stories
+                                        </Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link to="/communicables/childrens-literature " className="text-dark">
+                                        Children’s Literature
+                                        </Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link to="/communicables/reflections" className="text-dark">
+                                        Reflections
+                                        </Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link to="/communicables/classroom-experiences" className="text-dark">
+                                        Classroom experiences
+                                        </Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item>
+                                        <Link to="/communicables/blog" className="text-dark">
+                                        Blog
+                                        </Link>
+                                    </NavDropdown.Item>
+                                </NavDropdown> */}
+
+
 
 
                                 <NavDropdown title="Connect" id="basic-nav-dropdown" className="custom-dropdown">

@@ -2,6 +2,8 @@ import React from 'react'
 import { Container, Row, Col, Form, FormControl, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import ReCAPTCHA from 'react-google-recaptcha';
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
 
 
 const Connect = () => {
@@ -14,8 +16,8 @@ const Connect = () => {
         </Container>
       </div>
 
-      
-      <Container>
+
+      {/* <Container>
         <Row className='mt-5'>
           <Col sm={4}>
             <h3>Information</h3>
@@ -126,7 +128,39 @@ const Connect = () => {
           <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3667.2669433714823!2d77.34868658675006!3d23.196940355799907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397c5de3423bf189%3A0xfe3f16755d4a007b!2sMuskan%20NGO!5e0!3m2!1sen!2sin!4v1699943234969!5m2!1sen!2sin"
             width="100%" height="450" allowfullscreen="" loading="lazy" ></iframe>
         </div>
-      </Container>
+      </Container> */}
+
+      <div className='mt-5 communication-tab'>
+        <Container>
+          <Tabs
+            defaultActiveKey="one"
+            id="fill-tab-example"
+            className="mb-3"
+            fill
+          >
+            <Tab eventKey="one" title="Contact us">
+
+            </Tab>
+
+            <Tab eventKey="two" title="Jobs">
+
+            </Tab>
+
+            <Tab eventKey="tree" title="Career">
+
+            </Tab>
+            <Tab eventKey="four" title=" Internship">
+
+            </Tab>
+            <Tab eventKey="five" title="Valunteer">
+
+            </Tab>
+            <Tab eventKey="six" title="Donate now">
+
+            </Tab>
+          </Tabs>
+        </Container>
+      </div>
     </>
   )
 }
