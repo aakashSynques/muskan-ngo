@@ -27,11 +27,9 @@ const Communicable = () => {
                         className="mb-3"
                         fill
                     >
-                        <Tab eventKey="seven" title="Blog">
-                            <Blog />
-                        </Tab>
+                        
 
-                        <Tab eventKey="one" title="Reports">
+                        <Tab eventKey="one" title="Reports / Updates">
                             <Reports />
                         </Tab>
 
@@ -47,6 +45,9 @@ const Communicable = () => {
                         </Tab>
                         <Tab eventKey="five" title="Reflections">
                           <Reflections />
+                        </Tab>
+                        <Tab eventKey="seven" title="Blog ">
+                            <Blog />
                         </Tab>
                         <Tab eventKey="six" title="Classroom experiences">
                     <ClassRoom />

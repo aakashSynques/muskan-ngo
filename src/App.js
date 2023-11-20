@@ -101,6 +101,14 @@ import Jobs from './website/pages/Jobs';
 import Education from './website/pages/work/Education';
 import Communicable from './website/pages/communicables/Communicable';
 import ReportDetails from './website/pages/communicables/ReportDetails';
+import Empowering from './website/pages/work/Empowering';
+import IssuesOfDignity from './website/pages/work/IssuesOfDignity';
+import Livelihood from './website/pages/work/Livelihood';
+import SustainableLiving from './website/pages/work/SustainableLiving';
+import Publication from './website/pages/work/Publication';
+import History from './website/pages/aboutPages.js/History';
+import Accounts from './website/pages/aboutPages.js/Accounts';
+
 
 
 function App() {
@@ -113,6 +121,9 @@ function App() {
           {/* Website Routes */}
           <Route path='/' element={<Home />} />
           <Route path='/about' element={<About />} />
+          <Route path='/about-us/history' element={<History />} />
+          <Route path='/about-us/accounts' element={<Accounts />} />
+
           <Route path='/work' element={<Work />} />
 
           <Route path='/connect' element={<Connect />} />
@@ -124,11 +135,15 @@ function App() {
 
 
           <Route path='/work/education' element={<Education />} />
+          <Route path='/work/empowering-children-and-youth' element={<Empowering />} />
+          <Route path='/work/issues-of-dignity-and-survival' element={<IssuesOfDignity />} />
+          <Route path='/work/liveLihoods' element={<Livelihood />} />
+          <Route path='/work/sustainable-living' element={<SustainableLiving />} />
+          <Route path='/work/publication' element={<Publication />} />
 
-          <Route path='/communicable' element={<Communicable />} /> 
-          <Route path='/communicable/details' element={<ReportDetails/>} />
 
-
+          <Route path='/communicable' element={<Communicable />} />
+          <Route path='/communicable/details' element={<ReportDetails />} />
           <Route path='/wishlist' element={<Wishlist />} />
           <Route path='/cart' element={<CartItems />} />
           <Route path='/account/login' element={<Login />} />

@@ -15,7 +15,7 @@ const SubCategory = () => {
     const [loading, setLoading] = useState(true);
 
     const [isInitialLoading, setInitialLoading] = useState(true); // Add isInitialLoading state
-      const [range, setRange] = useState([0, 100]);
+    const [range, setRange] = useState([0, 100]);
     const [filteredProducts, setFilteredProducts] = useState([]);
     const { category_slug, subcategory_slug } = useParams();
     const [sortingOption, setSortingOption] = useState('price-low-to-high'); // Initial sorting option
@@ -131,7 +131,7 @@ const SubCategory = () => {
             subTotal: product.product_MSP,
         };
         dispatch(addToCart(cartItemData));
-        console.log('cart ',   dispatch(addToCart(cartItemData)))
+        console.log('cart ', dispatch(addToCart(cartItemData)))
         openCartSidebar();
     };
 
@@ -151,21 +151,19 @@ const SubCategory = () => {
             <Container>
                 <font> <Link to='/' className='text-dark'> Home </Link> › {category_slug}</font>
                 <Row className='pt-5'>
-                    <Col sm={3} className='pe-5'>
+                    <Col sm={3} className='lg-pe-5 md-sm-0'>
                         <FilterSideNav
                             range={range}
                             handleSliderChange={handleSliderChange}
                             resetPriceRange={resetPriceRange}
                         />
                     </Col>
-                    <Col sm={9} className='border-left  ps-4' style={{ borderLeft: "1px solid" }}>
+                    <Col sm={9} className='border-left  lg-ps-4 md-ps-0' style={{ borderLeft: "1px solid" }}>
                         <Row>
-                            <Col sm={6}>
+                            <Col sm={6} className=''>
                                 <h5 className="text-capitalize">
                                     {category_slug}  {subcategory_slug}
-           
-
-                                     </h5>
+                                </h5>
                             </Col>
                             <Col sm={6} className='text-end'>
                                 <span className='font-14'>Sort by &nbsp; : &nbsp;
@@ -174,9 +172,7 @@ const SubCategory = () => {
                             </Col>
                         </Row>
 
-
-
-                        <Row sm={2} lg={3} xs={2} className='pt-3'>
+                        <Row sm={1} lg={3} xs={1} className='pt-3'>
                             {/* {loading ? ( 
                                 <div className="text-center">
                                     <Spinner animation="border" variant="primary" />
@@ -202,7 +198,7 @@ const SubCategory = () => {
                                     </Col>
                                 ))
                             )} */}
-                        {filteredProducts.map((product, index) => (
+                            {filteredProducts.map((product, index) => (
                                 <Col className='pb-5' key={index}>
                                     <div className='product-item' style={{ height: "200px" }}>
                                         {loading ? ( // Render a loading spinner for each product while loading is true
@@ -235,8 +231,8 @@ const SubCategory = () => {
                     </Col>
                 </Row>
             </Container>
-            
-                        <CartSidebar isOpen={isCartSidebarOpen} closeSidebar={closeCartSidebar} />
+
+            <CartSidebar isOpen={isCartSidebarOpen} closeSidebar={closeCartSidebar} />
 
         </>
     )

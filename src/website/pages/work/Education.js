@@ -6,8 +6,6 @@ import Libraries from './workAccordian/Libraries';
 import BuildingPerspectives from './workAccordian/BuildingPerspectives';
 import IndigenousEducation from './workAccordian/IndigenousEducation';
 import Scientific from './workAccordian/Scientific';
-
-
 const Education = () => {
     return (
         <>
@@ -44,7 +42,7 @@ const Education = () => {
                         <Accordion.Item eventKey="3">
                             <Accordion.Header>Indigenous Education</Accordion.Header>
                             <Accordion.Body>
-                    <IndigenousEducation />
+                                <IndigenousEducation />
                             </Accordion.Body>
                         </Accordion.Item>
 
@@ -52,7 +50,7 @@ const Education = () => {
                         <Accordion.Item eventKey="4">
                             <Accordion.Header>Scientific Temper</Accordion.Header>
                             <Accordion.Body>
-                            <Scientific />
+                                <Scientific />
                             </Accordion.Body>
                         </Accordion.Item>
 

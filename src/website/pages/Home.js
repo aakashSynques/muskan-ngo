@@ -15,7 +15,7 @@ const Home = () => {
       <Container className='pt-5'>
         <Row>
           <Col sm={6}>
-            <div className='about-section section-title pe-5 pt-4'>
+            <div className='about-section section-title pe-lg-5 pt-4 pe-md-0'>
               <h2>About Us</h2>
               <p>At Muskaan, we are committed to empowering children and young individuals from marginalized communities through education. Our approach encourages and enables them to explore and address the realities of their own lives as well as of other vulnerable people around them. We adopt these critical learning processes in our formal school and out-of-school community spaces, as libraries and learning centres.</p>
               <p>Muskaan operates at the grassroots level in informal urban settlements and villages in order to nurture the potential of people across various age groups and life-stages. We try to focus on individual journeys of community members while drawing strength from collective pursuits. A key aspect of our undertaking is to strengthen leadership within marginalized communities, enabling them to spearhead and guide interventions at community level.</p>

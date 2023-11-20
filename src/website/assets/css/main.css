@@ -326,12 +326,30 @@ span.date {
 
 @media only screen and (max-width: 799px) {
     .logo-width {
-        width: 75px !important;
+        width: 54px !important;
         top: -3px !important;
+    }
+
+    .navbar-toggler {
+        font-size: 14px !important;
+        margin: 8px 0 0;
+    }
+
+    .navigation {
+        height: 60px !important;
+    }
+
+    .about-section {
+        position: relative;
+        padding: 0px 0px;
     }
 
     .navbar-nav {
         background: white !important;
+    }
+
+    .navbar-collapse {
+        margin: 21px 0px;
     }
 
     .navigation nav .nav-link {
@@ -364,11 +382,50 @@ span.date {
         line-height: 0;
         padding-bottom: 21px;
     }
+
+    .best-seller-d-none {
+        display: none !important;
+
+    }
+
+    .filter-container {
+        display: none !important;
+        /* hide by default */
+    }
+
+    .filter-container.show {
+        display: block !important;
+        /* show when the show class is present */
+    }
+
+    .filter-container.hide {
+        display: none !important;
+        /* hide when the hide class is present */
+    }
+
 }
 
-.image-height {
-    height: 260px;
+.dropdown-item.active, .dropdown-item:active {
+    background: #a91e0536!important;
 }
+.filter-container {
+    display: inline-block;
+    /* hide by default */
+}
+
+.filter-container.show {
+    display: block;
+    /* show when the show class is present */
+}
+
+.filter-container.hide {
+    display: inline-block;
+    /* hide when the hide class is present */
+}
+
+/* .best-seller-d-none{
+    display: none;
+} */
 
 .rc-slider-track,
 .rc-slider-tracks {
@@ -544,7 +601,8 @@ html {
 
 .contact-bg {
     background-image: url(../images/contact-bg.jpg);
-    padding: 150px 0 130px;
+    padding: 100px 0 100px;
+
 }
 
 .contact-input {
@@ -601,7 +659,8 @@ html {
 
 .communication-tab .nav-link {
     color: #7e1502 !important;
-    font-weight: 700!important;
+    font-weight: 700 !important;
+    font-size: 17px;
 }
 
 .blog-img {
