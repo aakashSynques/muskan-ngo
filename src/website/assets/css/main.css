@@ -194,6 +194,10 @@ p {
     box-shadow: 0 16px 28px 0 rgba(0, 0, 0, .2);
 }
 
+.image-height {
+    height: 270px;
+}
+
 .blog-content {
     background-color: var(--white-bg);
     padding: 40px 30px;
@@ -403,11 +407,17 @@ span.date {
         /* hide when the hide class is present */
     }
 
+    .image-height {
+        height: auto;
+    }
+
+    .communication-tab .tab-content {
+        padding: 2px 5px !important;
+    }
+
 }
 
-.dropdown-item.active, .dropdown-item:active {
-    background: #a91e0536!important;
-}
+
 .filter-container {
     display: inline-block;
     /* hide by default */
@@ -599,19 +609,56 @@ html {
     scroll-behavior: smooth;
 }
 
+.bgpettern {
+    background-image: url(../images/bgpettern.jpg);
+
+
+}
+
 .contact-bg {
     background-image: url(../images/contact-bg.jpg);
     padding: 100px 0 100px;
+}
 
+.history h5 {
+    font-size: 17px;
+}
+
+.connect-bg {
+    background: linear-gradient(179deg, rgba(146, 46, -19, -37), rgba(281, -78, 4, 70)), url(../images/contactbenner.jpg);
+    padding: 140px 0 140px;
+    background-attachment: fixed;
+    background-position: top;
+    background-repeat: repeat;
+}
+
+.with_aside-border {
+    margin-top: 10px;
+    border-top: #bfbdba 1px solid;
+}
+
+.with_aside-border-left {
+    border-left: #bfbdba 1px solid;
+}
+
+.with_aside-border-left ul li {
+    border-bottom: 1px solid #bfbdba;
+    padding: 6px 0;
+    color: #7e1502;
+
+}
+
+.with_aside-border-left ul li a {
+    font-size: 14px;
+    font-weight: 700;
+    color: black;
 }
 
 .contact-input {
     border: 1px solid #7e1502 !important;
-    padding: 16px !important;
-    border-radius: 30px !important;
+    padding: 9px !important;
+    border-radius: 4px !important;
     width: 100% !important;
-    font-size: 14px;
-    font-weight: 700;
 }
 
 .accordion-button:not(.collapsed) {
@@ -665,4 +712,40 @@ html {
 
 .blog-img {
     max-height: 300px;
+}
+
+.communication-tab .tab-content {
+    background: #f3f3f3;
+    padding: 51px 87px;
+}
+
+.communication-tab .nav-tabs .nav-link.active {
+    color: var(--bs-nav-tabs-link-active-color);
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    border-color: var(--bs-nav-tabs-link-active-border-color);
+    background: #7e1502;
+    color: white !important;
+}
+
+.tab_tabbing ul>li {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+.tab_tabbing li{
+    font-weight: 400;
+    color: black;
+    font-size: 17px;
+    line-height: 26px;
+}
+.tab_tabbing a {
+    float: right;
+}
+.tab_tabbing ul  {
+    list-style: none;
+    padding: 29px 63px;
+}.white-bg-tile {
+    background-color: #fff;
+    padding: 15px;
+    border-top: 1px solid #ffbe00;
 }

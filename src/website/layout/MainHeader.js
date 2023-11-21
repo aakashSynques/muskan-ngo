@@ -9,7 +9,6 @@ import { fetch } from '../../utils';
 import { useSelector, useDispatch } from 'react-redux';
 import CartSidebar from '../component/CartSidebar';
 
-
 const MainHeader = () => {
     const cart = useSelector((state) => state.cart.items);
     const [active, setActive] = useState("home");
@@ -17,7 +16,6 @@ const MainHeader = () => {
     const [categoryList, setCategoryList] = useState([]);
     const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false); // State for cart sidebar visibility
     const [isOverlayActive, setIsOverlayActive] = useState(false); // State for overlay visibility
-
     const getCategryList = async () => {
         try {
             const response = await fetch("/category/hierarchy", "get", null, null);
@@ -39,7 +37,7 @@ const MainHeader = () => {
     }
     return (
 
-        <div>
+        <>
             <HeaderTop />
             <div className={`overlay ${isOverlayActive ? 'active' : ''}`} onClick={closeCartSidebar}></div>
             <section className='navigation'>
@@ -54,50 +52,32 @@ const MainHeader = () => {
                             <Nav className="ms-auto" activeKey={active}
                                 onSelect={(selectedKey) => setActive(selectedKey)}>
 
-                                {/* <Nav.Item>
-                                    <Nav.Link eventKey="home" as={Link} to="/">
-                                        &nbsp;
-                                    </Nav.Link>
-                                </Nav.Item> */}
-
                                 <Nav.Item>
                                     <Nav.Link eventKey="home" as={Link} to="/">
                                         Home
                                     </Nav.Link>
                                 </Nav.Item>
 
-                                {/* <Nav.Item>
-                                    <Nav.Link eventKey="about" as={Link} to="/about">
-                                        About Us
-                                    </Nav.Link>
-                                </Nav.Item> */}
-
-
-
-
-
-
-                                <NavDropdown title="About Us"  className="custom-dropdown">
+                                <NavDropdown title="About Us" id="basic-nav-dropdown" className="custom-dropdown">
                                     <NavDropdown.Item className='rounded-0'>
                                         <Nav.Link eventKey="history" as={Link} to="/about-us/history" className='py-0'>
                                             History
                                         </Nav.Link>
                                     </NavDropdown.Item>
                                     <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="education" as={Link} to="" className='py-0'>
+                                        <Nav.Link eventKey="education" as={Link} to="/about-us/mission/" className='py-0'>
                                             Mission
                                         </Nav.Link>
                                     </NavDropdown.Item>
 
                                     <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="education" as={Link} to="" className='py-0'>
+                                        <Nav.Link eventKey="education" as={Link} to="/about-us/our-team/" className='py-0'>
                                             Our Team
                                         </Nav.Link>
                                     </NavDropdown.Item>
 
-
                                     <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="education" as={Link} to="" className='py-0'>
+                                        <Nav.Link eventKey="education" as={Link} to="/about-us/who-we-work-with/" className='py-0'>
                                             Who we work with
                                         </Nav.Link>
                                     </NavDropdown.Item>
@@ -109,18 +89,18 @@ const MainHeader = () => {
                                     </NavDropdown.Item>
 
                                     <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="education" as={Link} to="" className='py-0'>
+                                        <Nav.Link eventKey="education" as={Link} to="/about-us/policies/" className='py-0'>
                                             Policies
                                         </Nav.Link>
                                     </NavDropdown.Item>
 
-
                                     <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="education" as={Link} to="" className='py-0'>
+                                        <Nav.Link eventKey="education" as={Link} to="/about-us/collaborations/" className='py-0'>
                                             Collaborations
                                         </Nav.Link>
                                     </NavDropdown.Item>
                                 </NavDropdown>
+
 
 
                                 <NavDropdown title="Work" id="basic-nav-dropdown" className="custom-dropdown">
@@ -159,18 +139,58 @@ const MainHeader = () => {
                                 </NavDropdown>
 
 
-                                <Nav.Item>
+
+                                <NavDropdown title="Communicable" id="basic-nav-dropdown" className="custom-dropdown">
+                                    <NavDropdown.Item className='rounded-0'>
+                                        <Nav.Link eventKey="reports" as={Link} to="/communicables/reports/" className='py-0'>
+                                            Reports
+                                        </Nav.Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item className='rounded-0'>
+                                        <Nav.Link eventKey="realities" as={Link} to="/communicables/field-realities/" className='py-0'>
+                                            Field Realities
+                                        </Nav.Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item className='rounded-0'>
+                                        <Nav.Link eventKey="Stories" as={Link} to="/communicables/community-stories/" className='py-0'>
+                                            Community Stories
+                                        </Nav.Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item className='rounded-0'>
+                                        <Nav.Link eventKey="Literature" as={Link} to="/communicables/childrens-literature/" className='py-0'>
+                                            Children’s Literature
+                                        </Nav.Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item className='rounded-0'>
+                                        <Nav.Link eventKey="reflections" as={Link} to="/communicables/reflections/" className='py-0'>
+                                            Reflections
+                                        </Nav.Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item className='rounded-0'>
+                                        <Nav.Link eventKey="classroom" as={Link} to="/communicables/classroom-experiences/" className='py-0'>
+                                            Classroom experiences
+                                        </Nav.Link>
+                                    </NavDropdown.Item>
+                                    <NavDropdown.Item className='rounded-0'>
+                                        <Nav.Link eventKey="blog" as={Link} to="/communicables/blog/" className='py-0'>
+                                            Blog
+                                        </Nav.Link>
+                                    </NavDropdown.Item>
+
+                                </NavDropdown>
+
+
+                                {/* <Nav.Item>
                                     <Nav.Link eventKey="communicable" as={Link} to="/communicable">
                                         Communicables
                                     </Nav.Link>
-                                </Nav.Item>
+                                </Nav.Item> */}
 
                                 <Nav.Item>
                                     <Nav.Link eventKey="connect" as={Link} to="/connect">
                                         Connect
                                     </Nav.Link>
                                 </Nav.Item>
-
 
                                 <NavDropdown title="Shop Now" id="basic-nav-dropdown">
                                     {categoryList.map((category, index) => (
@@ -181,7 +201,6 @@ const MainHeader = () => {
                                         </NavDropdown.Item>
                                     ))}
                                 </NavDropdown>
-
 
 
                                 <Nav.Item className='px-1 pt-1'>
@@ -209,79 +228,9 @@ const MainHeader = () => {
             </section>
 
             <CartSidebar isOpen={isCartSidebarOpen} closeSidebar={closeCartSidebar} />
-        </div>
+        </>
     );
 }
 
 export default MainHeader;
 
-
-
-
-// import React, { useState, useEffect } from "react";
-// import { Container, Navbar, Nav, Col, Row, Image } from "react-bootstrap";
-// import { Link } from "react-router-dom";
-
-// const MainHeader = () => {
-//     const [active, setActive] = useState("home");
-
-//     return (
-//         <div>
-//             <Navbar bg="light" collapseOnSelect expand="lg">
-//                 <Container>
-//                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
-//                     <Navbar.Collapse id="basic-navbar-nav">
-//                         <Nav
-//                             className="m-auto sub-nav"
-//                             activeKey={active}
-//                             onSelect={(selectedKey) => setActive(selectedKey)}
-//                         >
-//                             <Nav.Item>
-//                                 <Nav.Link eventKey="home" as={Link} to="/">
-//                                     &nbsp;
-//                                 </Nav.Link>
-//                             </Nav.Item>
-
-//                             <Nav.Item>
-//                                 <Nav.Link eventKey="home" as={Link} to="/">
-//                                     Home
-//                                 </Nav.Link>
-//                             </Nav.Item>
-
-//                             <Nav.Item>
-//                                 <Nav.Link eventKey="about" as={Link} to="/about">
-//                                     About Us
-//                                 </Nav.Link>
-//                             </Nav.Item>
-
-
-
-//                             <Nav.Item>
-//                                 <Nav.Link eventKey="gallery" as={Link} to="/Careers">
-//                                     Careers
-//                                 </Nav.Link>
-//                             </Nav.Item>
-//                             <Nav.Item>
-//                                 <Nav.Link eventKey="gallery" as={Link} to="/gallery">
-//                                     Gallery
-//                                 </Nav.Link>
-//                             </Nav.Item>
-//                             <Nav.Item>
-//                                 <Nav.Link eventKey="downloads" as={Link} to="/downloads">
-//                                     Brouchers
-//                                 </Nav.Link>
-//                             </Nav.Item>
-//                             <Nav.Item>
-//                                 <Nav.Link eventKey="contact" as={Link} to="/contact">
-//                                     Contact
-//                                 </Nav.Link>
-//                             </Nav.Item>
-//                         </Nav>
-//                     </Navbar.Collapse>
-//                 </Container>
-//             </Navbar>
-//         </div>
-//     )
-// }
-
-// export default MainHeader

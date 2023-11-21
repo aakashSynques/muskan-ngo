@@ -30,8 +30,6 @@ const SustainableLiving = () => {
                                 <MittiKaGhar />
                             </Accordion.Body>
                         </Accordion.Item>
-
-
                         <Accordion.Item eventKey="2">
                             <Accordion.Header>Reduce Plastic</Accordion.Header>
                             <Accordion.Body>

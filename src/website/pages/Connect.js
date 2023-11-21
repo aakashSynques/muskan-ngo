@@ -16,37 +16,31 @@ const Connect = () => {
 
   return (
     <>
-      <div className='contact-bg fixed-bg'>
+      <div className='connect-bg fixed-bg'>
         <Container className='text-center'>
-          <h1>Connect</h1>
+          {/* <h1>Connect</h1> */}
         </Container>
       </div>
-
-
-
 
       <div className='mt-5 communication-tab'>
         <Container>
           <Tabs
             defaultActiveKey="one"
             id="fill-tab-example"
-            className="mb-3"
-            fill
+            
+            // fill
           >
 
-            <Tab eventKey="six" title="Donate Now">
+            <Tab eventKey="one" title="Donate Now">
               <DonateNow />
             </Tab>
             <Tab eventKey="two" title="Jobs">
               {/* <Jobs /> */}
               <Career />
             </Tab>
-            <Tab eventKey="five" title="Valunteer">
+            <Tab eventKey="five" title="Volunteer">
               <Volunteer />
             </Tab>
-            {/* <Tab eventKey="tree" title="Career">
-                <Career />
-            </Tab> */}
             <Tab eventKey="tree" title="Social Media">
               {/* <Career /> */}
               Social Media
@@ -54,7 +48,7 @@ const Connect = () => {
             <Tab eventKey="four" title=" Internship">
               <Internship />
             </Tab>
-            <Tab eventKey="one" title="Contact us">
+            <Tab eventKey="six" title="Contact Us">
               <Contect />
             </Tab>
           </Tabs>

@@ -9,10 +9,10 @@ const Contect = () => {
   return (
     <div>
       <Container>
-        <Row className='mt-5'>
+        <Row>
           <Col sm={4}>
             <h3>Information</h3>
-            <div class="elementor-icon-box-wrapper d-flex  pt-5">
+            <div class="elementor-icon-box-wrapper d-flex  pt-2">
               <div class="main-color pe-3">
                 <i class="fa fa-map-marker" aria-hidden="true" style={{ fontSize: "34px" }}></i>
               </div>
@@ -30,7 +30,7 @@ const Contect = () => {
             </div>
 
 
-            <div class="elementor-icon-box-wrapper d-flex  pt-4">
+            <div class="elementor-icon-box-wrapper d-flex  pt-2">
               <div class="main-color pe-3">
                 <i class="fa fa-phone" aria-hidden="true" style={{ fontSize: "34px" }}></i>
               </div>
@@ -46,7 +46,7 @@ const Contect = () => {
             </div>
 
 
-            <div class="elementor-icon-box-wrapper d-flex  pt-4">
+            <div class="elementor-icon-box-wrapper d-flex  pt-2">
               <div class="main-color pe-3">
                 <i class="fa fa-envelope" aria-hidden="true" style={{ fontSize: "28px" }}></i>
               </div>
@@ -64,7 +64,7 @@ const Contect = () => {
 
 
 
-            <div class="elementor-icon-box-wrapper d-flex  pt-4">
+            <div class="elementor-icon-box-wrapper d-flex  pt-2">
               <div class="main-color pe-3">
                 <i class="fa fa-firefox" aria-hidden="true" style={{ fontSize: "28px" }}></i>
               </div>

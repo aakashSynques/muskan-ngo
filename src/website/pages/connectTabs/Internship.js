@@ -5,7 +5,7 @@ import { Container, Row, Col, Form, FormControl, Button, Image } from 'react-boo
 const Internship = () => {
   return (
     <div>
-         <Container className='mt-5'>
+         <Container>
                 {/* <div className='text-center'>
                     <h3 className='main-color'>Carrer Plan in Muskaan NGO</h3>
                     <p>We are always looking for new and exciting talent to join our team. If you are interested to work with us, please drop us an e-mail with your resume and a brief statement on why you are interested to work with us and how your skills can benefit Muskaan. The more information you provide about yourself (i.e availability, expectations etc),
@@ -13,7 +13,7 @@ const Internship = () => {
                 </div> */}
 
                 <Row>
-                    <Col sm={6} className='pt-5'>
+                    <Col sm={6}>
                         {/* <Image src='https://www.nityango.org/wp-content/uploads/2023/06/Top-sites-to-give-an-edge-to-your-career.png' alt="muskaan" className='w-100' /> */}
                         <div className=''>
                             <h3 className='main-color'>Internship Plan in Muskaan NGO</h3>
@@ -55,7 +55,7 @@ const Internship = () => {
                         </div>
                     </Col>
                     <Col sm={6}>
-                        <Form className='mt-5'>
+                        <Form>
                             <Form.Group className="mb-3">
                                 <FormControl type='text' placeholder='Full Name' className='contact-input' /></Form.Group>
                             <Form.Group className="mb-3">
@@ -79,7 +79,7 @@ const Internship = () => {
                                 <FormControl type='file' placeholder='' className='contact-input' />
                             </Form.Group>
                             <Form.Group>
-                                <Button className='btn btn-primery rounded-4 px-5 py-3'>Send Message</Button>
+                                <Button className='btn btn-primery rounded-2 px-5 py-2'>Send Message</Button>
                             </Form.Group>
                         </Form>
                     </Col>

@@ -31,11 +31,8 @@
     /* text-transform: uppercase; */
     font-weight: 600;
 }
-.dropdown-item .nav-link{
-    color: #2f2f2f!important;
-    font-weight: 500!important;
-    font-size: 15px!important;
-}
+
+
 hr{
     margin: 5px 0 11px!important;
     color: #878787!important;
@@ -57,6 +54,43 @@ hr{
 }
 
 
+
+
+/* CSS for Animated Dropdown */
 .custom-dropdown:hover .dropdown-menu {
     display: block;
+    animation: fadeIn 0.3s ease-in-out; 
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+    background: #a91e0536!important;
+}
+
+.dropdown-item .nav-link {
+    color: #2f2f2f!important;
+    font-weight: 500!important;
+    font-size: 15px!important;
+}
+
+  
+/* .nav-dropdown:hover .dropdown-menu {
+    display: block;
   }
+  
+  .dropdown-menu {
+    transition: all 0.3s ease;
+    display: none; 
+  }
+   */
