@@ -60,7 +60,7 @@ const OrderDetails = () => {
 
                             <Row className='mt-4'>
                                 <h4>Ordered Items</h4>
-                                <table class="table">
+                                <table className="table">
                                     <thead>
                                         <tr>
                                             <th scope="col">#</th>
@@ -137,7 +137,7 @@ const OrderDetails = () => {
                             <Col sm={8}>
                                 <div className='bg-light p-4'>
                                     <h5>Ordered Items</h5>
-                                    <table class="table">
+                                    <table className="table">
                                         <thead>
                                             <tr>
                                                 <th scope="col" style={{ width: "14%" }}>Product</th>

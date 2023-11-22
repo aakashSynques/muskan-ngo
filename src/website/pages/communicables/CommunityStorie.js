@@ -3,7 +3,7 @@
 // const CommunityStorie = () => {
 //   return (
 //     <>
-      
+
 //     </>
 //   )
 // }
@@ -27,6 +27,11 @@ const CommunityStorie = () => {
     ];
     return (
         <>
+            {/* <div className='connect-bg fixed-bg'>
+                <Container className='text-center text-white'>
+                    <h1>Community Stories</h1>
+                </Container>
+            </div>
             <Container className='mt-5'>
                 <Row>
                     {apiData.map((item, index) => (
@@ -36,7 +41,36 @@ const CommunityStorie = () => {
                     ))}
                 </Row>
 
-            </Container>
+            </Container> */}
+            <div className='report-table-font'>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Writer(s)</th>
+                            <th scope="col">Title
+                            </th>
+                            <th scope="col">Year of Publication
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                Manjana, Kareena, Aanam, Jyoteshwari, and Saanish from Pardhi Youth Collective,
+                                Majal, Bhopal</td>
+                            <td><a href='https://www.india-seminar.com/2022/751/751-Pardhis1.htm' target='_blank'> We Won't Sit Quietly: Pardhi Women Demand Justice
+                            </a></td>
+                            <td>Published in Seminar Issue 751 - March 2022</td>
+                        </tr>
+                        <tr>
+                            <td>Malkin, Saanish and Tasveer with inputs from Dhruva Desai, Heman Oza</td>
+                            <td><a href='https://thewire.in/rights/ekjutta-divas-dnt-nt-communities-bhopal' target='_blank'>Ek jutta Divas: DNT-NT Communities Show Solidarity in the Face of State Violence
+                            </a></td>
+                            <td>Published on The Wire on 27/1/2021</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </>
     )
 }

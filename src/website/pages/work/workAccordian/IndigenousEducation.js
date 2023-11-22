@@ -20,7 +20,7 @@ const IndigenousEducation = () => {
             <p>Residential Educational Endeavours – We strongly believe that children need to be anchored within their community roots, and recognize that residential arrangement has a risk of dislocating children. But as communities, where deprivation is at extremely high levels and cultural norms of early marriages are not changing at the pace that would have been helpful for children, parents and individual children struggle to make formal education a real option for themselves. In these circumstances, we find that residential spaces can prove to be a support but the functioning of this arrangement should not be disdainful of community life.</p>
             <p>In Muskaan, the boundaries between the community and the school are not at all rigid. Parents come here at any time they want to meet the children or may be just passing by, and similarly, children are encouraged to go back home on weekends or when their parents need them. We also discourage children from joining the hostel in the first decade of their lives, where the parental and community bonding is what would hold them in life.</p>
 
-            <table class="table table-bordered">
+            <table className="table table-bordered">
 
                 <tbody>
                     <tr>

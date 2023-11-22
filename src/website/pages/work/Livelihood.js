@@ -8,8 +8,8 @@ import StitchingCentre from './livelihoodsAccordian/StitchingCentre';
 const Livelihood = () => {
   return (
     <>
-      <div className='contact-bg fixed-bg'>
-        <Container className='text-center'>
+      <div className='connect-bg fixed-bg'>
+                <Container className='text-center text-white'>
           <h1>Livelihoods</h1>
         </Container>
       </div>

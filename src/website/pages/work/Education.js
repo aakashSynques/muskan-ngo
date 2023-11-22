@@ -9,8 +9,10 @@ import Scientific from './workAccordian/Scientific';
 const Education = () => {
     return (
         <>
-            <div className='contact-bg fixed-bg'>
-                <Container className='text-center'>
+      
+            <div className='connect-bg fixed-bg'>
+                <Container className='text-center text-white'>
+                    {/* <h1>Connect</h1> */}
                     <h1>Education</h1>
                 </Container>
             </div>

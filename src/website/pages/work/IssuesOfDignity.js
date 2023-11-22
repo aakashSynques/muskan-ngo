@@ -7,8 +7,8 @@ import MentalHealth from './issuesOfDignityAccordian/MentalHealth';
 const IssuesOfDignity = () => {
     return (
         <>
-            <div className='contact-bg fixed-bg'>
-                <Container className='text-center'>
+           <div className='connect-bg fixed-bg'>
+                <Container className='text-center text-white'>
                     <h1>Issues Of Dignity And Survival</h1>
                 </Container>
             </div>

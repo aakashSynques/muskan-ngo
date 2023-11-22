@@ -47,6 +47,47 @@ const MainHeader = () => {
                             <img src={logo} alt="Logo" className="logo-width" />
                         </Navbar.Brand>
 
+                        {/* <Nav class="d-block d-lg-none">
+                                <Nav.Item className='px-1 pt-1'>
+                                    <Link to="/wishlist" className='nav-link pt-2 px-1 whishlist-nav'>
+                                        <Badge bg="danger" className='rounded-5'>{wishlistData.wishListDataCount.length}</Badge>
+                                        <i className="fa fa-heart-o" aria-hidden="true"></i>
+                                    </Link>
+                                </Nav.Item>
+                                <Nav.Item className='px-2 pt-1'>
+                                    <Link className='nav-link pt-2 px-1 whishlist-nav' onClick={openCartSidebar}>
+                                        <Badge bg="danger" className='rounded-5'>{cart.length}</Badge>
+                                        <i className="fa fa-shopping-bag" aria-hidden="true"></i>
+                                    </Link>
+                                </Nav.Item>
+                                <Nav.Item className='px-1 pt-1'>
+                                    <Link to="/account/login" className='nav-link pt-2 px-1 whishlist-nav'>
+                                        <i className="fa fa-user-o px-2" aria-hidden="true"></i>
+                                    </Link>
+                                </Nav.Item>
+                            </Nav> */}
+
+                        <div className='d-inline-flex d-lg-none ms-auto'>
+                                 <Nav.Item className='px-1 pt-1'>
+                                    <Link to="/wishlist" className='nav-link pt-2 px-1 whishlist-nav'>
+                                        <Badge bg="danger" className='rounded-5'>{wishlistData.wishListDataCount.length}</Badge>
+                                        <i className="fa fa-heart-o" aria-hidden="true"></i>
+                                    </Link>
+                                </Nav.Item>
+                                <Nav.Item className='px-2 pt-1'>
+                                    <Link className='nav-link pt-2 px-1 whishlist-nav' onClick={openCartSidebar}>
+                                        <Badge bg="danger" className='rounded-5'>{cart.length}</Badge>
+                                        <i className="fa fa-shopping-bag" aria-hidden="true"></i>
+                                    </Link>
+                                </Nav.Item>
+                                <Nav.Item className='px-1 pt-1'>
+                                    <Link to="/account/login" className='nav-link pt-2 px-1 whishlist-nav'>
+                                        <i className="fa fa-user-o px-2" aria-hidden="true"></i>
+                                    </Link>
+                                </Nav.Item>
+                        </div>
+
+
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ms-auto" activeKey={active}
@@ -138,53 +179,11 @@ const MainHeader = () => {
                                     </NavDropdown.Item>
                                 </NavDropdown>
 
-
-
-                                <NavDropdown title="Communicable" id="basic-nav-dropdown" className="custom-dropdown">
-                                    <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="reports" as={Link} to="/communicables/reports/" className='py-0'>
-                                            Reports
-                                        </Nav.Link>
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="realities" as={Link} to="/communicables/field-realities/" className='py-0'>
-                                            Field Realities
-                                        </Nav.Link>
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="Stories" as={Link} to="/communicables/community-stories/" className='py-0'>
-                                            Community Stories
-                                        </Nav.Link>
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="Literature" as={Link} to="/communicables/childrens-literature/" className='py-0'>
-                                            Children’s Literature
-                                        </Nav.Link>
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="reflections" as={Link} to="/communicables/reflections/" className='py-0'>
-                                            Reflections
-                                        </Nav.Link>
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="classroom" as={Link} to="/communicables/classroom-experiences/" className='py-0'>
-                                            Classroom experiences
-                                        </Nav.Link>
-                                    </NavDropdown.Item>
-                                    <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="blog" as={Link} to="/communicables/blog/" className='py-0'>
-                                            Blog
-                                        </Nav.Link>
-                                    </NavDropdown.Item>
-
-                                </NavDropdown>
-
-
-                                {/* <Nav.Item>
+                                <Nav.Item>
                                     <Nav.Link eventKey="communicable" as={Link} to="/communicable">
                                         Communicables
                                     </Nav.Link>
-                                </Nav.Item> */}
+                                </Nav.Item>
 
                                 <Nav.Item>
                                     <Nav.Link eventKey="connect" as={Link} to="/connect">
@@ -201,8 +200,10 @@ const MainHeader = () => {
                                         </NavDropdown.Item>
                                     ))}
                                 </NavDropdown>
+                            </Nav>
 
 
+                            <Nav className='d-none d-lg-inline-flex'>
                                 <Nav.Item className='px-1 pt-1'>
                                     <Link to="/wishlist" className='nav-link pt-2 px-1 whishlist-nav'>
                                         <Badge bg="danger" className='rounded-5'>{wishlistData.wishListDataCount.length}</Badge>
@@ -220,8 +221,12 @@ const MainHeader = () => {
                                         <i className="fa fa-user-o px-2" aria-hidden="true"></i>
                                     </Link>
                                 </Nav.Item>
-
                             </Nav>
+
+
+
+
+
                         </Navbar.Collapse>
                     </Container>
                 </Navbar>

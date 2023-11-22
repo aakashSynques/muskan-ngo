@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Container, Row, Col } from "react-bootstrap";
 import { setIntervalCart } from "../../reducers/cart";
+import { Link } from "react-router-dom";
 
 function HeaderTop() {
   const dispatch = useDispatch();
@@ -56,9 +57,9 @@ function HeaderTop() {
             </ul>
           </Col>
           <Col lg={4} sm={4} xs={4} className="text-end d-none d-md-block">
-            <a href="#" className="default-btn text-white text-decoration-none">
+            <Link to='/connect' className="default-btn text-white text-decoration-none">
               DONATE NOW <i className="fa fa-money"></i>
-            </a>
+            </Link>
           </Col>
         </Row>
       </Container>

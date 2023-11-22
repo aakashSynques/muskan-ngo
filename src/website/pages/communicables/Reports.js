@@ -16,6 +16,12 @@ const Reports = () => {
     ];
     return (
         <>
+            {/* <div className='connect-bg fixed-bg'>
+                <Container className='text-center text-white'>
+                    <h1>Reports</h1>
+                </Container>
+            </div>
+
             <Container className='mt-5'>
                 <Row>
                     {apiData.map((item, index) => (
@@ -24,7 +30,84 @@ const Reports = () => {
                         </Col>
                     ))}
                 </Row>
-            </Container>
+            </Container> */}
+            <div className='report-table-font'>
+                <table className="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">Writer(s)</th>
+                            <th scope="col">Title
+                            </th>
+                            <th scope="col">Year of Publication
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Brajesh Verma</td>
+                            <td>
+                                <a href='#'
+                                    className='text-black' > शिक्षा में समुदाय की भागीदारी</a></td>
+                            <td>Published in Samuhik Pahal - Vol 2 Issue 12</td>
+                        </tr>
+                        <tr>
+                            <td>Brajesh Verma</td>
+                            <td>
+                                <a href='#'
+                                    className='text-black' > Insights on Education Among the Urban Poor A case Study of Bhopal
+                                </a></td>
+                            <td>2013 </td>
+                        </tr>
+                        <tr>
+                            <td>Brajesh Verma</td>
+                            <td>
+                                <a href='#'
+                                    className='text-black' > Children on Child-Labour and Schools </a></td>
+                            <td>2013 </td>
+                        </tr>
+                        <tr>
+                            <td>Brajesh Verma</td>
+                            <td>
+                                <a href='#'
+                                    className='text-black' > In the Name of Arresting Crime   </a></td>
+                            <td>2013 </td>
+                        </tr>
+                        <tr>
+                            <td>Brajesh Verma</td>
+                            <td>
+                                <a href='#'
+                                    className='text-black' > मजल: पारधी समुदाय की परिस्थिति पर एक अध्ययन
+                                </a></td>
+                            <td>2013 </td>
+                        </tr>
+                        <tr>
+                            <td>Brajesh Verma</td>
+                            <td>
+                                <a href='#'
+                                    className='text-black' > विमुक्त जातियों की स्थिति: बाल अधिकारों पर केन्द्रित
+                                </a></td>
+                            <td>2013 </td>
+                        </tr>
+                        <tr>
+                            <td>Brajesh Verma</td>
+                            <td>
+                                <a href='#'
+                                    className='text-black' > Hum Bhi Iss Desh Ke Bacche Hain, Hum Bharat Ke Naagrik Hain                                    </a></td>
+                            <td>2013 </td>
+                        </tr>
+                        <tr>
+                            <td>Brajesh Verma</td>
+                            <td>
+                                <a href='#'
+                                    className='text-black' > Publication Newsletters    </a></td>
+                            <td>November 2022 and September 2020
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+                </table>
+            </div>
 
         </>
     )

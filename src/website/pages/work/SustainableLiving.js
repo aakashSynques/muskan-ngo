@@ -8,8 +8,8 @@ import ReducePlastic from './sustainableLivingAccordian/ReducePlastic';
 const SustainableLiving = () => {
     return (
         <>
-            <div className='contact-bg fixed-bg'>
-                <Container className='text-center'>
+          <div className='connect-bg fixed-bg'>
+                <Container className='text-center text-white'>
                     <h1>Sustainable Living</h1>
                 </Container>
             </div>

@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useEffect } from 'react'
 import { Button, Col, Container, Form, FormControl, FormGroup, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
@@ -27,6 +27,7 @@ const CheckOut = () => {
     const handleCheckboxChange = (event) => {
         setShipToDifferentAddress(event.target.checked);
     };
+
     const [orderPlace, setOrderPlace] = useState('');
     const [formData, setFormData] = useState({
         customer_email: '',
@@ -177,7 +178,11 @@ const CheckOut = () => {
 
     };
 
-
+    useEffect(() => {
+        if (cart.length === 0) {
+            navigate('/');
+        }
+    }, [cart, navigate]);
     return (
         <>
             <hr />
@@ -379,8 +384,6 @@ const CheckOut = () => {
                                                     placeholder='PIN Code'
                                                 />
                                             </FormGroup>
-
-
                                             <FormGroup as={Col} md="12">
                                                 <FormControl type="text" placeholder='House number and street name' name="bill_adderss_one"
                                                     value={formData.bill_adderss_one}
@@ -392,15 +395,13 @@ const CheckOut = () => {
                                                     onChange={handleInputChange}
                                                 />
                                             </FormGroup>
-
-
                                         </Row>
                                     </>
                                 )}
 
                                 <Row>
                                     <Col sm={6} className='text-center p-3'>
-                                        <p><font color="red" ><b>dfgdfgh{errorMessage}</b></font></p>
+                                        <p><font color="red" ><b>{errorMessage}</b></font></p>
                                     </Col>
                                     <Col sm={6} className='text-end'>
                                         <Button

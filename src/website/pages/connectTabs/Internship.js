@@ -21,33 +21,33 @@ const Internship = () => {
                                 If you are a current university student and looking for an exciting internship opportunity, get in touch with us. We have hosted many interns in the past and are always looking for ways to get people involved in our work. Kindly e-mail your resume, work proposal, duration of internship and intended start date. We require interns to commit for a minimum of 4 weeks.
                             </p>
 
-                            <div class="elementor-icon-box-wrapper d-flex  pt-4">
-                                <div class="main-color pe-3">
-                                    <i class="fa fa-phone" aria-hidden="true" style={{ fontSize: "34px" }}></i>
+                            <div className="elementor-icon-box-wrapper d-flex  pt-4">
+                                <div className="main-color pe-3">
+                                    <i className="fa fa-phone" aria-hidden="true" style={{ fontSize: "34px" }}></i>
                                 </div>
-                                <div class="elementor-icon-box-content">
-                                    <h5 class="main-color">
+                                <div className="elementor-icon-box-content">
+                                    <h5 className="main-color">
                                         <b>
                                             PHONE NO
                                         </b>
                                     </h5>
-                                    <p class="elementor-icon-box-description">+91 7405297103
+                                    <p className="elementor-icon-box-description">+91 7405297103
                                     </p>
                                 </div>
                             </div>
 
 
-                            <div class="elementor-icon-box-wrapper d-flex  pt-4">
-                                <div class="main-color pe-3">
-                                    <i class="fa fa-envelope" aria-hidden="true" style={{ fontSize: "28px" }}></i>
+                            <div className="elementor-icon-box-wrapper d-flex  pt-4">
+                                <div className="main-color pe-3">
+                                    <i className="fa fa-envelope" aria-hidden="true" style={{ fontSize: "28px" }}></i>
                                 </div>
-                                <div class="elementor-icon-box-content">
-                                    <h5 class="main-color">
+                                <div className="elementor-icon-box-content">
+                                    <h5 className="main-color">
                                         <b>
                                             EMAIL ID
                                         </b>
                                     </h5>
-                                    <p class="elementor-icon-box-description">muskaan@muskaan.org
+                                    <p className="elementor-icon-box-description">muskaan@muskaan.org
                                     </p>
                                 </div>
                             </div>

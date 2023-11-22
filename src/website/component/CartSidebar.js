@@ -49,49 +49,56 @@ const CartSidebar = ({ isOpen, closeSidebar }) => {
             <div className='cart-drawer px-2'>
                 <Container>
                     {cart.length > 0 ? (
-                        <table className="table">
-                            <tbody>
-                                {cart.map((item, index) => (
-                                    <tr key={index} className='py-4 cart-item'>
-                                        <td className='col-sm-3'>
-                                            <img src={item.product_thumbnail} alt="" className='w-100' />
-                                        </td>
-                                        <td className='col-sm-6'>
-                                            <b>{item.product_name}</b> <br /><br />
-                                            <div className='quntity-btn'>
-                                                <button className='btn p-0 font-14' onClick={() => handleDecrement(item)}><b>-</b></button>
-                                                <span className='px-3'> <b>{item.quantity}</b> </span>
-                                                <button className='btn p-0' onClick={() => handleIncrement(item)}><b> + </b> </button>
-                                            </div>
-                                        </td>
-                                        <td className='col-sm-3 text-end'>
-                                            <font><i className="fa fa-inr"></i> <b> {item.subTotal}</b></font>
-                                            <br /> <br />
-                                            <button className='btn' onClick={() => handleRemove(item)}>
-                                                <i className="fa fa-times" aria-hidden="true"></i>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
+                        <div>
+                            {cart.map((item, index) => (
+                                <Row className='py-2 cart-item'>
+                                    <Col lg={3} xs={3}>
+                                        <img src={item.product_thumbnail} alt="" className='w-100' />
+                                    </Col>
+                                    <Col lg={6} xs={6}>
+                                        <b>{item.product_name}</b> <br /><br />
+                                        <div className='quntity-btn'>
+                                            <button className='btn p-0 font-14' onClick={() => handleDecrement(item)}><b>-</b></button>
+                                            <span className='px-3'> <b>{item.quantity}</b> </span>
+                                            <button className='btn p-0' onClick={() => handleIncrement(item)}><b> + </b> </button>
+                                        </div>
+                                    </Col>
+                                    <Col lg={3} xs={3}>
+                                        <font><i className="fa fa-inr"></i> <b> {item.subTotal}</b></font>
+                                        <br /> <br />
+                                        <button className='btn' onClick={() => handleRemove(item)}>
+                                            <i className="fa fa-times" aria-hidden="true"></i>
+                                        </button>
+                                    </Col>
+                                </Row>
+                            ))}
+                        </div>
+
                     ) : (
                         <div className='text-center'>
                             <i className="fa fa-cart-plus mt-5" aria-hidden="true" style={{ fontSize: "125px", color: "#efefef" }}></i>
                             <h3 className='text-center text-dark pt-5'>Cart is empty.</h3>
                         </div>
                     )}
-                    <Row>
-                        <tr className='py-3'>
-                            <td className='col-sm-6 pull-left'> <b>Subtotal</b></td>
-                            <td className='col-sm-6 main-color text-end pull-right' style={{ color: '#a20401' }}>
-                                <i className="fa fa-inr"></i> <b>{totalAmount}</b>
-                            </td>
-                        </tr>
-                        <Link className='btn w-100 mt-1 main-bg text-white' to="/checkout" onClick={closeSidebar}>
-                            Proceed to checkout
-                        </Link>
-                    </Row>
+
+                    {cart.length > 0 ? (
+                        <Row>
+                            <tr className='py-3'>
+                                <td className='col-sm-6 pull-left'> <b>Subtotal</b></td>
+                                <td className='col-sm-6 main-color text-end pull-right' style={{ color: '#a20401' }}>
+                                    <i className="fa fa-inr"></i> <b>{totalAmount}</b>
+                                </td>
+                            </tr>
+                            <Link className='btn w-100 mt-1 main-bg text-white' to="/checkout" onClick={closeSidebar}>
+                                Proceed to checkout
+                            </Link>
+                        </Row>
+                    ) : (
+                        null
+                    )}
+
+
+
                 </Container>
             </div>
         </div>

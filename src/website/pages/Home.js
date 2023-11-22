@@ -48,32 +48,38 @@ const Home = () => {
               imageSrc={require('../assets/images/workimges/education.png')}
               title="EDUCATION"
               description="More than 90% of children of marginalized communities do not finish school."
+              link="/work/education" 
             />
             <WorkBox
               imageSrc={require('../assets/images/workimges/capable.png')}
               title="EMPOWERING CHILDREN AND YOUTH"
               description="We believe that with the kind of energy that youth contains."
+              link='/work/empowering-children-and-youth'
             />
             <WorkBox
               imageSrc={require('../assets/images/workimges/life.png')}
               title="ISSUES OF DIGNITY AND SURVIVAL"
               description="The current atmosphere demands documentation that proves the."
+              link='/work/issues-of-dignity-and-survival'
             />
             <WorkBox
               imageSrc={require('../assets/images/workimges/livelyhood-2.png')}
               title="LIVELIHOODS"
               description="With the challenges of Covid-19 pandemic and the lockdowns."
+              link='/work/liveLihoods'
             />
 
             <WorkBox
               imageSrc={require('../assets/images/workimges/living.png')}
               title="SUSTAINABLE LIVING"
               description="We believe in the philosophy of sustainable living that aims"
+              link='/work/sustainable-living'
             />
             <WorkBox
               imageSrc={require('../assets/images/workimges/three-books.png')}
               title="PUBLICATIONS"
               description="Muskaan Publication Catalouge"
+              link='/work/publication'
             />
           </Row>
         </Container>

@@ -26,11 +26,11 @@ const Policies = () => {
                                     <div className='white-bg-tile'>
                                         <Image
                                             src={require('../../assets/images/gender.png')}
-                                            alt="" className='w-100 rounded-50 px-5 py-3 ' />
+                                            alt="" className='w-100 rounded-circle px-5 py-3 ' />
                                         <div className='text-center '>
                                             <h6>GENDER POLICY</h6>
                                             <a href={policies1} target="_blank" download>
-                                                <i class="fa fa-download" aria-hidden="true"></i>  Download
+                                                <i className="fa fa-download" aria-hidden="true"></i>  Download
                                             </a>
                                         </div>
                                     </div>
@@ -40,11 +40,26 @@ const Policies = () => {
                                     <div className='white-bg-tile'>
                                         <Image
                                             src={require('../../assets/images/child.png')}
-                                            alt="" className='w-100 rounded-50 px-5 py-3' />
+                                            alt="" className='w-100 rounded-circle  px-5 py-3' />
                                         <div className='text-center '>
                                             <h6>CHILD PROTECTION POLICY</h6>
                                             <a href={policies2} target="_blank" download>
-                                                <i class="fa fa-download" aria-hidden="true"></i>  Download
+                                                <i className="fa fa-download" aria-hidden="true"></i>  Download
+                                            </a>
+                                        </div>
+                                    </div>
+                                </Col>
+
+
+
+                                <Col sm={4}>
+                                    <div className='white-bg-tile'>
+                                        <Image
+                                            src={require('../../assets/images/hr.png')} alt="" className='w-100 rounded-circle  px-5 py-3' />
+                                        <div className='text-center '>
+                                            <h6>CHILD PROTECTION POLICY</h6>
+                                            <a href={policies3} target="_blank" download>
+                                                <i className="fa fa-download" aria-hidden="true"></i>  Download
                                             </a>
                                         </div>
                                     </div>

@@ -12,17 +12,17 @@ const Contect = () => {
         <Row>
           <Col sm={4}>
             <h3>Information</h3>
-            <div class="elementor-icon-box-wrapper d-flex  pt-2">
-              <div class="main-color pe-3">
-                <i class="fa fa-map-marker" aria-hidden="true" style={{ fontSize: "34px" }}></i>
+            <div className="elementor-icon-box-wrapper d-flex  pt-2">
+              <div className="main-color pe-3">
+                <i className="fa fa-map-marker" aria-hidden="true" style={{ fontSize: "34px" }}></i>
               </div>
-              <div class="elementor-icon-box-content">
-                <h5 class="main-color">
+              <div className="elementor-icon-box-content">
+                <h5 className="main-color">
                   <b>
                     ADDRESS
                   </b>
                 </h5>
-                <p class="elementor-icon-box-description">
+                <p className="elementor-icon-box-description">
                   Muskaan Mud Building – ‘Mitti Ka Ghar’ Plot No. 264-65, Behind Canara Bank, Landmark
                   – Left in the lane opposite D.P.S. School Bhadbhada Road, Neelbad, Bhopal – 462044	.
                 </p>
@@ -30,33 +30,33 @@ const Contect = () => {
             </div>
 
 
-            <div class="elementor-icon-box-wrapper d-flex  pt-2">
-              <div class="main-color pe-3">
-                <i class="fa fa-phone" aria-hidden="true" style={{ fontSize: "34px" }}></i>
+            <div className="elementor-icon-box-wrapper d-flex  pt-2">
+              <div className="main-color pe-3">
+                <i className="fa fa-phone" aria-hidden="true" style={{ fontSize: "34px" }}></i>
               </div>
-              <div class="elementor-icon-box-content">
-                <h5 class="main-color">
+              <div className="elementor-icon-box-content">
+                <h5 className="main-color">
                   <b>
                     PHONE NO
                   </b>
                 </h5>
-                <p class="elementor-icon-box-description">+91 7405297103
+                <p className="elementor-icon-box-description">+91 7405297103
                 </p>
               </div>
             </div>
 
 
-            <div class="elementor-icon-box-wrapper d-flex  pt-2">
-              <div class="main-color pe-3">
-                <i class="fa fa-envelope" aria-hidden="true" style={{ fontSize: "28px" }}></i>
+            <div className="elementor-icon-box-wrapper d-flex  pt-2">
+              <div className="main-color pe-3">
+                <i className="fa fa-envelope" aria-hidden="true" style={{ fontSize: "28px" }}></i>
               </div>
-              <div class="elementor-icon-box-content">
-                <h5 class="main-color">
+              <div className="elementor-icon-box-content">
+                <h5 className="main-color">
                   <b>
                     EMAIL ID
                   </b>
                 </h5>
-                <p class="elementor-icon-box-description">muskaan@muskaan.org
+                <p className="elementor-icon-box-description">muskaan@muskaan.org
                 </p>
               </div>
             </div>
@@ -64,26 +64,26 @@ const Contect = () => {
 
 
 
-            <div class="elementor-icon-box-wrapper d-flex  pt-2">
-              <div class="main-color pe-3">
-                <i class="fa fa-firefox" aria-hidden="true" style={{ fontSize: "28px" }}></i>
+            <div className="elementor-icon-box-wrapper d-flex  pt-2">
+              <div className="main-color pe-3">
+                <i className="fa fa-firefox" aria-hidden="true" style={{ fontSize: "28px" }}></i>
               </div>
-              <div class="elementor-icon-box-content">
-                <h5 class="main-color">
+              <div className="elementor-icon-box-content">
+                <h5 className="main-color">
                   <b>
                     WEB ADDRESS
                   </b>
                 </h5>
-                <p class="elementor-icon-box-description">https://muskaan.org/
+                <p className="elementor-icon-box-description">https://muskaan.org/
                 </p>
               </div>
             </div>
 
             <div className='contact-social-icon'>
-              <a href="#" class="fa fa-facebook text-white p-3 m-1" style={{ background: "#3B5998" }}></a>
-              <a href="#" class="fa fa-twitter text-white p-3 m-1" style={{ background: "#55ACEE" }}></a>
-              <a href="#" class="fa fa-instagram text-white p-3 m-1" style={{ background: "#125688" }}></a>
-              <a href="#" class="fa fa-youtube text-white p-3 m-1" style={{ background: "#bb0000" }}></a>
+              <a href="#" className="fa fa-facebook text-white p-3 m-1" style={{ background: "#3B5998" }}></a>
+              <a href="#" className="fa fa-twitter text-white p-3 m-1" style={{ background: "#55ACEE" }}></a>
+              <a href="#" className="fa fa-instagram text-white p-3 m-1" style={{ background: "#125688" }}></a>
+              <a href="#" className="fa fa-youtube text-white p-3 m-1" style={{ background: "#bb0000" }}></a>
             </div>
 
           </Col> <Col sm={2}></Col>

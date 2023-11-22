@@ -31,6 +31,11 @@ const Blog = () => {
     ];
     return (
         <>
+           <div className='connect-bg fixed-bg'>
+                <Container className='text-center text-white'>
+                    <h1>Blog</h1>
+                </Container>
+            </div>
             <Container className='mt-5'>
                 <Row>
                     {apiData.map((item, index) => (

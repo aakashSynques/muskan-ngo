@@ -111,7 +111,7 @@ const CartItems = () => {
                         ) : (
 
                             <div className='text-center'>
-                                <i class="fa fa-cart-plus mt-5" aria-hidden="true" style={{ fontSize: "125px", color: "#efefef" }}></i>
+                                <i className="fa fa-cart-plus mt-5" aria-hidden="true" style={{ fontSize: "125px", color: "#efefef" }}></i>
                                 <p className='text-center pt-2'>Cart is empty.</p>
                             </div>
                         )}

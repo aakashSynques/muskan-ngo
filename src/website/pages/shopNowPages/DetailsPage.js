@@ -101,7 +101,8 @@ const DetailsPage = () => {
                     {loading ? (
                         // Render a loader within the container while waiting for the API to load
 
-                        <div className='pt-5'> <Loader /></div>
+                        <div className='pt-5' style={{height: "80vh"}}> <Loader /></div>
+
                     ) : (
                         <>
                             <font> <Link to="/" className='text-dark'> Home </Link>  ›

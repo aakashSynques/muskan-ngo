@@ -4,14 +4,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setWishListDataCount } from '../../../reducers/wishlistSlice';
 import { fetch } from '../../../utils'
 import { addToCart, initializeCart } from '../../../reducers/cart';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+
 
 const Wishlist = () => {
+  const navigate = useNavigate();
+
   const [wishListData, setWishListData] = useState([]); // State to hold wishlist data
   const dispatch = useDispatch();
   const getWishListData = async () => {
     try {
       const token = localStorage.getItem("muskan_token");
+      if (!token) {
+        // Redirect to login page
+        navigate('/account/login');
+        return;
+      }
+
       const headers = {
         Authorization: `Bearer ${token}`,
       };
@@ -132,7 +142,7 @@ const Wishlist = () => {
             </div>
           </>
         ) : (
-         wishListData.map((item, index) => (
+          wishListData.map((item, index) => (
             <Row className='py-4 border-b' key={index}>
               <Col sm={4}>
                 <Row>

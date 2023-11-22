@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row, Col, Image, Button } from 'react-bootstrap'
 import LeaveReplyForm from './LeaveReplyForm'
+import { Link } from 'react-router-dom'
 
 const ReportDetails = () => {
   return (
@@ -62,19 +63,84 @@ const ReportDetails = () => {
 
 
               <p>Tag : <b className='main-color'>Shefali Jain</b></p>
-              <a href='' className='font-14 text-white bg-primary px-2 rounded-1'><i class="fa fa-facebook-official" aria-hidden="true"></i> Shere 0</a> &nbsp;
-              <a href='' className='font-14 text-white bg-info px-2 rounded-1'><i class="fa fa-twitter" aria-hidden="true"></i> Tweet</a> &nbsp;
-              <a href='' className='font-14 text-white bg-danger px-2 rounded-1'><i class="fa fa-google" aria-hidden="true"></i> Google</a>
-
-
+              <a href='' className='font-14 text-white bg-primary px-2 rounded-1'><i className="fa fa-facebook-official" aria-hidden="true"></i> Shere 0</a> &nbsp;
+              <a href='' className='font-14 text-white bg-info px-2 rounded-1'><i className="fa fa-twitter" aria-hidden="true"></i> Tweet</a> &nbsp;
+              <a href='' className='font-14 text-white bg-danger px-2 rounded-1'><i className="fa fa-google" aria-hidden="true"></i> Google</a>
               <LeaveReplyForm />
-
-
-
             </div>
           </Col>
-          <Col sm={3}>
+          <Col sm={3} className='with_aside-border-left'>
+            <h4 className='pb-3'>Recent Posts</h4>
+   
+            <div className='blog-section my-3'>
+              <Link to="/communicable/details">
+                <Row>
+                  <Col sm={5}>
+                    <Image src={require('../../assets/images/blogd.jpg')} alt="" className='w-100' />
+                  </Col>
+                  <Col sm={7} className='text-black'>
+                    <p className='mb-1'>June 7, 2023</p>
+                    <p>बच्चों के नाम भी हैं रोचक टीएलएम</p>
+                  </Col>
+                </Row>
+              </Link>
+            </div>
+            
+            <div className='blog-section my-3'>
+              <Link to="/communicable/details">
+                <Row>
+                  <Col sm={5}>
+                    <Image src={require('../../assets/images/blogd.jpg')} alt="" className='w-100' />
+                  </Col>
+                  <Col sm={7} className='text-black'>
+                    <p className='mb-1'>June 7, 2023</p>
+                    <p>बच्चों के नाम भी हैं रोचक टीएलएम</p>
+                  </Col>
+                </Row>
+              </Link>
+            </div>
+            
+            <div className='blog-section my-3'>
+              <Link to="/communicable/details">
+                <Row>
+                  <Col sm={5}>
+                    <Image src={require('../../assets/images/blogd.jpg')} alt="" className='w-100' />
+                  </Col>
+                  <Col sm={7} className='text-black'>
+                    <p className='mb-1'>June 7, 2023</p>
+                    <p>बच्चों के नाम भी हैं रोचक टीएलएम</p>
+                  </Col>
+                </Row>
+              </Link>
+            </div>
+            
 
+
+
+            <h4 className='pb-1 pt-4'>Communicables</h4>
+            <ul >
+              <li>
+                <Link to="/communicables/reports/">Reports</Link>
+              </li>
+              <li>
+                <Link to='/communicables/field-realities/'>Field Realities</Link>
+              </li>
+              <li>
+                <Link to='/communicables/community-stories/'>Community Stories</Link>
+              </li>
+              <li>
+                <Link to='/communicables/childrens-literature/'>Children's Literature</Link>
+              </li>
+              <li>
+                <Link to='/communicables/reflections/'>Reflections</Link>
+              </li>
+              <li>
+                <Link to='/communicables/classroom-experiences/'>Classroom Experiences</Link>
+              </li>
+              <li>
+                <Link to="/communicables/blog/">Blog</Link>
+              </li>
+            </ul>
           </Col>
         </Row>
       </Container>

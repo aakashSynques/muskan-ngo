@@ -92,6 +92,7 @@ function App() {
 
 
           <Route path='/communicable' element={<Communicable />} />
+          
           <Route path='/communicable/details' element={<ReportDetails />} />
           <Route path='/communicables/reports/' element={<Reports />} />
           <Route path='/communicables/field-realities/' element={<FieldRealities />} />

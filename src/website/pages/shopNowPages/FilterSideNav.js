@@ -7,7 +7,6 @@ import 'rc-slider/assets/index.css';
 import { fetch } from '../../../utils';
 const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
   const bestSeller = useSelector((state) => state.productsList.productList)
-  console.log('bestSeller', bestSeller)
 
   const { category_slug } = useParams();
   const [categoryList, setCategoryList] = useState([]);
@@ -74,7 +73,7 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
         <Slider
           range
           min={0}
-          max={100}
+          max={300}
           value={range}
           onChange={handleSliderChange} y
         />

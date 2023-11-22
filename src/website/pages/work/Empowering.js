@@ -11,8 +11,8 @@ import YouthFellowships from './empoweringAccordian/YouthFellowships';
 const Empowering = () => {
     return (
         <>
-                <div className='contact-bg fixed-bg'>
-                    <Container className='text-center'>
+              <div className='connect-bg fixed-bg'>
+                <Container className='text-center text-white'>
                         <h1>Empowering Children And Youth</h1>
                     </Container>
                 </div>

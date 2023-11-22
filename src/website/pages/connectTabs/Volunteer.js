@@ -23,33 +23,33 @@ const Volunteer = () => {
               <p>Illustration and Design : Help collect content, illustrate and design classroom teaching materials, activity material, children’s stories and other things</p>
 
               <div className='row'>
-              <div class="elementor-icon-box-wrapper d-flex  col-sm-6">
-                <div class="main-color pe-3">
-                  <i class="fa fa-phone" aria-hidden="true" style={{ fontSize: "34px" }}></i>
+              <div className="elementor-icon-box-wrapper d-flex  col-sm-6">
+                <div className="main-color pe-3">
+                  <i className="fa fa-phone" aria-hidden="true" style={{ fontSize: "34px" }}></i>
                 </div>
-                <div class="elementor-icon-box-content">
-                  <h5 class="main-color">
+                <div className="elementor-icon-box-content">
+                  <h5 className="main-color">
                     <b>
                       PHONE NO
                     </b>
                   </h5>
-                  <p class="elementor-icon-box-description">+91 7405297103
+                  <p className="elementor-icon-box-description">+91 7405297103
                   </p>
                 </div>
               </div>
 
 
-              <div class="elementor-icon-box-wrapper d-flex  pt-4 col-sm-6">
-                <div class="main-color pe-3">
-                  <i class="fa fa-envelope" aria-hidden="true" style={{ fontSize: "28px" }}></i>
+              <div className="elementor-icon-box-wrapper d-flex  pt-4 col-sm-6">
+                <div className="main-color pe-3">
+                  <i className="fa fa-envelope" aria-hidden="true" style={{ fontSize: "28px" }}></i>
                 </div>
-                <div class="elementor-icon-box-content">
-                  <h5 class="main-color">
+                <div className="elementor-icon-box-content">
+                  <h5 className="main-color">
                     <b>
                       EMAIL ID
                     </b>
                   </h5>
-                  <p class="elementor-icon-box-description">muskaan@muskaan.org
+                  <p className="elementor-icon-box-description">muskaan@muskaan.org
                   </p>
                 </div>
               </div>

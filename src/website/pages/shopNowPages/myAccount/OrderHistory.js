@@ -19,10 +19,9 @@ const OrderHistory = () => {
             const response = await fetch('/order/customer', 'POST', body, null);
             setOrderHistoryData(response.data.data.orders);
             setLoading(false);
-            console.log('sdfsda', response.data.data);
         } catch (error) {
-            console.error('Error fetching order history:', error);
-            setError('Error fetching order history. Please try again.'); // Set an error message
+            // console.error('Error fetching order history:', error);
+            // setError('Empty'); // Set an error message
             setLoading(false);
         }
     };

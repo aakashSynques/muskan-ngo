@@ -19,6 +19,7 @@ const AddressBook = () => {
             };
             const response = await fetch('/customer/address', 'POST', body, null);
             setAddressData(response.data.data);
+            console.log('response', response)
             setIsLoading(false);
         } catch (error) {
             setError(error);
@@ -28,6 +29,8 @@ const AddressBook = () => {
     useEffect(() => {
         getAddressData();
     }, []);
+
+    
 
     return (
         <>
@@ -47,9 +50,8 @@ const AddressBook = () => {
                             <CardBody>
                                 <font size="2">The following addresses will be used on the checkout page by default.</font>
 
-                                <div className="mt-4 bg-light p-4 border">
+                                {/* <div className="mt-4 bg-light p-4 border">
                                     <BillAddress />
-
                                     {isLoading ? (
                                         <div>Loading...</div>
                                     ) : addressData && addressData.bill_adderss.bill_fname ? (
@@ -91,7 +93,7 @@ const AddressBook = () => {
                                     ) : (
                                         <font size="2">You have not set up this type of address yet.</font>
                                     )}
-                                </div>
+                                </div> */}
                             </CardBody>
                         </Card>
                     </Col>
