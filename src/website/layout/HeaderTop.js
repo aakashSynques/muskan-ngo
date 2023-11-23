@@ -15,7 +15,7 @@ function HeaderTop() {
       setIsInitialRender(false);
       return;
     }
-    console.log("cart save");
+  
     const cartjsonString = JSON.stringify(cart);
     localStorage.setItem("cartjsonString", cartjsonString);
   }, [cart]);

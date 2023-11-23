@@ -42,20 +42,21 @@ import SustainableLiving from './website/pages/work/SustainableLiving';
 import Publication from './website/pages/work/Publication';
 import History from './website/pages/aboutPages/History';
 import Accounts from './website/pages/aboutPages/Accounts';
-import Reports from './website/pages/communicables/Reports';
-import FieldRealities from './website/pages/communicables/FieldRealities';
-import CommunityStorie from './website/pages/communicables/CommunityStorie';
-import ChildrenLiterature from './website/pages/communicables/ChildrenLiterature';
-import Reflections from './website/pages/communicables/Reflections';
-import ClassRoom from './website/pages/communicables/ClassRoom';
+
+// import Reports from './website/pages/communicables/Reports';
+// import FieldRealities from './website/pages/communicables/FieldRealities';
+// import CommunityStorie from './website/pages/communicables/CommunityStorie';
+// import ChildrenLiterature from './website/pages/communicables/ChildrenLiterature';
+// import Reflections from './website/pages/communicables/Reflections';
+// import ClassRoom from './website/pages/communicables/ClassRoom';
+
+
 import Blog from './website/pages/communicables/Blog';
 import Mission from './website/pages/aboutPages/Mission';
 import WhoWeWork from './website/pages/aboutPages/WhoWeWork';
 import Policies from './website/pages/aboutPages/Policies';
 import OurTeam from './website/pages/aboutPages/OurTeam';
 import Collaborations from './website/pages/aboutPages/Collaborations';
-
-
 
 function App() {
   return (
@@ -76,12 +77,6 @@ function App() {
           {/* <Route path='/work' element={<Work />} /> */}
 
           <Route path='/connect' element={<Connect />} />
-          {/* 
-          <Route path='/career' element={<Career />} />
-          <Route path="/volunteer" element={<Volunteer />} />
-          <Route path='/connect/intern' element={<Internship />} />
-          <Route path='/connect/jobs' element={<Jobs />} /> */}
-
 
           <Route path='/work/education' element={<Education />} />
           <Route path='/work/empowering-children-and-youth' element={<Empowering />} />
@@ -92,14 +87,7 @@ function App() {
 
 
           <Route path='/communicable' element={<Communicable />} />
-          
-          <Route path='/communicable/details' element={<ReportDetails />} />
-          <Route path='/communicables/reports/' element={<Reports />} />
-          <Route path='/communicables/field-realities/' element={<FieldRealities />} />
-          <Route path='/communicables/community-stories/' element={<CommunityStorie />} />
-          <Route path='/communicables/childrens-literature/' element={<ChildrenLiterature />} />
-          <Route path='/communicables/reflections/' element={<Reflections />} />
-          <Route path='/communicables/classroom-experiences/' element={<ClassRoom />} />
+
           <Route path='/communicables/blog/' element={<Blog />} />
 
           <Route path='/wishlist' element={<Wishlist />} />

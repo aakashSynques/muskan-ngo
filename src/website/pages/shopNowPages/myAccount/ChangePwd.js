@@ -28,7 +28,6 @@ const ChangePwd = () => {
             if (response) {
                 setPasswordChanged(true);
             } else {
-                console.log('Failed to change password');
                 setError('Failed to change password'); // Set the error message
 
             }

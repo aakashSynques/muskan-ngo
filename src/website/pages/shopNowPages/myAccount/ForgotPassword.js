@@ -22,7 +22,6 @@ const ForgotPassword = () => {
         null
       );
       const data = await response.json();
-      console.log("forget data", data)
       if (response.ok) {
         setMessage(data.message);
       } else {

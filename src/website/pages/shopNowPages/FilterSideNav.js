@@ -7,12 +7,9 @@ import 'rc-slider/assets/index.css';
 import { fetch } from '../../../utils';
 const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
   const bestSeller = useSelector((state) => state.productsList.productList)
-
   const { category_slug } = useParams();
   const [categoryList, setCategoryList] = useState([]);
   // const cart = useSelector((state) => state.cart.items);
-
-
   const getCategryList = async () => {
     try {
       const response = await fetch(
@@ -26,15 +23,10 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
       console.log(err);
     }
   }
-
   useEffect(() => {
     getCategryList();
   }, []);
-
-
-
   const [isFilterVisible, setIsFilterVisible] = useState(false);
-
   const toggleFilterVisibility = () => {
     setIsFilterVisible(!isFilterVisible);
   };
@@ -73,7 +65,7 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
         <Slider
           range
           min={0}
-          max={300}
+          max={500}
           value={range}
           onChange={handleSliderChange} y
         />
@@ -89,6 +81,7 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
         <div className='pt-4 best-seller-d-none'>
           <hr />
           <h6 className='f-w-6 main-color pt-1 pb-1' > BEST  SELLERS !</h6>
+          
           {bestSeller
             .filter(item => item.desktop_display === 1)
             .map((item, index) => (

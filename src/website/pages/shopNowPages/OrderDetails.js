@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const OrderDetails = () => {
     const orderId = useSelector((state) => state.order.custOrderId);
-    console.log('cust id', orderId)
     const [orderData, setOrderData] = useState();
     const getOrderDetails = async () => {
         try {
@@ -14,7 +13,6 @@ const OrderDetails = () => {
                 cust_order_id: orderId
             }
             const response = await fetch('/order/details', 'POST', body, null);
-            console.log('res', response.data.data.order)
             setOrderData(response.data.data.order)
 
         } catch (error) {

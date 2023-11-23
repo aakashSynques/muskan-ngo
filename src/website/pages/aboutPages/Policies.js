@@ -25,7 +25,7 @@ const Policies = () => {
                                 <Col sm={4}>
                                     <div className='white-bg-tile'>
                                         <Image
-                                            src={require('../../assets/images/gender.png')}
+                                            src={require('../../assets/images/gender.jpg')}
                                             alt="" className='w-100 rounded-circle px-5 py-3 ' />
                                         <div className='text-center '>
                                             <h6>GENDER POLICY</h6>
@@ -39,7 +39,7 @@ const Policies = () => {
                                 <Col sm={4}>
                                     <div className='white-bg-tile'>
                                         <Image
-                                            src={require('../../assets/images/child.png')}
+                                            src={require('../../assets/images/child.jpg')}
                                             alt="" className='w-100 rounded-circle  px-5 py-3' />
                                         <div className='text-center '>
                                             <h6>CHILD PROTECTION POLICY</h6>

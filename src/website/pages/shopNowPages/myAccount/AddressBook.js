@@ -19,7 +19,6 @@ const AddressBook = () => {
             };
             const response = await fetch('/customer/address', 'POST', body, null);
             setAddressData(response.data.data);
-            console.log('response', response)
             setIsLoading(false);
         } catch (error) {
             setError(error);

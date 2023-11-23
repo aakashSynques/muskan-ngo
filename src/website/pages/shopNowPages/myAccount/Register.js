@@ -34,10 +34,8 @@ const Register = () => {
                 const token = response.data.token; // Assuming the response contains a unique token
                 setRegistrationMessage(response.message); // Display the response message
                 navigate("/account/login");
-                console.log(response.message);
             } else {
                 setRegistrationMessage(response.message);
-                console.log(response.message);
             }
         } catch (err) {
             setRegistrationMessage('Email is already in use.');

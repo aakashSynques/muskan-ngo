@@ -3,17 +3,14 @@ import { Container, Col, Row } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateQuantity, removeFromCart, updateTotalAmount } from '../../reducers/cart';
 import { Link } from 'react-router-dom';
-
 const CartSidebar = ({ isOpen, closeSidebar }) => {
     const dispatch = useDispatch();
     const cart = useSelector((state) => state.cart.items);
     const totalAmount = useSelector((state) => state.cart.totalAmount);
-
     useEffect(() => {
         const cartJSON = JSON.stringify(cart);
         localStorage.setItem('cart', cartJSON);
     }, [cart]);
-
     const handleIncrement = (item) => {
         dispatch(updateQuantity({ product_id: item.product_id, quantity: item.quantity + 1 }));
     };
@@ -81,17 +78,25 @@ const CartSidebar = ({ isOpen, closeSidebar }) => {
                         </div>
                     )}
 
+
                     {cart.length > 0 ? (
-                        <Row>
+                        <Row style={{
+                            position: "absolute",
+                            bottom: "3%"
+                        }}>
+
                             <tr className='py-3'>
                                 <td className='col-sm-6 pull-left'> <b>Subtotal</b></td>
                                 <td className='col-sm-6 main-color text-end pull-right' style={{ color: '#a20401' }}>
                                     <i className="fa fa-inr"></i> <b>{totalAmount}</b>
                                 </td>
                             </tr>
-                            <Link className='btn w-100 mt-1 main-bg text-white' to="/checkout" onClick={closeSidebar}>
-                                Proceed to checkout
-                            </Link>
+                            <tr>
+                                <Link className='btn w-100 mt-1 main-bg text-white' to="/checkout" onClick={closeSidebar}>
+                                    Proceed to checkout
+                                </Link>
+                            </tr>
+
                         </Row>
                     ) : (
                         null

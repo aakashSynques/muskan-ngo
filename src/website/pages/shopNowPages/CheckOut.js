@@ -23,7 +23,6 @@ const CheckOut = () => {
 
     const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
     const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
-    console.log('parsedTokenData', parsedTokenData)
     const handleCheckboxChange = (event) => {
         setShipToDifferentAddress(event.target.checked);
     };
@@ -90,7 +89,6 @@ const CheckOut = () => {
                             );
                             const custOrderId = response.data.data.cust_order_id;
                             dispatch(setOrderId(custOrderId));
-                            console.log('order id', dispatch(setOrderId(custOrderId)))
                             if (response == false) {
                                 setIsLoading(false);
                                 setErrorMessage(response.massage);

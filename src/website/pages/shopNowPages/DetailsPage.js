@@ -3,22 +3,28 @@ import { Container, Image, Col, Row, Button } from 'react-bootstrap'
 import Tab from 'react-bootstrap/Tab';
 import { useSelector, useDispatch } from 'react-redux';
 import Tabs from 'react-bootstrap/Tabs';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { fetch } from '../../../utils';
 import Parser from 'html-react-parser';
 import { addToCart, initializeCart } from '../../../reducers/cart';
 import Loader from '../../component/Loader';
 import CartSidebar from '../../component/CartSidebar';
-
-
+import { toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 const DetailsPage = () => {
-    const [productDetails, setProductDetails] = useState([])
-    const [loading, setLoading] = useState(true); // Add loading state
+    const navigate = useNavigate();
+    const relatedProduct = useSelector((state) => state.productsList.productList)
+    const [productDetails, setProductDetails] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [quantity, setQuantity] = useState(1);
+    const [subTotal, setSubTotal] = useState(productDetails.product_MSP);
+
     const { category_slug, subcategory_slug } = useParams();
-
-
     const dispatch = useDispatch();
     const { product_slug } = useParams();
+    const tokenDataFromLocalStorage = localStorage.getItem('muskan_token_data');
+    const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
+
     const getProductDetails = async () => {
         try {
             const headers = { 'Content-Type': 'application/json' };
@@ -29,31 +35,35 @@ const DetailsPage = () => {
                 headers,
             );
             setProductDetails(response.data.data.product);
-            setLoading(false); // Set loading to false when data is available
-
-
+            setSubTotal(response.data.data.product.product_MSP);
+            setLoading(false);
         } catch (err) {
             console.log(err);
         }
     }
+
     useEffect(() => {
         getProductDetails();
     }, []);
-    console.log("productDetails", productDetails)
 
 
-    const [quantity, setQuantity] = useState(1);
+
+    useEffect(() => {
+        const newSubTotal = quantity * productDetails.product_MSP;
+        setSubTotal(newSubTotal);
+    }, [quantity, productDetails.product_MSP]);
+
     const incrementQuantity = () => {
-        setQuantity(quantity + 1);
+        setQuantity((prevQuantity) => prevQuantity + 1);
     };
+
     const decrementQuantity = () => {
         if (quantity > 1) {
-            setQuantity(quantity - 1);
+            setQuantity((prevQuantity) => prevQuantity - 1);
         }
     };
 
     const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false); // State for cart sidebar visibility
-
     const handleAddToCart = (product) => {
         const cartItemData = {
             attributes: product.attributes,
@@ -77,7 +87,7 @@ const DetailsPage = () => {
             product_thumbnail: product.product_thumbnail,
             sub_category_id: product.sub_category_id,
             quantity: quantity,
-            subTotal: product.product_MSP,
+            subTotal: subTotal,
         };
         dispatch(addToCart(cartItemData));
         openCartSidebar();
@@ -92,23 +102,57 @@ const DetailsPage = () => {
         // setIsOverlayActive(false);
     }
 
+
+
+
+    const handleAddWhishList = async (productId) => {
+        try {
+            // Check if the user is logged in
+            if (!parsedTokenData) {
+                // User is not logged in, handle accordingly (e.g., show a login prompt)
+                // console.log('User is not logged in. Show login prompt or handle accordingly.');
+                navigate('/account/login');
+                return;
+            }
+
+
+            const token = localStorage.getItem("muskan_token");
+            const headers = {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`,
+            };
+            const body = {
+                product_id: productId,
+            };
+            const response = await fetch(
+                "/wishlist/add",
+                "POST",
+                body,
+                headers,
+            );
+            if (response.data && response.data.success) {
+                toast.success(response.data.message, { position: toast.POSITION.TOP_RIGHT });
+
+            } else {
+                console.log('Response not successful:', response);
+            }
+            setLoading(false);
+        } catch (err) {
+            console.log(err);
+        }
+    };
+
     return (
         <>
             <hr />
-
             <div style={{ height: 'auto' }}>
                 <Container className='pb-5' >
                     {loading ? (
-                        // Render a loader within the container while waiting for the API to load
-
-                        <div className='pt-5' style={{height: "80vh"}}> <Loader /></div>
-
+                        <div className='pt-5' style={{ height: "80vh" }}> <Loader /></div>
                     ) : (
                         <>
                             <font> <Link to="/" className='text-dark'> Home </Link>  ›
                                 <Link to='/' className="text-capitalize text-dark"> {category_slug} </Link>
-
-
                                 › {productDetails.product_name}</font>
                             <Row className='pt-4'>
                                 <Col sm={5}>
@@ -116,7 +160,6 @@ const DetailsPage = () => {
                                 </Col>
                                 <Col sm={6}>
                                     <div>
-
                                         <h3>{productDetails.product_name}</h3>
                                         <span>
                                             <i className="fa fa-star five-star" style={{ fontSize: '14px' }} aria-hidden="true"></i>
@@ -136,14 +179,14 @@ const DetailsPage = () => {
                                         <div className="pt-2">
                                             <span className='main-color price-font'><i className="fa fa-inr"></i> {productDetails.product_MSP}
                                             </span> &nbsp;
-                                            <font size="2" className="text-secondary">
+                                            {/* <font size="2" className="text-secondary">
                                                 <del><i className="fa fa-inr"></i> {productDetails.product_MRP} </del>
-                                            </font> &nbsp;
-                                            <font size="2" className='text-white px-2 rounded-1 main-bg'> 0 %</font>
+                                            </font> &nbsp; */}
+                                            {/* <font size="2" className='text-white px-2 rounded-1 main-bg'> 0 %</font> */}
                                         </div>
 
                                         <div className='mt-4'>
-                                            <span className="quantity-control">
+                                            <span className="quantity-control btn btn-light rounded-1 border">
                                                 <button className='btn btn-sm' onClick={decrementQuantity}>-</button>
                                                 <span className='px-4'>{quantity}</span>
                                                 <button className='btn btn-sm' style={{ fontSize: "20px" }} onClick={incrementQuantity}>+</button>
@@ -156,8 +199,9 @@ const DetailsPage = () => {
                                 </span> */}
                                         </div>
 
-                                        <div className='pt-4'>
-                                            <font size='2'><i className="fa fa-heart-o" aria-hidden="true"></i> Add To WishList</font>   <br />
+                                        <div className='pt-3'>
+                                            <button className='btn border-0' onClick={() => handleAddWhishList(productDetails.product_id)}><i className="fa fa-heart-o" aria-hidden="true"></i> Add To WishList</button>
+                                            <br />
                                             <div className='mt-3'><b>SKU : </b> {productDetails.product_sku}</div>
                                         </div>
                                     </div>
@@ -197,7 +241,7 @@ const DetailsPage = () => {
                 <CartSidebar isOpen={isCartSidebarOpen} closeSidebar={closeCartSidebar} />
 
             </div>
-
+            <ToastContainer />
         </>
     )
 }

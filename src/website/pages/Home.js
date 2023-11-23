@@ -3,20 +3,22 @@ import Slider from '../component/Slider'
 import { Container, Row, Col, Button, Image } from 'react-bootstrap'
 import about1 from '../assets/images/about1.jpg'
 import about2 from '../assets/images/about2.jpg'
-import ShopNowItem from '../component/ShopNowItem'
+// import ShopNowItem from '../component/ShopNowItem'
 import { Link } from 'react-router-dom'
 import WorkBox from '../component/WorkBox'
 import '../assets/css/style.css'
+
 const Home = () => {
   return (
     <div>
       <Slider />
+
       {/* About section */}
       <Container className='pt-5'>
         <Row>
           <Col sm={6}>
-            <div className='about-section section-title pe-lg-5 pt-4 pe-md-0'>
-              <h2>About Us</h2>
+            <div className='about-section section-title pe-lg-5 pt-4 pe-md-0 animate__animated animate__fadeInLeft'>
+              <h2 >About Us</h2>
               <p>At Muskaan, we are committed to empowering children and young individuals from marginalized communities through education. Our approach encourages and enables them to explore and address the realities of their own lives as well as of other vulnerable people around them. We adopt these critical learning processes in our formal school and out-of-school community spaces, as libraries and learning centres.</p>
               <p>Muskaan operates at the grassroots level in informal urban settlements and villages in order to nurture the potential of people across various age groups and life-stages. We try to focus on individual journeys of community members while drawing strength from collective pursuits. A key aspect of our undertaking is to strengthen leadership within marginalized communities, enabling them to spearhead and guide interventions at community level.</p>
 
@@ -33,7 +35,28 @@ const Home = () => {
       </Container>
 
       {/* Shop now section */}
-      <ShopNowItem />
+      <section className="bg-light py-5 mt-5" >
+        <Container>
+          <Row>
+            <Col lg={12} className="text-center section-title">
+              <h2>Shop Now</h2>
+              <p></p>
+            </Col>
+            <Col lg={4} className="padding-15 pstn-relative">
+              <Image src={require('../assets/images/shopimg1.jpg')} fluid alt="Books" className='w-100' />
+              <h3 className="img-text">Books</h3>
+            </Col>
+            <Col lg={4} className="padding-15 pstn-relative">
+              <Image src={require('../assets/images/shoimg2.jpg')} fluid alt="Diaries" className='w-100' />
+              <h3 className="img-text">Diaries</h3>
+            </Col>
+            <Col lg={4} className="padding-15 pstn-relative">
+              <Image src={require('../assets/images/shopimg3.jpg')} fluid alt="Face Masks" className='w-100' />
+              <h3 className="img-text">Face Masks</h3>
+            </Col>
+          </Row>
+        </Container>
+      </section>
 
       <section className="about-section bd-bottom shape circle padding">
         <Container>
@@ -48,7 +71,7 @@ const Home = () => {
               imageSrc={require('../assets/images/workimges/education.png')}
               title="EDUCATION"
               description="More than 90% of children of marginalized communities do not finish school."
-              link="/work/education" 
+              link="/work/education"
             />
             <WorkBox
               imageSrc={require('../assets/images/workimges/capable.png')}
@@ -153,7 +176,7 @@ const Home = () => {
                   <p>
                     मटमैली धूप, काई-से रंग का आसमान और उसके नीचे काई
                     रंग का ही तालाब, सीमेंट और धूल से रंगे चिथड़े, चिन्दियाँ
-                    और बच्चे! क्या यह रंग किसी कलर के डब्बे में मिलेंगे?
+                    और बच्चे! क्या यह रंग ....
                   </p>
                   <a href="#" className="post-meta"><b>Read More</b></a>
                 </div>

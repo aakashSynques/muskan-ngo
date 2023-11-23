@@ -6,6 +6,7 @@ import { fetch } from '../../../utils'
 import { addToCart, initializeCart } from '../../../reducers/cart';
 import { Link, useNavigate } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
+import CartSidebar from '../../component/CartSidebar';
 
 
 const Wishlist = () => {
@@ -44,6 +45,7 @@ const Wishlist = () => {
   useEffect(() => {
     getWishListData();
   }, []);
+
   dispatch(setWishListDataCount(wishListData));
   // console.log('dois', dispatch(setWishListDataCount(wishListData)))
 
@@ -67,9 +69,9 @@ const Wishlist = () => {
       // console.log(err);
     }
   };
-  useEffect(() => {
-    handleRemoveWishList();
-  }, []);
+  // useEffect(() => {
+  //   handleRemoveWishList();
+  // }, []);
 
 
 
@@ -82,6 +84,8 @@ const Wishlist = () => {
       setQuantity(quantity - 1);
     }
   };
+
+  const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false); // State for cart sidebar visibility
   const handleAddToCart = (product) => {
     const cartItemData = {
       attributes: product.attributes,
@@ -104,77 +108,80 @@ const Wishlist = () => {
       product_slug: product.product_slug,
       product_thumbnail: product.product_thumbnail,
       sub_category_id: product.sub_category_id,
-      quantity: quantity,
+      quantity: 1,
       subTotal: product.product_MSP,
     };
     dispatch(addToCart(cartItemData));
     handleRemoveWishList(product.product_id);
-    getWishListData();
+
+    openCartSidebar();
   };
+
+
+  const openCartSidebar = () => {
+    setIsCartSidebarOpen(true);
+    // setIsOverlayActive(true);
+  }
+  const closeCartSidebar = () => {
+    setIsCartSidebarOpen(false);
+    // setIsOverlayActive(false);
+  }
 
   return (
     <>
       <hr />
       <Container>
         <font> Home › WishList</font>
-        <div className='mt-3 pb-3 text-center' > <h3>My wishlist</h3> </div>
-        <Row className='mt-3 pb-2 border-b'>
-          <Col sm={4}>
-            <b> Product Name</b>
-          </Col>
-          <Col sm={2}>
-            <b>Unit Price</b>
-          </Col>
-          {/* <Col sm={2}>
-            <b>Quantity</b>
-          </Col> */}
-          <Col sm={2}>
-            <b>Stock Status</b>
-          </Col>
-          <Col sm={2}>
-          </Col>
-        </Row>
-        {wishListData.length === 0 ? ( // Check if wishlist is empty
-          <>
-            <div className='text-center'>
-              <p className='text-center pt-5'>No products in your wishlist. Select some products to add.</p>
-
-            </div>
-          </>
-        ) : (
-          wishListData.map((item, index) => (
-            <Row className='py-4 border-b' key={index}>
-              <Col sm={4}>
-                <Row>
-                  <Col sm={3}>
-                    <img src={item.product_thumbnail} alt="" className='w-100' />
-                  </Col>
-                  <Col sm={9} className='pt-4'> <p>{item.product_name}</p></Col>
-                </Row>
-              </Col>
-              <Col sm={2} className='pt-4'>
-                <span className='main-color'><i className="fa fa-inr"></i> {item.product_MRP}
-                </span> &nbsp;
-              </Col>
-
-              <Col sm={2} className='pt-4'>
-                <font size="2" className="text-success"><i className="fa fa-check" aria-hidden="true"></i>{item.in_stock_status}</font>
-              </Col>
-              <Col sm={2} className='pt-4'>
-                {/* <button className='btn border-0' onClick={() => handleAddToCart(product)}>+ Add to Cart</button> */}
-                <button
-                  className='btn btn-sm btn-danger rounded-1 main-bg'
-                  style={{ padding: "0 5px", lineHeight: "20px" }}
-                  onClick={() => handleAddToCart(item)}
-                >
-                  + Add to Cart
-                </button>
-                <button className='btn' onClick={() => handleRemoveWishList(item.product_id)}><i className="fa fa-times" aria-hidden="true"></i> </button>
-              </Col>
-            </Row>
-          ))
-        )}
+        <div className='mt-3 pb-3 text-center' > <h3>My Wishlist</h3> </div>
+        <div className='mt-2 px-lg-5 px-sm-0'>
+          <table className="table">
+            <thead className="thead-light">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col" style={{ width: "8%" }}></th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Unit Price</th>
+                <th>Stock Status</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {wishListData.length === 0 ? (
+                <tr>
+                  <td colSpan="7" className="text-center">No data found</td>
+                </tr>
+              ) : (
+                wishListData.map((item, index) => (
+                  <tr key={index}>
+                    <th>{index + 1}</th>
+                    <td><img src={item.product_thumbnail} alt="" className='w-100' /></td>
+                    <td>{item.product_name}</td>
+                    <td className='main-color'><i className="fa fa-inr"></i> {item.product_MRP}</td>
+                    <td className="text-success"><i className="fa fa-check" aria-hidden="true"></i>{item.in_stock_status}</td>
+                    <td>
+                      <button
+                        className='btn btn-sm btn-danger rounded-1 main-bg'
+                        style={{ padding: "0 5px", lineHeight: "20px" }}
+                        onClick={() => handleAddToCart(item)}
+                      >
+                        + Add to Cart
+                      </button>
+                    </td>
+                    <td>
+                      <button className='btn' onClick={() => handleRemoveWishList(item.product_id)}>
+                        <i className="fa fa-times" aria-hidden="true"></i>
+                      </button>
+                    </td>
+                  </tr>
+                ))
+              )}
+            </tbody>
+          </table>       
+         </div>
       </Container>
+      <CartSidebar isOpen={isCartSidebarOpen} closeSidebar={closeCartSidebar} />
+
     </>
   )
 }

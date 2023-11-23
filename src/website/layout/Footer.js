@@ -1,8 +1,15 @@
 import React from 'react';
 import { Container, Row, Col, Image } from 'react-bootstrap';
 import logo from '../../Muskaan-logo.png';
-
+import { Link } from 'react-router-dom';
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
   return (
     <>
       <footer>
@@ -25,21 +32,21 @@ const Footer = () => {
                 <Col sm={3} xs={6}>
                   <ul className="links-footer">
                     <h6>Work</h6>
-                    <li><a href="#">Education</a></li>
-                    <li><a href="#">Livelihoods</a></li>
-                    <li><a href="#">Sustainable Livings</a></li>
-                    <li><a href="">Publication</a></li>
+                    <li><Link to="/work/education" onClick={scrollToTop}>Education</Link></li>
+                    <li><Link to="/work/liveLihoods" onClick={scrollToTop}>Livelihoods</Link></li>
+                    <li><Link to="/work/sustainable-living" onClick={scrollToTop}>Sustainable Livings</Link></li>
+                    <li><Link to="/work/publication" onClick={scrollToTop}>Publication</Link> </li>
                   </ul>
                 </Col>
                 <Col sm={3} xs={6}>
                   <ul className="links-footer">
                     <h6>About US</h6>
-                    <li><a href="#">History</a></li>
-                    <li><a href="#">Mission</a></li>
-                    <li><a href="#">Our Team</a></li>
-                    <li><a href="#">Accounts</a></li>
-                    <li><a href="#">Disclaimer</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
+                    <li><Link to="/about-us/history" onClick={scrollToTop}>History</Link></li>
+                    <li><Link to="/about-us/mission/" onClick={scrollToTop}>Mission</Link></li>
+                    <li><Link to="/about-us/our-team/" onClick={scrollToTop}>Our Team</Link> </li>
+                    <li><Link to="/about-us/accounts" onClick={scrollToTop}>Accounts</Link></li>
+                    <li><Link to="" onClick={scrollToTop}>Disclaimer</Link></li>
+                    <li><Link to="" onClick={scrollToTop}>Privacy Policy</Link></li>
                   </ul>
                 </Col>
                 <Col sm={6} xs={12} className="links-footer">

@@ -8,7 +8,6 @@ import { Link } from 'react-router-dom';
 import { fetch } from '../../utils';
 import { useSelector, useDispatch } from 'react-redux';
 import CartSidebar from '../component/CartSidebar';
-
 const MainHeader = () => {
     const cart = useSelector((state) => state.cart.items);
     const [active, setActive] = useState("home");
@@ -27,6 +26,7 @@ const MainHeader = () => {
     useEffect(() => {
         getCategryList();
     }, []);
+    
     const openCartSidebar = () => {
         setIsCartSidebarOpen(true);
         setIsOverlayActive(true);
@@ -43,7 +43,7 @@ const MainHeader = () => {
             <section className='navigation'>
                 <Navbar collapseOnSelect expand="lg">
                     <Container>
-                        <Navbar.Brand className="" href="#">
+                        <Navbar.Brand className="" href="/">
                             <img src={logo} alt="Logo" className="logo-width" />
                         </Navbar.Brand>
 
@@ -68,23 +68,23 @@ const MainHeader = () => {
                             </Nav> */}
 
                         <div className='d-inline-flex d-lg-none ms-auto'>
-                                 <Nav.Item className='px-1 pt-1'>
-                                    <Link to="/wishlist" className='nav-link pt-2 px-1 whishlist-nav'>
-                                        <Badge bg="danger" className='rounded-5'>{wishlistData.wishListDataCount.length}</Badge>
-                                        <i className="fa fa-heart-o" aria-hidden="true"></i>
-                                    </Link>
-                                </Nav.Item>
-                                <Nav.Item className='px-2 pt-1'>
-                                    <Link className='nav-link pt-2 px-1 whishlist-nav' onClick={openCartSidebar}>
-                                        <Badge bg="danger" className='rounded-5'>{cart.length}</Badge>
-                                        <i className="fa fa-shopping-bag" aria-hidden="true"></i>
-                                    </Link>
-                                </Nav.Item>
-                                <Nav.Item className='px-1 pt-1'>
-                                    <Link to="/account/login" className='nav-link pt-2 px-1 whishlist-nav'>
-                                        <i className="fa fa-user-o px-2" aria-hidden="true"></i>
-                                    </Link>
-                                </Nav.Item>
+                            <Nav.Item className='px-1 pt-1'>
+                                <Link to="/wishlist" className='nav-link pt-2 px-1 whishlist-nav'>
+                                    <Badge bg="danger" className='rounded-5'>{wishlistData.wishListDataCount.length}</Badge>
+                                    <i className="fa fa-heart-o" aria-hidden="true"></i>
+                                </Link>
+                            </Nav.Item>
+                            <Nav.Item className='px-2 pt-1'>
+                                <Link className='nav-link pt-2 px-1 whishlist-nav' onClick={openCartSidebar}>
+                                    <Badge bg="danger" className='rounded-5'>{cart.length}</Badge>
+                                    <i className="fa fa-shopping-bag" aria-hidden="true"></i>
+                                </Link>
+                            </Nav.Item>
+                            <Nav.Item className='px-1 pt-1'>
+                                <Link to="/account/login" className='nav-link pt-2 px-1 whishlist-nav'>
+                                    <i className="fa fa-user-o px-2" aria-hidden="true"></i>
+                                </Link>
+                            </Nav.Item>
                         </div>
 
 

@@ -26,7 +26,6 @@ const SubCategory = () => {
 
     const tokenDataFromLocalStorage = localStorage.getItem('muskan_token_data');
     const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
-    console.log('parsedTokenData', parsedTokenData)
 
     const getProductList = async (newCategorySlug, subCategorySlug) => {
         try {
@@ -41,7 +40,6 @@ const SubCategory = () => {
                 body,
                 headers,
             );
-            console.log('response', response)
             setProductList(response.data.data.product_list);
             dispatch(setProductListData(response.data.data.product_list));
             setLoading(false);
@@ -121,7 +119,6 @@ const SubCategory = () => {
                 headers,
             );
             if (response.data && response.data.success) {
-                // alert(response.data.message);
                 toast.success(response.data.message, { position: toast.POSITION.TOP_RIGHT });
 
             } else {
@@ -132,6 +129,9 @@ const SubCategory = () => {
             console.log(err);
         }
     };
+
+
+
 
     const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false); // State for cart sidebar visibility
     const handleAddToCart = (product) => {
@@ -161,7 +161,6 @@ const SubCategory = () => {
             subTotal: product.product_MSP,
         };
         dispatch(addToCart(cartItemData));
-        console.log('cart ', dispatch(addToCart(cartItemData)))
         openCartSidebar();
     };
 
@@ -177,16 +176,21 @@ const SubCategory = () => {
 
     return (
         <>
-            <hr />
-
             {isInitialLoading ? ( // Render a loading spinner or message while data is being fetched
                 <div className="text-center pt-5" style={{ height: "80vh" }}>
                     <Spinner animation="border" variant="secondary" />
                 </div>
             ) : (
                 <>
+
+
+                    <div className='connect-bg fixed-bg'>
+                        <Container className='text-center text-white'>
+                        </Container>
+                    </div>
+
                     <Container>
-                        <font> <Link to='/' className='text-dark'> Home </Link> › {category_slug}</font>
+                        {/* <font> <Link to='/' className='text-dark'> Home </Link> › {category_slug}</font> */}
                         <Row className='pt-5'>
                             <Col sm={3} className='lg-pe-5 md-sm-0'>
                                 <FilterSideNav
@@ -199,11 +203,16 @@ const SubCategory = () => {
                                 <Row>
                                     <Col sm={6} className=''>
                                         <h5 className="text-capitalize">
-                                            {category_slug}  {subcategory_slug}
+                                            {category_slug}    {subcategory_slug && (
+                                                <>
+                                                    {'>'}
+                                                    {subcategory_slug}
+                                                </>
+                                            )}
                                         </h5>
                                     </Col>
                                     <Col sm={6} className='text-end'>
-                                        <span className='font-14'>Sort by &nbsp; : &nbsp;
+                                        <span className='font-14'><strong>Sort by</strong>  &nbsp; : &nbsp;
                                             <Sorting handleSortChange={handleSortChange} />
                                         </span>
                                     </Col>
@@ -224,12 +233,20 @@ const SubCategory = () => {
                                                             <img src={product.product_thumbnail} alt="" className='w-100 image-height' />
                                                         </Link>
                                                         <p className='m-0 pt-2 f-w-6'>{product.product_name}</p>
-                                                        <span className='main-color'>
-                                                            <i className="fa fa-inr"></i>{product.product_MSP}
+                                                        <span className='main-color pull-left'>
+                                                            <i className="fa fa-inr"></i> <strong>{product.product_MSP}</strong>
+                                                        </span>
+                                                        <span className={`text-success ${product.in_stock_status === 'In Stock' ? '' : 'text-danger'} pull-right`}>
+                                                            {product.in_stock_status}
                                                         </span>
                                                         <br />
                                                         <hr className='my-2' style={{ color: "gray" }} />
-                                                        <button className='btn border-0' onClick={() => handleAddToCart(product)}>+ Add to Cart</button>
+
+                                                        {/* <button className='btn border-0' onClick={() => handleAddToCart(product)}>+ Add to Cart</button> */}
+
+                                                        {product.in_stock_status !== 'Out of Stock' && (
+                                                            <button className='btn border-0' onClick={() => handleAddToCart(product)}>+ Add to Cart</button>
+                                                        )}
 
                                                         <button className='btn pull-right' onClick={() => handleAddWhishList(product.product_id)}>
                                                             <i className="fa fa-heart-o" aria-hidden="true"></i>
@@ -254,7 +271,7 @@ const SubCategory = () => {
                     <CartSidebar isOpen={isCartSidebarOpen} closeSidebar={closeCartSidebar} />
                 </>
             )}
-                  <ToastContainer />
+            <ToastContainer />
 
         </>
     )
