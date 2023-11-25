@@ -18,7 +18,7 @@ const MyAccountSideBar = () => {
     return (
         <div className="">
             <div className="list-group accolumn px-3">
-             
+
                 <h5>{parsedTokenData ? `${parsedTokenData.customer_fname} ${parsedTokenData.customer_lname}` : 'N/A'}</h5>
                 <font size="2">Good to see you again</font>
             </div>
@@ -35,13 +35,14 @@ const MyAccountSideBar = () => {
                     Forgotten Password
                 </Link> */}
                 <Link to="/account/change-password">
-                   Change Password
+                    Change Password
                 </Link>
 
                 <Link to="/" onClick={handleLogout}>Log out</Link>
 
                 <hr />
-                <h6 className="pb-2 text-uppercase"> <i className="fa fa-pencil-square-o main-color" aria-hidden="true" style={{ fontSize: "22px" }}></i>  &nbsp; MY ORDERS</h6>
+                <h6 className="pb-2 text-uppercase"> <i className="fa fa-pencil-square-o main-color"
+                    aria-hidden="true" style={{ fontSize: "22px" }}></i>  &nbsp; MY ORDERS</h6>
                 <Link to="/account/order-history">
                     Order History
                 </Link>
@@ -55,7 +56,8 @@ const MyAccountSideBar = () => {
                     Transactions
                 </Link>
                 <hr />
-                <h6 className="pb-2 text-uppercase"> <i className="fa fa-address-card main-color" style={{ fontSize: "22px" }} aria-hidden="true"></i>&nbsp; MY STUFF</h6>
+                <h6 className="pb-2 text-uppercase"> <i className="fa fa-address-card main-color"
+                    style={{ fontSize: "22px" }} aria-hidden="true"></i>&nbsp; MY STUFF</h6>
                 <Link to="/wishlist">
                     Wish List
                 </Link>

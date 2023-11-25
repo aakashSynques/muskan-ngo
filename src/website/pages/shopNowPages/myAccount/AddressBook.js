@@ -29,7 +29,7 @@ const AddressBook = () => {
         getAddressData();
     }, []);
 
-    
+
 
     return (
         <>
@@ -48,8 +48,7 @@ const AddressBook = () => {
                             </CardHeader>
                             <CardBody>
                                 <font size="2">The following addresses will be used on the checkout page by default.</font>
-
-                                {/* <div className="mt-4 bg-light p-4 border">
+                                <div className="mt-4 bg-light p-4 border">
                                     <BillAddress />
                                     {isLoading ? (
                                         <div>Loading...</div>
@@ -71,7 +70,7 @@ const AddressBook = () => {
                                     )}
                                 </div>
 
-                                <div className="mt-4 bg-light p-4 border">
+                                {/* <div className="mt-4 bg-light p-4 border">
 
                                     <ShippAddress />
                                     {isLoading ? (

@@ -16,7 +16,7 @@ const Mission = () => {
                     <p>Home  / Mission</p>
                     <Row className='with_aside-border history'>
                         <Col sm={10}>
-                        
+
                         </Col>
                         <Col sm={2} className='with_aside-border-left pt-3 '>
                             <h4>About Us</h4>

@@ -39,11 +39,14 @@ const CartSidebar = ({ isOpen, closeSidebar }) => {
 
     return (
         <div className={`cart-sidebar  ${isOpen ? 'open' : ''}`}>
-            <button className='btn button-toggle' onClick={closeSidebar}>
-                <i className="fa fa-times" aria-hidden="true"></i>
-            </button>
-            <h5 className='text-center pt-3 pb-3'>SHOPPING BAG</h5>
-            <div className='cart-drawer px-2'>
+            <div className='cart-side'>
+                <button className='btn button-toggle' onClick={closeSidebar}>
+                    <i className="fa fa-times" aria-hidden="true"></i>
+                </button>
+                <h6 className='text-center py-2'>Total Item (0)</h6>
+
+            </div>
+            <div className='cart-drawer'>
                 <Container>
                     {cart.length > 0 ? (
                         <div>
@@ -52,20 +55,21 @@ const CartSidebar = ({ isOpen, closeSidebar }) => {
                                     <Col lg={3} xs={3}>
                                         <img src={item.product_thumbnail} alt="" className='w-100' />
                                     </Col>
-                                    <Col lg={6} xs={6}>
-                                        <b>{item.product_name}</b> <br /><br />
+                                    <Col lg={6} xs={6} style={{ lineHeight: "19px" }}>
+                                        <p className='mb-0'>{item.product_name}</p>
+                                        <font size="1">Unit Price: {item.product_MRP}</font>
                                         <div className='quntity-btn'>
                                             <button className='btn p-0 font-14' onClick={() => handleDecrement(item)}><b>-</b></button>
-                                            <span className='px-3'> <b>{item.quantity}</b> </span>
+                                            <span className='px-2'> {item.quantity} </span>
                                             <button className='btn p-0' onClick={() => handleIncrement(item)}><b> + </b> </button>
                                         </div>
                                     </Col>
                                     <Col lg={3} xs={3}>
-                                        <font><i className="fa fa-inr"></i> <b> {item.subTotal}</b></font>
+                                        <font className="main-color"><i className="fa fa-inr"></i>  {item.subTotal}</font>
                                         <br /> <br />
-                                        <button className='btn' onClick={() => handleRemove(item)}>
+                                        {/* <button className='btn' onClick={() => handleRemove(item)}>
                                             <i className="fa fa-times" aria-hidden="true"></i>
-                                        </button>
+                                        </button> */}
                                     </Col>
                                 </Row>
                             ))}
@@ -80,24 +84,17 @@ const CartSidebar = ({ isOpen, closeSidebar }) => {
 
 
                     {cart.length > 0 ? (
-                        <Row style={{
-                            position: "absolute",
-                            bottom: "3%"
-                        }}>
+                        <>
+                            <Row>
+                                <div className='col-12 side-cart-pay'>
+                                    <Link className='btn w-100 mt-1 main-bg text-white' to="/cart" onClick={closeSidebar}>
+                                        MY CART |  <i className="fa fa-inr"></i> <b>{totalAmount}</b>
+                                    </Link>
+                                </div>
+                            </Row>
 
-                            <tr className='py-3'>
-                                <td className='col-sm-6 pull-left'> <b>Subtotal</b></td>
-                                <td className='col-sm-6 main-color text-end pull-right' style={{ color: '#a20401' }}>
-                                    <i className="fa fa-inr"></i> <b>{totalAmount}</b>
-                                </td>
-                            </tr>
-                            <tr>
-                                <Link className='btn w-100 mt-1 main-bg text-white' to="/checkout" onClick={closeSidebar}>
-                                    Proceed to checkout
-                                </Link>
-                            </tr>
 
-                        </Row>
+                        </>
                     ) : (
                         null
                     )}

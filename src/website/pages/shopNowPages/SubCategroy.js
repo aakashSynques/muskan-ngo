@@ -62,8 +62,6 @@ const SubCategory = () => {
         setFilteredProducts(filtered);
         // setFilteredProducts(productList);
     };
-
-
     const handleSortChange = (e) => {
         const selectedOption = e.target.value;
         setSortingOption(selectedOption);
@@ -77,9 +75,6 @@ const SubCategory = () => {
             setFilteredProducts([...filteredProducts].sort((a, b) => b.product_name.localeCompare(a.product_name)));
         }
     };
-
-
-
     const resetPriceRange = () => {
         setRange([0, 100]);
     };
@@ -91,14 +86,10 @@ const SubCategory = () => {
         setLoading(true);
         getProductList(category_slug, subcategory_slug);
     }, [category_slug, subcategory_slug]);
-
-
     const handleAddWhishList = async (productId) => {
         try {
             // Check if the user is logged in
             if (!parsedTokenData) {
-                // User is not logged in, handle accordingly (e.g., show a login prompt)
-                // console.log('User is not logged in. Show login prompt or handle accordingly.');
                 navigate('/account/login');
                 return;
             }

@@ -85,11 +85,8 @@ function App() {
           <Route path='/work/sustainable-living' element={<SustainableLiving />} />
           <Route path='/work/publication' element={<Publication />} />
 
-
           <Route path='/communicable' element={<Communicable />} />
-
           <Route path='/communicables/blog/' element={<Blog />} />
-
           <Route path='/wishlist' element={<Wishlist />} />
           <Route path='/cart' element={<CartItems />} />
           <Route path='/account/login' element={<Login />} />

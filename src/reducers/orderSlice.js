@@ -11,11 +11,11 @@ const orderSlice = createSlice({
     setOrderId: (state, action) => {
       state.custOrderId = action.payload;
     },
+
   },
 });
 
 export const { setOrderId } = orderSlice.actions;
 
-// export const selectOrderId = (state) => state.order.custOrderId;
 
 export default orderSlice.reducer;
