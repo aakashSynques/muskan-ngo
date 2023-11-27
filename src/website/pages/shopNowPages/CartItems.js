@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Col, Row, Button } from 'react-bootstrap';
+import { Container, Col, Row, Button, Image } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateQuantity, removeFromCart, updateTotalAmount, clearCart } from '../../../reducers/cart';
+import { updateQuantity, removeFromCart, updateTotalAmount} from '../../../reducers/cart';
 import { Link } from 'react-router-dom';
 const CartItems = () => {
     const dispatch = useDispatch();
@@ -39,9 +39,28 @@ const CartItems = () => {
     }, [cart, dispatch]);
 
 
-    const handleClearCart = () => {
-        dispatch(clearCart());
-    };
+
+
+    if (cart.length === 0) {
+        return (
+            <Container>
+                <Row className='pt-2'>
+                    <Col>
+                        <font> Home › Cart</font>
+                        <div className='pt-4'>
+                            <h3 style={{ fontWeight: "500" }}>Cart</h3>
+                        </div>
+                        <div className='text-center my-5'>
+                            <Image src={require(`../../assets/images/empty-cart.jpg`)} alt='muskaan ngo' className='' />
+                            <h3>Oops! Your Cart is empty!</h3>
+                            <p>Looks like you haven't added <br />anything to your cart yet </p>
+                            <Link to="/shopping">Browse Products</Link>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    }
 
     return (
         <>
@@ -133,11 +152,9 @@ const CartItems = () => {
                             <Link className='btn  w-100 mt-3 main-bg text-white' to="/checkout">Proceed to checkout</Link>
                         </div>
                     </Col>
-
-
                 </Row>
 
-
+ 
 
             </Container>
         </>

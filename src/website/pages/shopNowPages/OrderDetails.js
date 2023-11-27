@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import { Card, Container, Row, Col, CardBody, CardHeader, Spinner } from 'react-bootstrap'
 import { fetch } from '../../../utils'
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { BASE_URL } from '../../../config';
+import CryptoJS from "crypto-js";
+
 
 
 const OrderDetails = () => {
@@ -57,15 +60,14 @@ const OrderDetails = () => {
                         <>
                             <Row className='mt-3'>
                                 <Col sm={5} >
-
-
-
-
                                     <div className='bg-light p-4'>
                                         <h5>Order Info</h5>
                                         <tr> Order No  : {orderData.order_no}</tr>
                                         <tr>Order Date : {formatDate(orderData.order_datetime)}</tr>
                                         <tr>Order Status : {orderData.order_status_name}</tr>
+                                        {orderData.invoice_no !="" &&
+                                            <tr>Invoice No :  <a href={`${BASE_URL}/order/invoice/${orderId}/${CryptoJS.SHA1(orderId)}`} target='_black'>{orderData.invoice_no}</a></tr>
+                                        }
                                         <hr />
                                         <h5>Billing Address</h5>
                                         <tr>{orderData.bill_fname}, {orderData.bill_lname}</tr>
@@ -103,6 +105,7 @@ const OrderDetails = () => {
                                             (<tr>
                                                 transaction ID  : {orderData.payment_response.id}
                                             </tr>)
+
                                         }
 
 

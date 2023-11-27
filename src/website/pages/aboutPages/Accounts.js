@@ -22,12 +22,6 @@ const Accounts = () => {
                     <Row className='with_aside-border history'>
                         <Col sm={10} className='tab_tabbing'>
                             <ul>
-                                {/* <li> 
-                                      <i className="fa fa-check main-color" aria-hidden="true"></i> &nbsp;
-                                    Annual Report 2021 - 2022
-                                    <a href='../2021-22.pdf'
-                                        target="_blank" rel="noopener" download >View / Download</a>
-                                </li> */}
 
                                 <li>
                                     <i className="fa fa-check main-color" aria-hidden="true"></i> &nbsp;

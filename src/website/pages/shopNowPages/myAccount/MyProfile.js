@@ -7,39 +7,18 @@ import { fetch } from '../../../../utils';
 
 const MyProfile = () => {
     const [show, setShow] = useState(false);
-    const [formData, setFormData] = useState({});
     const [error, setError] = useState(null);
-
-
-    const tokenDataFromLocalStorage = localStorage.getItem('muskan_token_data');
+    const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
     const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
-
-    useEffect(() => {
-        // Retrieve token data from localStorage
-        const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
-        const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
-        setFormData(parsedTokenData);
-    }, []);
-
-
-
+    console.log('tokenDataFromLocalStorage', parsedTokenData)
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({
-            ...formData,
-            [name]: value,
-        });
-    }
 
     const handleEditProfile = async () => {
         try {
-            const response = await fetch('/customer/update-profile', 'POST', formData, true);
+            const response = await fetch('/customer/update-profile', 'POST', null , null);
             if (response) {
-                const updatedTokenData = { ...formData };
-                localStorage.setItem("muskan_token_data", JSON.stringify(updatedTokenData));
                 handleClose();
                 setError(null); // Clear any previous errors
             } else {
@@ -65,29 +44,40 @@ const MyProfile = () => {
                                 <i className='fa fa-edit cursor main-color' onClick={handleShow}></i> </CardHeader>
                             <CardBody>
                                 <font size="3">Your Profile details</font>
-
                                 <div className="mt-1 bg-light p-4 border" >
                                     <table className="table table-borderless" style={{ background: "none" }}>
                                         <tbody>
                                             <tr>
                                                 <td>Name :</td>
-                                                <td>{formData ? `${formData.customer_fname} ${formData.customer_lname}` : 'N/A'}</td>
+                                                <td>
+                                                    {parsedTokenData.customer_fname} {parsedTokenData.customer_lname}
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Email : </td>
-                                                <td>{formData ? formData.customer_email : 'N/A'}</td>
+                                                <td>
+                                                    {parsedTokenData.customer_email}
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Phone : </td>
-                                                <td>{formData ? formData.customer_mobile : 'N/A'}</td>
+                                                <td>
+                                                    {parsedTokenData.customer_mobile}
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td>Address :</td>
-                                                <td>{formData ? formData.customer_address : 'N/A'}</td>
+                                                <td>
+                                                    {parsedTokenData.customer_address}
+                                                </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                 </div>
+
+
+
+
                             </CardBody>
                         </Card>
                     </Col>
@@ -106,8 +96,7 @@ const MyProfile = () => {
                                 <Form.Control
                                     type="text"
                                     name="customer_fname"
-                                    value={formData.customer_fname || ''}
-                                    onChange={handleInputChange}
+
                                 />
                             </Form.Group>
 
@@ -116,8 +105,7 @@ const MyProfile = () => {
                                 <Form.Control
                                     type="text"
                                     name="customer_lname"
-                                    value={formData.customer_lname || ''}
-                                    onChange={handleInputChange}
+
                                 />
                             </Form.Group>
 
@@ -126,8 +114,7 @@ const MyProfile = () => {
                                 <Form.Control
                                     type="number"
                                     name="customer_mobile"
-                                    value={formData.customer_mobile || ''}
-                                    onChange={handleInputChange}
+
                                 />
                             </Form.Group>
 
@@ -136,8 +123,7 @@ const MyProfile = () => {
                                 <Form.Control
                                     type="number"
                                     name="customer_mobile"
-                                    value={formData.customer_mobile || ''}
-                                    onChange={handleInputChange}
+
                                 />
                             </Form.Group>
 
@@ -146,15 +132,14 @@ const MyProfile = () => {
                                 <Form.Control
                                     type="text"
                                     name="customer_address"
-                                    value={formData.customer_address || ''}
-                                    onChange={handleInputChange}
+
                                 />
                             </Form.Group>
                         </Row>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleEditProfile}>
+                    <Button variant="primary" >
                         Save Changes
                     </Button>
                     <Button variant="secondary" onClick={handleClose}>

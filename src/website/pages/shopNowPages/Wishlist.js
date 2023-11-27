@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container, Row, Col, Image, Spinner } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux';
 import { setWishListDataCount } from '../../../reducers/wishlistSlice';
 import { fetch } from '../../../utils'
@@ -10,8 +10,8 @@ import CartSidebar from '../../component/CartSidebar';
 
 
 const Wishlist = () => {
+  const [loading, setLoading] = useState(true); // Track loading state
   const navigate = useNavigate();
-
   const [wishListData, setWishListData] = useState([]); // State to hold wishlist data
   const dispatch = useDispatch();
   const getWishListData = async () => {
@@ -40,6 +40,8 @@ const Wishlist = () => {
       }
     } catch (err) {
       console.log(err);
+    } finally {
+      setLoading(false); // Set loading to false regardless of success or failure
     }
   }
   useEffect(() => {
@@ -47,8 +49,6 @@ const Wishlist = () => {
   }, []);
 
   dispatch(setWishListDataCount(wishListData));
-  // console.log('dois', dispatch(setWishListDataCount(wishListData)))
-
   const handleRemoveWishList = async (product_id) => {
     try {
       const token = localStorage.getItem("muskan_token"); // Use getItem instead of get
@@ -127,6 +127,36 @@ const Wishlist = () => {
     // setIsOverlayActive(false);
   }
 
+
+  if (loading) {
+    return <div >
+      <Container className='text-center my-5' style={{ height: "500px" }}>
+        <Spinner animation="border" role="status">
+          <span className="sr-only">Loadding.....</span>
+        </Spinner>
+      </Container>
+    </div>;
+  }
+
+  if (wishListData.length === 0) {
+    return (
+      <Container>
+        <Row className='pt-2'>
+          <Col>
+            <font> Home › Wishlist</font>
+            <div className='pt-4'>
+              <h3 style={{ fontWeight: "500" }}>WishList</h3>
+            </div>
+            <div className='text-center my-5'>
+              <Image src={require(`../../assets/images/empty-cart.jpg`)} alt='muskaan ngo' className='' />
+              <p>No products added to the wishlist</p>
+              <Link to="/shopping">Shop Now</Link>
+            </div>
+          </Col>
+        </Row>
+      </Container>
+    );
+  }
   return (
     <>
       <hr />
@@ -177,8 +207,8 @@ const Wishlist = () => {
                 ))
               )}
             </tbody>
-          </table>       
-         </div>
+          </table>
+        </div>
       </Container>
       <CartSidebar isOpen={isCartSidebarOpen} closeSidebar={closeCartSidebar} />
 

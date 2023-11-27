@@ -4,14 +4,13 @@ import MyAccountSideBar from './MyAccoutSideBar';
 import BillAddress from './BillAddress';
 import { fetch } from '../../../../utils';
 import ShippAddress from './ShippAddress';
-
 const AddressBook = () => {
     const tokenDataFromLocalStorage = localStorage.getItem('muskan_token_data');
     const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
+
     const [addressData, setAddressData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-
     const getAddressData = async () => {
         try {
             const body = {
@@ -28,9 +27,6 @@ const AddressBook = () => {
     useEffect(() => {
         getAddressData();
     }, []);
-
-
-
     return (
         <>
             <hr />
@@ -50,7 +46,7 @@ const AddressBook = () => {
                                 <font size="2">The following addresses will be used on the checkout page by default.</font>
                                 <div className="mt-4 bg-light p-4 border">
                                     <BillAddress />
-                                    {isLoading ? (
+                                    {/* {isLoading ? (
                                         <div>Loading...</div>
                                     ) : addressData && addressData.bill_adderss.bill_fname ? (
                                         <>
@@ -67,7 +63,7 @@ const AddressBook = () => {
                                         </>
                                     ) : (
                                         <font size="2">You have not set up this type of address yet.</font>
-                                    )}
+                                    )} */}
                                 </div>
 
                                 {/* <div className="mt-4 bg-light p-4 border">

@@ -167,18 +167,20 @@ const SubCategory = () => {
 
     return (
         <>
+
+
+
+            <div className='connect-bg fixed-bg'>
+                <Container className='text-center text-white'>
+                </Container>
+            </div>
+
             {isInitialLoading ? ( // Render a loading spinner or message while data is being fetched
                 <div className="text-center pt-5" style={{ height: "80vh" }}>
                     <Spinner animation="border" variant="secondary" />
                 </div>
             ) : (
                 <>
-
-
-                    <div className='connect-bg fixed-bg'>
-                        <Container className='text-center text-white'>
-                        </Container>
-                    </div>
 
                     <Container>
                         {/* <font> <Link to='/' className='text-dark'> Home </Link> › {category_slug}</font> */}

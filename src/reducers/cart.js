@@ -23,10 +23,10 @@ const cartSlice = createSlice({
             state.totalAmount = state.items.reduce((total, item) => total + item.subTotal, 0);
         },
         
-        // clearCart: (state) => {
-        //     state.items = [];
-        //     state.totalAmount = 0;
-        // },
+        clearCart: (state) => {
+            state.items = [];
+            state.totalAmount = 0;
+        },
 
         updateQuantity: (state, action) => {
             const { product_id, quantity } = action.payload;

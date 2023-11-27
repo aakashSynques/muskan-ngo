@@ -198,7 +198,7 @@ import OrderSummeryCheckup from './OrderSummeryCheckup';
 import { useNavigate } from 'react-router-dom';
 import { setOrderId, } from '../../../reducers/orderSlice';
 import { clearCart } from '../../../reducers/cart';
-import {logoimg} from '../../../Muskaan-logo.png'
+import { logoimg } from '../../../Muskaan-logo.png'
 
 const CheckOut = () => {
     const Razorpay = useRazorpay();
@@ -289,6 +289,7 @@ const CheckOut = () => {
                                     response.data.data.cust_order_id.toString()
                                 )}`
                             );
+                            dispatch(clearCart());
                         } catch (error) {
                             setIsLoading(false);
                             setErrorMessage("something went wrong");
@@ -328,7 +329,7 @@ const CheckOut = () => {
                 ship_lname: formData.ship_lname,
                 ship_company: formData.ship_company,
                 ship_adderss_one: formData.ship_adderss_one,
-                ship_adderss_two: formData.ship_adderss_one,
+                ship_adderss_two: formData.ship_adderss_two,
                 ship_pincode: formData.ship_pincode,
                 ship_city: formData.ship_city,
                 ship_state: formData.ship_state,
@@ -339,7 +340,7 @@ const CheckOut = () => {
                 bill_lname: shipToDifferentAddress ? formData.bill_lname : formData.ship_lname,
                 bill_company: shipToDifferentAddress ? formData.bill_company : formData.ship_company,
                 bill_adderss_one: shipToDifferentAddress ? formData.bill_adderss_one : formData.ship_adderss_one,
-                bill_adderss_two: shipToDifferentAddress ? formData.bill_adderss_two : formData.ship_adderss_one,
+                bill_adderss_two: shipToDifferentAddress ? formData.bill_adderss_two : formData.ship_adderss_two,
                 bill_pincode: shipToDifferentAddress ? formData.bill_pincode : formData.ship_pincode,
                 bill_city: shipToDifferentAddress ? formData.bill_city : formData.ship_city,
                 bill_state: shipToDifferentAddress ? formData.bill_state : formData.ship_state,
@@ -360,11 +361,32 @@ const CheckOut = () => {
             setIsLoading(false); // Reset loading state
         }
     };
-    useEffect(() => {
-        if (cart.length === 0) {
-            navigate('/');
-        }
-    }, [cart, navigate]);
+    // useEffect(() => {
+    //     if (cart.length === 0) {
+    //         navigate('/');
+    //     }
+    // }, [cart, navigate]);
+    if (cart.length === 0) {
+        return (
+            <Container>
+                <Row className='pt-2'>
+                    <Col>
+                        <font> Home › Shipping › Payment</font>
+                        <div className='pt-4'>
+                            <h3 style={{ fontWeight: "500" }}>Checkout</h3>
+                        </div>
+                        <div className='text-center my-5'>
+                            <Image src={require(`../../assets/images/empty-cart.jpg`)} alt='muskaan ngo' className='' />
+                            <h3>Oops! Your Cart is empty!</h3>
+                            <p>Looks like you haven't added <br />anything to your cart yet </p>
+                            <Link to="/shopping">Browse Products</Link>
+                        </div>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    }
+
 
     return (
         <>
@@ -374,6 +396,9 @@ const CheckOut = () => {
                     <Row>
                         <Col sm={8} className='r-border '>
                             <div className='mb-4'>   <font> Home › Shipping › Payment</font> </div>
+
+
+
                             {parsedTokenData ? (
                                 <>
                                     <h6>Contact</h6>
@@ -405,6 +430,7 @@ const CheckOut = () => {
 
                             <div className='pt-4 checkout-style'>
                                 <h6 className='text-dark mb-3'>Shipping address</h6>
+
                                 <Row>
                                     <FormGroup as={Col} md="6" className='col-mt'>
                                         <FormControl type="text" name="ship_fname"
@@ -492,10 +518,8 @@ const CheckOut = () => {
                                             &nbsp; Ship to a different address?
                                         </label>
                                     </div>
-
-
-
                                 </Row>
+
                                 {shipToDifferentAddress && (
                                     <>
                                         <h6 className='mt-3'>Billing Details </h6>

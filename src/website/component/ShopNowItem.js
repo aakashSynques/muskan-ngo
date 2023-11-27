@@ -11,7 +11,7 @@ const ShopNowItem = () => {
                         <p></p>
                     </Col>
                     <Col lg={4} className="padding-15 pstn-relative">
-                        <Image src="http://demo1.q4hosting.com/muskaan-template/images/img-1.jpg" fluid alt="Books" />
+                        <Image src="http://demo1.q4hosting.com/muskaan-templajpg" fluid alt="Books" />
                         <h3 className="img-text">Books</h3>
                     </Col>
                     <Col lg={4} className="padding-15 pstn-relative">

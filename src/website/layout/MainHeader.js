@@ -26,7 +26,7 @@ const MainHeader = () => {
     useEffect(() => {
         getCategryList();
     }, []);
-    
+
     const openCartSidebar = () => {
         setIsCartSidebarOpen(true);
         setIsOverlayActive(true);

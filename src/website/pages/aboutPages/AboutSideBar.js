@@ -26,6 +26,9 @@ const AboutSideBar = () => {
                 <li>
                     <Link to="/about-us/collaborations/">Collaborations</Link>
                 </li>
+                <li>
+                    <Link to="/about-us">About Us</Link>
+                </li>
             </ul>
 
         </>

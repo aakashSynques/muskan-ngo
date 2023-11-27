@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container, Col, Row, Image } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
 import { updateQuantity, removeFromCart, updateTotalAmount } from '../../reducers/cart';
 import { Link } from 'react-router-dom';
@@ -44,7 +44,6 @@ const CartSidebar = ({ isOpen, closeSidebar }) => {
                     <i className="fa fa-times" aria-hidden="true"></i>
                 </button>
                 <h6 className='text-center py-2'>Total Item (0)</h6>
-
             </div>
             <div className='cart-drawer'>
                 <Container>
@@ -77,8 +76,8 @@ const CartSidebar = ({ isOpen, closeSidebar }) => {
 
                     ) : (
                         <div className='text-center'>
-                            <i className="fa fa-cart-plus mt-5" aria-hidden="true" style={{ fontSize: "125px", color: "#efefef" }}></i>
-                            <h3 className='text-center text-dark pt-5'>Cart is empty.</h3>
+                            <i className="fa fa-cart-plus mt-5" aria-hidden="true" style={{ fontSize: "80px", color: "#e0e0e0" }}></i>
+                            <h4 className='text-center text-dark pt-3'>Cart is empty!</h4>
                         </div>
                     )}
 

@@ -4,22 +4,17 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
 const MyAccountSideBar = () => {
-    const tokenData = useSelector((state) => state.token);
-    // Retrieve token data from localStorage
-    const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
-    const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
-    const handleLogout = () => {
-        // Clear and remove parsedTokenData from local storage
-        localStorage.removeItem("muskan_token_data");
-        localStorage.removeItem("muskan_token");
-        // Additional logout logic if needed
-    };
-
+    // const tokenData = useSelector((state) => state.token);
+    // const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
+    // const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
+    // const handleLogout = () => {
+    //     localStorage.removeItem("muskan_token_data");
+    //     localStorage.removeItem("muskan_token");
+    // };
     return (
         <div className="">
             <div className="list-group accolumn px-3">
-
-                <h5>{parsedTokenData ? `${parsedTokenData.customer_fname} ${parsedTokenData.customer_lname}` : 'N/A'}</h5>
+                {/* <h5>{parsedTokenData ? `${parsedTokenData.customer_fname} ${parsedTokenData.customer_lname}` : 'N/A'}</h5> */}
                 <font size="2">Good to see you again</font>
             </div>
             <div className="list-group accolumn px-3 mt-3">
@@ -38,7 +33,7 @@ const MyAccountSideBar = () => {
                     Change Password
                 </Link>
 
-                <Link to="/" onClick={handleLogout}>Log out</Link>
+                <Link to="/">Log out</Link>
 
                 <hr />
                 <h6 className="pb-2 text-uppercase"> <i className="fa fa-pencil-square-o main-color"
