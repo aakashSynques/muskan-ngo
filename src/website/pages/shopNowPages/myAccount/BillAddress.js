@@ -4,12 +4,9 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { fetch } from '../../../../utils';
 
-const BillAddress = () => {
+const BillAddress = ({ show, handleClose }) => {
     const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
     const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
     const [formData, setFormData] = useState({
         customer_email: '',
         bill_fname: '',
@@ -95,9 +92,6 @@ const BillAddress = () => {
 
     return (
         <div>
-            <h6 className=''>BILLING ADDRESS <font className='main-color' onClick={handleShow}>( Add ) </font></h6>
-         
-
             <div
                 className="modal show"
                 style={{ display: 'block', position: 'initial' }}

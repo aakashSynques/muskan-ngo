@@ -3,19 +3,67 @@ import { Container, Row, Col, Button, Card, CardBody, Form } from 'react-bootstr
 import { Link } from 'react-router-dom';
 import { fetch } from '../../../../utils';
 import { useNavigate } from 'react-router-dom';
-import MyAccountSideBar from './MyAccoutSideBar';
-import { useDispatch, useSelector } from 'react-redux';
-import { setToken } from '../../../../reducers/tokenSlice';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { setToken } from '../../../../reducers/tokenSlice';
 
 const Login = () => {
-    const tokenData = useSelector((state) => state.token);
+    // const tokenData = useSelector((state) => state.token);
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const token = localStorage.getItem("muskan_token");
+        if (token) {
+            verifyToken(token);
+        }
+    }, []);
+
+
+
+    // const handleLogout = () => {
+    //     localStorage.removeItem('muskan_token');
+    //     localStorage.removeItem('muskan_token_data');
+
+    // };
+
+    const verifyToken = async (token) => {
+        try {
+            const response = await fetch("/customer/verify", "post", null, {
+                Authorization: `Bearer ${token}`,
+            });
+            if (response.status === 200) {
+                const responseData = await response.data;
+                if (responseData) {
+                    const tokenData = responseData.data.token_data;
+                    const exp = tokenData.exp;
+                    const currentTimestamp = Math.floor(Date.now() / 1000);
+                    if (exp > currentTimestamp) {
+                        // Token is still valid
+                        localStorage.setItem("muskan_token_data", JSON.stringify(tokenData));
+                      
+                        navigate("/account/myprofile");
+                    } else {
+                        // console.error('Token has expired');
+                        alert('Token has expired');
+                        navigate("/account/login");
+                    }
+                } else {
+                    console.error('Invalid token data format');
+                }
+            } else {
+                console.error('Token verification failed');
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!email || !password) {
@@ -35,7 +83,7 @@ const Login = () => {
                     const token = responseData.data.token;
                     localStorage.setItem("muskan_token", token);
                     verifyToken(token); // Verify the token after successful login
-                    navigate("/account/myprofile");
+
                 } else {
                     setError('Invalid response format');
                 }
@@ -53,45 +101,12 @@ const Login = () => {
         }
     };
 
-    const verifyToken = async (token) => {
-        try {
-            const response = await fetch("/customer/verify", "post", null, {
-                Authorization: `Bearer ${token}`,
-            });
-            if (response.status === 200) {
-                const responseData = await response.data;
-                if (responseData) {
-                    const tokenData = responseData.data.token_data;
-                    localStorage.setItem("muskan_token_data", JSON.stringify(tokenData));
-                    dispatch(setToken(tokenData));
-
-                } else {
-                    console.error('Invalid token data format');
-                }
-            } else {
-                console.error('Token verification failed');
-            }
-        } catch (err) {
-            console.error(err);
-        }
-    };
-
-    useEffect(() => {
-        const token = localStorage.getItem("muskan_token");
-        if (token) {
-            verifyToken(token);
-        }
-    }, []);
 
 
     return (
         <>
             <hr />
             <Container>
-
-
-
-
                 <p> Home › My Account › Login</p>
                 <Row className='pt-5'>
                     <Col sm={12}>

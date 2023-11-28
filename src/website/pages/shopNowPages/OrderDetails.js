@@ -150,7 +150,7 @@ const OrderDetails = () => {
                                                     <tbody>
                                                         <tr>
                                                             <td>Sub Total</td>
-                                                            <td className='text-end'> <i className="fa fa-inr"></i> {orderData.order_amount}</td>
+                                                            <td className='text-end'> <i className="fa fa-inr"></i> {(parseFloat(orderData.order_amount)-parseFloat(orderData.delivery_charges)).toFixed(2)}</td>
                                                         </tr>
                                                         <tr>
                                                             <td>Discount</td>
@@ -161,8 +161,8 @@ const OrderDetails = () => {
                                                             <td className='text-end'><i className="fa fa-inr"></i> {orderData.order_discount}</td>
                                                         </tr>
                                                         <tr>
-                                                            <td>Shipping</td>
-                                                            <td className='text-end'><i className="fa fa-inr"></i> {orderData.shipping_charges}</td>
+                                                            <td>Delivery </td>
+                                                            <td className='text-end'><i className="fa fa-inr"></i> {orderData.delivery_charges}</td>
                                                         </tr>
                                                         <tr>
                                                             <td><b>Order Total</b> </td>

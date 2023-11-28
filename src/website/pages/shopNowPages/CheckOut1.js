@@ -19,27 +19,25 @@
 //     const [addressTwo, setAddressTwo] = useState('');
 //     const [companyName, setCompanyName] = useState('');
 //     const [errorMessage, setErrorMessage] = useState('');
-//     const fetchPinCode = async () => {
-//         try {
-//             const body = {
-//                 pincode: pinCode,
-//             };
-//             const pincoderes = await fetch('/pincode/by-pincode', 'POST', body, null);
-//             const pincodeDetails = pincoderes.data.data.pincode_details;
-//             setCity(pincodeDetails.city);
-//             setState(pincodeDetails.state);
-//             setCountry(pincodeDetails.country);
-//             setErrorMessage('');
-//         } catch (error) {
-//             console.log('Error fetching pincode data:', error);
-//             setErrorMessage('No Pincode found');
-//         }
-//     };
-//     const handlePinCodeKeyDown = (e) => {
-//         if (e.key === 'Enter') {
-//             fetchPinCode();
-//         }
-//     };
+
+const fetchPinCode = async () => {
+    try {
+        const body = {
+            pincode: pinCode,
+        };
+        const pincoderes = await fetch('/pincode/by-pincode', 'POST', body, null);
+        const pincodeDetails = pincoderes.data.data.pincode_details;
+    } catch (error) {
+        console.log('Error fetching pincode data:', error);
+        setErrorMessage('No Pincode found');
+    }
+};
+const handlePinCodeKeyDown = (e) => {
+    if (e.key === 'Enter') {
+        fetchPinCode();
+    }
+};
+
 //     const handlePlaceOrder = async () => {
 //         try {
 //             const body = {

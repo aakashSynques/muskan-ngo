@@ -44,8 +44,11 @@ const Home = () => {
               <p></p>
             </Col>
             <Col lg={4} className="padding-15 pstn-relative">
-              <Image src={require('../assets/images/shopimg1.jpg')} fluid alt="Books" className='w-100' />
-              <h3 className="img-text">Books</h3>
+              <Link to='/books'>
+                <Image src={require('../assets/images/shopimg1.jpg')} fluid alt="Books" className='w-100' />
+                <h3 className="img-text">Books</h3>
+              </Link>
+
             </Col>
             <Col lg={4} className="padding-15 pstn-relative">
               <Image src={require('../assets/images/shoimg2.jpg')} fluid alt="Diaries" className='w-100' />
@@ -58,6 +61,7 @@ const Home = () => {
           </Row>
         </Container>
       </section>
+
 
       <section className="about-section bd-bottom shape circle padding">
         <Container>

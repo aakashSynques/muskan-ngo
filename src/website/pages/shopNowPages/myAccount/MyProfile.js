@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState} from 'react';
 import { Container, Row, Col, Card, CardHeader, CardBody, Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
@@ -6,19 +6,45 @@ import MyAccountSideBar from './MyAccoutSideBar';
 import { fetch } from '../../../../utils';
 
 const MyProfile = () => {
+
     const [show, setShow] = useState(false);
     const [error, setError] = useState(null);
+    const [formData, setFormData] = useState({
+        customer_fname: '',
+        customer_lname: '',
+        customer_mobile: '',
+        customer_email: '',
+        customer_address: ''
+    });
+
     const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
     const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
-    console.log('tokenDataFromLocalStorage', parsedTokenData)
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
+    const handleClose = () => setShow(false);
+    const handleShow = () => {
+        setFormData({
+            customer_fname: parsedTokenData.customer_fname,
+            customer_lname: parsedTokenData.customer_lname,
+            customer_mobile: parsedTokenData.customer_mobile,
+            customer_email: parsedTokenData.customer_email,
+            customer_address: parsedTokenData.customer_address
+        });
+        setShow(true);
+    };
 
     const handleEditProfile = async () => {
+        const body = {
+            customer_id: parsedTokenData.customer_id,
+            ...formData
+        };
+
         try {
-            const response = await fetch('/customer/update-profile', 'POST', null , null);
+            const response = await fetch('/customer/update-profile', 'POST', body, null);
+
             if (response) {
+                // Update local storage data
+                const updatedTokenData = { ...parsedTokenData, ...formData };
+                localStorage.setItem("muskan_token_data", JSON.stringify(updatedTokenData));
                 handleClose();
                 setError(null); // Clear any previous errors
             } else {
@@ -27,16 +53,27 @@ const MyProfile = () => {
         } catch (error) {
             setError('An error occurred while updating your profile.');
         }
-    }
+    };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value
+        });
+    };
+
 
     return (
         <div>
+
             <hr />
             <Container>
                 <p> Home › My Account › Login</p>
                 <Row className='mt-5'>
                     <Col sm={3}>
                         <MyAccountSideBar />
+
                     </Col>
                     <Col sm={9}>
                         <Card>
@@ -74,10 +111,6 @@ const MyProfile = () => {
                                         </tbody>
                                     </table>
                                 </div>
-
-
-
-
                             </CardBody>
                         </Card>
                     </Col>
@@ -96,7 +129,8 @@ const MyProfile = () => {
                                 <Form.Control
                                     type="text"
                                     name="customer_fname"
-
+                                    value={formData.customer_fname}
+                                    onChange={handleInputChange}
                                 />
                             </Form.Group>
 
@@ -105,7 +139,8 @@ const MyProfile = () => {
                                 <Form.Control
                                     type="text"
                                     name="customer_lname"
-
+                                    value={formData.customer_lname}
+                                    onChange={handleInputChange}
                                 />
                             </Form.Group>
 
@@ -114,16 +149,19 @@ const MyProfile = () => {
                                 <Form.Control
                                     type="number"
                                     name="customer_mobile"
-
+                                    value={formData.customer_mobile}
+                                    onChange={handleInputChange}
                                 />
                             </Form.Group>
 
                             <Form.Group className="mb-3">
                                 <Form.Label>Email</Form.Label>
                                 <Form.Control
-                                    type="number"
-                                    name="customer_mobile"
-
+                                    type="email"
+                                    name="customer_email"
+                                    value={formData.customer_email}
+                                    onChange={handleInputChange}
+                                    readOnly
                                 />
                             </Form.Group>
 
@@ -132,14 +170,15 @@ const MyProfile = () => {
                                 <Form.Control
                                     type="text"
                                     name="customer_address"
-
+                                    value={formData.customer_address}
+                                    onChange={handleInputChange}
                                 />
                             </Form.Group>
                         </Row>
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" >
+                    <Button variant="primary" onClick={handleEditProfile}>
                         Save Changes
                     </Button>
                     <Button variant="secondary" onClick={handleClose}>
@@ -151,6 +190,6 @@ const MyProfile = () => {
             {error && <div className="text-danger">{error}</div>}
         </div>
     );
-}
+};
 
 export default MyProfile;

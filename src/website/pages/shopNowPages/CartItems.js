@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Container, Col, Row, Button, Image } from 'react-bootstrap';
 import { useSelector, useDispatch } from 'react-redux';
-import { updateQuantity, removeFromCart, updateTotalAmount} from '../../../reducers/cart';
+import { updateQuantity, removeFromCart, updateTotalAmount } from '../../../reducers/cart';
 import { Link } from 'react-router-dom';
 const CartItems = () => {
     const dispatch = useDispatch();
@@ -54,7 +54,7 @@ const CartItems = () => {
                             <Image src={require(`../../assets/images/empty-cart.jpg`)} alt='muskaan ngo' className='' />
                             <h3>Oops! Your Cart is empty!</h3>
                             <p>Looks like you haven't added <br />anything to your cart yet </p>
-                            <Link to="/shopping">Browse Products</Link>
+                            <Link to="/books" className='btn btn-primary'>Shop Now</Link>
                         </div>
                     </Col>
                 </Row>
@@ -99,7 +99,7 @@ const CartItems = () => {
                                         </Col>
                                     </Row>
                                 </Col>
-                                <Col sm={3} className='pt-4'>
+                                <Col sm={2} className='pt-4'>
                                     <span className='main-color'>
                                         <i className="fa fa-inr"></i> {item.product_MSP}
                                     </span>
@@ -109,8 +109,8 @@ const CartItems = () => {
                                     <span className='px-3'> {item.quantity}</span>
                                     <button className='btn p-0' onClick={() => handleIncrement(item)}>+</button>
                                 </Col>
-                                <Col sm={1} className='pt-4'>
-                                    <font>{item.subTotal}</font>
+                                <Col sm={2} className='pt-4'>
+                                    <font> <i className="fa fa-inr"></i> {(parseFloat(item.subTotal)).toFixed(2)}</font>
                                 </Col>
                                 <Col sm={1} className='pt-4'>
                                     <button className='btn' onClick={() => handleRemove(item)}>
@@ -128,7 +128,7 @@ const CartItems = () => {
                                 <tbody>
                                     <tr className='py-3'>
                                         <td>Subtotal</td>
-                                        <td className='text-end'><i className="fa fa-inr"></i>{totalAmount}</td>
+                                        <td className='text-end'><i className="fa fa-inr"></i>{(parseFloat(totalAmount)).toFixed(2)}</td>
                                     </tr>
                                     <tr className='py-3'>
                                         <td>Discount (0%)</td>
@@ -139,12 +139,12 @@ const CartItems = () => {
                                         <td className='text-end'><i className="fa fa-inr"></i> 0.00 </td>
                                     </tr>
                                     <tr className='py-3'>
-                                        <td>Shipping Charge</td>
+                                        <td>Delivery Charge</td>
                                         <td className='text-end'><i className="fa fa-inr"></i> 55 .00 </td>
                                     </tr>
                                     <tr className='py-3'>
                                         <td>Order total</td>
-                                        <td className='text-end main-color' style={{ color: '#a20401' }}><i className="fa fa-inr"></i> {totalAmount}</td>
+                                        <td className='text-end main-color' style={{ color: '#a20401' }}><i className="fa fa-inr"></i> {(parseFloat(totalAmount) + parseFloat(55.00)).toFixed(2)} </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -154,7 +154,7 @@ const CartItems = () => {
                     </Col>
                 </Row>
 
- 
+
 
             </Container>
         </>

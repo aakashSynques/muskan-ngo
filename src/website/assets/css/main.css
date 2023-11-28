@@ -332,6 +332,10 @@ span.date {
         width: 54px !important;
         top: -3px !important;
     }
+    .r-border {
+        border-right: 1px dashed #c7c2c2;
+        padding-right: 20px !important;
+    }
 
     .font-15 {
         font-size: 15px;
@@ -461,13 +465,15 @@ span.date {
 
 .accolumn.list-group a {
     border: none;
-    padding: 7px 41px;
     font-size: 15px;
     font-weight: 500;
     transition: all .3s ease;
     color: #000000;
 }
 
+.accolumn.list-group ul{
+    line-height: 30px;
+}
 .form-label {
     margin-bottom: 0.5rem;
     font-size: 15px;

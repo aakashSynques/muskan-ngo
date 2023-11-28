@@ -1,193 +1,4 @@
-// import React, { useState } from 'react'
-// import { Button, Col, Container, Form, FormControl, FormGroup, Image, Row } from 'react-bootstrap'
-// import OrderSummeryCheckup from './OrderSummeryCheckup';
-// import { fetch } from '../../../utils';
-
-
-// const CheckOut = () => {
-//     const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
-//     const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
-
-//     const [pinCode, setPinCode] = useState('');
-//     const [city, setCity] = useState('');
-//     const [state, setState] = useState('');
-//     const [country, setCountry] = useState('');
-//     const [firstName, setFirstName] = useState('');
-//     const [lastName, setLastName] = useState('');
-//     const [phone, setPhone] = useState('');
-//     const [addressOne, setAddressOne] = useState('');
-//     const [addressTwo, setAddressTwo] = useState('');
-//     const [companyName, setCompanyName] = useState('');
-//     const [errorMessage, setErrorMessage] = useState('');
-
-
-//     const fetchPinCode = async () => {
-//         try {
-//             const body = {
-//                 pincode: pinCode,
-//             };
-//             const pincoderes = await fetch('/pincode/by-pincode', 'POST', body, null);
-//             const pincodeDetails = pincoderes.data.data.pincode_details;
-//             setCity(pincodeDetails.city);
-//             setState(pincodeDetails.state);
-//             setCountry(pincodeDetails.country);
-//             setErrorMessage('');
-//         } catch (error) {
-//             console.log('Error fetching pincode data:', error);
-//             setErrorMessage('No Pincode found');
-//         }
-//     };
-//     const handlePinCodeKeyDown = (e) => {
-//         if (e.key === 'Enter') {
-//             fetchPinCode();
-//         }
-//     };
-//     const handlePlaceOrder = async () => {
-//         try {
-//             const body = {
-//                 customer_email: '',
-//                 ship_fname: firstName,
-//                 ship_lname: lastName,
-//                 ship_company: companyName,
-//                 ship_address_one: addressOne,
-//                 ship_address_two: addressTwo,
-//                 ship_pincode: pinCode,
-//                 ship_city: city,
-//                 ship_state: state,
-//                 ship_country: country,
-//                 ship_mobile: phone,
-
-
-//                 bill_fname: '',
-//                 bill_lname: '',
-//                 bill_company: '',
-//                 bill_adderss_one: '',
-//                 bill_adderss_two: '',
-//                 bill_pincode: '',
-//                 bill_city: '',
-//                 bill_state: '',
-//                 bill_country: '',
-//                 bill_mobile: '',
-//             };
-//             const response = await fetch('/order/save', 'POST', body, null);
-//             if (response) {
-
-//             } else {
-//             }
-//         } catch (err) {
-//             console.error('An error occurred:', err);
-//         } finally {
-//         }
-//     };
-//     return (
-//         <div>
-//             <Container>
-//                 <Row>
-//                     <Col sm={8} className='r-border '>
-//                         <div className='mb-4'>   <font> Home › CheckOut</font> </div>
-//                         <div className='pt-4 checkout-style'>
-//                             <h6 className='text-dark mb-3'>Shipping address</h6>
-//                             <FormGroup as={Col} md="12" className='col-mt'>
-//                                 <FormControl type="mail" placeholder='Enter Your Email' required />
-//                             </FormGroup>
-//                             <Row>
-//                                 <FormGroup as={Col} md="4" className='col-mt'>
-//                                     <FormControl
-//                                         type="number"
-//                                         placeholder='PIN Code'
-//                                         value={pinCode}
-//                                         onChange={(e) => setPinCode(e.target.value)}
-//                                         onKeyDown={handlePinCodeKeyDown}
-//                                     />
-//                                     {errorMessage && <div className="text-danger">{errorMessage}</div>}
-//                                 </FormGroup>
-//                                 <FormGroup as={Col} md="4" className='col-mt'>
-//                                     <FormControl
-//                                         type="text"
-//                                         placeholder='City'
-//                                         value={city}
-//                                         readOnly
-//                                     />
-//                                 </FormGroup>
-//                                 <FormGroup as={Col} md="4" className='col-mt'>
-//                                     <FormControl
-//                                         type="text"
-//                                         placeholder='State'
-//                                         value={state}
-//                                         readOnly
-//                                     />
-//                                 </FormGroup>
-//                                 <FormGroup as={Col} md="6" className='col-mt'>
-//                                     <FormControl type="text" placeholder='First Name'
-//                                         value={firstName}
-//                                         onChange={(e) => setFirstName(e.target.value)} />
-//                                 </FormGroup>
-//                                 <FormGroup as={Col} md="6" className='col-mt'>
-//                                     <FormControl type="text" placeholder='Last Name' value={lastName} onChange={(e) => setLastName(e.target.value)} required />
-//                                 </FormGroup>
-//                                 <FormGroup as={Col} md="4" className="col-mt">
-//                                     <FormControl type="number" placeholder='Phone' value={phone} onChange={(e) => setPhone(e.target.value)} required />
-//                                 </FormGroup>
-//                                 <FormGroup as={Col} md="4" className='col-mt'>
-//                                     <FormControl
-//                                         type="text"
-//                                         placeholder='Country'
-//                                         value={country}
-//                                         readOnly
-//                                     />
-//                                 </FormGroup>
-//                                 <FormGroup as={Col} md="4" className='col-mt'  >
-//                                     <FormControl type="text" placeholder='Company Name (optional)' value={companyName} onChange={(e) => setCompanyName(e.target.value)} />
-//                                 </FormGroup>
-//                                 <FormGroup as={Col} md="12" className='col-mt'>
-//                                     <FormControl type="text" placeholder='Address' value={addressOne} onChange={(e) => setAddressOne(e.target.value)} />
-//                                 </FormGroup>
-//                                 <FormGroup as={Col} md="12" className='col-mt'>
-//                                     <FormControl type="text" placeholder='Apartment, suite, unit, etc. (optional)' value={addressTwo} onChange={(e) => setAddressTwo(e.target.value)}
-//                                     />
-//                                 </FormGroup>
-
-
-//                                 <div className='pt-4'>
-//                                     <label>
-//                                         <input
-//                                             type="checkbox"
-//                                         // checked={shipToDifferentAddress}
-//                                         // onChange={handleCheckboxChange}
-//                                         />
-//                                         &nbsp; Ship to a different address?
-//                                     </label>
-//                                 </div>
-//                             </Row>
-//                             <Row>
-//                                 <Col sm={6} className='text-center p-3'>
-//                                 </Col>
-//                                 <Col sm={6} className='text-end'>
-//                                     <Button className='btn btn-danger mt-3 py-3' onClick={handlePlaceOrder}>
-
-//                                         Submit
-//                                     </Button>
-//                                 </Col>
-//                             </Row>
-//                         </div>
-//                     </Col>
-//                     <Col sm={4} >
-//                         <OrderSummeryCheckup />
-//                     </Col>
-//                 </Row>
-
-//             </Container>
-//         </div>
-//     )
-// }
-
-// export default CheckOut
-
-
-
-
-
-import React, { useState, useCallback, useEffect } from 'react'
+import React, { useState, useCallback, useEffect, useRef } from 'react'
 import { Button, Col, Container, Form, FormControl, FormGroup, Image, Row } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux';
@@ -199,6 +10,8 @@ import { useNavigate } from 'react-router-dom';
 import { setOrderId, } from '../../../reducers/orderSlice';
 import { clearCart } from '../../../reducers/cart';
 import { logoimg } from '../../../Muskaan-logo.png'
+import { ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const CheckOut = () => {
     const Razorpay = useRazorpay();
@@ -249,10 +62,10 @@ const CheckOut = () => {
         });
     };
     const displayRazorpay = useCallback(
-        (result) => {
+        (result, key) => {
             try {
                 const options = {
-                    key: "rzp_test_QwRkxxPsNKaaaQ", // Enter the Key ID generated from the Dashboard
+                    key, // Enter the Key ID generated from the Dashboard
                     amount: result.amount,
                     currency: result.currency,
                     name: "Muskaan",
@@ -317,9 +130,33 @@ const CheckOut = () => {
         [navigate] // Ensure to include navigate in the dependencies array
     );
 
+    const [errors, setErrors] = useState({
+        ship_pincode: '',
+        ship_fname: '',
+        ship_lname: '',
+        ship_mobile: '',
+        ship_adderss_one: '',
+        // Add other fields as needed
+    });
+
+
     const handlePlaceOrder = async () => {
         try {
             setIsLoading(true); // Set loading state to true
+
+            setErrors({}); // Reset errors
+
+            const validateField = (fieldName, regex, errorMessage) => {
+                if (!formData[fieldName].trim() || (regex && !regex.test(formData[fieldName].trim()))) {
+                    setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: errorMessage }));
+                    throw new Error('Validation error');
+                }
+            };
+            validateField('ship_pincode', null, 'Pin Code is required');
+            validateField('ship_fname', null, 'First Name is required');
+            validateField('ship_lname', null, 'Last Name is required');
+            validateField('ship_mobile', /^[0-9]{10}$/, 'Invalid phone number');
+            validateField('ship_adderss_one', null, 'Address is required');
             const body = {
                 customer_id: parsedTokenData ? parsedTokenData.customer_id : '', // Conditionally set customer_id             
                 customer_email: parsedTokenData ? parsedTokenData.customer_email : formData.customer_email,
@@ -350,7 +187,7 @@ const CheckOut = () => {
             const response = await fetch('/order/save', 'POST', body, null);
             if (response) {
                 setOrderPlace(response.data.data);
-                displayRazorpay(response.data.data.order);
+                displayRazorpay(response.data.data.order, response.data.data.RAZORPAY_KEY_ID);
             } else {
                 setOrderPlace(response.data);
                 console.error('Failed to place the order');
@@ -361,6 +198,61 @@ const CheckOut = () => {
             setIsLoading(false); // Reset loading state
         }
     };
+
+
+    const [pinCode, setPinCode] = useState('');
+    const [pinCodeDetails, setPinCodeDetails] = useState(null);
+    const [errorMessagePin, setErrorMessagePin] = useState("");
+    const fetchPinCode = async () => {
+        try {
+            const body = {
+                pincode: pinCode,
+            };
+            const pincoderes = await fetch('/pincode/by-pincode', 'POST', body, null);
+            const pincodeDetails = pincoderes.data.data.pincode_details;
+            if (pincodeDetails) {
+                setPinCodeDetails(pincodeDetails);
+                setFormData((prevFormData) => ({
+                    ...prevFormData,
+                    ship_city: pincodeDetails.city || prevFormData.ship_city,
+                    ship_state: pincodeDetails.state || prevFormData.ship_state,
+                    ship_country: pincodeDetails.country || prevFormData.ship_country,
+
+                }));
+            } else {
+                setErrorMessagePin('No Pincode found');
+            }
+        } catch (error) {
+            console.log('Error fetching pincode data:', error);
+            setErrorMessagePin('No Pincode found');
+        }
+    };
+
+
+    const handlePinCodeKeyDown = (e) => {
+        if (e.key === 'Enter' || e.key === 'Tab') {
+            e.preventDefault();
+            fetchPinCode();
+        }
+    };
+    const handlePinCodeBlur = () => {
+        fetchPinCode();
+    };
+
+    const handleCountryInputClick = () => {
+        toast.error('Enter Pin Code.', {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 2000,
+        });
+    };
+
+    // const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem('muskan_token');
+        localStorage.removeItem('muskan_token_data');
+        navigate('/account/login');
+    };
+
     // useEffect(() => {
     //     if (cart.length === 0) {
     //         navigate('/');
@@ -379,13 +271,14 @@ const CheckOut = () => {
                             <Image src={require(`../../assets/images/empty-cart.jpg`)} alt='muskaan ngo' className='' />
                             <h3>Oops! Your Cart is empty!</h3>
                             <p>Looks like you haven't added <br />anything to your cart yet </p>
-                            <Link to="/shopping">Browse Products</Link>
+                            <Link to="/books" className='btn btn-primary'>Shop Now</Link>
                         </div>
                     </Col>
                 </Row>
             </Container>
         );
     }
+
 
 
     return (
@@ -396,9 +289,6 @@ const CheckOut = () => {
                     <Row>
                         <Col sm={8} className='r-border '>
                             <div className='mb-4'>   <font> Home › Shipping › Payment</font> </div>
-
-
-
                             {parsedTokenData ? (
                                 <>
                                     <h6>Contact</h6>
@@ -408,7 +298,7 @@ const CheckOut = () => {
                                         </Col>
                                         <Col sm={11} lg={11} xs={11} className='px-0'>
                                             <p className='m-0'>{parsedTokenData.customer_fname}{parsedTokenData.customer_lname} ( {parsedTokenData.customer_email} )</p>
-                                            <p className='main-color'>Log Out</p>
+                                            <p className='main-color' onClick={handleLogout} style={{ cursor: "pointer" }}>Log Out</p>
                                         </Col>
                                     </Row>
                                 </>
@@ -430,8 +320,43 @@ const CheckOut = () => {
 
                             <div className='pt-4 checkout-style'>
                                 <h6 className='text-dark mb-3'>Shipping address</h6>
-
                                 <Row>
+                                    <FormGroup as={Col} md="4" className='col-mt'>
+                                        <FormControl
+                                            type="number"
+                                            name="ship_pincode"
+                                            value={formData.ship_pincode}
+                                            onChange={(e) => {
+                                                handleInputChange(e);
+                                                setPinCode(e.target.value);
+                                            }}
+                                            onKeyDown={handlePinCodeKeyDown}
+                                            onBlur={handlePinCodeBlur}
+                                            placeholder='PIN Code'
+                                        />
+                                        <font color="red" ><b>{errorMessagePin}</b></font>
+                                        {errors.ship_pincode && <span className="text-danger">{errors.ship_pincode}</span>}
+                                    </FormGroup>
+                                    <FormGroup as={Col} md="4" className='col-mt'>
+                                        <FormControl type="text" name="ship_city"
+                                            value={formData.ship_city}
+                                            onChange={handleInputChange}
+                                            placeholder='City'
+                                            readOnly
+                                            onClick={handleCountryInputClick}
+
+                                        />
+                                    </FormGroup>
+                                    <FormGroup as={Col} md="4" className='col-mt'>
+                                        <FormControl type="text" name="ship_state"
+                                            value={formData.ship_state}
+                                            onChange={handleInputChange}
+                                            placeholder='State'
+                                            readOnly
+                                            onClick={handleCountryInputClick}
+
+                                        />
+                                    </FormGroup>
                                     <FormGroup as={Col} md="6" className='col-mt'>
                                         <FormControl type="text" name="ship_fname"
                                             value={formData.ship_fname}
@@ -439,6 +364,8 @@ const CheckOut = () => {
                                             placeholder='First Name'
                                             required
                                         />
+                                        {errors.ship_fname && <span className="text-danger">{errors.ship_fname}</span>}
+
                                     </FormGroup>
                                     <FormGroup as={Col} md="6" className='col-mt'>
                                         <FormControl type="text" name="ship_lname"
@@ -447,6 +374,8 @@ const CheckOut = () => {
                                             placeholder='Last Name'
                                             required
                                         />
+                                        {errors.ship_lname && <span className="text-danger">{errors.ship_lname}</span>}
+
                                     </FormGroup>
                                     <FormGroup as={Col} md="4" className='col-mt'>
                                         <FormControl type="number" name="ship_mobile"
@@ -455,14 +384,7 @@ const CheckOut = () => {
                                             placeholder='Phone'
                                             required
                                         />
-                                    </FormGroup>
-                                    <FormGroup as={Col} md="4" className='col-mt'>
-                                        <FormControl type="text" name="ship_country"
-                                            value={formData.ship_country}
-                                            onChange={handleInputChange}
-                                            placeholder='Country'
-                                            required
-                                        />
+                                        {errors.ship_mobile && <span className="text-danger">{errors.ship_mobile}</span>}
                                     </FormGroup>
                                     <FormGroup as={Col} md="4" className='col-mt'>
                                         <FormControl type="text" name="ship_company"
@@ -471,27 +393,13 @@ const CheckOut = () => {
                                             placeholder='Company Name (optional)'
                                         />
                                     </FormGroup>
-
                                     <FormGroup as={Col} md="4" className='col-mt'>
-                                        <FormControl type="text" name="ship_city"
-                                            value={formData.ship_city}
+                                        <FormControl type="text" name="ship_country"
+                                            value={formData.ship_country}
                                             onChange={handleInputChange}
-                                            placeholder='Town / City'
-                                            required
-                                        />
-                                    </FormGroup>
-                                    <FormGroup as={Col} md="4" className='col-mt'>
-                                        <FormControl type="text" name="ship_state"
-                                            value={formData.ship_state}
-                                            onChange={handleInputChange}
-                                            placeholder='State'
-                                        />
-                                    </FormGroup>
-                                    <FormGroup as={Col} md="4" className='col-mt'>
-                                        <FormControl type="number" name="ship_pincode"
-                                            value={formData.ship_pincode}
-                                            onChange={handleInputChange}
-                                            placeholder='PIN Code'
+                                            placeholder='Country'
+                                            readOnly
+                                            onClick={handleCountryInputClick}
                                         />
                                     </FormGroup>
 
@@ -500,6 +408,8 @@ const CheckOut = () => {
                                             value={formData.ship_adderss_one}
                                             onChange={handleInputChange}
                                         />
+
+                                        {errors.ship_adderss_one && <span className="text-danger">{errors.ship_adderss_one}</span>}
                                     </FormGroup>
                                     <FormGroup as={Col} md="12" className='col-mt'>
                                         <FormControl type="text" placeholder='Apartment, suite, unit, etc. (optional)' name="ship_adderss_two"
@@ -524,6 +434,40 @@ const CheckOut = () => {
                                     <>
                                         <h6 className='mt-3'>Billing Details </h6>
                                         <Row className='mt-3'>
+
+
+                                            <FormGroup as={Col} md="4" className='col-mt'>
+                                                <FormControl
+                                                    type="number"
+                                                    name="bill_pincode"
+                                                    value={formData.bill_pincode}
+                                                    onChange={handleInputChange}
+
+                                                    placeholder='PIN Code'
+                                                />
+                                            </FormGroup>
+
+
+
+                                            <FormGroup as={Col} md="4" className='col-mt'>
+                                                <FormControl type="text" name='bill_city'
+                                                    value={formData.bill_city}
+                                                    onChange={handleInputChange}
+                                                    placeholder='City'
+                                                />
+
+                                            </FormGroup>
+
+                                            <FormGroup as={Col} md="4" className='col-mt'>
+                                                <FormControl type="text" name="bill_state"
+                                                    value={formData.bill_state}
+                                                    onChange={handleInputChange}
+                                                    placeholder='State'
+                                                />
+                                            </FormGroup>
+
+
+
                                             <FormGroup as={Col} md="6" className='col-mt'>
                                                 <FormControl type="text"
                                                     name="bill_fname"
@@ -532,6 +476,7 @@ const CheckOut = () => {
                                                     placeholder='First Name'
                                                 />
                                             </FormGroup>
+
                                             <FormGroup as={Col} md="6" className='col-mt'>
                                                 <FormControl type="text" name="bill_lname"
                                                     value={formData.bill_lname}
@@ -547,15 +492,6 @@ const CheckOut = () => {
                                                     placeholder='Phone'
                                                 />
                                             </FormGroup>
-
-                                            <FormGroup as={Col} md="4" className='col-mt'>
-                                                <FormControl type="text" name="bill_country"
-                                                    value={formData.bill_country}
-                                                    onChange={handleInputChange}
-                                                    placeholder='Country'
-                                                />
-                                            </FormGroup>
-
                                             <FormGroup as={Col} md="4" className='col-mt'>
                                                 <FormControl type="text" name="bill_company"
                                                     value={formData.bill_company}
@@ -565,29 +501,18 @@ const CheckOut = () => {
                                             </FormGroup>
 
                                             <FormGroup as={Col} md="4" className='col-mt'>
-                                                <FormControl type="text" name='bill_city'
-                                                    value={formData.bill_city}
+                                                <FormControl type="text" name="bill_country"
+                                                    value={formData.bill_country}
                                                     onChange={handleInputChange}
-                                                    placeholder='Town / City'
-                                                />
-
-                                            </FormGroup>
-
-                                            <FormGroup as={Col} md="4" className='col-mt'>
-                                                <FormControl type="text" name="bill_state"
-                                                    value={formData.bill_state}
-                                                    onChange={handleInputChange}
-                                                    placeholder='State'
+                                                    placeholder='Country'
                                                 />
                                             </FormGroup>
 
-                                            <FormGroup as={Col} md="4" className='col-mt'>
-                                                <FormControl type="text" name="bill_pincode"
-                                                    value={formData.bill_pincode}
-                                                    onChange={handleInputChange}
-                                                    placeholder='PIN Code'
-                                                />
-                                            </FormGroup>
+
+
+
+
+
                                             <FormGroup as={Col} md="12">
                                                 <FormControl type="text" placeholder='House number and street name' name="bill_adderss_one"
                                                     value={formData.bill_adderss_one}
@@ -627,6 +552,8 @@ const CheckOut = () => {
 
                 </Container>
             </div>
+            <ToastContainer />
+
         </>
     )
 }

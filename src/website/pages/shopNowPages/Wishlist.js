@@ -150,7 +150,7 @@ const Wishlist = () => {
             <div className='text-center my-5'>
               <Image src={require(`../../assets/images/empty-cart.jpg`)} alt='muskaan ngo' className='' />
               <p>No products added to the wishlist</p>
-              <Link to="/shopping">Shop Now</Link>
+              <Link to="/books" className='btn btn-primary'>Shop Now</Link>
             </div>
           </Col>
         </Row>

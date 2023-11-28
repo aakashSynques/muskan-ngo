@@ -1,8 +1,7 @@
 
 import { useSelector, useDispatch } from 'react-redux';
-import { fetch } from '../../../utils';
-import React, { useState, useCallback, useEffect } from 'react'
-import { Button, Col, Container, Form, FormControl, FormGroup, Image, Row } from 'react-bootstrap'
+import React, {  useEffect } from 'react'
+import { Image} from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const OrderSummeryCheckup = () => {
@@ -18,7 +17,7 @@ const OrderSummeryCheckup = () => {
         <div className='card-fixed'>
 
             <h6 className='main-color f-w-8 pb-4 pt-2'>YOUR ORDER</h6>
-          
+
 
             <table className="table scroll-content">
                 <tbody>
@@ -40,7 +39,7 @@ const OrderSummeryCheckup = () => {
                                 <p className='summery-card'>{item.categroy_name}</p>
                             </td>
 
-                            <td className='text-end main-color'><i className="fa fa-inr"></i> {item.subTotal}</td>
+                            <td className='text-end main-color' style={{width: "30%"}}><i className="fa fa-inr"></i>  {parseFloat(item.subTotal).toFixed(2)}</td>
                         </tr>
 
                     ))}
@@ -48,12 +47,38 @@ const OrderSummeryCheckup = () => {
             </table>
 
 
-            <table className='table'>
+            {/* <table className='table'>
                 <tbody>
                     <tr>
                         <td> <b >Total</b></td>
 
-                        <td className='text-end'><b>INR {totalAmount}</b></td>
+                        <td className='text-end'><b>INR {parseFloat(totalAmount)+parseFloat(55.00)}</b></td>
+                    </tr>
+                </tbody>
+            </table> */}
+
+
+            <table className='table'>
+                <tbody>
+                    <tr className='py-3'>
+                        <td>Subtotal</td>
+                        <td className='text-end'><i className="fa fa-inr"></i> {parseFloat(totalAmount).toFixed(2)}</td>
+                    </tr>
+                    <tr className='py-3'>
+                        <td>Discount (0%)</td>
+                        <td className='text-end'><i className="fa fa-inr"></i> 0 </td>
+                    </tr>
+                    <tr className='py-3'>
+                        <td>GST (0%)</td>
+                        <td className='text-end'><i className="fa fa-inr"></i> 0.00 </td>
+                    </tr>
+                    <tr className='py-3'>
+                        <td>Delivery Charge</td>
+                        <td className='text-end'><i className="fa fa-inr"></i> 55 .00 </td>
+                    </tr>
+                    <tr className='py-3'>
+                        <td>Order total</td>
+                        <td className='text-end main-color' style={{ color: '#a20401' }}><i className="fa fa-inr"></i>{(parseFloat(totalAmount)+parseFloat(55.00)).toFixed(2)} </td>
                     </tr>
                 </tbody>
             </table>

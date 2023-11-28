@@ -1,7 +1,7 @@
 import React from 'react';
-import { Col, Nav, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+
 
 const MyAccountSideBar = () => {
     // const tokenData = useSelector((state) => state.token);
@@ -11,6 +11,13 @@ const MyAccountSideBar = () => {
     //     localStorage.removeItem("muskan_token_data");
     //     localStorage.removeItem("muskan_token");
     // };
+    const navigate = useNavigate();
+    const handleLogout = () => {
+        localStorage.removeItem('muskan_token');
+        localStorage.removeItem('muskan_token_data');
+        navigate('/account/login');
+    };
+
     return (
         <div className="">
             <div className="list-group accolumn px-3">
@@ -19,46 +26,83 @@ const MyAccountSideBar = () => {
             </div>
             <div className="list-group accolumn px-3 mt-3">
                 <h6 className="pb-2 text-uppercase"><i className="fa fa-user main-color" aria-hidden="true" style={{ fontSize: "22px" }}></i> &nbsp;  ACCOUNT SETTINGS</h6>
+                <ul>
+                    <li>
+                        <Link to="/account/myprofile">
+                            My Profile
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/account/addressbook">
+                            Address Book
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/account/change-password">
+                            Change Password
+                        </Link>
+                    </li>
+                    <li >
+                        <p onClick={handleLogout} style={{ cursor: "pointer" }}>Log out</p>
+                    </li>
 
-                <Link to="/account/myprofile">
-                    My Profile
-                </Link>
-                <Link to="/account/addressbook">
-                    Address Book
-                </Link>
-                {/* <Link to="/account/forgotPwd">
-                    Forgotten Password
-                </Link> */}
-                <Link to="/account/change-password">
-                    Change Password
-                </Link>
-
-                <Link to="/">Log out</Link>
+                </ul>
 
                 <hr />
                 <h6 className="pb-2 text-uppercase"> <i className="fa fa-pencil-square-o main-color"
                     aria-hidden="true" style={{ fontSize: "22px" }}></i>  &nbsp; MY ORDERS</h6>
-                <Link to="/account/order-history">
-                    Order History
-                </Link>
-                <Link to="/account/order-history">
-                    Downloads
-                </Link>
-                <Link to="/account/order-history">
-                    Returns
-                </Link>
-                <Link to="/account/order-history">
-                    Transactions
-                </Link>
+                <ul>
+                    <li>
+                        <Link to="/account/order-history">
+                            Order History
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/account/order-history">
+                            Downloads
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/account/order-history">
+                            Returns
+                        </Link>
+                    </li>
+                    <li>
+                        <Link to="/account/order-history">
+                            Transactions
+                        </Link>
+                    </li>
+                </ul>
                 <hr />
                 <h6 className="pb-2 text-uppercase"> <i className="fa fa-address-card main-color"
                     style={{ fontSize: "22px" }} aria-hidden="true"></i>&nbsp; MY STUFF</h6>
-                <Link to="/wishlist">
-                    Wish List
+
+
+                <ul>
+                    <li>  <Link to="/wishlist">
+                        Wish List
+                    </Link></li>
+                    <li>
+                        <Link to="/cart">
+                            Cart
+                        </Link>
+                    </li>
+                </ul>
+
+
+                {/* <ul>
+                    <li>
+                        <Link to="/account/myprofile">
+                            My Profile
+                        </Link>
+                    </li>
+                    <li>
+                    <Link to="/account/addressbook">
+                    Address Book
                 </Link>
-                <Link to="/cart">
-                    Cart
-                </Link>
+                    </li>
+
+                </ul> */}
             </div>
         </div>
     );

@@ -80,6 +80,7 @@ const DetailsPage = () => {
             product_additional_information: product.product_additional_information,
             product_code: product.product_code,
             product_description: product.product_description,
+            
             product_id: product.product_id,
             product_name_disp: product.product_name_disp,
             product_sku: product.product_sku,
