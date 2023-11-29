@@ -24,7 +24,7 @@ import CartItems from './website/pages/shopNowPages/CartItems';
 import Layout from './website/layout/Layout';
 import MyProfile from './website/pages/shopNowPages/myAccount/MyProfile';
 import ChangePwd from './website/pages/shopNowPages/myAccount/ChangePwd';
-import OrderDetails from './website/pages/shopNowPages/OrderDetails';
+import OrderDetails from './website/pages/shopNowPages/myAccount/OrderDetails';
 import PrivateRoute from './website/utils/authMiddleware';
 import Education from './website/pages/work/Education';
 import Communicable from './website/pages/communicables/Communicable';
@@ -42,7 +42,6 @@ import WhoWeWork from './website/pages/aboutPages/WhoWeWork';
 import Policies from './website/pages/aboutPages/Policies';
 import OurTeam from './website/pages/aboutPages/OurTeam';
 import Collaborations from './website/pages/aboutPages/Collaborations';
-
 
 import LoginForm from "./admin/pages/Login";
 import SideBar from "./admin/layout/SideBar";
@@ -99,10 +98,10 @@ function App() {
         <Route path='/:category_slug/:subcategory_slug/:product_slug' element={<Layout><DetailsPage /></Layout>} />
         <Route path="/order/:orderId/:enc" element={<Layout><OrderDetails /></Layout>} />
         <Route path='/checkout' element={<Layout><CheckOut /></Layout>} />
-        <Route path='/*' element={<NotFound />} />
-        <Route path="/admin" element={<LoginForm />} />
+        <Route path='/*' element={<NotFound />} />    
 
-        <Route path="/admin/dashboard" element={<PrivateRoute element={<AdminLayout><AdminDashboard /></AdminLayout>} />} />
+        <Route path="/admin" element={<LoginForm />} />
+        <Route path="/admin/dashboard"  element={<AdminLayout><AdminDashboard /></AdminLayout>}  />
         <Route path="/admin/category" element={<AdminLayout><AdminCategory /> </AdminLayout>} />
         <Route path="/admin/sub-category" element={<AdminLayout><AdminSubCategory /></AdminLayout>} />
         <Route path="/admin/attributes" element={<AdminLayout><AdminAttributes /></AdminLayout>} />

@@ -66,9 +66,9 @@ const CartSidebar = ({ isOpen, closeSidebar }) => {
                                     <Col lg={3} xs={3}>
                                         <font className="main-color"><i className="fa fa-inr"></i>  {item.subTotal}</font>
                                         <br /> <br />
-                                        {/* <button className='btn' onClick={() => handleRemove(item)}>
+                                        <button className='btn' onClick={() => handleRemove(item)}>
                                             <i className="fa fa-times" aria-hidden="true"></i>
-                                        </button> */}
+                                        </button>
                                     </Col>
                                 </Row>
                             ))}
@@ -78,6 +78,7 @@ const CartSidebar = ({ isOpen, closeSidebar }) => {
                         <div className='text-center'>
                             <i className="fa fa-cart-plus mt-5" aria-hidden="true" style={{ fontSize: "80px", color: "#e0e0e0" }}></i>
                             <h4 className='text-center text-dark pt-3'>Cart is empty!</h4>
+                            <Link to="/books" className='btn btn-primary mt-3'>Shop Now</Link>
                         </div>
                     )}
 

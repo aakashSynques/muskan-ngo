@@ -17,12 +17,12 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { fetch } from '../../../../utils';
 
-const ShippAddress = () => {
+    const ShippAddress = ({ show, handleClose, updateShipAddressData }) => {
     const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
     const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
-    const [show, setShow] = useState(false);
-    const handleCloseShip = () => setShow(false);
-    const handleShowShip = () => setShow(true);
+    // const [show, setShow] = useState(false);
+    // const handleCloseShip = () => setShow(false);
+    // const handleShowShip = () => setShow(true);
     const [formData, setFormData] = useState({
         customer_email: '',
         ship_fname: '',
@@ -96,7 +96,8 @@ const ShippAddress = () => {
                 }
                 const response = await fetch('/customer/save-ship-addre', 'POST', body, null);
                 if (response.data) {
-                    handleCloseShip();
+                    updateShipAddressData();  // Call the callback to refresh address data
+                    handleClose();
                 }
             } catch (error) {
                 console.log(error)
@@ -108,16 +109,16 @@ const ShippAddress = () => {
 
     return (
         <div>
-            <h6 className=''>SHIPPING ADDRESS <font className='main-color' onClick={handleShowShip}>( Add ) </font></h6>
+            {/* <h6 className=''>SHIPPING ADDRESS <font className='main-color' onClick={handleShowShip}>( Add ) </font></h6> */}
 
 
             <div
                 className="modal show"
                 style={{ display: 'block', position: 'initial' }}
             >
-                <Modal show={show} size='lg' onHide={handleCloseShip}>
+                <Modal show={show} size='lg' onHide={handleClose}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Shiping Address</Modal.Title>
+                        <Modal.Title>Shipping Address</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <Row>
@@ -269,7 +270,7 @@ const ShippAddress = () => {
                         <Button variant="primary" onClick={handleshipingAdd}>
                             {loading ? 'Wait...' : 'Save Address'}
                         </Button>
-                        <Button variant="secondary" onClick={handleCloseShip}>
+                        <Button variant="secondary" onClick={handleClose}>
                             Close
                         </Button>
                     </Modal.Footer>

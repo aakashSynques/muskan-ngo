@@ -1,6 +1,7 @@
 import React from 'react'
 import { Container, Row, Col, Form, FormControl, Button, Image } from 'react-bootstrap'
 import ReCAPTCHA from 'react-google-recaptcha';
+import CaptchaComponent from '../../component/CaptchaComponent';
 
 
 const DonateNow = () => {
@@ -40,8 +41,7 @@ const DonateNow = () => {
           </Form.Group>
 
           <Form.Group className='mt-5' as={Col} md="6">
-         
-                <ReCAPTCHA sitekey='YOUR_RECAPTCHA_SITE_KEY' />
+          <CaptchaComponent />
           
           </Form.Group>
 
