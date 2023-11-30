@@ -16,7 +16,7 @@ const Collaborations = () => {
                     <p>Home  / Collaborations</p>
                     <Row className='with_aside-border history'>
                         <Col sm={10}>
-                        
+                        <h5 className='text-center pt-5'>Collaborations</h5>
                         </Col>
                         <Col sm={2} className='with_aside-border-left pt-3 '>
                             <h4>About Us</h4>

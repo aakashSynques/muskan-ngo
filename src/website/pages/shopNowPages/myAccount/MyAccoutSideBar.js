@@ -57,7 +57,7 @@ const MyAccountSideBar = () => {
                             Order History
                         </Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to="/account/order-history">
                             Downloads
                         </Link>
@@ -71,7 +71,7 @@ const MyAccountSideBar = () => {
                         <Link to="/account/order-history">
                             Transactions
                         </Link>
-                    </li>
+                    </li> */}
                 </ul>
                 <hr />
                 <h6 className="pb-2 text-uppercase"> <i className="fa fa-address-card main-color"

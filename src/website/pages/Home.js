@@ -35,33 +35,6 @@ const Home = () => {
         </Row>
       </Container>
 
-      {/* Shop now section */}
-      <section className="bg-light py-5 mt-5" >
-        <Container>
-          <Row>
-            <Col lg={12} className="text-center section-title">
-              <h2>Shop Now</h2>
-              <p></p>
-            </Col>
-            <Col lg={4} className="padding-15 pstn-relative">
-              <Link to='/books'>
-                <Image src={require('../assets/images/shopimg1.jpg')} fluid alt="Books" className='w-100' />
-                <h3 className="img-text">Books</h3>
-              </Link>
-
-            </Col>
-            <Col lg={4} className="padding-15 pstn-relative">
-              <Image src={require('../assets/images/shoimg2.jpg')} fluid alt="Diaries" className='w-100' />
-              <h3 className="img-text">Diaries</h3>
-            </Col>
-            <Col lg={4} className="padding-15 pstn-relative">
-              <Image src={require('../assets/images/shopimg3.jpg')} fluid alt="Face Masks" className='w-100' />
-              <h3 className="img-text">Face Masks</h3>
-            </Col>
-          </Row>
-        </Container>
-      </section>
-
 
       <section className="about-section bd-bottom shape circle padding">
         <Container>
@@ -113,12 +86,44 @@ const Home = () => {
         </Container>
       </section>
 
+      {/* Shop now section */}
+      <section className="bg-light py-5 mt-5" >
+        <Container>
+          <Row>
+            <Col lg={12} className="text-center section-title">
+              <h2>Shop Now</h2>
+              <p></p>
+            </Col>
+            <Col lg={2}></Col>
+            <Col lg={4} className="padding-15 pstn-relative">
+              <Link to='/books'>
+                <Image src={require('../assets/images/shopimg1.jpg')} fluid alt="Books" className='w-100' />
+                <h3 className="img-text">Books</h3>
+              </Link>
+
+            </Col>
+            <Col lg={4} className="padding-15 pstn-relative">
+              <Image src={require('../assets/images/shoimg2.jpg')} fluid alt="Diaries" className='w-100' />
+              <h3 className="img-text">Diaries</h3>
+            </Col>
+            {/* <Col lg={4} className="padding-15 pstn-relative">
+              <Image src={require('../assets/images/shopimg3.jpg')} fluid alt="Face Masks" className='w-100' />
+              <h3 className="img-text">Face Masks</h3>
+            </Col> */}
+            <Col lg={2}></Col>
+          </Row>
+        </Container>
+      </section>
+
+
+
+
 
       <section className='bg-light p70'>
         <Container>
           <Row>
             <Col lg={12} className="text-center section-title">
-              <h2>Our Happy Faces</h2>
+              <h2>Muskaan's YouTube Channel</h2>
             </Col>
           </Row>
           <Row>
@@ -148,7 +153,7 @@ const Home = () => {
               <iframe
                 width="100%"
                 height="315"
-                src="https://www.youtube.com/embed/Y8MH3x2wxbo?si=Y1uAxhV01g5Pc7zL"
+                src="https://www.youtube.com/embed/nK6NuHGeDrg?si=y1k8Wjgo5zPq3T7m"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -157,7 +162,7 @@ const Home = () => {
             </Col>
           </Row>
           <div className="col-lg-12 text-center section-title">
-            <a href="https://www.youtube.com/@muskaanbhopal/videos" target="_blank" className="btn-1">See more</a>
+            <a href="https://www.youtube.com/@muskaanbhopal" target="_blank" className="btn-1">See more</a>
           </div>
         </Container>
       </section>

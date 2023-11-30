@@ -50,10 +50,19 @@ const Internship = () => {
             newErrors.phoneNo = 'Please enter a valid 10-digit phone number';
         }
         if (!formData.address.trim()) {
-            newErrors.address = 'City is required';
+            newErrors.address = 'Address is required';
         }
         if (!formData.city.trim()) {
-            newErrors.city = 'Address is required';
+            newErrors.city = 'City is required';
+        }
+        if (!formData.pincode.trim()) {
+            newErrors.pincode = 'Pin Code is required';
+        }
+        if (!formData.state.trim()) {
+            newErrors.state = 'State is required';
+        }
+        if (!formData.file.trim()) {
+            newErrors.file = 'File is required';
         }
         if (!captchaValue) {
             newErrors.captcha = 'Please complete the reCAPTCHA';

@@ -13,7 +13,6 @@ const Login = () => {
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
-    // const dispatch = useDispatch();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -22,15 +21,6 @@ const Login = () => {
             verifyToken(token);
         }
     }, []);
-
-
-
-    // const handleLogout = () => {
-    //     localStorage.removeItem('muskan_token');
-    //     localStorage.removeItem('muskan_token_data');
-
-    // };
-
     const verifyToken = async (token) => {
         try {
             const response = await fetch("/customer/verify", "post", null, {

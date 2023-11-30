@@ -192,8 +192,19 @@ const CheckOut = () => {
                 setOrderPlace(response.data);
                 console.error('Failed to place the order');
             }
-        } catch (err) {
-            console.error('An error occurred:', err);
+        }
+        //  catch (err) {
+        //     console.error('An error occurred:', err);
+     catch (error) {
+        if (error.response && error.response.data && error.response.data.message) {
+          setErrorMessage(<font color="red"><b>{error.response.data.message}</b></font>);
+        } else if (error && error.message) {
+          setErrorMessage(<font color="red"><b>{error.message}</b></font>);
+        } else {
+          setErrorMessage(<font color="red"><b>Something went wrong.</b></font>);
+        }
+      
+
         } finally {
             setIsLoading(false); // Reset loading state
         }
@@ -530,8 +541,8 @@ const CheckOut = () => {
 
 
                                 <Row>
-                                    <Col sm={6} className='text-center p-3'>
-                                        <p><font color="red" ><b>{errorMessage}</b></font></p>
+                                    <Col sm={6} className=' p-3'>
+                                    <font color="red" size='2' >{errorMessage}</font>
                                     </Col>
                                     <Col sm={6} className='text-end'>
                                         <Button

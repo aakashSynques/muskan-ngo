@@ -72,47 +72,47 @@ const CartItems = () => {
                         <div className='pt-4'>
                             <h3 style={{ fontWeight: "500" }}>Cart</h3>
                         </div>
-                        <Row className='mt-4 pb-2 border-b'>
-                            <Col sm={5}>
+                        <Row className='pt-3 d-none d-lg-flex'>
+                            <Col lg={5}>
                                 <b> Product Name</b>
                             </Col>
-                            <Col sm={3}>
+                            <Col lg={2}>
                                 <b>Unit Price</b>
                             </Col>
-                            <Col sm={2}>
+                            <Col lg={2}>
                                 <b>Quantity</b>
                             </Col>
-                            <Col sm={1}>
+                            <Col lg={2}>
                                 <b>SubTotal</b>
                             </Col>
-                            <Col sm={1}></Col>
+                            <Col lg={1}></Col>
                         </Row>
                         {cart.map((item, index) => (
                             <Row key={index} className='py-4 border-b'>
-                                <Col sm={5}>
+                                <Col sm={5} xs={12}>
                                     <Row>
-                                        <Col sm={3}>
+                                        <Col sm={3} xs={3}>
                                             <img src={item.product_thumbnail} alt="" className='w-100' />
                                         </Col>
-                                        <Col sm={9} className='pt-3'>
+                                        <Col sm={9} xs={9} className='pt-3'>
                                             <p>{item.product_name}</p>
                                         </Col>
                                     </Row>
                                 </Col>
-                                <Col sm={2} className='pt-4'>
+                                <Col sm={2} xs={3} className='pt-4'>
                                     <span className='main-color'>
                                         <i className="fa fa-inr"></i> {item.product_MSP}
                                     </span>
                                 </Col>
-                                <Col sm={2} className='pt-4'>
+                                <Col sm={2} xs={3} className='pt-4'>
                                     <button className='btn p-0 font-14' onClick={() => handleDecrement(item)}>-</button>
                                     <span className='px-3'> {item.quantity}</span>
                                     <button className='btn p-0' onClick={() => handleIncrement(item)}>+</button>
                                 </Col>
-                                <Col sm={2} className='pt-4'>
+                                <Col sm={2} xs={3} className='pt-4'>
                                     <font> <i className="fa fa-inr"></i> {(parseFloat(item.subTotal)).toFixed(2)}</font>
                                 </Col>
-                                <Col sm={1} className='pt-4'>
+                                <Col sm={1} xs={1} className='pt-4'>
                                     <button className='btn' onClick={() => handleRemove(item)}>
                                         <i className="fa fa-times" aria-hidden="true"></i>
                                     </button>
@@ -120,7 +120,39 @@ const CartItems = () => {
                             </Row>
                         ))
                         }
+                        {/* 
+
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Unit Price</th>
+                                    <th scope="col">Quantity</th>
+                                    <th scope="col">SubTotal</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {cart.map((item, index) => (
+                                    <tr key={index}>
+                                        <td> <img src={item.product_thumbnail} alt="" className='w-100' /></td>
+                                        <td><i className="fa fa-inr"></i> {item.product_MSP}</td>
+                                        <td>
+                                            <button className='btn p-0 font-14' onClick={() => handleDecrement(item)}>-</button>
+                                            <span className='px-3'> {item.quantity}</span>
+                                            <button className='btn p-0' onClick={() => handleIncrement(item)}>+</button>
+                                        </td>
+                                        <td>    <font> <i className="fa fa-inr"></i> {(parseFloat(item.subTotal)).toFixed(2)}</font></td>
+                                    </tr>
+                                ))
+                                }
+
+                            </tbody>
+                        </table> */}
+
                     </Col>
+
+
+
                     <Col sm={4} className='px-4'>
                         <div className='mt-2'>
                             <h6 className='main-color f-w-8'><b>Order Summary</b></h6>

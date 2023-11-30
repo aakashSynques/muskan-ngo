@@ -57,7 +57,7 @@ const Policies = () => {
                                         <Image
                                             src={require('../../assets/images/hr.png')} alt="" className='w-100 rounded-circle  px-5 py-3' />
                                         <div className='text-center '>
-                                            <h6>CHILD PROTECTION POLICY</h6>
+                                            <h6>HR POLICY</h6>
                                             <a href={policies3} target="_blank" download>
                                                 <i className="fa fa-download" aria-hidden="true"></i>  Download
                                             </a>

@@ -40,12 +40,12 @@ const MyProfile = () => {
 
         try {
             const response = await fetch('/customer/update-profile', 'POST', body, null);
-
             if (response) {
-                // Update local storage data
+                // Update local storage data              
+                handleClose();
                 const updatedTokenData = { ...parsedTokenData, ...formData };
                 localStorage.setItem("muskan_token_data", JSON.stringify(updatedTokenData));
-                handleClose();
+        
                 setError(null); // Clear any previous errors
             } else {
                 setError('Profile update failed. Please try again.');
@@ -102,12 +102,12 @@ const MyProfile = () => {
                                                     {parsedTokenData.customer_mobile}
                                                 </td>
                                             </tr>
-                                            <tr>
+                                            {/* <tr>
                                                 <td>Address :</td>
                                                 <td>
                                                     {parsedTokenData.customer_address}
                                                 </td>
-                                            </tr>
+                                            </tr> */}
                                         </tbody>
                                     </table>
                                 </div>
@@ -164,7 +164,7 @@ const MyProfile = () => {
                                     readOnly
                                 />
                             </Form.Group>
-
+{/* 
                             <Form.Group className="mb-3">
                                 <Form.Label>Address</Form.Label>
                                 <Form.Control
@@ -173,7 +173,7 @@ const MyProfile = () => {
                                     value={formData.customer_address}
                                     onChange={handleInputChange}
                                 />
-                            </Form.Group>
+                            </Form.Group> */}
                         </Row>
                     </Form>
                 </Modal.Body>

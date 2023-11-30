@@ -49,17 +49,17 @@ function HeaderTop() {
                   <i className="fa fa-envelope"></i> muskaan@muskaan.org
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a href="#" className='text-white text-decoration-none'>
                   <i className="fa fa-phone"></i> +91 74052 97103
                 </a>
-              </li>
+              </li> */}
             </ul>
           </Col>
           <Col lg={4} sm={4} xs={4} className="text-end d-none d-md-block">
-            <Link to='/connect' className="default-btn text-white text-decoration-none">
+            {/* <Link to='/connect' className="default-btn text-white text-decoration-none">
               DONATE NOW <i className="fa fa-money"></i>
-            </Link>
+            </Link> */}
           </Col>
         </Row>
       </Container>

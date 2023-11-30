@@ -43,7 +43,7 @@ const CartSidebar = ({ isOpen, closeSidebar }) => {
                 <button className='btn button-toggle' onClick={closeSidebar}>
                     <i className="fa fa-times" aria-hidden="true"></i>
                 </button>
-                <h6 className='text-center py-2'>Total Item (0)</h6>
+                <h6 className='text-center py-2'>Total Item</h6>
             </div>
             <div className='cart-drawer'>
                 <Container>

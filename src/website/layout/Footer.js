@@ -53,7 +53,8 @@ const Footer = () => {
                   <h6>Corporate address</h6>
                   <p>Muskaan, Plot No. 264-65, Behind Canara Bank, Neelbad, Bhopal, India – 462 044</p>
                   <h6>Connect with us</h6>
-                  <p>For any enquiry call us at: +91 7405297103<br />
+                  <p>
+                    {/* For any enquiry call us at: +91 7405297103<br /> */}
                     Email: muskaan@muskaan.org</p>
                 </Col>
               </Row>

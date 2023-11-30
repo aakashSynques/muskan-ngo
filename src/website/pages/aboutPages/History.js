@@ -7,8 +7,8 @@ const History = () => {
   return (
     <>
       <div className='connect-bg fixed-bg'>
-        <Container className='text-center'>
-          {/* <h1>Connect</h1> */}
+        <Container className='text-center text-white'>
+          <h1>History</h1>
         </Container>
       </div>
       <div className='bgpettern pb-5'>

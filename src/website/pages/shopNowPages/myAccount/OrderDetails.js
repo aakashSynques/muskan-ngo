@@ -38,6 +38,8 @@ const OrderDetails = () => {
         return formattedDate;
     };
 
+
+
     return (
         <>
             <hr />
@@ -64,7 +66,11 @@ const OrderDetails = () => {
                                         <h5>Order Info</h5>
                                         <tr> Order No  : {orderData.order_no}</tr>
                                         <tr>Order Date : {formatDate(orderData.order_datetime)}</tr>
+
                                         <tr>Order Status : {orderData.order_status_name}</tr>
+
+
+
                                         {orderData.invoice_no != "" &&
                                             <tr>Invoice No :  <a href={`${BASE_URL}/order/invoice/${orderId}/${CryptoJS.SHA1(orderId)}`} target='_black'>{orderData.invoice_no}</a></tr>
                                         }

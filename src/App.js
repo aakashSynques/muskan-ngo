@@ -89,19 +89,22 @@ function App() {
         <Route path='/account/login' element={<Layout><Login /></Layout>} />
         <Route path='/account/register' element={<Layout><Register /></Layout>} />
         <Route path='/account/forgotPwd' element={<Layout><ForgotPassword /></Layout>} />
+
         <Route path='/account/addressbook' element={<PrivateRoute element={<Layout><AddressBook /></Layout>} />} />
         <Route path='/account/order-history' element={<PrivateRoute element={<Layout><OrderHistory /></Layout>} />} />
         <Route path='/account/change-password' element={<PrivateRoute element={<Layout><ChangePwd /></Layout>} />} />
-        <Route path='/account/myprofile' element={<Layout><MyProfile /></Layout>} />
+        <Route path='/account/myprofile' element={<PrivateRoute element={<Layout><MyProfile /></Layout>} />} />
+
         <Route path="/:category_slug" element={<Layout><SubCategroy /></Layout>} />
         <Route path='/:category_slug/:subcategory_slug' element={<Layout><SubCategroy /></Layout>} />
         <Route path='/:category_slug/:subcategory_slug/:product_slug' element={<Layout><DetailsPage /></Layout>} />
         <Route path="/order/:orderId/:enc" element={<Layout><OrderDetails /></Layout>} />
         <Route path='/checkout' element={<Layout><CheckOut /></Layout>} />
-        <Route path='/*' element={<NotFound />} />    
 
-        <Route path="/admin" element={<LoginForm />} />
-        <Route path="/admin/dashboard"  element={<AdminLayout><AdminDashboard /></AdminLayout>}  />
+        <Route path='/*' element={<NotFound />} />
+
+        {/* <Route path="/admin" element={<LoginForm />} />
+        <Route path="/admin/dashboard" element={<AdminLayout><AdminDashboard /></AdminLayout>} />
         <Route path="/admin/category" element={<AdminLayout><AdminCategory /> </AdminLayout>} />
         <Route path="/admin/sub-category" element={<AdminLayout><AdminSubCategory /></AdminLayout>} />
         <Route path="/admin/attributes" element={<AdminLayout><AdminAttributes /></AdminLayout>} />
@@ -109,7 +112,8 @@ function App() {
         <Route path="/admin/products" element={<AdminLayout><AdminProducts /> </AdminLayout>} />
         <Route path="/admin/:order_status/orders" element={<AdminLayout><AdminOrders /> </AdminLayout>} />
         <Route path="/admin/:order_status/orders/:customer_id" element={<AdminLayout><AdminOrders /> </AdminLayout>} />
-        <Route path="/admin/order/:cust_order_id/:enc" element={<AdminLayout><AdminOrderDetails /> </AdminLayout>} />
+        <Route path="/admin/order/:cust_order_id/:enc" element={<AdminLayout><AdminOrderDetails /> </AdminLayout>} /> */}
+
       </Routes>
     </BrowserRouter>
   );

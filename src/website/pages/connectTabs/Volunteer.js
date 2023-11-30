@@ -130,7 +130,7 @@ const Volunteer = () => {
                     </p>
                   </div>
                 </div>
-                <div className="elementor-icon-box-wrapper d-flex  pt-4 col-sm-6">
+                <div className="elementor-icon-box-wrapper d-flex  col-sm-6">
                   <div className="main-color pe-3">
                     <i className="fa fa-envelope" aria-hidden="true" style={{ fontSize: "28px" }}></i>
                   </div>

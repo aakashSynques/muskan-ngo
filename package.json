@@ -5,6 +5,8 @@
   "homepage": "http://muskaanapi.q4hosting.com/",
   "dependencies": {
     "@hookform/resolvers": "^3.3.2",
+    "@react-pdf-viewer/core": "^3.12.0",
+    "@react-pdf-viewer/default-layout": "^3.12.0",
     "@reduxjs/toolkit": "^1.9.7",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
