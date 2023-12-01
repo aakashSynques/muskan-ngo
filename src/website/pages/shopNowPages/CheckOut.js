@@ -190,11 +190,8 @@ const CheckOut = () => {
                 displayRazorpay(response.data.data.order, response.data.data.RAZORPAY_KEY_ID);
             } else {
                 setOrderPlace(response.data);
-                console.error('Failed to place the order');
             }
         }
-        //  catch (err) {
-        //     console.error('An error occurred:', err);
      catch (error) {
         if (error.response && error.response.data && error.response.data.message) {
           setErrorMessage(<font color="red"><b>{error.response.data.message}</b></font>);

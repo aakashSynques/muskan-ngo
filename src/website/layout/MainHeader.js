@@ -1,5 +1,3 @@
-
-
 import React, { useEffect, useState } from 'react';
 import { Container, Navbar, Nav, NavDropdown, Badge, Row, Col } from 'react-bootstrap';
 import logo from '../../Muskaan-logo.png';
@@ -124,7 +122,7 @@ const MainHeader = () => {
                                     </NavDropdown.Item>
 
                                     <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="education" as={Link} to="/about-us/accounts" className='py-0'>
+                                        <Nav.Link eventKey="education" as={Link} to="/about-us/financial/" className='py-0'>
                                             Financials
                                         </Nav.Link>
                                     </NavDropdown.Item>

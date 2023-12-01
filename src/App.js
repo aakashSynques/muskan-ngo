@@ -53,6 +53,7 @@ import AdminAddBlog from "./admin/pages/AdminAddBlog";
 import AdminProducts from "./admin/pages/AdminProducts";
 import AdminOrders from "./admin/pages/AdminOrders";
 import AdminOrderDetails from "./admin/pages/AdminOrderDetails";
+import Financial from './website/pages/aboutPages/Financial';
 
 const AdminLayout = ({ children }) => {
   return (
@@ -72,7 +73,7 @@ function App() {
         <Route path='/about-us/mission/' element={<Layout><Mission /></Layout>} />
         <Route path='/about-us/who-we-work-with/' element={<Layout><WhoWeWork /></Layout>} />
         <Route path='/about-us/policies/' element={<Layout><Policies /></Layout>} />
-        <Route path='/about-us/accounts/' element={<Layout><Accounts /></Layout>} />
+        <Route path='/about-us/financial/' element={<Layout><Financial /></Layout>} />
         <Route path='/about-us/our-team/' element={<Layout><OurTeam /></Layout>} />
         <Route path='/about-us/collaborations/' element={<Layout><Collaborations /></Layout>} />
         <Route path='/connect' element={<Layout><Connect /></Layout>} />

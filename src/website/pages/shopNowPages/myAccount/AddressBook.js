@@ -181,15 +181,12 @@ const AddressBook = () => {
     const handleShowBillingModal = () => {
         setShowBillingModal(true);
     };
-
     const handleCloseBillingModal = () => {
         setShowBillingModal(false);
     };
-
     const handleBillingAdd = async () => {
         getAddressData();
     };
-
     // shipping
     const handleShowShippingModal = () => {
         setShowShippingModal(true);
@@ -249,9 +246,7 @@ const AddressBook = () => {
                                         </>
                                     )}
                                 </div>
-
-
-
+                                
                                 <div className="mt-4 bg-light p-4 border">
                                     {hasShippingAddress ? (
                                         <>

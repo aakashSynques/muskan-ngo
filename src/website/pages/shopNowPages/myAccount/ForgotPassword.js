@@ -2,43 +2,50 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, CardBody } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { fetch } from '../../../../utils';
+import LoginSideNav from './LoginSideNav';
 
 const ForgotPassword = () => {
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
   const [email, setEmail] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
 
   const forgetPassword = async () => {
     const body = {
       customer_email: email,
     };
-
     try {
       setLoading(true);
       const response = await fetch(
         '/customer/forget',
         'POST',
-        JSON.stringify(body),
+        body,
         null
       );
-      const data = await response.json();
-      if (response.ok) {
-        setMessage(data.message);
-      } else {
-        setMessage(`Error: ${data.message}`);
+      if (response) {
+        setSuccessMessage(response.data.message);
       }
-    } catch (error) {
-      console.error('Error:', error.message);
+    }
+    catch (error) {
+      if (error.response && error.response.data && error.response.data.message) {
+        setErrorMessage(<font color="red"><b>{error.response.data.message}</b></font>);
+      } else if (error && error.message) {
+        setErrorMessage(<font color="red"><b>{error.message}</b></font>);
+      } else {
+        setErrorMessage(<font color="red"><b>Something went wrong.</b></font>);
+      }
     } finally {
-      setLoading(false);
+      setLoading(false); // Reset loading state
     }
   };
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setSuccessMessage('');
+    setErrorMessage('');
     await forgetPassword();
   };
-
 
 
 
@@ -47,8 +54,8 @@ const ForgotPassword = () => {
       <hr />
       <Container >
         <font> Home › My Accoun › Forgot Password</font>
-        <Row className='pt-5'>
-          <Col sm={5}>
+        <Row className='pt-4'>
+          {/* <Col sm={4}>
             <Card className='mb-3' style={{ border: 'none' }}>
               <CardBody>
                 <h5 className='border-bottom pb-2 text-uppercase'>New Customer</h5>
@@ -61,14 +68,12 @@ const ForgotPassword = () => {
                 </Link>
               </CardBody>
             </Card>
-          </Col>
+          </Col> */}
 
-
-
-
-          <Col sm={7} className='pe-lg-5 pe-md-1'>
+          <Col sm={9} className='pe-lg-5 pe-md-1'>
             <div className='pe-lg-5 pe-xs-1'>
-              <h3 className='pb-2 text-uppercase main-color'>Forgot Your Password?</h3>
+              <h5 className='pb-2 text-uppercase'>Forgot Your Password?</h5>
+              <hr />
               <font className='pb-2'>
                 Enter the e-mail address associated with your account. Click submit to have a
                 password reset link e-mailed to you.
@@ -91,8 +96,12 @@ const ForgotPassword = () => {
                 </Form.Group>
 
                 <Form.Group as={Row} className='mb-3'>
-                  <Form.Label column sm='2'></Form.Label>
-                  <Col sm='10'>
+                  <Form.Label column sm='8'>
+                    <span className="text-success">{successMessage}</span>
+                    <span className="text-danger">{errorMessage}</span>
+
+                  </Form.Label>
+                  <Col sm='4'>
                     <div className='text-end'>
                       <Button
                         type='submit'
@@ -107,6 +116,9 @@ const ForgotPassword = () => {
                 </Form.Group>
               </Form>
             </div>
+          </Col>
+          <Col sm={3}>
+            <LoginSideNav />
           </Col>
 
         </Row>

@@ -3,28 +3,37 @@ import { Container, Row, Col, Button, Card, CardBody, Form } from 'react-bootstr
 import { Link, useNavigate } from 'react-router-dom'
 import MyAccoutSideBar from './MyAccoutSideBar'
 import { fetch } from '../../../../utils'
+import LoginSideNav from './LoginSideNav'
 const Register = () => {
     const navigate = useNavigate();
-        const [formData, setFormData] = useState({
+    const [registrationMessage, setRegistrationMessage] = useState('');
+    const [errorMessage, setErrorMessage] = useState("");
+    const [passwordsMatch, setPasswordsMatch] = useState(true);
+    const [formData, setFormData] = useState({
         customer_password: '',
+        confirmPassword: '',
         customer_mobile: '',
         customer_address: '',
         customer_email: '',
         customer_fname: '',
         customer_lname: '',
     });
-    const [registrationMessage, setRegistrationMessage] = useState('');
     const registerUser = async (e) => {
         e.preventDefault();
-        if (Object.values(formData).some((value) => value === '')) {
-            setRegistrationMessage('Please fill in all fields.');
+        // Assuming you have a state variable passwordsMatch
+        // Check if passwords match before submitting the form
+        if (formData.customer_password !== formData.confirmPassword) {
+            setPasswordsMatch(false);
+            // setRegistrationMessage('Passwords do not match');
             return;
         }
+
         try {
             const body = {
                 customer_password: formData.customer_password,
+                confirmPassword: formData.confirmPassword,
                 customer_mobile: formData.customer_mobile,
-                customer_address: formData.customer_address,
+                customer_address: "",
                 customer_email: formData.customer_email,
                 customer_fname: formData.customer_fname,
                 customer_lname: formData.customer_lname,
@@ -34,15 +43,20 @@ const Register = () => {
                 const token = response.data.token; // Assuming the response contains a unique token
                 setRegistrationMessage(response.message); // Display the response message
                 navigate("/account/login");
+
             } else {
                 setRegistrationMessage(response.message);
             }
-        } catch (err) {
-            setRegistrationMessage('Email is already in use.');
+        } catch (error) {
+            if (error.response && error.response.data && error.response.data.message) {
+                setErrorMessage(<font color="red"><b>{error.response.data.message}</b></font>);
+            } else if (error && error.message) {
+                setErrorMessage(<font color="red"><b>{error.message}</b></font>);
+            } else {
+                setErrorMessage(<font color="red"><b>Something went wrong.</b></font>);
+            }
         }
     };
-
-
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -53,18 +67,20 @@ const Register = () => {
             <hr />
             <Container>
                 <font> Home › My Accoun › Register</font>
-                <Row className='pt-5'>
+                <Row className='pt-4'>
                     <Col sm={9} >
-                        <Card className='mb-3 pe-3' style={{ border: 'none' }}>
-                            <CardBody className='pe-4'>
-                                <h3 className='border-bottom pb-2 text-uppercase main-color'>Register Account</h3>
-                                <p className='f-w-6'>Your Personal Details</p>
-                                <Form className='pt-4' onSubmit={registerUser}>
+                        <Card className='mb-3' style={{ border: 'none' }}>
+                            <CardBody>
+                                <h5 className='border-bottom pb-2 text-uppercase'>Register Account</h5>
+                                <p>If you already have an account with us, please login at the login page.</p>
+
+                                <h5 >Your Personal Details</h5> <hr />
+                                <Form className='pt-2' onSubmit={registerUser}>
                                     <Form.Group as={Row} className="mb-3">
-                                        <Form.Label column sm="2">
+                                        <Form.Label column sm="3" className='text-end-lg text-start-sm'>
                                             First Name <span className="text-danger">*</span>
                                         </Form.Label>
-                                        <Col sm="10">
+                                        <Col sm="9">
                                             <div className="input-group">
                                                 <div className="input-group-text" style={{ background: "#7e1502" }}>
                                                     <i className="fa fa-user-o text-white" aria-hidden="true"></i>
@@ -80,10 +96,10 @@ const Register = () => {
                                         </Col>
                                     </Form.Group>
                                     <Form.Group as={Row} className="mb-3">
-                                        <Form.Label column sm="2">
+                                        <Form.Label column sm="3">
                                             Last Name <span className="text-danger">*</span>
                                         </Form.Label>
-                                        <Col sm="10">
+                                        <Col sm="9">
                                             <div className="input-group">
                                                 <div className="input-group-text" style={{ background: "#7e1502" }}>
                                                     <i className="fa fa-user-o text-white" aria-hidden="true"></i>
@@ -100,10 +116,10 @@ const Register = () => {
                                     </Form.Group>
 
                                     <Form.Group as={Row} className="mb-3">
-                                        <Form.Label column sm="2">
+                                        <Form.Label column sm="3">
                                             Email <span className="text-danger">*</span>
                                         </Form.Label>
-                                        <Col sm="10">
+                                        <Col sm="9">
                                             <div className="input-group">
                                                 <div className="input-group-text" style={{ background: "#7e1502" }}>
                                                     <i className="fa fa-envelope-o text-white" aria-hidden="true"></i>
@@ -120,10 +136,10 @@ const Register = () => {
                                     </Form.Group>
 
                                     <Form.Group as={Row} className="mb-3">
-                                        <Form.Label column sm="2">
+                                        <Form.Label column sm="3">
                                             Phone <span className="text-danger">*</span>
                                         </Form.Label>
-                                        <Col sm="10">
+                                        <Col sm="9">
                                             <div className="input-group">
                                                 <div className="input-group-text" style={{ background: "#7e1502" }}>
                                                     <i className="fa fa-phone text-white" aria-hidden="true"></i>
@@ -134,17 +150,18 @@ const Register = () => {
                                                     value={formData.customer_mobile}
                                                     onChange={handleChange}
                                                     placeholder="Mobile Number"
-
                                                 />
                                             </div>
                                         </Col>
                                     </Form.Group>
 
+
+                                    <h5 className='pt-4'>Your Password</h5> <hr />
                                     <Form.Group as={Row} className="mb-3">
-                                        <Form.Label column sm="2">
+                                        <Form.Label column sm="3">
                                             Password <span className="text-danger">*</span>
                                         </Form.Label>
-                                        <Col sm="10">
+                                        <Col sm="9">
                                             <div className="input-group">
                                                 <div className="input-group-text" style={{ background: "#7e1502" }}>
                                                     <i className="fa fa-lock text-white" aria-hidden="true"></i>
@@ -159,37 +176,36 @@ const Register = () => {
                                             </div>
                                         </Col>
                                     </Form.Group>
-
                                     <Form.Group as={Row} className="mb-3">
-                                        <Form.Label column sm="2">
-                                            Address
+                                        <Form.Label column sm="3">
+                                            Password Confirm <span className="text-danger">*</span>
                                         </Form.Label>
-                                        <Col sm="10">
+                                        <Col sm="9">
                                             <div className="input-group">
                                                 <div className="input-group-text" style={{ background: "#7e1502" }}>
-                                                    <i className="fa fa-map-marker text-white" aria-hidden="true"></i>
+                                                    <i className="fa fa-lock text-white" aria-hidden="true"></i>
                                                 </div>
-                                                <Form.Control as="textarea" rows={2}
-                                                    name="customer_address"
-                                                    value={formData.customer_address}
+                                                <Form.Control
+                                                    type="password"
+                                                    name="confirmPassword"
+                                                    value={formData.confirmPassword}
                                                     onChange={handleChange}
-                                                    placeholder="Address"
+                                                    placeholder="Confirm Password"
                                                 />
                                             </div>
+                                            {!passwordsMatch && <p className="text-danger">Passwords do not match</p>}
                                         </Col>
                                     </Form.Group>
-
                                     <Form.Group as={Row} className="mb-3">
-                                        <Form.Label column sm="2">
-
+                                        <Form.Label column sm="3">
                                         </Form.Label>
-                                        <Col sm="10">
+                                        <Col sm="9">
                                             <p className='pt-1 m-0 p-0'>Already have an account ? <Link to='/account/login'>Login</Link>  </p>
                                             <div className='text-end'>
-                                                {registrationMessage && (
-                                                    <p>{registrationMessage}</p>
 
-                                                )}
+                                                <p className='text-danger'>{registrationMessage}</p>
+                                                <p color="red" size='2' >{errorMessage}</p>
+
                                                 <Button
                                                     type="submit" // Add type="button" to prevent form submission
                                                     variant="primary"
@@ -200,14 +216,13 @@ const Register = () => {
                                             </div>
                                         </Col>
                                     </Form.Group>
-
                                 </Form>
                             </CardBody>
                         </Card>
                     </Col>
-                    {/* <Col sm={3}>
-                        <MyAccoutSideBar />
-                    </Col> */}
+                    <Col sm={3}>
+                        <LoginSideNav />
+                    </Col>
                 </Row>
             </Container>
         </>
@@ -216,89 +231,3 @@ const Register = () => {
 
 export default Register
 
-
-
-// import React, { useState } from 'react';
-// import { Container, Row, Col, Button, Card, CardBody, Form } from 'react-bootstrap';
-// import { Link } from 'react-router-dom';
-// import MyAccoutSideBar from './MyAccoutSideBar';
-// import { fetch } from '../../../../utils';
-
-// const Register = () => {
-//     const [formData, setFormData] = useState({
-//         customer_password: '',
-//         customer_mobile: '',
-//         customer_address: '',
-//         customer_email: '',
-//         customer_fname: '',
-//         customer_lname: '',
-//     });
-//     const [registrationMessage, setRegistrationMessage] = useState('');
-
-//     const registerUser = async (e) => {
-//         e.preventDefault();
-
-//         if (Object.values(formData).some((value) => value === '')) {
-//             setRegistrationMessage('Please fill in all fields.');
-//             return;
-//         }
-//         try {
-//             const body = {
-//                 customer_password: formData.customer_password,
-//                 customer_mobile: formData.customer_mobile,
-//                 customer_address: formData.customer_address,
-//                 customer_email: formData.customer_email,
-//                 customer_fname: formData.customer_fname,
-//                 customer_lname: formData.customer_lname,
-//             };
-//             const response = await fetch('/customer/register', 'POST', body, null);
-//             if (response.data.success) {
-//                 setRegistrationMessage(response.message); // Display the response message
-//                 console.log(response.message);
-//             } else {
-//                 setRegistrationMessage(response.message);
-//                 console.log(response.message);
-//             }
-//         } catch (err) {
-//             setRegistrationMessage(response.message);
-//         }
-//     };
-
-//     const handleChange = (e) => {
-//         const { name, value } = e.target;
-//         setFormData({ ...formData, [name]: value });
-//     };
-
-//     return (
-//         <>
-//             <hr />
-//             <Container>
-//                 <font> Home › My Account › Register</font>
-//                 <Row className="pt-5">
-//                     <Col sm={9}>
-//                         <Card className="mb-3 pe-3" style={{ border: 'none' }}>
-//                             <CardBody className="pe-4">
-//                                 <h3 className="border-bottom pb-2 text-uppercase main-color">Register Account</h3>
-//                                 <p className="f-w-6">Your Personal Details</p>
-//                                 <Form className="pt-4" onSubmit={registerUser}>
-//                                     {/* Form fields here */}
-//                                 </Form>
-//                                 {/* Display the registration message */}
-//                                 {registrationMessage && (
-//                                     <div className="mt-3">
-//                                         <p>{registrationMessage}</p>
-//                                     </div>
-//                                 )}
-//                             </CardBody>
-//                         </Card>
-//                     </Col>
-//                     <Col sm={3}>
-//                         <MyAccoutSideBar />
-//                     </Col>
-//                 </Row>
-//             </Container>
-//         </>
-//     );
-// };
-
-// export default Register;

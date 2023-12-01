@@ -21,19 +21,17 @@ const ChangePwd = () => {
             old_password: old_password,
             new_password: new_password
         };
-
         try {
             setLoading(true);
             const response = await fetch('/customer/change-password', 'POST', body, null);
             if (response) {
+                
                 setPasswordChanged(true);
             } else {
-                setError('Failed to change password'); // Set the error message
-
+                setError('Failed to change password');
             }
         } catch (error) {
-            console.error('Error while making the API request', error);
-            setError('An error occurred while changing the password'); // Set the error message
+            setError('An error occurred while changing the password'); 
 
         } finally {
             setLoading(false);

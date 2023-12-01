@@ -336,7 +336,10 @@ span.date {
         border-right: 1px dashed #c7c2c2;
         padding-right: 20px !important;
     }
-
+    .tab_tabbing a {
+        padding: 0 3px!important;
+        font-size: 14px!important;
+    }
     .font-15 {
         font-size: 15px;
     }
@@ -379,7 +382,10 @@ span.date {
     .circle:before {
         display: none;
     }
-
+    .tab_tabbing ul {
+        list-style: none;
+        padding: 29px 0px!important;
+    }
     .shape:after {
         display: none;
     }
@@ -766,12 +772,12 @@ html {
 }
 
 .tab_tabbing a {
-    float: right;
+    padding: 0 6px;
 }
 
 .tab_tabbing ul {
     list-style: none;
-    padding: 29px 63px;
+    padding: 29px 7px;
 }
 
 .white-bg-tile {

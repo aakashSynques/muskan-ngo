@@ -18,7 +18,7 @@ const AboutSideBar = () => {
                     <Link to='/about-us/who-we-work-with/'>Who We Work With</Link>
                 </li>
                 <li>
-                    <Link to='/about-us/accounts '>Financials</Link>
+                    <Link to='/about-us/financial/'>Financials</Link>
                 </li>
                 <li>
                     <Link to='/about-us/policies/'>Policies</Link>

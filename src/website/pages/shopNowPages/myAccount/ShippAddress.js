@@ -127,7 +127,6 @@ import { fetch } from '../../../../utils';
                                 <FormControl
                                     type="text"
                                     name="ship_fname"
-                                    placeholder='First Name'
                                     value={formData.ship_fname}
                                     onChange={handleInputChange}
                                 />
@@ -141,7 +140,6 @@ import { fetch } from '../../../../utils';
                                 <FormControl
                                     type="text"
                                     name="ship_lname"
-                                    placeholder='Last Name'
                                     value={formData.ship_lname}
                                     onChange={handleInputChange}
                                 />
@@ -155,7 +153,6 @@ import { fetch } from '../../../../utils';
                                 <FormControl
                                     type="text"
                                     name="ship_company"
-                                    placeholder='Company'
                                     value={formData.ship_company}
                                     onChange={handleInputChange}
                                 />
@@ -166,11 +163,10 @@ import { fetch } from '../../../../utils';
 
 
                             <FormGroup as={Col} md="6" className='py-1'>
-                                <Form.Label>Address 1</Form.Label>
+                                <Form.Label>Address</Form.Label>
                                 <FormControl
                                     type="text"
                                     name="ship_adderss_one"
-                                    placeholder='Address 1'
                                     value={formData.ship_adderss_one}
                                     onChange={handleInputChange}
                                 />
@@ -181,11 +177,10 @@ import { fetch } from '../../../../utils';
 
 
                             <FormGroup as={Col} md="6" className='py-1'>
-                                <Form.Label>Address 2</Form.Label>
+                                <Form.Label>Apartment, suite, unit, etc. (optional)</Form.Label>
                                 <FormControl
                                     type="text"
                                     name="ship_adderss_two"
-                                    placeholder='Address 2'
                                     value={formData.ship_adderss_two}
                                     onChange={handleInputChange}
                                 />
@@ -199,7 +194,6 @@ import { fetch } from '../../../../utils';
                                 <FormControl
                                     type="number"
                                     name="ship_pincode"
-                                    placeholder='Pin code'
                                     value={formData.ship_pincode}
                                     onChange={handleInputChange}
                                 />
@@ -213,7 +207,6 @@ import { fetch } from '../../../../utils';
                                 <FormControl
                                     type="text"
                                     name="ship_city"
-                                    placeholder='City'
                                     value={formData.ship_city}
                                     onChange={handleInputChange}
                                 />
@@ -227,7 +220,6 @@ import { fetch } from '../../../../utils';
                                 <FormControl
                                     type="text"
                                     name="ship_state"
-                                    placeholder='State'
                                     value={formData.ship_state}
                                     onChange={handleInputChange}
                                 />
@@ -241,7 +233,6 @@ import { fetch } from '../../../../utils';
                                 <FormControl
                                     type="text"
                                     name="ship_country"
-                                    placeholder='Country'
                                     value={formData.ship_country}
                                     onChange={handleInputChange}
                                 />
@@ -255,7 +246,6 @@ import { fetch } from '../../../../utils';
                                 <FormControl
                                     type="number"
                                     name="ship_mobile"
-                                    placeholder='Mobile'
                                     value={formData.ship_mobile}
                                     onChange={handleInputChange}
                                 />

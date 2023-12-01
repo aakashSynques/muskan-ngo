@@ -11,6 +11,11 @@ const MyAccountSideBar = () => {
     //     localStorage.removeItem("muskan_token_data");
     //     localStorage.removeItem("muskan_token");
     // };
+
+
+    const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
+    const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
+
     const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('muskan_token');
@@ -21,7 +26,7 @@ const MyAccountSideBar = () => {
     return (
         <div className="">
             <div className="list-group accolumn px-3">
-                {/* <h5>{parsedTokenData ? `${parsedTokenData.customer_fname} ${parsedTokenData.customer_lname}` : 'N/A'}</h5> */}
+                <h5>{parsedTokenData ? `${parsedTokenData.customer_fname} ${parsedTokenData.customer_lname}` : 'N/A'}</h5>
                 <font size="2">Good to see you again</font>
             </div>
             <div className="list-group accolumn px-3 mt-3">

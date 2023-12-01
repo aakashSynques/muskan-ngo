@@ -3,6 +3,7 @@ import { Container, Row, Col, Button, Card, CardBody, Form } from 'react-bootstr
 import { Link } from 'react-router-dom';
 import { fetch } from '../../../../utils';
 import { useNavigate } from 'react-router-dom';
+import LoginSideNav from './LoginSideNav';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { setToken } from '../../../../reducers/tokenSlice';
 
@@ -98,10 +99,10 @@ const Login = () => {
             <hr />
             <Container>
                 <p> Home › My Account › Login</p>
-                <Row className='pt-5'>
+                <Row className='pt-3'>
                     <Col sm={12}>
                         <Row>
-                            <Col sm={6}>
+                            <Col sm={4}>
                                 <Card className='mb-3' style={{ border: 'none' }}>
                                     <CardBody>
                                         <h5 className='border-bottom pb-2 text-uppercase'>New Customer</h5>
@@ -115,7 +116,7 @@ const Login = () => {
                                     </CardBody>
                                 </Card>
                             </Col>
-                            <Col sm={6}>
+                            <Col sm={5}>
                                 <Card className='mb-3' style={{ border: 'none' }}>
                                     <CardBody>
                                         <h5 className='border-bottom pb-2 text-uppercase'>RETURNING CUSTOMER</h5>
@@ -177,6 +178,9 @@ const Login = () => {
                                         {error && <p className='text-danger'>{error}</p>}
                                     </CardBody>
                                 </Card>
+                            </Col>
+                            <Col sm={3}>
+                                <LoginSideNav />
                             </Col>
                         </Row>
                     </Col>
