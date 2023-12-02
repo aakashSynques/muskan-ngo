@@ -9,6 +9,8 @@ const ForgotPassword = () => {
   const [email, setEmail] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [isEmailValid, setIsEmailValid] = useState(false);
+
 
 
   const forgetPassword = async () => {
@@ -44,6 +46,13 @@ const ForgotPassword = () => {
     e.preventDefault();
     setSuccessMessage('');
     setErrorMessage('');
+
+    if (!email) {
+      // Show an error message or handle the case where the email is empty
+      setErrorMessage(<font color="red"><b>Email is required.</b></font>);
+      return;
+    }
+
     await forgetPassword();
   };
 
@@ -55,20 +64,6 @@ const ForgotPassword = () => {
       <Container >
         <font> Home › My Accoun › Forgot Password</font>
         <Row className='pt-4'>
-          {/* <Col sm={4}>
-            <Card className='mb-3' style={{ border: 'none' }}>
-              <CardBody>
-                <h5 className='border-bottom pb-2 text-uppercase'>New Customer</h5>
-                <p className='f-w-6'>Register Account</p>
-                <p style={{ fontSize: '15px' }}>
-                  By creating an account you will be able to shop faster, be up to date on an order's status, and keep track of the orders you have previously made.
-                </p>
-                <Link className='btn btn-primary' to='/account/register'>
-                  Continue
-                </Link>
-              </CardBody>
-            </Card>
-          </Col> */}
 
           <Col sm={9} className='pe-lg-5 pe-md-1'>
             <div className='pe-lg-5 pe-xs-1'>
@@ -107,8 +102,8 @@ const ForgotPassword = () => {
                         type='submit'
                         variant='primary'
                         className='bg-main-color px-5'
-                        disabled={loading}
-                      >
+                        disabled={loading || !email}  // Disable if loading or email is empty
+                        >
                         {loading ? 'Loading...' : 'Continue'}
                       </Button>
                     </div>

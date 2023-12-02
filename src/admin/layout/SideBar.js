@@ -10,6 +10,7 @@ import {
   Navbar,
 } from "react-bootstrap";
 import TopNavBar from "./TopNavBar";
+import { Link } from "react-router-dom";
 
 const SideBar = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(true); // Start with the sidebar closed
@@ -19,13 +20,18 @@ const SideBar = ({ children }) => {
   };
   const mainContentClassName = `main-content ${sidebarOpen ? "" : " closed"}`;
 
+  const handleLogout = () => {
+    localStorage.removeItem('muskan_token_admin');
+    window.location.href = '/admin';
+  };
+
   return (
     <Container fluid>
       <Row>
         <Col md={2} className={`sidebar ${sidebarOpen ? " open" : ""}`}>
           <div className="position-sticky">
             <Nav defaultActiveKey="/home" className="flex-column text-white">
-              <Nav.Link
+              <Nav.Item
                 href="#"
                 className=" position-absolute top-0 end-0 text-white float-right "
               >
@@ -37,31 +43,43 @@ const SideBar = ({ children }) => {
                 >
                   ☰
                 </button> */}
-              </Nav.Link>
-              <Nav.Link href="#" className="text-white">
-                Dashboard
-              </Nav.Link>
-              <Nav.Link href="/admin/category" className="text-white">
-                Category
-              </Nav.Link>
-              <Nav.Link href="/admin/sub-category" className="text-white">
-                Sub Category
-              </Nav.Link>
-              <Nav.Link href="/admin/attributes" className="text-white">
-                Attributes
-              </Nav.Link>
-              <Nav.Link
-                href="/admin/sub-category-attribute-group"
-                className="text-white"
+              </Nav.Item >
+
+              <Nav.Item className="py-2 px-2">
+                <Link className="text-white py-2" to="/admin/dashboard">Dashboard</Link>
+              </Nav.Item >
+              <Nav.Item className="py-2 px-2">
+                <Link className="text-white py-2" to="/admin/category"> Category</Link>
+              </Nav.Item>
+
+              <Nav.Item className="py-2 px-2">
+                <Link className="text-white py-2" to="/admin/sub-category">Sub Category</Link>
+              </Nav.Item >
+
+              <Nav.Item className="py-2 px-2">
+
+                <Link className="text-white " to="/admin/attributes">Attributes</Link>
+              </Nav.Item >
+
+              <Nav.Item className="py-2 px-2"
               >
-                Sub-Category Attribute Group
-              </Nav.Link>
-              <Nav.Link href="/admin/products" className="text-white">
-                Products
-              </Nav.Link>
-              <Nav.Link href="/admin/2/orders" className="text-white">
-                Orders
-              </Nav.Link>
+                <Link className="text-white py-2" to="/admin/sub-category-attribute-group">Sub-Category Attribute Group</Link>
+
+              </Nav.Item >
+              <Nav.Item className="py-2 px-2">
+                <Link className="text-white py-2" to="/admin/products">Products</Link>
+              </Nav.Item >
+
+              <Nav.Item className="py-2 px-2">
+                <Link className="text-white py-2" to="/admin/2/orders">   Orders</Link>
+              </Nav.Item >
+
+              <Nav.Item className="py-2 px-2">
+                <Link className="text-white py-2" to="/admin" onClick={handleLogout}>
+                  Log Out
+                </Link>
+              </Nav.Item >
+
             </Nav>
           </div>
         </Col>
@@ -85,6 +103,7 @@ const SideBar = ({ children }) => {
                 height="40"
                 className="d-inline-block align-top mx-3"
               />
+              
               Muskaan
             </Navbar.Brand>
 

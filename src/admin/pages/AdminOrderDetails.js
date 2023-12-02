@@ -2,16 +2,17 @@ import React, { useEffect, useState, useCallback } from "react";
 import { Row, Col, Form, Card, Breadcrumb } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 import { fetch } from "../../utils";
+import { BASE_URL } from "../../config";
 
+import CryptoJS from "crypto-js";
 const orderStatusList = [
-  { order_status: 1, order_status_name: "Inserted" },
+  { order_status: 1, order_status_name: "Initiated" },
   { order_status: 2, order_status_name: "Confirm" },
   { order_status: 3, order_status_name: "Cancelled" },
   { order_status: 4, order_status_name: "Dispatched" },
   { order_status: 5, order_status_name: "Delivered" },
   { order_status: 6, order_status_name: "Amount Mismatch" },
 ];
-
 const AdminOrderDetails = () => {
   const { cust_order_id } = useParams();
   const [orderStatus, setOrderStatus] = useState("");
@@ -114,11 +115,15 @@ const AdminOrderDetails = () => {
                   <>
                     <Row className="pt-3">
                       <Col sm={8}>
-                        {" "}
+                        {""}
+
                         <h4>Order : {order.data.order_no}</h4>
-                        {new Date(order.data.order_datetime)
-                          .toLocaleString()
-                          .replace("T", " ")}
+                        {Boolean(order.data.invoice_no)  &&
+                          <h6>Invoice No :  <a href={`${BASE_URL}/order/invoice/${order.data.cust_order_id}/${CryptoJS.SHA1(order.data.cust_order_id)}`} target='_black'>{order.data.invoice_no}</a></h6>
+                        }
+
+                        {new Date(order.data.order_datetime).toLocaleString().replace("T", " ")}
+
                       </Col>
                       <Col sm={4}>
                         <Form.Select
@@ -212,7 +217,7 @@ const AdminOrderDetails = () => {
                                     <td className="text-end">
                                       {" "}
                                       <i className="fa fa-inr"></i>{" "}
-                                      {order.data.order_amount}
+                                      {(parseFloat(order.data.order_amount) - parseFloat(order.data.delivery_charges)).toFixed(2)}
                                     </td>
                                   </tr>
                                   <tr>
@@ -229,11 +234,12 @@ const AdminOrderDetails = () => {
                                       {order.data.order_discount}
                                     </td>
                                   </tr>
+
                                   <tr>
-                                    <td>Shipping</td>
+                                    <td>Delivery</td>
                                     <td className="text-end">
                                       <i className="fa fa-inr"></i>{" "}
-                                      {order.data.shipping_charges}
+                                      {order.data.delivery_charges}
                                     </td>
                                   </tr>
                                   <tr>
@@ -303,27 +309,27 @@ const AdminOrderDetails = () => {
 
 
 
-               
-                            <h5 className="pt-2">Payment</h5>
-                            <tr>
-                              <b>Status </b> :
-                              <font className={`text-xs fw-bold  ${order.data.payment_status_name === "Success" ? "text-success" : "text-danger"}`}  >{order.data.payment_status_name}</font>
-                            </tr>
 
-                            {
-                              order.data.payment_response &&
-                              (<tr>
-                                <b>Method </b> : {order.data.payment_response.method}
-                              </tr>)
-                            }
-                            {
-                              order.data.payment_response &&
-                              (<tr>
-                                <b> transaction ID </b> : {order.data.payment_response.id}
-                              </tr>)
-                            }
+                          <h5 className="pt-2">Payment</h5>
+                          <tr>
+                            <b>Status </b> :&nbsp;
+                            <font className={`text-xs fw-bold  ${order.data.payment_status_name === "Success" ? "text-success" : "text-danger"}`}  >{order.data.payment_status_name}</font>
+                          </tr>
 
-                     
+                          {
+                            order.data.payment_response &&
+                            (<tr>
+                              <b>Method </b> : {order.data.payment_response.method}
+                            </tr>)
+                          }
+                          {
+                            order.data.payment_response &&
+                            (<tr>
+                              <b> transaction ID </b> : {order.data.payment_response.id}
+                            </tr>)
+                          }
+
+
 
 
 

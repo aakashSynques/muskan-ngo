@@ -54,14 +54,31 @@ import AdminProducts from "./admin/pages/AdminProducts";
 import AdminOrders from "./admin/pages/AdminOrders";
 import AdminOrderDetails from "./admin/pages/AdminOrderDetails";
 import Financial from './website/pages/aboutPages/Financial';
+import { Navigate } from 'react-router-dom';
+
 
 const AdminLayout = ({ children }) => {
+  const isAuthenticated = () => {
+    const token = localStorage.getItem('muskan_token_admin');
+    return token !== null;
+  };
+  const PrivateRoute = ({ children }) => {
+    if (!isAuthenticated()) {
+      return <Navigate to="/admin" />;
+    }
+    return children;
+  };
+
   return (
     <div>
-      <SideBar>{children}</SideBar>
+      <PrivateRoute>
+        {/* Only render the sidebar and children if the user is authenticated */}
+        <SideBar>{children}</SideBar>
+      </PrivateRoute>
     </div>
   );
 };
+
 
 function App() {
   return (
@@ -85,26 +102,28 @@ function App() {
         <Route path='/work/publication' element={<Layout><Publication /></Layout>} />
         <Route path='/communicable' element={<Layout><Communicable /></Layout>} />
         <Route path='/communicables/blog/' element={<Layout><Blog /></Layout>} />
+        
+
         <Route path='/wishlist' element={<Layout><Wishlist /></Layout>} />
         <Route path='/cart' element={<Layout><CartItems /></Layout>} />
         <Route path='/account/login' element={<Layout><Login /></Layout>} />
         <Route path='/account/register' element={<Layout><Register /></Layout>} />
         <Route path='/account/forgotPwd' element={<Layout><ForgotPassword /></Layout>} />
-
         <Route path='/account/addressbook' element={<PrivateRoute element={<Layout><AddressBook /></Layout>} />} />
         <Route path='/account/order-history' element={<PrivateRoute element={<Layout><OrderHistory /></Layout>} />} />
         <Route path='/account/change-password' element={<PrivateRoute element={<Layout><ChangePwd /></Layout>} />} />
         <Route path='/account/myprofile' element={<PrivateRoute element={<Layout><MyProfile /></Layout>} />} />
-
         <Route path="/:category_slug" element={<Layout><SubCategroy /></Layout>} />
         <Route path='/:category_slug/:subcategory_slug' element={<Layout><SubCategroy /></Layout>} />
         <Route path='/:category_slug/:subcategory_slug/:product_slug' element={<Layout><DetailsPage /></Layout>} />
         <Route path="/order/:orderId/:enc" element={<Layout><OrderDetails /></Layout>} />
         <Route path='/checkout' element={<Layout><CheckOut /></Layout>} />
 
+
+
         <Route path='/*' element={<NotFound />} />
 
-        {/* <Route path="/admin" element={<LoginForm />} />
+        <Route path="/admin" element={<LoginForm />} />
         <Route path="/admin/dashboard" element={<AdminLayout><AdminDashboard /></AdminLayout>} />
         <Route path="/admin/category" element={<AdminLayout><AdminCategory /> </AdminLayout>} />
         <Route path="/admin/sub-category" element={<AdminLayout><AdminSubCategory /></AdminLayout>} />
@@ -113,7 +132,7 @@ function App() {
         <Route path="/admin/products" element={<AdminLayout><AdminProducts /> </AdminLayout>} />
         <Route path="/admin/:order_status/orders" element={<AdminLayout><AdminOrders /> </AdminLayout>} />
         <Route path="/admin/:order_status/orders/:customer_id" element={<AdminLayout><AdminOrders /> </AdminLayout>} />
-        <Route path="/admin/order/:cust_order_id/:enc" element={<AdminLayout><AdminOrderDetails /> </AdminLayout>} /> */}
+        <Route path="/admin/order/:cust_order_id/:enc" element={<AdminLayout><AdminOrderDetails /> </AdminLayout>} />
 
       </Routes>
     </BrowserRouter>

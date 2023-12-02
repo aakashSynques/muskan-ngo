@@ -4,14 +4,6 @@ import { useNavigate } from 'react-router-dom';
 
 
 const MyAccountSideBar = () => {
-    // const tokenData = useSelector((state) => state.token);
-    // const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
-    // const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
-    // const handleLogout = () => {
-    //     localStorage.removeItem("muskan_token_data");
-    //     localStorage.removeItem("muskan_token");
-    // };
-
 
     const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
     const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
@@ -114,3 +106,4 @@ const MyAccountSideBar = () => {
 }
 
 export default MyAccountSideBar;
+

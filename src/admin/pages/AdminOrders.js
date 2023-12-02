@@ -23,7 +23,7 @@ const bootstrapChildComponents = {
 };
 
 const orderStatusList = [
-  { order_status: 1, order_status_name: "Inserted" },
+  { order_status: 1, order_status_name: "Initiated" },
   { order_status: 2, order_status_name: "Confirm" },
   { order_status: 3, order_status_name: "Cancelled" },
   { order_status: 4, order_status_name: "Dispatched" },
@@ -231,7 +231,14 @@ const OrderTable = ({ searchText, setSearchText, orders }) => (
               );
             }
             if (column.key === "print_invoice") {
+
               return <Button size="sm">print</Button>;
+
+              // {
+              //   orderData.invoice_no != "" &&
+              //   <tr>Invoice No :  <a href={`${BASE_URL}/order/invoice/${orderId}/${CryptoJS.SHA1(orderId)}`} target='_black'>{orderData.invoice_no}</a></tr>
+              // }
+
             }
           }}
           data={orders.list}

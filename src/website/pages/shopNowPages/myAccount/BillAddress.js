@@ -45,7 +45,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
         if (formData.bill_pincode.trim() === '') {
             errors.bill_pincode = 'PIN Code is required';
         }
-     
+
         if (formData.bill_mobile.trim() === '') {
             errors.bill_mobile = 'Mobile is required';
         }
@@ -216,7 +216,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                 />
                             </FormGroup>
 
-                            <FormGroup as={Col} md="6" className='col-mt'>
+                            {/* <FormGroup as={Col} md="6" className='col-mt'>
                                 <Form.Label>PIN Code</Form.Label>
                                 <FormControl
                                     type="number"
@@ -230,9 +230,23 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                     onBlur={handlePinCodeBlur}
                                 />
                                 <font size='2' color="red" >{errorMessagePin}</font>
-                                {/* {validationErrors.bill_pincode && (
+                                {validationErrors.bill_pincode && (
                                     <font size='2' className="text-danger">{validationErrors.bill_pincode}</font>
-                                )} */}
+                                )}
+                            </FormGroup> */}
+
+
+                            <FormGroup as={Col} md="6" className='py-1'>
+                                <Form.Label>PIN Code</Form.Label>
+                                <FormControl
+                                    type="number"
+                                    name="ship_pincode"
+                                    value={formData.bill_pincode}
+                                    onChange={handleInputChange}
+                                />
+                                {validationErrors.bill_pincode && (
+                                    <div className="text-danger">{validationErrors.bill_pincode}</div>
+                                )}
                             </FormGroup>
 
                             <FormGroup as={Col} md="6" className='py-1'>
@@ -244,6 +258,9 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                     onChange={handleInputChange}
                                     readOnly
                                 />
+                                   {/* {validationErrors.bill_pincode && (
+                                    <div className="text-danger">{validationErrors.bill_pincode}</div>
+                                )} */}
                             </FormGroup>
                             <FormGroup as={Col} md="6" className='py-1'>
                                 <Form.Label>State</Form.Label>
@@ -254,7 +271,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                     onChange={handleInputChange}
                                     readOnly
                                 />
-                         
+
                             </FormGroup>
                             <FormGroup as={Col} md="6" className='py-1'>
                                 <Form.Label>Country</Form.Label>
@@ -265,9 +282,9 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                     onChange={handleInputChange}
                                     readOnly
                                 />
-                           
+
                             </FormGroup>
-                       
+
                         </Row>
                     </Modal.Body>
                     <Modal.Footer>

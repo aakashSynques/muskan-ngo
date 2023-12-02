@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import slider1 from '../assets/images/sliderImg/muskaan-banner.jpg'
-import slider2 from '../assets/images/sliderImg/slider-3.jpg'
+import slider2 from '../assets/images/sliderImg/slider2.jpg'
 
 const Slider = () => {
     const [index, setIndex] = useState(0);
