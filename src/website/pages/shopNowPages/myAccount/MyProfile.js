@@ -69,7 +69,7 @@ const MyProfile = () => {
 
             <hr />
             <Container>
-                <p> Home › My Account › Login</p>
+                <p> Home › My Account › My Profile</p>
                 <Row className='mt-5'>
                     <Col sm={3}>
                         <MyAccountSideBar />

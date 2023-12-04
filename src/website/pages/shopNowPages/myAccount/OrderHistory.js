@@ -37,7 +37,14 @@ const OrderHistory = ({ item }) => {
         const formattedDate = new Date(dateString).toLocaleDateString(undefined, options);
         return formattedDate;
     };
-
+    const orderStatusList = [
+        { order_status: 1, order_status_name: "Inserted", className: "text-warning" },
+        { order_status: 2, order_status_name: "Confirm", className: "text-success" },
+        { order_status: 3, order_status_name: "Cancelled", className: "text-danger" },
+        { order_status: 4, order_status_name: "Dispatched", className: "text-danger" },
+        { order_status: 5, order_status_name: "Delivered", className: "text-success" },
+        { order_status: 6, order_status_name: "Amount Mismatch", className: "text-warning" },
+      ];
     return (
         <>
             <hr />
@@ -99,7 +106,8 @@ const OrderHistory = ({ item }) => {
                                                 <Col lg={6} ><p className='text-end'> Date: {formatDate(item.order_datetime)}</p></Col>
                                             </Row>
                                             <p className='m-0 order-histroy-font'>Total Amount &nbsp; : &nbsp;<i className="fa fa-inr"></i> {item.order_amount}</p>
-                                            <p className='order-histroy-font'>Status &nbsp; : &nbsp; {item.order_status_name}</p>
+                                            <p className='order-histroy-font'>Status &nbsp; : &nbsp;   <span className={orderStatusList.find(status => status.order_status === item?.order_status)?.className}>{item.order_status_name}</span> </p>
+                                          
 
                                             <Row>
                                                 {item.order_items.map((product) => (

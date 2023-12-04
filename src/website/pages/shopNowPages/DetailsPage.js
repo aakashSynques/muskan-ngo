@@ -41,13 +41,10 @@ const DetailsPage = () => {
             console.log(err);
         }
     }
-
     useEffect(() => {
         getProductDetails();
+        window.scrollTo(0, 0);
     }, []);
-
-
-
     useEffect(() => {
         const newSubTotal = quantity * productDetails.product_MSP;
         setSubTotal(newSubTotal);
@@ -102,21 +99,12 @@ const DetailsPage = () => {
         setIsCartSidebarOpen(false);
         // setIsOverlayActive(false);
     }
-
-
-
-
     const handleAddWhishList = async (productId) => {
         try {
-            // Check if the user is logged in
             if (!parsedTokenData) {
-                // User is not logged in, handle accordingly (e.g., show a login prompt)
-                // console.log('User is not logged in. Show login prompt or handle accordingly.');
                 navigate('/account/login');
                 return;
             }
-
-
             const token = localStorage.getItem("muskan_token");
             const headers = {
                 "Content-Type": "application/json",
@@ -143,6 +131,11 @@ const DetailsPage = () => {
         }
     };
 
+
+
+
+
+
     return (
         <>
             <hr />
@@ -153,7 +146,7 @@ const DetailsPage = () => {
                     ) : (
                         <>
                             <font> <Link to="/" className='text-dark'> Home </Link>  ›
-                                <Link to='/' className="text-capitalize text-dark"> {category_slug} </Link>
+                                <Link to='/books' className="text-capitalize text-dark"> {category_slug} </Link>
                                 › {productDetails.product_name}</font>
                             <Row className='pt-4'>
                                 <Col sm={5}>
@@ -167,10 +160,10 @@ const DetailsPage = () => {
                                             <i className="fa fa-star five-star" style={{ fontSize: '14px' }} aria-hidden="true"></i>
                                             <i className="fa fa-star five-star" style={{ fontSize: '14px' }} aria-hidden="true"></i>
                                             <i className="fa fa-star five-star" style={{ fontSize: '14px' }} aria-hidden="true"></i>
-                                            <i className="fa fa-star five-star" style={{ fontSize: '14px' }} aria-hidden="true"></i> 4.0  &nbsp;&nbsp;| &nbsp;&nbsp;
+                                            <i className="fa fa-star-half-o five-star" style={{ fontSize: '14px' }} aria-hidden="true"></i> 4.5  &nbsp;&nbsp;| &nbsp;&nbsp;
                                         </span>
                                         <font size="2">
-                                            Status:
+                                            Status: &nbsp;
                                             <span className="text-success">{productDetails.in_stock_status}</span>
                                         </font>
                                         <p className='pt-1'>

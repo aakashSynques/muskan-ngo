@@ -4,12 +4,8 @@ import { Link } from 'react-router-dom';
 import { fetch } from '../../../../utils';
 import { useNavigate } from 'react-router-dom';
 import LoginSideNav from './LoginSideNav';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { setToken } from '../../../../reducers/tokenSlice';
 
 const Login = () => {
-    // const tokenData = useSelector((state) => state.token);
-
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [loading, setLoading] = useState(false);
@@ -22,6 +18,7 @@ const Login = () => {
             verifyToken(token);
         }
     }, []);
+
     const verifyToken = async (token) => {
         try {
             const response = await fetch("/customer/verify", "post", null, {
@@ -29,17 +26,15 @@ const Login = () => {
             });
             if (response.status === 200) {
                 const responseData = await response.data;
-                if (responseData) {
+                if (responseData && responseData.data.token_data) {
                     const tokenData = responseData.data.token_data;
                     const exp = tokenData.exp;
                     const currentTimestamp = Math.floor(Date.now() / 1000);
                     if (exp > currentTimestamp) {
                         // Token is still valid
                         localStorage.setItem("muskan_token_data", JSON.stringify(tokenData));
-                      
                         navigate("/account/myprofile");
                     } else {
-                        // console.error('Token has expired');
                         alert('Token has expired');
                         navigate("/account/login");
                     }
@@ -53,7 +48,6 @@ const Login = () => {
             console.error(err);
         }
     };
-
 
     const handleSubmit = async (e) => {
         e.preventDefault();

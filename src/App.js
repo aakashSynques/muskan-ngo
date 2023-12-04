@@ -102,7 +102,7 @@ function App() {
         <Route path='/work/publication' element={<Layout><Publication /></Layout>} />
         <Route path='/communicable' element={<Layout><Communicable /></Layout>} />
         <Route path='/communicables/blog/' element={<Layout><Blog /></Layout>} />
-        
+
 
         <Route path='/wishlist' element={<Layout><Wishlist /></Layout>} />
         <Route path='/cart' element={<Layout><CartItems /></Layout>} />
@@ -118,8 +118,6 @@ function App() {
         <Route path='/:category_slug/:subcategory_slug/:product_slug' element={<Layout><DetailsPage /></Layout>} />
         <Route path="/order/:orderId/:enc" element={<Layout><OrderDetails /></Layout>} />
         <Route path='/checkout' element={<Layout><CheckOut /></Layout>} />
-
-
 
         <Route path='/*' element={<NotFound />} />
 

@@ -40,8 +40,11 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
         <h6 className='f-w-6 main-color pt-1 mt-3'>All CATEGORIES</h6>
         <ul>
           {categoryList.map(category => (
+
             <li key={`${category.category_id}-${category.sub_category_id}`} className='pt-1'>
-              <b>  {category.category_name}</b>
+
+              <b>  <Link to={`/${category.category_slug}`} className='text-dark'> {category.category_name}</Link></b>
+
               {category.sub_categorys && category.sub_categorys.length > 0 && (
                 <ul>
                   {category.sub_categorys.map(subCategory => (
@@ -81,26 +84,27 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
         <div className='pt-4 best-seller-d-none'>
           <hr />
           <h6 className='f-w-6 main-color pt-1 pb-1' > BEST  SELLERS !</h6>
-          
           {bestSeller
             .filter(item => item.desktop_display === 1)
             .map((item, index) => (
-              <>
-                <Link to={`/${item.category_slug}/${item.sub_category_slug}/${item.product_slug}`}>
-                  <Row className='py-2 d-m-none' key={index}>
-                    <Col sm={3}>
-                      <img src={item.product_thumbnail} alt="" className='w-100' />
-                    </Col>
-                    <Col sm={9}>
-                      <p className='m-0 f-w-6 text-secondary'>{item.product_name}</p>
-                      <span className='main-color'>  <i className="fa fa-inr"></i> {item.product_MSP}</span>
-                    </Col>
-                  </Row>
-                </Link>
-
-              </>
-            ))}
-
+              <Link to={`/${item.category_slug}/${item.sub_category_slug}/${item.product_slug}`} key={index}>
+                <Row className='py-2 d-m-none'>
+                  <Col sm={3}>
+                    <img src={item.product_thumbnail} alt="" className='w-100' />
+                  </Col>
+                  <Col sm={9}>
+                    <p className='m-0 f-w-6 text-secondary'>{item.product_name}</p>
+                    <span className='main-color'> <i className="fa fa-inr"></i> {item.product_MSP}</span>
+                  </Col>
+                </Row>
+              </Link>
+            ))
+          }
+          {bestSeller
+            .filter(item => item.desktop_display === 1)
+            .length === 0 && (
+              <p>No products found</p>
+            )}
         </div>
       </div>
 

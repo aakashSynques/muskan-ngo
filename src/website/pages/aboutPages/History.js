@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Col, Row } from 'react-bootstrap'
+import { Container, Col, Row, Tab, Tabs } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import AboutSideBar from './AboutSideBar'
 
@@ -18,7 +18,7 @@ const History = () => {
 
 
           <Row className='with_aside-border history'>
-            <Col sm={10} className='pt-3'>
+            {/* <Col sm={10} className='pt-3'>
               <h5>
                 1997 - 1998: Commitment to Education
               </h5>
@@ -103,7 +103,33 @@ const History = () => {
               <strong>Functionary Trainings:</strong>
               <p>Trainings of functionaries from various departments to make them sensitive to child protection
                 concerns has been our new initiative towards making Bhopal a safe city for children.</p>
+            </Col> */}
+
+            <Col sm={10} className='pt-3 history-tab'>
+              <Tabs
+                defaultActiveKey="tab1"
+                id="justify-tab-example"
+                className="mb-3"
+                justify
+              >
+                <Tab eventKey="tab1" title="1997 - 1998">
+                  Tab content for Home
+                </Tab>
+                <Tab eventKey="tab2" title="1998 – 2005">
+                  Tab content for Profile
+                </Tab>
+                <Tab eventKey="tab3" title="2005 – 2015">
+                  Tab content for Loooonger Tab
+                </Tab>
+                <Tab eventKey="tab4" title="2015 – 2019">
+                  Tab content for Contact
+                </Tab>
+                <Tab eventKey="tab5" title="2019-2023">
+                  Tab content for Contact
+                </Tab>
+              </Tabs>
             </Col>
+
             <Col sm={2} className='with_aside-border-left pt-3 '>
               <h4>About Us</h4>
               {/* <ul >
@@ -129,7 +155,7 @@ const History = () => {
                   <Link>Collaborations</Link>
                 </li>
               </ul> */}
-                <AboutSideBar />
+              <AboutSideBar />
             </Col>
           </Row>
         </Container>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Container, Navbar, Nav, NavDropdown, Badge, Row, Col } from 'react-bootstrap';
+import { Container, Navbar, Nav, NavDropdown, Dropdown, Badge } from 'react-bootstrap';
 import logo from '../../Muskaan-logo.png';
 import HeaderTop from './HeaderTop';
 import { Link, useLocation } from 'react-router-dom';
@@ -36,15 +36,23 @@ const MainHeader = () => {
         setIsOverlayActive(false);
     }
 
-    // const isCategoryPage = categoryList.some((category) =>
-    //     location.pathname.includes(`/${category.category_slug}`)
-    // ) || location.pathname.includes('/wishlist') || location.pathname.includes('/cart') ||
-    //     location.pathname.includes('/account/myprofile') || location.pathname.includes('/account/addressbook')
-    //     || location.pathname.includes('/account/change-password') || location.pathname.includes('/account/order-history')
-    //     || location.pathname.includes('/account/login') || location.pathname.includes('/account/register')
-    //     || location.pathname.includes('/account/forgotPwd')
-    //     || location.pathname.includes('/checkout')
-    //     ;
+    const isCategoryPage = categoryList.some((category) =>
+        location.pathname.includes(`/${category.category_slug}`)
+    ) || location.pathname.includes('/wishlist')
+        || location.pathname.includes('/cart')
+        || location.pathname.includes('/account/myprofile')
+        || location.pathname.includes('/account/addressbook')
+        || location.pathname.includes('/account/change-password')
+        || location.pathname.includes('/account/order-history')
+        || location.pathname.includes('/account/login')
+        || location.pathname.includes('/account/register')
+        || location.pathname.includes('/account/forgotPwd')
+        || location.pathname.includes('/checkout')
+        || location.pathname.includes('/order')
+        ;
+
+    const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
+    const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
 
     return (
         <>
@@ -57,6 +65,30 @@ const MainHeader = () => {
                         <Navbar.Brand className="" href="/">
                             <img src={logo} alt="Logo" className="logo-width" />
                         </Navbar.Brand>
+
+                        {isCategoryPage && (
+                        <div className='d-inline-flex d-lg-none ms-auto'>
+                            <Nav.Item className='px-1 pt-1'>
+                                <Link to="/wishlist" className='nav-link pt-2 px-1 whishlist-nav'>
+                                    <Badge bg="danger" className='rounded-5'>{wishlistData.wishListDataCount.length}</Badge>
+                                    <i className="fa fa-heart-o" aria-hidden="true"></i>
+                                </Link>
+                            </Nav.Item>
+                            <Nav.Item className='px-2 pt-1'>
+                                <Link className='nav-link pt-2 px-1 whishlist-nav' onClick={openCartSidebar}>
+                                    <Badge bg="danger" className='rounded-5'>{cart.length}</Badge>
+                                    <i className="fa fa-shopping-bag" aria-hidden="true"></i>
+                                </Link>
+                            </Nav.Item>
+                            <Nav.Item className='px-1 pt-1'>
+                                <Link to="/account/login" className='nav-link pt-2 px-1 whishlist-nav'>
+                                    <i className="fa fa-user-o px-2" aria-hidden="true"></i>
+                                </Link>
+                            </Nav.Item>
+                        </div>
+
+)}
+
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ms-auto" activeKey={active}
@@ -149,8 +181,6 @@ const MainHeader = () => {
                                     </NavDropdown.Item>
                                 </NavDropdown>
 
-
-
                                 <Nav.Item>
                                     <Nav.Link eventKey="communicable" as={Link} to="/communicable">
                                         Communicables
@@ -158,25 +188,28 @@ const MainHeader = () => {
                                 </Nav.Item>
 
                                 <Nav.Item>
-                                    <Nav.Link eventKey="connect" as={Link} to="/connect" target='_blank'>
+                                    <Nav.Link eventKey="connect" as={Link} to="/connect">
                                         Connect
                                     </Nav.Link>
                                 </Nav.Item>
 
                                 <NavDropdown title="Store" id="basic-nav-dropdown">
                                     {categoryList.map((category, index) => (
-                                        <NavDropdown.Item key={index}>
-                                            <Nav.Link className='py-1' as={Link} to={`/${category.category_slug}`}>
-                                                {category.category_name}
-                                            </Nav.Link>
-                                        </NavDropdown.Item>
+                                        // <NavDropdown.Item key={index}>
+                                        //     <Nav.Link className='py-1' as={Link} href={`/${category.category_slug}`} target='_blank'>
+                                        //         {category.category_name}
+                                        //     </Nav.Link>
+                                        // </NavDropdown.Item>
+                                        <Dropdown.Item href={`/${category.category_slug}`} target='_blank' >
+                                            {category.category_name}
+                                        </Dropdown.Item>
                                     ))}
                                 </NavDropdown>
 
 
                             </Nav>
 
-                            {/* {isCategoryPage && (
+                            {isCategoryPage && (
                                 <div className='store-section'>
                                     <Nav className='d-none d-lg-inline-flex'>
                                         <Nav.Item className='px-1 pt-1'>
@@ -192,13 +225,26 @@ const MainHeader = () => {
                                             </Link>
                                         </Nav.Item>
                                         <Nav.Item className='px-1 pt-1'>
-                                            <Link to="/account/login" className='nav-link pt-2 px-1 whishlist-nav'>
-                                                <i className="fa fa-user-o px-2" aria-hidden="true"></i>
-                                            </Link>
+                                            {parsedTokenData ? (
+                                                <>
+                                                    <Link to="/account/myprofile" className='nav-link pt-2 px-1 whishlist-nav'>
+                                                        <i className="fa fa-user-o px-2" aria-hidden="true"></i>
+                                                    </Link>
+                                                </>
+                                            ) : (
+                                                <>
+                                                    <Link to="/account/login" className='nav-link pt-2 px-1 whishlist-nav'>
+                                                        <i className="fa fa-user-o px-2" aria-hidden="true"></i>
+                                                    </Link>
+                                                </>
+                                            )}
+
+
+
                                         </Nav.Item>
                                     </Nav>
                                 </div>
-                            )} */}
+                            )}
 
 
                         </Navbar.Collapse>

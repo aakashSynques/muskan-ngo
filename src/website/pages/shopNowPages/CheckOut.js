@@ -260,7 +260,6 @@ const CheckOut = () => {
                 });
             }
         } catch (error) {
-            console.log('Error fetching pincode data:', error);
             setErrorMessagePin('No Pincode found 2');
             setPinCodeDetails(null);
             setFormData((prevFormData) => ({

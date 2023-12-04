@@ -88,13 +88,10 @@ const SubCategory = () => {
     }, [category_slug, subcategory_slug]);
     const handleAddWhishList = async (productId) => {
         try {
-            // Check if the user is logged in
             if (!parsedTokenData) {
                 navigate('/account/login');
                 return;
             }
-
-
             const token = localStorage.getItem("muskan_token");
             const headers = {
                 "Content-Type": "application/json",
@@ -107,22 +104,17 @@ const SubCategory = () => {
                 "/wishlist/add",
                 "POST",
                 body,
-                headers,
+                headers,    
             );
             if (response.data && response.data.success) {
                 toast.success(response.data.message, { position: toast.POSITION.TOP_RIGHT });
 
-            } else {
-                console.log('Response not successful:', response);
-            }
+            } 
             setLoading(false);
         } catch (err) {
             console.log(err);
         }
     };
-
-
-
 
     const [isCartSidebarOpen, setIsCartSidebarOpen] = useState(false); // State for cart sidebar visibility
     const handleAddToCart = (product) => {
@@ -165,11 +157,17 @@ const SubCategory = () => {
         // setIsOverlayActive(false);
     }
 
+// const subcategorySlug =  {};
+// const subcategorySlugWithoutHyphens = subcategorySlug.replace(/-/g, ' ');
+// console.log('subcategorySlugWithoutHyphens', subcategorySlugWithoutHyphens)
+
     return (
         <>
             <div className='connect-bg fixed-bg'>
                 <Container className='text-center text-white'>
-                    <h1>Products</h1>
+                    <h1 className="text-capitalize">         
+                        {(subcategory_slug || category_slug).replace(/-/g, ' ')}
+                    </h1>
                 </Container>
             </div>
 
@@ -193,14 +191,6 @@ const SubCategory = () => {
                             <Col sm={9} className='border-left  lg-ps-4 md-ps-0' style={{ borderLeft: "1px solid" }}>
                                 <Row>
                                     <Col sm={6} className=''>
-                                        <h5 className="text-capitalize">
-                                            {category_slug}    {subcategory_slug && (
-                                                <>
-                                                    {'>'}
-                                                    {subcategory_slug}
-                                                </>
-                                            )}
-                                        </h5>
                                     </Col>
                                     <Col sm={6} className='text-end'>
                                         <span className='font-14'><strong>Sort by</strong>  &nbsp; : &nbsp;
@@ -209,52 +199,48 @@ const SubCategory = () => {
                                     </Col>
                                 </Row>
 
-
-                                <Row sm={1} lg={3} xs={1} className='pt-3'>
-                                    {filteredProducts.map((product, index) => (
-                                        <Col className='pb-5' key={index}>
-                                            <div className='product-item' style={{ height: "200px" }}>
-                                                {loading ? (
-                                                    <div className="text-center pt-5">
-                                                        <Spinner animation="border" variant="secondery" />
-                                                    </div>
-                                                ) : (
-                                                    <>
-                                                        <Link to={`/${product.category_slug}/${product.sub_category_slug}/${product.product_slug}`}>
-                                                            <img src={product.product_thumbnail} alt="" className='w-100 image-height' />
-                                                        </Link>
-                                                        <p className='m-0 pt-2 f-w-6'>{product.product_name}</p>
-                                                        <span className='main-color pull-left'>
-                                                            <i className="fa fa-inr"></i> <strong>{product.product_MSP}</strong>
-                                                        </span>
-                                                        <span className={`text-success ${product.in_stock_status === 'In Stock' ? '' : 'text-danger'} pull-right`}>
-                                                            {product.in_stock_status}
-                                                        </span>
-                                                        <br />
-                                                        <hr className='my-2' style={{ color: "gray" }} />
-
-                                                        {/* <button className='btn border-0' onClick={() => handleAddToCart(product)}>+ Add to Cart</button> */}
-
-                                                        {product.in_stock_status !== 'Out of Stock' && (
-                                                            <button className='btn border-0' onClick={() => handleAddToCart(product)}>+ Add to Cart</button>
-                                                        )}
-
-                                                        <button className='btn pull-right' onClick={() => handleAddWhishList(product.product_id)}>
-                                                            <i className="fa fa-heart-o" aria-hidden="true"></i>
-                                                        </button>
-
-                                                    </>
-                                                )}
-                                            </div>
+                                <Row sm={1} lg={3} xs={1} className='pt-3'>                                    
+                                    {filteredProducts.length === 0 ? (
+                                        <Col className='text-center pt-5 col-lg-12'>
+                                            <h6 className='main-color'>No Products found</h6>
                                         </Col>
-                                    ))}
+                                    ) : (
+                                        filteredProducts.map((product, index) => (
+                                            <Col className='pb-5' key={index}>
+                                                <div className='product-item' style={{ height: "200px" }}>
+                                                    {loading ? (
+                                                        <div className="text-center pt-5">
+                                                            <Spinner animation="border" variant="secondery" />
+                                                        </div>
+                                                    ) : (
+                                                        <>
+                                                            <Link to={`/${product.category_slug}/${product.sub_category_slug}/${product.product_slug}`}>
+                                                                <img src={product.product_thumbnail} alt="" className='w-100 image-height' />
+                                                            </Link>
+                                                            <p className='m-0 pt-2 f-w-6'>{product.product_name}</p>
+                                                            <span className='main-color pull-left'>
+                                                                <i className="fa fa-inr"></i> <strong>{product.product_MSP}</strong>
+                                                            </span>
+                                                            <span className={`text-success ${product.in_stock_status === 'In Stock' ? '' : 'text-danger'} pull-right`}>
+                                                                {product.in_stock_status}
+                                                            </span>
+                                                            <br />
+                                                            <hr className='my-2' style={{ color: "gray" }} />
+                                                            {product.in_stock_status !== 'Out of Stock' && (
+                                                                <button className='btn border-0' onClick={() => handleAddToCart(product)}>+ Add to Cart</button>
+                                                            )}
 
+                                                            <button className='btn pull-right' onClick={() => handleAddWhishList(product.product_id)}>
+                                                                <i className="fa fa-heart-o" aria-hidden="true"></i>
+                                                            </button>
+
+                                                        </>
+                                                    )}
+                                                </div>
+                                            </Col>
+                                        ))
+                                    )}
                                 </Row>
-                                {/* {productList.map((item, index) => (
-                            <h2>{index + 1} {item.product_name}</h2>
-                        ))} */}
-
-
                             </Col>
                         </Row>
                     </Container>

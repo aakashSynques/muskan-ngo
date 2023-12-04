@@ -790,3 +790,11 @@ html {
     font-size: 16px;
     font-weight: 500;
 }
+.history-tab .nav-tabs .nav-link.active {
+    color: #7e1502;
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    border-color: var(--bs-nav-tabs-link-active-border-color);
+    border: 1px solid;
+    border-bottom: 4px solid #7e1502!important;
+    font-weight: 700;
+}

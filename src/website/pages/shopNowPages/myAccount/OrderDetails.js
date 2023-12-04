@@ -40,6 +40,15 @@ const OrderDetails = () => {
 
 
 
+    const orderStatusList = [
+        { order_status: 1, order_status_name: "Inserted", className: "text-warning" },
+        { order_status: 2, order_status_name: "Confirm", className: "text-success" },
+        { order_status: 3, order_status_name: "Cancelled", className: "text-danger" },
+        { order_status: 4, order_status_name: "Dispatched", className: "text-danger" },
+        { order_status: 5, order_status_name: "Delivered", className: "text-success" },
+        { order_status: 6, order_status_name: "Amount Mismatch", className: "text-warning" },
+      ];
+
     return (
         <>
             <hr />
@@ -49,7 +58,7 @@ const OrderDetails = () => {
 
                     <div className='text-center'>
                         <p className='mb-1 text-secondary'>THANK YOU</p>
-                        <h3>Your order is confirmed</h3>
+                        <h3>Your order is  {orderData?.order_status_name}</h3>
                     </div>
 
                     {isLoading ? (
@@ -67,10 +76,7 @@ const OrderDetails = () => {
                                         <tr> Order No  : {orderData.order_no}</tr>
                                         <tr>Order Date : {formatDate(orderData.order_datetime)}</tr>
 
-                                        <tr>Order Status : {orderData.order_status_name}</tr>
-
-
-
+                                        <tr>Order Status : <span className={orderStatusList.find(status => status.order_status === orderData?.order_status)?.className}>{orderData.order_status_name}</span> </tr>
                                         {orderData.invoice_no != "" &&
                                             <tr>Invoice No :  <a href={`${BASE_URL}/order/invoice/${orderId}/${CryptoJS.SHA1(orderId)}`} target='_black'>{orderData.invoice_no}</a></tr>
                                         }
@@ -97,7 +103,7 @@ const OrderDetails = () => {
                                         <h5>Payment</h5>
                                         <tr>
                                             Status :
-                                            <font className={`text-xs fw-bold  ${orderData.payment_status_name === "Success" ? "text-success" : "text-danger"}`}  >{orderData.payment_status_name}</font>
+                                            <font className={`text-xs fw-bold  ${orderData.payment_status_name === "Success" ? "text-success" : "text-danger"}`}  > {orderData.payment_status_name}</font>
                                         </tr>
 
                                         {
