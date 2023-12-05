@@ -148,6 +148,7 @@ const DetailsPage = () => {
                             <font> <Link to="/" className='text-dark'> Home </Link>  ›
                                 <Link to='/books' className="text-capitalize text-dark"> {category_slug} </Link>
                                 › {productDetails.product_name}</font>
+                                
                             <Row className='pt-4'>
                                 <Col sm={5}>
                                     <Image src={productDetails.images[0].img} alt="" className='w-100' />

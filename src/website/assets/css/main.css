@@ -332,6 +332,9 @@ span.date {
         width: 54px !important;
         top: -3px !important;
     }
+    .history-tab .nav-link {
+        font-size: 15px!important;
+    }
     .r-border {
         border-right: 1px dashed #c7c2c2;
         padding-right: 20px !important;
@@ -409,6 +412,7 @@ span.date {
         display: none !important;
         /* hide by default */
     }
+    
 
     .filter-container.show {
         display: block !important;
@@ -791,10 +795,71 @@ html {
     font-weight: 500;
 }
 .history-tab .nav-tabs .nav-link.active {
+    border-top: 4px solid #7e1502!important;
+    border-radius: 0;
+    font-weight: 700;
     color: #7e1502;
     background-color: var(--bs-nav-tabs-link-active-bg);
-    border-color: var(--bs-nav-tabs-link-active-border-color);
-    border: 1px solid;
-    border-bottom: 4px solid #7e1502!important;
+   }.history-tab .nav-tabs .nav-link {
+    border: none!important;
+}.history-tab .nav-link {
+    color: #0000009e;
     font-weight: 700;
+    font-size: 18px;
 }
+.history-tab .nav-tabs {
+    border-top: 1px solid #80808059;
+}
+.history-tab .nav-tabs {
+    --bs-nav-tabs-border-color: none!important;
+}
+
+
+.history-tab .nav-link {
+    position: relative;
+  }
+
+
+  .history-tab .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background-color: #d7d7d7;
+    border-radius: 50%;
+  }
+
+  .history-tab  .nav-link.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) rotate(180deg);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 12.32px solid #7e1502;
+    background-color: white;
+    border-radius: 0px;
+  }
+  
+  /* Add styles for the active tab content */
+  .history-tab  .tab-content.active {
+    animation: fadeInDown 0.5s; /* Optional: add a fade-in animation */
+  }
+  
+  /* Optional fade-in animation keyframes */
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }

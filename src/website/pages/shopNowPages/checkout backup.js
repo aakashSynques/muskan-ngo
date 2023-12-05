@@ -31,7 +31,7 @@ const CheckOut = () => {
     };
     const [orderPlace, setOrderPlace] = useState('');
     const [formData, setFormData] = useState({
-        customer_email: parsedTokenData?.customer_email || '',
+        customer_email: parsedTokenData?.customer_email,
         ship_fname: '',
         ship_lname: '',
         ship_company: '',
@@ -167,23 +167,7 @@ const CheckOut = () => {
             validateField('ship_state', null, 'State is required');
             validateField('ship_country', null, 'Country is required');
 
-            
-
-
-
-
             if (isValid === false) { return false; }
-
-            // validateField('bill_pincode', null, 'Pin Code is required');
-            // if(formData.ship_pincode && pinCodeDetails === null){
-            //     setErrors((prevErrors) => ({ ...prevErrors, ["ship_pincode"]: 'Enter valid Pin code' }));
-            // } 
-            // validateField('bill_fname', null, 'First Name is required');
-            // validateField('bill_lname', null, 'Last Name is required');
-            // validateField('bill_mobile', /^[0-9]{10}$/, 'Invalid phone number');
-            // validateField('bill_adderss_one', null, 'Address is required');
-
-
             const body = {
                 customer_id: parsedTokenData ? parsedTokenData.customer_id : '', // Conditionally set customer_id             
                 customer_email: parsedTokenData ? parsedTokenData.customer_email : formData.customer_email,
@@ -282,22 +266,22 @@ const CheckOut = () => {
             e.preventDefault();
             fetchPinCodeDetails(formData.ship_pincode, false);
         }
-    };
+    };    
     const handleShipPinCodeBlur = () => {
         fetchPinCodeDetails(formData.ship_pincode, false);
     };
-
+    
     const handleBillPinCodeKeyDown = (e) => {
         if (e.key === 'Enter' || e.key === 'Tab') {
             e.preventDefault();
             fetchPinCodeDetails(formData.bill_pincode, true);
         }
     };
-
+    
     const handleBillPinCodeBlur = () => {
         fetchPinCodeDetails(formData.bill_pincode, true);
     };
-
+    
 
     // const navigate = useNavigate();
     const handleLogout = () => {
@@ -305,12 +289,6 @@ const CheckOut = () => {
         localStorage.removeItem('muskan_token_data');
         navigate('/account/login');
     };
-
-    // useEffect(() => {
-    //     if (cart.length === 0) {
-    //         navigate('/');
-    //     }
-    // }, [cart, navigate]);
     if (cart.length === 0) {
         return (
             <Container>
@@ -360,7 +338,7 @@ const CheckOut = () => {
                                     </p>
                                     <FormGroup as={Col} md="12">
                                         <FormControl type="mail" name='customer_email'
-                                            value={formData.customer_email}
+                                            value={formData.customer_email || parsedTokenData?.customer_email}
                                             onChange={handleInputChange}
                                             placeholder='Email'
                                         />
@@ -370,25 +348,52 @@ const CheckOut = () => {
                                 </>
                             )}
 
+
+
+
                             <div className='pt-4 checkout-style'>
                                 <h6 className='text-dark mb-3'>Shipping address</h6>
                                 <Row>
-                                    <FormGroup as={Col} md="4" className='col-mt'>
-                                        <FormControl
-                                            type="number"
-                                            name="ship_pincode"
-                                            value={formData.ship_pincode}
-                                            onChange={(e) => {
-                                                handleInputChange(e);
-                                                setPinCode(e.target.value);
-                                            }}
-                                            onKeyDown={handleShipPinCodeKeyDown}
-                                            onBlur={handleShipPinCodeBlur}
-                                            placeholder='Shipping PIN Code'
+                                    <FormGroup as={Col} md="6" className='col-mt'>
+                                        <FormControl type="text" name="ship_fname"
+                                            value={formData.ship_fname}
+                                            onChange={handleInputChange}
+                                            placeholder='First Name'
+                                            required
                                         />
+                                        {errors.ship_fname && <span className="text-danger">{errors.ship_fname}</span>}
+
+                                    </FormGroup>
+                                    <FormGroup as={Col} md="6" className='col-mt'>
+                                        <FormControl type="text" name="ship_lname"
+                                            value={formData.ship_lname}
+                                            onChange={handleInputChange}
+                                            placeholder='Last Name'
+                                            required
+                                        />
+                                        {errors.ship_lname && <span className="text-danger">{errors.ship_lname}</span>}
+                                    </FormGroup>
+
+                                    <FormGroup as={Col} md="4" className='col-mt'>
+                                    <FormControl
+    type="number"
+    name="ship_pincode"
+    value={formData.ship_pincode}
+    onChange={(e) => {
+        handleInputChange(e);
+        setPinCode(e.target.value);
+    }}
+    onKeyDown={handleShipPinCodeKeyDown}
+    onBlur={handleShipPinCodeBlur}
+    placeholder='Shipping PIN Code'
+/>
+
+
+
+
+
                                         {/* <font color="red" ><b>{errorMessagePin}</b></font> */}
                                         {errors.ship_pincode && <span className="text-danger">{errors.ship_pincode}</span>}
-
                                     </FormGroup>
                                     <FormGroup as={Col} md="4" className='col-mt'>
                                         <FormControl type="text" name="ship_city"
@@ -410,42 +415,8 @@ const CheckOut = () => {
                                         />
                                         {errors.ship_state && <span className="text-danger">{errors.ship_state}</span>}
                                     </FormGroup>
-                                    <FormGroup as={Col} md="6" className='col-mt'>
-                                        <FormControl type="text" name="ship_fname"
-                                            value={formData.ship_fname}
-                                            onChange={handleInputChange}
-                                            placeholder='First Name'
-                                            required
-                                        />
-                                        {errors.ship_fname && <span className="text-danger">{errors.ship_fname}</span>}
 
-                                    </FormGroup>
-                                    <FormGroup as={Col} md="6" className='col-mt'>
-                                        <FormControl type="text" name="ship_lname"
-                                            value={formData.ship_lname}
-                                            onChange={handleInputChange}
-                                            placeholder='Last Name'
-                                            required
-                                        />
-                                        {errors.ship_lname && <span className="text-danger">{errors.ship_lname}</span>}
 
-                                    </FormGroup>
-                                    <FormGroup as={Col} md="4" className='col-mt'>
-                                        <FormControl type="number" name="ship_mobile"
-                                            value={formData.ship_mobile}
-                                            onChange={handleInputChange}
-                                            placeholder='Phone'
-                                            required
-                                        />
-                                        {errors.ship_mobile && <span className="text-danger">{errors.ship_mobile}</span>}
-                                    </FormGroup>
-                                    <FormGroup as={Col} md="4" className='col-mt'>
-                                        <FormControl type="text" name="ship_company"
-                                            value={formData.ship_company}
-                                            onChange={handleInputChange}
-                                            placeholder='Company Name (optional)'
-                                        />
-                                    </FormGroup>
                                     <FormGroup as={Col} md="4" className='col-mt'>
                                         <FormControl type="text" name="ship_country"
                                             value={formData.ship_country}
@@ -456,6 +427,26 @@ const CheckOut = () => {
                                         />
                                         {errors.ship_country && <span className="text-danger">{errors.ship_country}</span>}
 
+                                    </FormGroup>
+
+
+                                    <FormGroup as={Col} md="4" className='col-mt'>
+                                        <FormControl type="text" name="ship_company"
+                                            value={formData.ship_company}
+                                            onChange={handleInputChange}
+                                            placeholder='Company Name (optional)'
+                                        />
+                                    </FormGroup>
+
+
+                                    <FormGroup as={Col} md="4" className='col-mt'>
+                                        <FormControl type="number" name="ship_mobile"
+                                            value={formData.ship_mobile}
+                                            onChange={handleInputChange}
+                                            placeholder='Phone'
+                                            required
+                                        />
+                                        {errors.ship_mobile && <span className="text-danger">{errors.ship_mobile}</span>}
                                     </FormGroup>
 
                                     <FormGroup as={Col} md="12" className='col-mt'>
@@ -490,18 +481,27 @@ const CheckOut = () => {
                                         <h6 className='mt-3'>Billing Details </h6>
                                         <Row className='mt-3'>
                                             <FormGroup as={Col} md="4" className='col-mt'>
-                                                <FormControl
+                                                {/* <FormControl
                                                     type="number"
                                                     name="bill_pincode"
                                                     value={formData.bill_pincode}
-                                                    onChange={(e) => {
-                                                        handleInputChange(e);
-                                                        setPinCode(e.target.value);
-                                                    }}
-                                                    onKeyDown={handleBillPinCodeKeyDown}
-                                                    onBlur={handleBillPinCodeBlur}
-                                                    placeholder='Billing PIN Code'
-                                                />
+                                                    onChange={handleInputChange}
+                                                    placeholder='PIN Code'
+                                                /> */}
+
+                                          
+<FormControl
+    type="number"
+    name="bill_pincode"
+    value={formData.bill_pincode}
+    onChange={(e) => {
+        handleInputChange(e);
+        setPinCode(e.target.value);
+    }}
+    onKeyDown={handleBillPinCodeKeyDown}
+    onBlur={handleBillPinCodeBlur}
+    placeholder='Billing PIN Code'
+/>
                                             </FormGroup>
 
                                             <FormGroup as={Col} md="4" className='col-mt'>
@@ -603,5 +603,3 @@ const CheckOut = () => {
     )
 }
 export default CheckOut
-
-
