@@ -332,17 +332,21 @@ span.date {
         width: 54px !important;
         top: -3px !important;
     }
+
     .history-tab .nav-link {
-        font-size: 15px!important;
+        font-size: 15px !important;
     }
+
     .r-border {
         border-right: 1px dashed #c7c2c2;
         padding-right: 20px !important;
     }
+
     .tab_tabbing a {
-        padding: 0 3px!important;
-        font-size: 14px!important;
+        padding: 0 3px !important;
+        font-size: 14px !important;
     }
+
     .font-15 {
         font-size: 15px;
     }
@@ -385,10 +389,12 @@ span.date {
     .circle:before {
         display: none;
     }
+
     .tab_tabbing ul {
         list-style: none;
-        padding: 29px 0px!important;
+        padding: 29px 0px !important;
     }
+
     .shape:after {
         display: none;
     }
@@ -412,7 +418,7 @@ span.date {
         display: none !important;
         /* hide by default */
     }
-    
+
 
     .filter-container.show {
         display: block !important;
@@ -481,9 +487,10 @@ span.date {
     color: #000000;
 }
 
-.accolumn.list-group ul{
+.accolumn.list-group ul {
     line-height: 30px;
 }
+
 .form-label {
     margin-bottom: 0.5rem;
     font-size: 15px;
@@ -751,8 +758,9 @@ html {
 
 .communication-tab .tab-content {
     background: #f3f3f3;
-    padding: 51px 87px;
+    padding: 51px 45px;
 }
+
 
 .communication-tab .nav-tabs .nav-link.active {
     color: var(--bs-nav-tabs-link-active-color);
@@ -794,33 +802,40 @@ html {
     font-size: 16px;
     font-weight: 500;
 }
+
 .history-tab .nav-tabs .nav-link.active {
-    border-top: 4px solid #7e1502!important;
+    border-top: 4px solid #7e1502 !important;
     border-radius: 0;
     font-weight: 700;
     color: #7e1502;
     background-color: var(--bs-nav-tabs-link-active-bg);
-   }.history-tab .nav-tabs .nav-link {
-    border: none!important;
-}.history-tab .nav-link {
+}
+
+.history-tab .nav-tabs .nav-link {
+    border: none !important;
+}
+
+.history-tab .nav-link {
     color: #0000009e;
     font-weight: 700;
     font-size: 18px;
 }
+
 .history-tab .nav-tabs {
     border-top: 1px solid #80808059;
 }
+
 .history-tab .nav-tabs {
-    --bs-nav-tabs-border-color: none!important;
+    --bs-nav-tabs-border-color: none !important;
 }
 
 
 .history-tab .nav-link {
     position: relative;
-  }
+}
 
 
-  .history-tab .nav-link::before {
+.history-tab .nav-link::before {
     content: '';
     position: absolute;
     top: 0%;
@@ -830,9 +845,9 @@ html {
     height: 10px;
     background-color: #d7d7d7;
     border-radius: 50%;
-  }
+}
 
-  .history-tab  .nav-link.active::before {
+.history-tab .nav-link.active::before {
     content: '';
     position: absolute;
     top: 0;
@@ -845,21 +860,91 @@ html {
     border-bottom: 12.32px solid #7e1502;
     background-color: white;
     border-radius: 0px;
+}
+
+/* .history-scroll {
+    height: 100px;
+    width: 50%;
+    margin: 0 auto;
+    overflow: hidden;
   }
   
-  /* Add styles for the active tab content */
-  .history-tab  .tab-content.active {
-    animation: fadeInDown 0.5s; /* Optional: add a fade-in animation */
-  }
-  
-  /* Optional fade-in animation keyframes */
-  @keyframes fadeInDown {
+  .history-scroll:hover {
+    overflow-y: scroll;
+  } */
+/* Add styles for the active tab content */
+.history-tab .tab-content.active {
+    animation: fadeInDown 0.5s;
+    /* Optional: add a fade-in animation */
+}
+
+/* Optional fade-in animation keyframes */
+@keyframes fadeInDown {
     from {
-      opacity: 0;
-      transform: translateY(-20px);
+        opacity: 0;
+        transform: translateY(-20px);
     }
+
     to {
-      opacity: 1;
-      transform: translateY(0);
+        opacity: 1;
+        transform: translateY(0);
     }
-  }
+}
+
+
+
+.donet-radio {
+    border-radius: 6px;
+    border: solid 1px #cf4520;
+    background-color: #fff;
+    padding: 10px 7px;
+
+}
+
+.daily-anadhaanam {
+    width: 100%;
+    float: left;
+}
+
+.daily-anadhaanam .daily-text {
+    width: 280px;
+    float: left;
+    /* line-height: 18px; */
+    border-right: solid 1px #979797;
+    /* font-family: "FedraSansStd-book", sans-serif; */
+    /* font-size: 1em; */
+    font-weight: normal;
+    color: #000;
+}
+
+.daily-amt {
+    float: left;
+    text-align: center;
+}
+
+
+
+.button-list ul{
+    list-style: none;
+    padding: 0;
+}
+.button-list li {
+    display: inline-block;
+    margin: 5px;
+    margin-left: 0;
+    padding: 10px 20px;
+    border: 1px solid #efefef;
+}
+
+.button-list li.acc {
+    background: #7e1502;
+}
+.button-list li input[type="radio"] {
+    opacity: .011;
+    z-index: 100;
+}
+.button-list li label {
+    cursor: pointer;
+    z-index: 90;
+    line-height: 1.8em;
+}

@@ -40,11 +40,8 @@ const FilterSideNav = ({ range, handleSliderChange, resetPriceRange }) => {
         <h6 className='f-w-6 main-color pt-1 mt-3'>All CATEGORIES</h6>
         <ul>
           {categoryList.map(category => (
-
             <li key={`${category.category_id}-${category.sub_category_id}`} className='pt-1'>
-
               <b>  <Link to={`/${category.category_slug}`} className='text-dark'> {category.category_name}</Link></b>
-
               {category.sub_categorys && category.sub_categorys.length > 0 && (
                 <ul>
                   {category.sub_categorys.map(subCategory => (

@@ -44,7 +44,7 @@ const OrderHistory = ({ item }) => {
         { order_status: 4, order_status_name: "Dispatched", className: "text-danger" },
         { order_status: 5, order_status_name: "Delivered", className: "text-success" },
         { order_status: 6, order_status_name: "Amount Mismatch", className: "text-warning" },
-      ];
+    ];
     return (
         <>
             <hr />
@@ -91,48 +91,47 @@ const OrderHistory = ({ item }) => {
                             </div>
                         ))} */}
 
+                        <div className='history-scroll'>
+                            {loading ? (
+                                <Spinner animation="border" role="status">
+                                    <span className="visually-hidden">Loading...</span>
+                                </Spinner>
+                            ) : orderHistoryData && orderHistoryData.length > 0 ? (
+                                orderHistoryData.map((item) => (
+                                    <>
+                                        <div key={item.item_id} className="py-3 my-3 rounded-1" style={{ boxShadow: '0px 2px 6px 1px #736e6d69', background: "#f9fafc" }}>
+                                            <Container>
+                                                <Row>
+                                                    <Col lg={6} ><h5> <strong>{item.order_no}</strong></h5></Col>
+                                                    <Col lg={6} ><p className='text-end'> Date: {formatDate(item.order_datetime)}</p></Col>
+                                                </Row>
+                                                <p className='m-0 order-histroy-font'>Total Amount &nbsp; : &nbsp;<i className="fa fa-inr"></i> {item.order_amount}</p>
+                                                <p className='order-histroy-font'>Status &nbsp; : &nbsp;   <span className={orderStatusList.find(status => status.order_status === item?.order_status)?.className}>{item.order_status_name}</span> </p>
 
-                        {loading ? (
-                            <Spinner animation="border" role="status">
-                                <span className="visually-hidden">Loading...</span>
-                            </Spinner>
-                        ) : orderHistoryData && orderHistoryData.length > 0 ? (
-                            orderHistoryData.map((item) => (
-                                <>
-                                    <div key={item.item_id} className="py-3 my-3 rounded-1" style={{ boxShadow: '0px 2px 6px 1px #736e6d69', background: "#f9fafc" }}>
-                                        <Container>
-                                            <Row>
-                                                <Col lg={6} ><h5> <strong>{item.order_no}</strong></h5></Col>
-                                                <Col lg={6} ><p className='text-end'> Date: {formatDate(item.order_datetime)}</p></Col>
-                                            </Row>
-                                            <p className='m-0 order-histroy-font'>Total Amount &nbsp; : &nbsp;<i className="fa fa-inr"></i> {item.order_amount}</p>
-                                            <p className='order-histroy-font'>Status &nbsp; : &nbsp;   <span className={orderStatusList.find(status => status.order_status === item?.order_status)?.className}>{item.order_status_name}</span> </p>
-                                          
+                                                <Row>
+                                                    {item.order_items.map((product) => (
 
-                                            <Row>
-                                                {item.order_items.map((product) => (
-
-                                                    <Col sm={4} className='py-1'>
-                                                        <td style={{ width: "18%" }}>
-                                                            <Image src={product.product_thumbnail} alt="" className='w-100' />
-                                                        </td>
-                                                        <td>  <font className='ps-2 order-histroy-font'>{product.product_name}</font></td>
-                                                    </Col>
-                                                ))}
-                                            </Row>
-                                            <p className='text-end m-0'>
-                                                <Link to={`/order/${item.cust_order_id}/${CryptoJS.SHA256(item.cust_order_id.toString())}`} className='text-end'>
-                                                    View Details <i className="fa fa-external-link font-14" aria-hidden="true"></i>
-                                                </Link>
-                                            </p>
-                                        </Container>
-                                    </div>
-                                </>
-                            ))
-                        ) : (
-                            <p>No order history data found.</p>
-                        )}
-
+                                                        <Col sm={4} className='py-1'>
+                                                            <td style={{ width: "18%" }}>
+                                                                <Image src={product.product_thumbnail} alt="" className='w-100' />
+                                                            </td>
+                                                            <td>  <font className='ps-2 order-histroy-font'>{product.product_name}</font></td>
+                                                        </Col>
+                                                    ))}
+                                                </Row>
+                                                <p className='text-end m-0'>
+                                                    <Link to={`/order/${item.cust_order_id}/${CryptoJS.SHA256(item.cust_order_id.toString())}`} className='text-end'>
+                                                        View Details <i className="fa fa-external-link font-14" aria-hidden="true"></i>
+                                                    </Link>
+                                                </p>
+                                            </Container>
+                                        </div>
+                                    </>
+                                ))
+                            ) : (
+                                <p>No order history data found.</p>
+                            )}
+                        </div>
                     </Col>
                 </Row>
             </Container>

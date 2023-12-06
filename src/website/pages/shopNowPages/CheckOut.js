@@ -54,13 +54,26 @@ const CheckOut = () => {
         bill_country: '',
         bill_mobile: '',
     });
+
+
     const handleInputChange = (event) => {
-        const { name, value } = event.target;
+        const { name, value, placeholder } = event.target;
+    
+        // Update form data
         setFormData({
             ...formData,
             [name]: value,
         });
+    
+        // Update error messages
+        setErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: value.trim() ? '' : `${placeholder || name} is required`,
+        }));
     };
+    
+
+
     const displayRazorpay = useCallback(
         (result, key) => {
             try {
@@ -136,10 +149,7 @@ const CheckOut = () => {
         ship_lname: '',
         ship_mobile: '',
         ship_adderss_one: '',
-        // Add other fields as needed
     });
-
-
     const handlePlaceOrder = async () => {
         try {
             let isValid = true;
@@ -147,42 +157,56 @@ const CheckOut = () => {
 
             setErrors({}); // Reset errors
 
+            // const validateField = (fieldName, regex, errorMessage) => {
+            //     if (!formData[fieldName].trim() || (regex && !regex.test(formData[fieldName].trim()))) {
+            //         setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: errorMessage }));
+            //         isValid = false;
+            //     } else {
+            //               setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: '' })); // Clear the error
+            //     }
+            // };
+
             const validateField = (fieldName, regex, errorMessage) => {
                 if (!formData[fieldName].trim() || (regex && !regex.test(formData[fieldName].trim()))) {
                     setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: errorMessage }));
                     isValid = false;
+                } else {
+                    setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: '' })); // Clear the error
                 }
             };
+
+
             validateField('ship_pincode', null, 'Pin Code is required');
             if (formData.ship_pincode && pinCodeDetails === null) {
                 setErrors((prevErrors) => ({ ...prevErrors, ["ship_pincode"]: 'Enter valid Pin code' }));
                 isValid = false;
             }
+
             validateField('customer_email', null, 'Email is required');
             validateField('ship_fname', null, 'First Name is required');
             validateField('ship_lname', null, 'Last Name is required');
-            validateField('ship_mobile', /^[0-9]{10}$/, 'Invalid phone number');
+            validateField('ship_mobile', /^[0-9]{10}$/, 'Enter 10 digit mobile number');
             validateField('ship_adderss_one', null, 'Address is required');
             validateField('ship_city', null, 'City is required');
             validateField('ship_state', null, 'State is required');
             validateField('ship_country', null, 'Country is required');
 
-            
-
-
-
+            if (shipToDifferentAddress) {
+                validateField('bill_pincode', null, 'Pin Code is required');
+                if (formData.bill_pincode && pinCodeDetails === null) {
+                    setErrors((prevErrors) => ({ ...prevErrors, ["ship_pincode"]: 'Enter valid Pin code' }));
+                    isValid = false;
+                }
+                validateField('bill_fname', null, 'First Name is required');
+                validateField('bill_lname', null, 'Last Name is required');
+                validateField('bill_mobile', /^[0-9]{10}$/, 'Enter 10 digit mobile number');
+                validateField('bill_adderss_one', null, 'Address is required');
+                validateField('bill_city', null, 'City is required');
+                validateField('bill_state', null, 'State is required');
+                validateField('bill_country', null, 'Country is required');
+            }
 
             if (isValid === false) { return false; }
-
-            // validateField('bill_pincode', null, 'Pin Code is required');
-            // if(formData.ship_pincode && pinCodeDetails === null){
-            //     setErrors((prevErrors) => ({ ...prevErrors, ["ship_pincode"]: 'Enter valid Pin code' }));
-            // } 
-            // validateField('bill_fname', null, 'First Name is required');
-            // validateField('bill_lname', null, 'Last Name is required');
-            // validateField('bill_mobile', /^[0-9]{10}$/, 'Invalid phone number');
-            // validateField('bill_adderss_one', null, 'Address is required');
-
 
             const body = {
                 customer_id: parsedTokenData ? parsedTokenData.customer_id : '', // Conditionally set customer_id             
@@ -246,13 +270,21 @@ const CheckOut = () => {
             const pincodeDetails = response.data.data.pincode_details;
             if (pincodeDetails) {
                 setPinCodeDetails(pincodeDetails);
-
+    
                 // Update form data based on pin code details
                 setFormData((prevFormData) => ({
                     ...prevFormData,
                     [isBilling ? 'bill_city' : 'ship_city']: pincodeDetails.city || prevFormData.ship_city,
                     [isBilling ? 'bill_state' : 'ship_state']: pincodeDetails.state || prevFormData.ship_state,
                     [isBilling ? 'bill_country' : 'ship_country']: pincodeDetails.country || prevFormData.ship_country,
+                }));
+    
+                // Clear the corresponding error messages
+                setErrors((prevErrors) => ({
+                    ...prevErrors,
+                    [isBilling ? 'bill_city' : 'ship_city']: '',
+                    [isBilling ? 'bill_state' : 'ship_state']: '',
+                    [isBilling ? 'bill_country' : 'ship_country']: '',
                 }));
             } else {
                 setErrorMessagePin('No Pincode found');
@@ -265,18 +297,31 @@ const CheckOut = () => {
         } catch (error) {
             setErrorMessagePin('No Pincode found');
             setPinCodeDetails(null);
+    
+            // Clear the corresponding error messages
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                [isBilling ? 'bill_city' : 'ship_city']: '',
+                [isBilling ? 'bill_state' : 'ship_state']: '',
+                [isBilling ? 'bill_country' : 'ship_country']: '',
+            }));
+    
             setFormData((prevFormData) => ({
                 ...prevFormData,
                 [isBilling ? 'bill_city' : 'ship_city']: '',
                 [isBilling ? 'bill_state' : 'ship_state']: '',
                 [isBilling ? 'bill_country' : 'ship_country']: '',
             }));
+    
             toast.error('No Pincode found', {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 2000,
             });
         }
     };
+    
+
+
     const handleShipPinCodeKeyDown = (e) => {
         if (e.key === 'Enter' || e.key === 'Tab') {
             e.preventDefault();
@@ -293,12 +338,9 @@ const CheckOut = () => {
             fetchPinCodeDetails(formData.bill_pincode, true);
         }
     };
-
     const handleBillPinCodeBlur = () => {
         fetchPinCodeDetails(formData.bill_pincode, true);
     };
-
-
     // const navigate = useNavigate();
     const handleLogout = () => {
         localStorage.removeItem('muskan_token');
@@ -306,11 +348,6 @@ const CheckOut = () => {
         navigate('/account/login');
     };
 
-    // useEffect(() => {
-    //     if (cart.length === 0) {
-    //         navigate('/');
-    //     }
-    // }, [cart, navigate]);
     if (cart.length === 0) {
         return (
             <Container>
@@ -384,11 +421,9 @@ const CheckOut = () => {
                                             }}
                                             onKeyDown={handleShipPinCodeKeyDown}
                                             onBlur={handleShipPinCodeBlur}
-                                            placeholder='Shipping PIN Code'
+                                            placeholder='PIN Code'
                                         />
-                                        {/* <font color="red" ><b>{errorMessagePin}</b></font> */}
                                         {errors.ship_pincode && <span className="text-danger">{errors.ship_pincode}</span>}
-
                                     </FormGroup>
                                     <FormGroup as={Col} md="4" className='col-mt'>
                                         <FormControl type="text" name="ship_city"
@@ -396,7 +431,6 @@ const CheckOut = () => {
                                             onChange={handleInputChange}
                                             placeholder='City'
                                             readOnly
-                                        // onClick={handleCountryInputClick}
                                         />
                                         {errors.ship_city && <span className="text-danger">{errors.ship_city}</span>}
                                     </FormGroup>
@@ -406,16 +440,16 @@ const CheckOut = () => {
                                             onChange={handleInputChange}
                                             placeholder='State'
                                             readOnly
-                                        // onClick={handleCountryInputClick}
                                         />
                                         {errors.ship_state && <span className="text-danger">{errors.ship_state}</span>}
+
+
                                     </FormGroup>
                                     <FormGroup as={Col} md="6" className='col-mt'>
                                         <FormControl type="text" name="ship_fname"
                                             value={formData.ship_fname}
                                             onChange={handleInputChange}
                                             placeholder='First Name'
-                                            required
                                         />
                                         {errors.ship_fname && <span className="text-danger">{errors.ship_fname}</span>}
 
@@ -452,7 +486,6 @@ const CheckOut = () => {
                                             onChange={handleInputChange}
                                             placeholder='Country'
                                             readOnly
-                                        // onClick={handleCountryInputClick}
                                         />
                                         {errors.ship_country && <span className="text-danger">{errors.ship_country}</span>}
 
@@ -500,8 +533,10 @@ const CheckOut = () => {
                                                     }}
                                                     onKeyDown={handleBillPinCodeKeyDown}
                                                     onBlur={handleBillPinCodeBlur}
-                                                    placeholder='Billing PIN Code'
+                                                    placeholder='PIN Code'
                                                 />
+                                                {errors.bill_pincode && <span className="text-danger">{errors.bill_pincode}</span>}
+
                                             </FormGroup>
 
                                             <FormGroup as={Col} md="4" className='col-mt'>
@@ -509,7 +544,10 @@ const CheckOut = () => {
                                                     value={formData.bill_city}
                                                     onChange={handleInputChange}
                                                     placeholder='City'
+                                                    readOnly
                                                 />
+
+                                                {errors.bill_city && <span className="text-danger">{errors.bill_city}</span>}
                                             </FormGroup>
 
                                             <FormGroup as={Col} md="4" className='col-mt'>
@@ -517,7 +555,9 @@ const CheckOut = () => {
                                                     value={formData.bill_state}
                                                     onChange={handleInputChange}
                                                     placeholder='State'
+                                                    readOnly
                                                 />
+                                                {errors.bill_state && <span className="text-danger">{errors.bill_state}</span>}
                                             </FormGroup>
                                             <FormGroup as={Col} md="6" className='col-mt'>
                                                 <FormControl type="text"
@@ -526,6 +566,7 @@ const CheckOut = () => {
                                                     onChange={handleInputChange}
                                                     placeholder='First Name'
                                                 />
+                                                {errors.bill_fname && <span className="text-danger">{errors.bill_fname}</span>}
                                             </FormGroup>
 
                                             <FormGroup as={Col} md="6" className='col-mt'>
@@ -534,6 +575,8 @@ const CheckOut = () => {
                                                     onChange={handleInputChange}
                                                     placeholder='Last Name'
                                                 />
+                                                {errors.bill_lname && <span className="text-danger">{errors.bill_lname}</span>}
+
                                             </FormGroup>
 
                                             <FormGroup as={Col} md="4" className='col-mt'>
@@ -542,6 +585,8 @@ const CheckOut = () => {
                                                     onChange={handleInputChange}
                                                     placeholder='Phone'
                                                 />
+                                                {errors.bill_mobile && <span className="text-danger">{errors.bill_mobile}</span>}
+
                                             </FormGroup>
                                             <FormGroup as={Col} md="4" className='col-mt'>
                                                 <FormControl type="text" name="bill_company"
@@ -557,6 +602,8 @@ const CheckOut = () => {
                                                     onChange={handleInputChange}
                                                     placeholder='Country'
                                                 />
+                                                {errors.bill_country && <span className="text-danger">{errors.bill_country}</span>}
+
                                             </FormGroup>
 
                                             <FormGroup as={Col} md="12">
@@ -564,6 +611,8 @@ const CheckOut = () => {
                                                     value={formData.bill_adderss_one}
                                                     onChange={handleInputChange}
                                                 />
+                                                {errors.bill_adderss_one && <span className="text-danger">{errors.bill_adderss_one}</span>}
+
                                                 <br />
                                                 <FormControl type="text" placeholder='Apartment, suite, unit, etc. (optional)' name="bill_adderss_two"
                                                     value={formData.bill_adderss_two}

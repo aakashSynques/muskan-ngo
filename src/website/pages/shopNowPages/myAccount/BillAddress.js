@@ -1,14 +1,64 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Col, Row, FormControl, FormGroup, Form } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import { fetch } from '../../../../utils';
 import { ToastContainer } from 'react-toastify';
 import { toast } from 'react-toastify';
+import { useSelector, useDispatch } from 'react-redux';
 
+
+// const BillAddress = ({ show, handleClose, updateAddressData }) => {
 const BillAddress = ({ show, handleClose, updateAddressData }) => {
     const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
     const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const address = useSelector((state) => state.address.addressData1);
+
+
+
+
+    const [addressData, setAddressData] = useState({});
+    const getAddressData = async () => {
+        try {
+            setIsLoading(true); // Set loading state to true while fetching data
+            const body = {
+                customer_id: parsedTokenData.customer_id,
+            };
+            const response = await fetch('/customer/address', 'POST', body, null);
+            setAddressData(response.data.data);
+
+            setIsLoading(false); // Set loading state to false after data is fetched
+
+        } catch (error) {
+            setError(error);
+            setIsLoading(false); // Set loading state to false even if an error occurs
+        }
+    };
+    useEffect(() => {
+        getAddressData();
+    }, []);
+    const hasBillingAddress = addressData && addressData.bill_adderss || "";
+
+
+    useEffect(() => {
+        // Update the form data when hasBillingAddress changes
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            bill_fname: hasBillingAddress?.bill_fname || '',
+            bill_lname: hasBillingAddress?.bill_lname || '',
+            bill_company: hasBillingAddress?.bill_company || '',
+            bill_adderss_one: hasBillingAddress?.bill_adderss_one || '',
+            bill_adderss_two: hasBillingAddress?.bill_adderss_two || '',
+            bill_pincode: hasBillingAddress?.bill_pincode || '',
+            bill_city: hasBillingAddress?.bill_city || '',
+            bill_state: hasBillingAddress?.bill_state || '',
+            bill_country: hasBillingAddress?.bill_country || '',
+            bill_mobile: hasBillingAddress?.bill_mobile || '',
+        }));
+    }, [hasBillingAddress]);
+
     const [formData, setFormData] = useState({
         customer_email: '',
         bill_fname: '',
@@ -22,8 +72,12 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
         bill_country: '',
         bill_mobile: '',
     });
+
+
+
     const [validationErrors, setValidationErrors] = useState({});
     const [loading, setLoading] = useState(false);
+
     const handleInputChange = (event) => {
         const { name, value } = event.target;
         setFormData({
@@ -31,6 +85,26 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
             [name]: value,
         });
     };
+
+
+    
+    // const handleInputChange = (event) => {
+    //     const { name, value, placeholder } = event.target;
+    
+    //     // Update form data
+    //     setFormData({
+    //         ...formData,
+    //         [name]: value,
+    //     });
+    
+    //     // Update error messages
+    //     setErrors((prevErrors) => ({
+    //         ...prevErrors,
+    //         [name]: value.trim() ? '' : `${placeholder || name} is required`,
+    //     }));
+    // };
+    
+
     const validateForm = () => {
         const errors = {};
         if (formData.bill_fname.trim() === '') {
@@ -45,10 +119,20 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
         if (formData.bill_pincode.trim() === '') {
             errors.bill_pincode = 'PIN Code is required';
         }
-
         if (formData.bill_mobile.trim() === '') {
             errors.bill_mobile = 'Mobile is required';
         }
+        if (formData.bill_city.trim() === '') {
+            errors.bill_city = 'City is required';
+        }
+        if (formData.bill_state.trim() === '') {
+            errors.bill_state = 'State is required';
+        }
+        if (formData.bill_country.trim() === '') {
+            errors.bill_country = 'Country is required';
+        }
+
+
         setValidationErrors(errors);
         return Object.keys(errors).length === 0;
     };
@@ -105,7 +189,6 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                 setErrorMessagePin('No Pincode found');
             }
         } catch (error) {
-            console.log('Error fetching pincode data:', error);
             setErrorMessagePin('No Pincode found');
         }
     };
@@ -120,14 +203,6 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
         fetchPinCode();
     };
 
-    const handleCountryInputClick = () => {
-        toast.error('Enter Pin Code.', {
-            position: toast.POSITION.TOP_CENTER,
-            autoClose: 2000,
-        });
-    };
-
-
 
     return (
         <div>
@@ -136,6 +211,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                 style={{ display: 'block', position: 'initial' }}
             >
                 <Modal show={show} size='lg' onHide={handleClose}>
+
                     <Modal.Header closeButton>
                         <Modal.Title>Billing Address</Modal.Title>
                     </Modal.Header>
@@ -149,6 +225,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                     value={formData.bill_fname}
                                     onChange={handleInputChange}
                                 />
+
                                 {validationErrors.bill_fname && (
                                     <div className="text-danger">{validationErrors.bill_fname}</div>
                                 )}
@@ -166,18 +243,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                 )}
                             </FormGroup>
 
-                            <FormGroup as={Col} md="6" className='py-1'>
-                                <Form.Label>Company</Form.Label>
-                                <FormControl
-                                    type="text"
-                                    name="bill_company"
-                                    value={formData.bill_company}
-                                    onChange={handleInputChange}
-                                />
-                                {validationErrors.bill_company && (
-                                    <div className="text-danger">{validationErrors.bill_company}</div>
-                                )}
-                            </FormGroup>
+
 
                             <FormGroup as={Col} md="6" className='py-1'>
                                 <Form.Label>Mobile</Form.Label>
@@ -210,17 +276,26 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                 <FormControl
                                     type="text"
                                     name="bill_adderss_two"
-
                                     value={formData.bill_adderss_two}
                                     onChange={handleInputChange}
                                 />
                             </FormGroup>
 
-                            {/* <FormGroup as={Col} md="6" className='col-mt'>
+                            <FormGroup as={Col} md="6" className='py-1'>
+                                <Form.Label>Company</Form.Label>
+                                <FormControl
+                                    type="text"
+                                    name="bill_company"
+                                    value={formData.bill_company}
+                                    onChange={handleInputChange}
+                                />
+                            </FormGroup>
+
+                            <FormGroup as={Col} md="6" className='col-mt'>
                                 <Form.Label>PIN Code</Form.Label>
                                 <FormControl
                                     type="number"
-                                    name="ship_pincode"
+                                    name="bill_pincode"
                                     value={formData.bill_pincode}
                                     onChange={(e) => {
                                         handleInputChange(e);
@@ -229,25 +304,13 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                     onKeyDown={handlePinCodeKeyDown}
                                     onBlur={handlePinCodeBlur}
                                 />
-                                <font size='2' color="red" >{errorMessagePin}</font>
-                                {validationErrors.bill_pincode && (
-                                    <font size='2' className="text-danger">{validationErrors.bill_pincode}</font>
-                                )}
-                            </FormGroup> */}
-
-
-                            <FormGroup as={Col} md="6" className='py-1'>
-                                <Form.Label>PIN Code</Form.Label>
-                                <FormControl
-                                    type="number"
-                                    name="ship_pincode"
-                                    value={formData.bill_pincode}
-                                    onChange={handleInputChange}
-                                />
-                                {validationErrors.bill_pincode && (
+                                {!errorMessagePin && validationErrors.bill_pincode && (
                                     <div className="text-danger">{validationErrors.bill_pincode}</div>
                                 )}
+                                <div className='text-danger'>{errorMessagePin}</div>
                             </FormGroup>
+
+
 
                             <FormGroup as={Col} md="6" className='py-1'>
                                 <Form.Label>City</Form.Label>
@@ -258,9 +321,9 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                     onChange={handleInputChange}
                                     readOnly
                                 />
-                                   {/* {validationErrors.bill_pincode && (
-                                    <div className="text-danger">{validationErrors.bill_pincode}</div>
-                                )} */}
+                                {validationErrors.bill_city && (
+                                    <div className="text-danger">{validationErrors.bill_city}</div>
+                                )}
                             </FormGroup>
                             <FormGroup as={Col} md="6" className='py-1'>
                                 <Form.Label>State</Form.Label>
@@ -271,7 +334,9 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                     onChange={handleInputChange}
                                     readOnly
                                 />
-
+                                {validationErrors.bill_state && (
+                                    <div className="text-danger">{validationErrors.bill_state}</div>
+                                )}
                             </FormGroup>
                             <FormGroup as={Col} md="6" className='py-1'>
                                 <Form.Label>Country</Form.Label>
@@ -282,7 +347,9 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                     onChange={handleInputChange}
                                     readOnly
                                 />
-
+                                {validationErrors.bill_country && (
+                                    <div className="text-danger">{validationErrors.bill_country}</div>
+                                )}
                             </FormGroup>
 
                         </Row>

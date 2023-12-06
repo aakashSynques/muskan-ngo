@@ -11,7 +11,6 @@ const orderSlice = createSlice({
     setOrderId: (state, action) => {
       state.custOrderId = action.payload;
     },
-
   },
 });
 
