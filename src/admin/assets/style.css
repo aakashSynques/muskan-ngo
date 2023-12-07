@@ -6,6 +6,7 @@
     background-color: #7e1502 !important;
     border: none !important;
 }
+
 .default-btn {
     background-color: #000000;
     color: #fff;
@@ -63,3 +64,29 @@
 }
 
 /* close side bar style */
+
+
+/* .mobile-toggle{
+    display: none;
+} */
+.small-box>.inner {
+    padding: 15px;
+}
+.small-box>.small-box-footer {
+    background-color: rgba(0,0,0,.1);
+    color: rgba(255,255,255,.8);
+    display: block;
+    padding: 3px 0;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    z-index: 10;
+}
+@media only screen and (max-width: 799px) {
+    .sidebar {
+        width: 52% !important;
+    }
+.mobile-toggle{
+    display: inline-block;
+}
+}

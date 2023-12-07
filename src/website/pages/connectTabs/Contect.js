@@ -6,8 +6,8 @@ import CaptchaComponent from '../../component/CaptchaComponent';
 const Contect = () => {
   const [captchaValue, setCaptchaValue] = useState(null);
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false); 
-  const [submitSuccess, setSubmitSuccess] = useState(false); 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -84,7 +84,7 @@ const Contect = () => {
     }
   };
 
-  
+
 
   return (
     <div>

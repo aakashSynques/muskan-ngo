@@ -35,14 +35,18 @@ const SideBar = ({ children }) => {
                 href="#"
                 className=" position-absolute top-0 end-0 text-white float-right "
               >
-                {/* <button
-                  onClick={toggleSidebar}
-                  type="button"
-                  className="btn-close text-white float-right"
-                  aria-label="Close"
-                >
-                  ☰
-                </button> */}
+                <div className="mobile-toggle ">
+                  <button
+                    onClick={toggleSidebar}
+                    type="button"
+                    className="btn-close text-white float-right"
+                    aria-label="Close"
+                  >
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                  </button>
+                </div>
+
+
               </Nav.Item >
 
               <Nav.Item className="py-2 px-2">
@@ -103,7 +107,7 @@ const SideBar = ({ children }) => {
                 height="40"
                 className="d-inline-block align-top mx-3"
               />
-              
+
               Muskaan
             </Navbar.Brand>
 

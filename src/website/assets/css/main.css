@@ -911,10 +911,7 @@ html {
     float: left;
     /* line-height: 18px; */
     border-right: solid 1px #979797;
-    /* font-family: "FedraSansStd-book", sans-serif; */
-    /* font-size: 1em; */
-    font-weight: normal;
-    color: #000;
+    font-weight: 500;
 }
 
 .daily-amt {
@@ -930,14 +927,13 @@ html {
 }
 .button-list li {
     display: inline-block;
-    margin: 5px;
-    margin-left: 0;
-    padding: 10px 20px;
-    border: 1px solid #efefef;
+    /* margin: 5px; */
+    /* margin-left: 0; */
+    padding: 5px 4px;
 }
 
 .button-list li.acc {
-    background: #7e1502;
+    background: var(--primary-color);
 }
 .button-list li input[type="radio"] {
     opacity: .011;
@@ -947,4 +943,26 @@ html {
     cursor: pointer;
     z-index: 90;
     line-height: 1.8em;
+    padding: 2px 9px;
 }
+.acc{
+    border: 1px solid #7e1502 !important;
+    padding: 9px !important;
+    border-radius: 4px !important;
+    width: 100% !important;
+    background-color: white;
+}
+.acc-active{
+    background-color: var(--primary-color);
+    color: var(--white-text);
+    border: 1px solid #7e154b;
+    outline: none;
+}
+.acc-input-place::placeholder {
+    color: white;
+    opacity: 1; /* Firefox */
+  }
+  
+  .acc-input-place  ::-ms-input-placeholder { /* Edge 12 -18 */
+    color: white;
+  }
