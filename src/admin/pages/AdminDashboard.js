@@ -1,5 +1,5 @@
 import React from "react";
-import { Breadcrumb, Button, Card, Row, Col } from "react-bootstrap";
+import { Breadcrumb, Button, Card, Row, Col, NavLink } from "react-bootstrap";
 import { AiFillHdd } from "react-icons/ai";
 import { Link } from "react-router-dom";
 
@@ -38,48 +38,54 @@ const AdminDashboard = () => {
                   </div>
                 </Col>
               </Row> */}
-              <Row>
-
-                <div class="col-lg-3 col-6 text-white">
-                  <div class="small-box bg-info  rounded-1 shadow-sm">
+              <Row sm={1} lg={5} xs={1} className='pt-3'>           
+                <Col class="text-white">
+                  <div class="small-box text-white bg-info  rounded-1 shadow-sm">
                     <div class="inner">
                       <h3><strong>0</strong></h3>
                       <p>Today's Order</p>
                     </div>
             
-                    <Link to='/admin/2/orders' class="small-box-footer">More info <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></Link>
-
-                  </div>
-                </div>
-                <div class="col-lg-3 col-6 text-white">
-                  <div class="small-box bg-success  rounded-1 shadow-sm">
+                    <Link to='/admin/2/orders' class="small-box-footer">More info <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></Link>                 </div>
+                </Col>
+                <Col class="text-white">
+                  <div class="small-box text-white bg-success  rounded-1 shadow-sm">
                     <div class="inner">
                       <h3><strong>0</strong></h3>
-                      <p>Today's Order</p>
+                      <p>Confirmed Orders</p>
                     </div>
                     <Link to='/admin/2/orders' class="small-box-footer">More info <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></Link>
                   </div>
-                </div>
-
-                <div class="col-lg-3 col-6 text-white">
-                  <div class="small-box bg-primary  rounded-1 shadow-sm">
+                </Col>
+                <Col class="text-white">
+                  <div class="small-box text-white bg-warning  rounded-1 shadow-sm">
                     <div class="inner">
                       <h3><strong>0</strong></h3>
-                      <p>Today's Order</p>
+                      <p>Initiated Order</p>
                     </div>
-                    <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                    <Link to='/admin/1/orders' class="small-box-footer">More info <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></Link>
                   </div>
-                </div>
+                </Col>
 
-                <div class="col-lg-3 col-6 text-white">
-                  <div class="small-box bg-danger  rounded-1 shadow-sm">
+                <Col class="text-white">
+                  <div class="small-box text-white bg-primary  rounded-1 shadow-sm">
                     <div class="inner">
                       <h3><strong>0</strong></h3>
-                      <p>Today's Order</p>
+                      <p>Dispatch Order</p>
                     </div>
-                    <a href="" class="small-box-footer">More info <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></a>
+                    <Link to="/admin/4/orders" class="small-box-footer">More info <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></Link>
                   </div>
-                </div>
+                </Col>
+
+                <Col class="text-white">
+                  <div class="small-box text-white bg-danger  rounded-1 shadow-sm">
+                    <div class="inner">
+                      <h3><strong>0</strong></h3>
+                      <p>Cancelled Order</p>
+                    </div>
+                    <Link to='/admin/3/orders' class="small-box-footer">More info <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></Link>
+                  </div>
+                </Col>
 
 
 

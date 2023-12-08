@@ -3,8 +3,11 @@ import { Container, Row, Col, Form, FormControl, Button, Image } from 'react-boo
 import CaptchaComponent from '../../component/CaptchaComponent';
 import { fetch } from '../../../utils';
 const DonateNow = () => {
+  const [captchaValue, setCaptchaValue] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [headsData, setHeadsData] = useState();
+  const [errorMessage, setErrorMessage] = useState('');
+
   const getDonateHeads = async () => {
     try {
       setIsLoading(true);
@@ -25,6 +28,7 @@ const DonateNow = () => {
   const handleClick = (index) => {
     if (selectedItem !== index) {
       setCustomAmount('');
+
     }
     setSelectedItem(index);
     if (index === 'other') {
@@ -32,12 +36,11 @@ const DonateNow = () => {
     } else if (headsData && headsData[index]) {
       setDonationAmount(parseFloat(headsData[index].head_amount) || 0);
     }
-  };
 
-  // const formData = {
-  //   donationOption: selectedItem === 'other' ? 'other' : headsData[selectedItem]?.head_name,
-  //   amount: donationAmount || customAmount,      
-  // };
+    if (validationErrors.donationAmount) {
+      setValidationErrors({ ...validationErrors, donationAmount: '' });
+    }
+  };
   const [validationErrors, setValidationErrors] = useState({
     firstName: '',
     lastName: '',
@@ -54,24 +57,38 @@ const DonateNow = () => {
     address: '',
   });
 
+
+  const handleAmountChange = (e) => {
+    const enteredAmount = parseFloat(e.target.value);
+    if (donationAmount !== null && enteredAmount <= donationAmount) {
+      setErrorMessage('Entered amount should be greater than or equal to the selected donation amount.');
+    } else {
+      setErrorMessage('');
+    }
+    setDonationAmount(enteredAmount);
+  };
+
+  const handleCaptchaChange = (value) => {
+
+  };
+
   const validateForm = () => {
     const errors = {};
     let isValid = true;
-
 
     if (selectedItem !== 'other' && !donationAmount) {
       errors.donationAmount = 'Donation amount is required';
       isValid = false;
     } else if (selectedItem === 'other' && (!customAmount || customAmount <= 0)) {
-      errors.donationAmount = 'Invalid custom donation amount';
+      errors.donationAmount = 'Enter donation amount';
       isValid = false;
     }
-
 
     if (!formData.firstName.trim()) {
       errors.firstName = 'First Name is required';
       isValid = false;
     }
+
     if (!formData.lastName.trim()) {
       errors.lastName = 'Last Name is required';
       isValid = false;
@@ -91,9 +108,16 @@ const DonateNow = () => {
       errors.address = 'Address is required';
       isValid = false;
     }
+
+
+    if (!captchaValue) {
+      errors.captcha = 'Please complete the reCAPTCHA';
+    }
+
     setValidationErrors(errors);
     return isValid;
   };
+
   const isValidEmail = (email) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
@@ -103,6 +127,7 @@ const DonateNow = () => {
     try {
       if (validateForm()) {
         const body = {
+          donationOption: selectedItem === 'other' ? 'other' : headsData[selectedItem]?.head_name,
           amount: donationAmount || customAmount,
           firstName: formData.firstName,
           lastName: formData.lastName,
@@ -117,8 +142,6 @@ const DonateNow = () => {
       // Handle errors
     }
   };
-
-
 
 
   return (
@@ -172,10 +195,25 @@ const DonateNow = () => {
             />
           </label>
         </li>
-        <h6 className='py-2'>Your contribution amount: <i class="fa fa-inr"></i> {donationAmount || customAmount || 0}</h6>
+
+        {selectedItem !== null && selectedItem !== 'other' && (
+          <div className='mt-2'>
+            <strong style={{ fontSize: '17px' }}>{selectedItem === 'other' ? 'other' : headsData[selectedItem]?.head_name} : </strong>
+            <input
+              type="number"
+              value={donationAmount}
+              onChange={handleAmountChange}
+            />
+            {errorMessage && <div style={{ color: 'red' }}>{errorMessage}</div>}
+          </div>
+        )}
+
+
         {validationErrors.donationAmount && (
           <p className="error text-danger m-0">{validationErrors.donationAmount}</p>
         )}
+
+        <h6 className='py-2 mt-4 main-color'>Your contribution amount: <i class="fa fa-inr"></i> {donationAmount || customAmount || 0}</h6>
       </div>
 
       <div className='parsnal-info'>
@@ -192,11 +230,16 @@ const DonateNow = () => {
                 placeholder='First Name *'
                 className='contact-input'
                 value={formData.firstName}
-                onChange={(e) => setFormData({ ...formData, firstName: e.target.value })}
-
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setFormData({ ...formData, firstName: value });
+                  setValidationErrors((prevErrors) => ({
+                    ...prevErrors,
+                    firstName: value.trim() ? '' : 'First Name is required',
+                  }));
+                }}
               />
               {validationErrors.firstName && <p className="error text-danger m-0">{validationErrors.firstName}</p>}
-
             </Form.Group>
             <Form.Group className="mb-3" as={Col} md="6">
               <FormControl
@@ -205,7 +248,14 @@ const DonateNow = () => {
                 placeholder='Last Name *'
                 className='contact-input'
                 value={formData.lastName}
-                onChange={(e) => setFormData({ ...formData, lastName: e.target.value })}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setFormData({ ...formData, lastName: value });
+                  setValidationErrors((prevErrors) => ({
+                    ...prevErrors,
+                    lastName: value.trim() ? '' : 'Last Name is required',
+                  }));
+                }}
               />
               {validationErrors.lastName && <p className="error text-danger m-0">{validationErrors.lastName}</p>}
 
@@ -218,7 +268,14 @@ const DonateNow = () => {
                 placeholder='E-mail Address *'
                 className='contact-input'
                 value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setFormData({ ...formData, email: value });
+                  setValidationErrors((prevErrors) => ({
+                    ...prevErrors,
+                    email: value.trim() ? '' : 'Email is required',
+                  }));
+                }}
 
               />
               {validationErrors.email && <p className="error text-danger m-0">{validationErrors.email}</p>}
@@ -231,8 +288,14 @@ const DonateNow = () => {
                 placeholder='Mobile *'
                 className='contact-input'
                 value={formData.mobile}
-                onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
-
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setFormData({ ...formData, mobile: value });
+                  setValidationErrors((prevErrors) => ({
+                    ...prevErrors,
+                    mobile: value.trim() ? '' : 'Mobile  is required',
+                  }));
+                }}
               />
               {validationErrors.mobile && <p className="error text-danger m-0">{validationErrors.mobile}</p>}
             </Form.Group>
@@ -244,14 +307,23 @@ const DonateNow = () => {
                 rows={3}
                 className='contact-input'
                 value={formData.address}
-                onChange={(e) => setFormData({ ...formData, address: e.target.value })}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  setFormData({ ...formData, address: value });
+                  setValidationErrors((prevErrors) => ({
+                    ...prevErrors,
+                    address: value.trim() ? '' : 'Address is required',
+                  }));
+                }}
               />
               {validationErrors.address && <p className="error text-danger m-0">{validationErrors.address}</p>}
 
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <CaptchaComponent />
+              <CaptchaComponent onChange={handleCaptchaChange} />
+
+              {validationErrors.captcha && <p className="error text-danger">{validationErrors.captcha}</p>}
             </Form.Group>
 
             <Form.Group as={Col} md="5">

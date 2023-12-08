@@ -58,20 +58,20 @@ const CheckOut = () => {
 
     const handleInputChange = (event) => {
         const { name, value, placeholder } = event.target;
-    
+
         // Update form data
         setFormData({
             ...formData,
             [name]: value,
         });
-    
+
         // Update error messages
         setErrors((prevErrors) => ({
             ...prevErrors,
             [name]: value.trim() ? '' : `${placeholder || name} is required`,
         }));
     };
-    
+
 
 
     const displayRazorpay = useCallback(
@@ -155,17 +155,7 @@ const CheckOut = () => {
             let isValid = true;
             setIsLoading(true); // Set loading state to true
 
-            setErrors({}); // Reset errors
-
-            // const validateField = (fieldName, regex, errorMessage) => {
-            //     if (!formData[fieldName].trim() || (regex && !regex.test(formData[fieldName].trim()))) {
-            //         setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: errorMessage }));
-            //         isValid = false;
-            //     } else {
-            //               setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: '' })); // Clear the error
-            //     }
-            // };
-
+            setErrors({}); 
             const validateField = (fieldName, regex, errorMessage) => {
                 if (!formData[fieldName].trim() || (regex && !regex.test(formData[fieldName].trim()))) {
                     setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: errorMessage }));
@@ -181,7 +171,6 @@ const CheckOut = () => {
                 setErrors((prevErrors) => ({ ...prevErrors, ["ship_pincode"]: 'Enter valid Pin code' }));
                 isValid = false;
             }
-
             validateField('customer_email', null, 'Email is required');
             validateField('ship_fname', null, 'First Name is required');
             validateField('ship_lname', null, 'Last Name is required');
@@ -270,7 +259,7 @@ const CheckOut = () => {
             const pincodeDetails = response.data.data.pincode_details;
             if (pincodeDetails) {
                 setPinCodeDetails(pincodeDetails);
-    
+
                 // Update form data based on pin code details
                 setFormData((prevFormData) => ({
                     ...prevFormData,
@@ -278,7 +267,7 @@ const CheckOut = () => {
                     [isBilling ? 'bill_state' : 'ship_state']: pincodeDetails.state || prevFormData.ship_state,
                     [isBilling ? 'bill_country' : 'ship_country']: pincodeDetails.country || prevFormData.ship_country,
                 }));
-    
+
                 // Clear the corresponding error messages
                 setErrors((prevErrors) => ({
                     ...prevErrors,
@@ -297,7 +286,7 @@ const CheckOut = () => {
         } catch (error) {
             setErrorMessagePin('No Pincode found');
             setPinCodeDetails(null);
-    
+
             // Clear the corresponding error messages
             setErrors((prevErrors) => ({
                 ...prevErrors,
@@ -305,21 +294,21 @@ const CheckOut = () => {
                 [isBilling ? 'bill_state' : 'ship_state']: '',
                 [isBilling ? 'bill_country' : 'ship_country']: '',
             }));
-    
+
             setFormData((prevFormData) => ({
                 ...prevFormData,
                 [isBilling ? 'bill_city' : 'ship_city']: '',
                 [isBilling ? 'bill_state' : 'ship_state']: '',
                 [isBilling ? 'bill_country' : 'ship_country']: '',
             }));
-    
+
             toast.error('No Pincode found', {
                 position: toast.POSITION.TOP_CENTER,
                 autoClose: 2000,
             });
         }
     };
-    
+
 
 
     const handleShipPinCodeKeyDown = (e) => {
