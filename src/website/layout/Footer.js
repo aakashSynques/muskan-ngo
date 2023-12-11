@@ -21,9 +21,9 @@ const Footer = () => {
                 <p>We have been actively working on this journey with members of denotified tribes and the urban poor since 1998.</p>
                 <hr />
                 <ul className="socials">
-                  <li><a href="#" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="#" target="_blank"><i className="fa fa-instagram" aria-hidden="true"></i></a></li>
-                  <li><a href="#" target="_blank"><i className="fa fa-youtube" aria-hidden="true"></i></a></li>
+                  <li><a href="https://www.facebook.com/" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="https://www.instagram.com/" target="_blank"><i className="fa fa-instagram" aria-hidden="true"></i></a></li>
+                  <li><a href="https://www.youtube.com/@muskaanbhopal" target="_blank"><i className="fa fa-youtube" aria-hidden="true"></i></a></li>
                 </ul>
               </div>
             </Col>

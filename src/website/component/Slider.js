@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import Carousel from 'react-bootstrap/Carousel';
-import slider1 from '../assets/images/sliderImg/muskaan-banner.jpg'
-import slider2 from '../assets/images/sliderImg/slider2.jpg'
+import slider1 from '../assets/images/sliderImg/muskaan-banner.webp'
+import slider2 from '../assets/images/sliderImg/slider2.webp'
 
 const Slider = () => {
     const [index, setIndex] = useState(0);
@@ -10,14 +10,20 @@ const Slider = () => {
         setIndex(selectedIndex);
     };
 
+
+
+
     return (
         <div>
             <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
                 <Carousel.Item>
                     <img
+                        fetchpriority="high"
                         className="d-block w-100"
                         src={slider1}
                         alt="muskaan ngo"
+                        title='muskaan ngo'
+                        loading="lazy"
                     />
                     {/* <Carousel.Caption className='banner-text'>
                         <h2>Together we<br />
@@ -28,11 +34,14 @@ const Slider = () => {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
+                        fetchpriority="high"
                         className="d-block w-100"
                         src={slider2}
                         alt="muskaan ngo"
+                        title='muskaan ngo'
+                        loading="lazy"
                     />
-{/* 
+                    {/* 
                     <Carousel.Caption className='banner-text'>
                         <h2>Give a little. Change a lot.</h2>
                         <p>Help today because tomorrow you may be the one who needs helping!

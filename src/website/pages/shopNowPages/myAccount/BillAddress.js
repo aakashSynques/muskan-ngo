@@ -12,13 +12,9 @@ import { useSelector, useDispatch } from 'react-redux';
 const BillAddress = ({ show, handleClose, updateAddressData }) => {
     const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
     const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
+
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
-    const address = useSelector((state) => state.address.addressData1);
-
-
-
-
     const [addressData, setAddressData] = useState({});
     const getAddressData = async () => {
         try {
@@ -28,12 +24,10 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
             };
             const response = await fetch('/customer/address', 'POST', body, null);
             setAddressData(response.data.data);
-
             setIsLoading(false); // Set loading state to false after data is fetched
-
         } catch (error) {
             setError(error);
-            setIsLoading(false); // Set loading state to false even if an error occurs
+            setIsLoading(false);
         }
     };
     useEffect(() => {
@@ -43,7 +37,6 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
 
 
     useEffect(() => {
-        // Update the form data when hasBillingAddress changes
         setFormData((prevFormData) => ({
             ...prevFormData,
             bill_fname: hasBillingAddress?.bill_fname || '',
@@ -59,6 +52,8 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
         }));
     }, [hasBillingAddress]);
 
+
+
     const [formData, setFormData] = useState({
         customer_email: '',
         bill_fname: '',
@@ -73,37 +68,24 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
         bill_mobile: '',
     });
 
-
-
     const [validationErrors, setValidationErrors] = useState({});
     const [loading, setLoading] = useState(false);
-
     const handleInputChange = (event) => {
-        const { name, value } = event.target;
+        const { name, value, placeholder } = event.target;
+        setValidationErrors({
+            ...validationErrors,
+            [name]: '',
+        });
         setFormData({
             ...formData,
             [name]: value,
         });
+        setValidationErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: value.trim() ? '' : `${placeholder || name} is required`,
+        }));
+
     };
-
-
-    
-    // const handleInputChange = (event) => {
-    //     const { name, value, placeholder } = event.target;
-    
-    //     // Update form data
-    //     setFormData({
-    //         ...formData,
-    //         [name]: value,
-    //     });
-    
-    //     // Update error messages
-    //     setErrors((prevErrors) => ({
-    //         ...prevErrors,
-    //         [name]: value.trim() ? '' : `${placeholder || name} is required`,
-    //     }));
-    // };
-    
 
     const validateForm = () => {
         const errors = {};
@@ -131,11 +113,11 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
         if (formData.bill_country.trim() === '') {
             errors.bill_country = 'Country is required';
         }
-
-
         setValidationErrors(errors);
         return Object.keys(errors).length === 0;
     };
+
+
     const handleBillingAdd = async () => {
         if (validateForm()) {
             try {
@@ -221,6 +203,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                 <Form.Label>First Name</Form.Label>
                                 <FormControl
                                     type="text"
+                                    placeholder='First Name'
                                     name="bill_fname"
                                     value={formData.bill_fname}
                                     onChange={handleInputChange}
@@ -234,6 +217,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                 <Form.Label>Last Name</Form.Label>
                                 <FormControl
                                     type="text"
+                                    placeholder='Last Name'
                                     name="bill_lname"
                                     value={formData.bill_lname}
                                     onChange={handleInputChange}
@@ -243,12 +227,11 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                 )}
                             </FormGroup>
 
-
-
                             <FormGroup as={Col} md="6" className='py-1'>
                                 <Form.Label>Mobile</Form.Label>
                                 <FormControl
                                     type="number"
+                                    placeholder='Mobile'
                                     name="bill_mobile"
                                     value={formData.bill_mobile}
                                     onChange={handleInputChange}
@@ -262,6 +245,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                 <Form.Label>Address</Form.Label>
                                 <FormControl
                                     type="text"
+                                    placeholder='Address'
                                     name="bill_adderss_one"
                                     value={formData.bill_adderss_one}
                                     onChange={handleInputChange}
@@ -275,6 +259,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                 <Form.Label>Apartment, suite, unit, etc. (optional)</Form.Label>
                                 <FormControl
                                     type="text"
+                                    placeholder='Apartment, suite, unit,'
                                     name="bill_adderss_two"
                                     value={formData.bill_adderss_two}
                                     onChange={handleInputChange}
@@ -285,6 +270,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                 <Form.Label>Company</Form.Label>
                                 <FormControl
                                     type="text"
+                                    placeholder='Company'
                                     name="bill_company"
                                     value={formData.bill_company}
                                     onChange={handleInputChange}
@@ -295,6 +281,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                 <Form.Label>PIN Code</Form.Label>
                                 <FormControl
                                     type="number"
+                                    placeholder='Pin code'
                                     name="bill_pincode"
                                     value={formData.bill_pincode}
                                     onChange={(e) => {
@@ -316,6 +303,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                 <Form.Label>City</Form.Label>
                                 <FormControl
                                     type="text"
+                                    placeholder='City'
                                     name="bill_city"
                                     value={formData.bill_city}
                                     onChange={handleInputChange}
@@ -329,6 +317,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                 <Form.Label>State</Form.Label>
                                 <FormControl
                                     type="text"
+                                    placeholder='State'
                                     name="bill_state"
                                     value={formData.bill_state}
                                     onChange={handleInputChange}
@@ -342,6 +331,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                                 <Form.Label>Country</Form.Label>
                                 <FormControl
                                     type="text"
+                                    placeholder='Country'
                                     name="bill_country"
                                     value={formData.bill_country}
                                     onChange={handleInputChange}
@@ -362,6 +352,7 @@ const BillAddress = ({ show, handleClose, updateAddressData }) => {
                             Close
                         </Button>
                     </Modal.Footer>
+
                 </Modal>
             </div>
         </div>

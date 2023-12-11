@@ -40,8 +40,9 @@ const Libraries = () => {
                 </a>
             </p>
 
-            <p>Youtube channel to library sessions –</p>
-            <Row>
+            {/* <p>Youtube channel to library sessions –</p> */}
+            <a href='https://www.youtube.com/embed/UE2hFA65lk4?si=xbRO7ewB-H3rbD2F' target='_blank'>Youtube channel to library sessions </a>
+            {/* <Row>
                 <Col sm={3}>
                     <iframe width="100%" height="250" src="https://www.youtube.com/embed/UE2hFA65lk4?si=xbRO7ewB-H3rbD2F" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     <p className='fw-bold main-color'>A glimpse of Ganga Nagar Library (2012) </p>
@@ -54,7 +55,7 @@ const Libraries = () => {
                     <iframe width="100%" height="250" src="https://www.youtube.com/embed/cHwKwb9WWHk?si=vN6bMVjJnsdoY1Ga" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     <p className='fw-bold main-color'>Reading Practices in the Library Interactive Read Aloud – Hindi (Parag Film made in a Muskaan library) </p>
                 </Col>
-            </Row>
+            </Row> */}
 
 
         </>

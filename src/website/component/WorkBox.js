@@ -6,7 +6,7 @@ function WorkBox({ imageSrc, title, description, link }) {
     return (
         <Col lg={4} className="my-2">
             <div className="work-box">
-                <Image src={imageSrc} width={200} alt={title} />
+                <Image src={imageSrc} width={200} alt={title}  loading="lazy"/>
                 <h3 className='f-w-6 pt-2'>{title}</h3>
                 <p>{description}</p>
                 {/* <Link to="/" className='text-dark'>

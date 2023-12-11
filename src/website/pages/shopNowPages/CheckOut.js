@@ -25,14 +25,37 @@ const CheckOut = () => {
 
     const tokenDataFromLocalStorage = localStorage.getItem("muskan_token_data");
     const parsedTokenData = tokenDataFromLocalStorage ? JSON.parse(tokenDataFromLocalStorage) : null;
-
     const handleCheckboxChange = (event) => {
         setShipToDifferentAddress(event.target.checked);
     };
     const [orderPlace, setOrderPlace] = useState('');
+
+    const [addressData, setAddressData] = useState({});
+
+    const getAddressData = async () => {
+        try {
+            setIsLoading(true); // Set loading state to true while fetching data
+            const body = {
+                customer_id: parsedTokenData.customer_id,
+            };
+            const response = await fetch('/customer/address', 'POST', body, null);
+            setAddressData(response.data.data);
+
+            setIsLoading(false); // Set loading state to false after data is fetched
+
+        } catch (error) {
+            // setError(error);
+            setIsLoading(false); // Set loading state to false even if an error occurs
+        }
+    };
+    useEffect(() => {
+        getAddressData();
+    }, []);
+
+
     const [formData, setFormData] = useState({
         customer_email: parsedTokenData?.customer_email || '',
-        ship_fname: '',
+        ship_fname:  '',
         ship_lname: '',
         ship_company: '',
         ship_adderss_one: '',
@@ -56,23 +79,52 @@ const CheckOut = () => {
     });
 
 
+
+    const hasBillingAddress = addressData && addressData.bill_adderss;
+    const hasShippingAddress = addressData && addressData.ship_adderss;
+    useEffect(() => {
+        setFormData((prevFormData) => ({
+            ...prevFormData,
+            bill_fname: hasBillingAddress?.bill_fname || '',
+            bill_lname: hasBillingAddress?.bill_lname || '',
+            bill_company: hasBillingAddress?.bill_company || '',
+            bill_adderss_one: hasBillingAddress?.bill_adderss_one || '',
+            bill_adderss_two: hasBillingAddress?.bill_adderss_two || '',
+            bill_pincode: hasBillingAddress?.bill_pincode || '',
+            bill_city: hasBillingAddress?.bill_city || '',
+            bill_state: hasBillingAddress?.bill_state || '',
+            bill_country: hasBillingAddress?.bill_country || '',
+            bill_mobile: hasBillingAddress?.bill_mobile || '',
+
+            ship_fname: hasShippingAddress?.ship_fname || '',
+            ship_lname: hasShippingAddress?.ship_lname || '',
+            ship_company: hasShippingAddress?.ship_company || '',
+            ship_adderss_one: hasShippingAddress?.ship_adderss_one || '',
+            ship_adderss_two: hasShippingAddress?.ship_adderss_two || '',
+            ship_pincode: hasShippingAddress?.ship_pincode || '',
+            ship_city: hasShippingAddress?.ship_city || '',
+            ship_state: hasShippingAddress?.ship_state || '',
+            ship_country: hasShippingAddress?.ship_country || '',
+            ship_mobile: hasShippingAddress?.ship_mobile || '',
+            
+
+
+        }));
+    }, [hasBillingAddress, hasShippingAddress]);
+
     const handleInputChange = (event) => {
         const { name, value, placeholder } = event.target;
-
         // Update form data
         setFormData({
             ...formData,
             [name]: value,
         });
-
         // Update error messages
         setErrors((prevErrors) => ({
             ...prevErrors,
             [name]: value.trim() ? '' : `${placeholder || name} is required`,
         }));
     };
-
-
 
     const displayRazorpay = useCallback(
         (result, key) => {
@@ -150,12 +202,48 @@ const CheckOut = () => {
         ship_mobile: '',
         ship_adderss_one: '',
     });
+
+
+    const verifyToken = async (token) => {
+        try {
+            const response = await fetch("/customer/verify", "post", null, {
+                Authorization: `Bearer ${token}`,
+            });
+            if (response.status === 200) {
+                const responseData = await response.data;
+                if (responseData && responseData.data.token_data) {
+                    const tokenData = responseData.data.token_data;
+                    
+                    const exp = tokenData.exp;
+                    const currentTimestamp = Math.floor(Date.now() / 1000);
+
+                    if (exp > currentTimestamp) {
+                        // Token is still valid
+                        localStorage.setItem("muskan_token_data", JSON.stringify(tokenData));
+                        // navigate("/account/myprofile"); 
+                    } else {
+                        // alert('Token has expired');
+                        navigate("/account/login");
+                    }
+                    
+                } else {
+                    alert('Invalid token data format');
+                }
+            } else {
+                alert('Token verification failed');
+            }
+        } catch (err) {
+            console.error(err);
+        }
+    };
+
+
     const handlePlaceOrder = async () => {
         try {
             let isValid = true;
             setIsLoading(true); // Set loading state to true
 
-            setErrors({}); 
+            setErrors({});
             const validateField = (fieldName, regex, errorMessage) => {
                 if (!formData[fieldName].trim() || (regex && !regex.test(formData[fieldName].trim()))) {
                     setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: errorMessage }));
@@ -164,7 +252,6 @@ const CheckOut = () => {
                     setErrors((prevErrors) => ({ ...prevErrors, [fieldName]: '' })); // Clear the error
                 }
             };
-
 
             validateField('ship_pincode', null, 'Pin Code is required');
             if (formData.ship_pincode && pinCodeDetails === null) {
@@ -196,7 +283,6 @@ const CheckOut = () => {
             }
 
             if (isValid === false) { return false; }
-
             const body = {
                 customer_id: parsedTokenData ? parsedTokenData.customer_id : '', // Conditionally set customer_id             
                 customer_email: parsedTokenData ? parsedTokenData.customer_email : formData.customer_email,
@@ -226,8 +312,15 @@ const CheckOut = () => {
             };
             const response = await fetch('/order/save', 'POST', body, null);
             if (response) {
+                const newToken = response.data.data.token; // Extract the new token
+
                 setOrderPlace(response.data.data);
                 displayRazorpay(response.data.data.order, response.data.data.RAZORPAY_KEY_ID);
+                
+                localStorage.setItem("muskan_token", newToken);
+                verifyToken(newToken);
+
+
             } else {
                 setOrderPlace(response.data);
             }
@@ -336,6 +429,12 @@ const CheckOut = () => {
         localStorage.removeItem('muskan_token_data');
         navigate('/account/login');
     };
+
+
+
+
+
+
 
     if (cart.length === 0) {
         return (

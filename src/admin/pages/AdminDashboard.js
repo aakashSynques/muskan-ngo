@@ -38,14 +38,14 @@ const AdminDashboard = () => {
                   </div>
                 </Col>
               </Row> */}
-              <Row sm={1} lg={5} xs={1} className='pt-3'>           
+              <Row sm={1} lg={5} xs={1} className='pt-3'>
                 <Col class="text-white">
                   <div class="small-box text-white bg-info  rounded-1 shadow-sm">
                     <div class="inner">
                       <h3><strong>0</strong></h3>
                       <p>Today's Order</p>
                     </div>
-            
+
                     <Link to='/admin/2/orders' class="small-box-footer">More info <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></Link>                 </div>
                 </Col>
                 <Col class="text-white">
@@ -76,7 +76,7 @@ const AdminDashboard = () => {
                     <Link to="/admin/4/orders" class="small-box-footer">More info <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></Link>
                   </div>
                 </Col>
-
+                
                 <Col class="text-white">
                   <div class="small-box text-white bg-danger  rounded-1 shadow-sm">
                     <div class="inner">
@@ -86,17 +86,7 @@ const AdminDashboard = () => {
                     <Link to='/admin/3/orders' class="small-box-footer">More info <i class="fa fa-arrow-circle-right" aria-hidden="true"></i></Link>
                   </div>
                 </Col>
-
-
-
-
-
-
               </Row>
-
-
-
-
             </Card.Body>
             <Card.Footer></Card.Footer>
           </Card>

@@ -7,6 +7,11 @@ import about2 from '../assets/images/about2.jpg'
 import { Link } from 'react-router-dom'
 import WorkBox from '../component/WorkBox'
 import '../assets/css/style.css'
+import Youtube from 'react-lazyload-youtube'
+import 'react-lazyload-youtube/dist/index.css'
+import video1 from '../assets/video/video1.mp4'
+import video2 from '../assets/video/video2.mp4'
+import video3 from '../assets/video/video3.mp4'
 
 const Home = () => {
   return (
@@ -26,8 +31,8 @@ const Home = () => {
           </Col>
           <Col sm={6}>
             <div className="about-image about-one-img d-none d-sm-block">
-              <img src={about1} alt="muskaan ngo" className="shadow d-none d-sm-block" />
-              <img src={about2} alt="muskaan ngo" className="shadow" />
+              <img src={about1} alt="muskaan ngo" className="shadow d-none d-sm-block" loading="lazy"/>
+              <img src={about2} alt="muskaan ngo" className="shadow"  loading="lazy"/>
             </div>
           </Col>
         </Row>
@@ -44,38 +49,38 @@ const Home = () => {
           </Row>
           <Row>
             <WorkBox
-              imageSrc={require('../assets/images/workimges/education.png')}
+              imageSrc={require('../assets/images/workimge/education.png')}
               title="EDUCATION"
               description="More than 90% of children of marginalized communities do not finish school."
               link="/work/education"
             />
             <WorkBox
-              imageSrc={require('../assets/images/workimges/capable.png')}
+              imageSrc={require('../assets/images/workimge/capable.png')}
               title="EMPOWERING CHILDREN AND YOUTH"
               description="We believe that with the kind of energy that youth contains."
               link='/work/empowering-children-and-youth'
             />
             <WorkBox
-              imageSrc={require('../assets/images/workimges/life.png')}
+              imageSrc={require('../assets/images/workimge/life.png')}
               title="ISSUES OF DIGNITY AND SURVIVAL"
               description="The current atmosphere demands documentation that proves the."
               link='/work/issues-of-dignity-and-survival'
             />
             <WorkBox
-              imageSrc={require('../assets/images/workimges/livelyhood-2.png')}
+              imageSrc={require('../assets/images/workimge/livelyhood-2.png')}
               title="LIVELIHOODS"
               description="With the challenges of Covid-19 pandemic and the lockdowns."
               link='/work/liveLihoods'
             />
 
             <WorkBox
-              imageSrc={require('../assets/images/workimges/living.png')}
+              imageSrc={require('../assets/images/workimge/living.png')}
               title="SUSTAINABLE LIVING"
               description="We believe in the philosophy of sustainable living that aims"
               link='/work/sustainable-living'
             />
             <WorkBox
-              imageSrc={require('../assets/images/workimges/three-books.png')}
+              imageSrc={require('../assets/images/workimge/three-books.png')}
               title="PUBLICATIONS"
               description="Muskaan Publication Catalouge"
               link='/work/publication'
@@ -95,13 +100,13 @@ const Home = () => {
             <Col lg={2}></Col>
             <Col lg={4} className="padding-15 pstn-relative">
               <Link to='/books'>
-                <Image src={require('../assets/images/shopimg1.jpg')} fluid alt="Books" className='w-100' />
+                <Image src={require('../assets/images/shopimg1.jpg')} fluid alt="Books" className='w-100' loading="lazy"/>
                 <h3 className="img-text">Books</h3>
               </Link>
 
             </Col>
             <Col lg={4} className="padding-15 pstn-relative">
-              <Image src={require('../assets/images/shoimg2.jpg')} fluid alt="Diaries" className='w-100' />
+              <Image src={require('../assets/images/shoimg2.jpg')} fluid alt="Diaries" className='w-100' loading="lazy"/>
               <h3 className="img-text">Diaries</h3>
             </Col>
             {/* <Col lg={4} className="padding-15 pstn-relative">
@@ -125,8 +130,9 @@ const Home = () => {
             </Col>
           </Row>
           <Row>
+
             <Col sm={4} className='py-3'>
-              <iframe
+              {/* <iframe
                 width="100%"
                 height="315"
                 src="https://www.youtube.com/embed/otCK_01YrLo?si=KHX1NQBI2jKYj-o3"
@@ -134,10 +140,19 @@ const Home = () => {
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-              ></iframe>
+              ></iframe> */}
+
+              {/* <Youtube width="100%" height="315px" videoId="otCK_01YrLo?feature=shared"/> */}
+              {/* <Youtube width="100%" height="315px" videoId="otCK_01YrLo&t=2s" /> */}
+
+              <video width="100%" height="auto" controls>
+                <source src={video1} type="video/mp4" />
+              </video>
             </Col>
+
+
             <Col sm={4} className='py-3'>
-              <iframe
+              {/* <iframe
                 width="100%"
                 height="315"
                 src="https://www.youtube.com/embed/Y8MH3x2wxbo?si=Y1uAxhV01g5Pc7zL"
@@ -145,10 +160,13 @@ const Home = () => {
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-              ></iframe>
+              ></iframe> */}
+              <video width="100%" height="auto" controls>
+                <source src={video2} type="video/mp4" />
+              </video>
             </Col>
             <Col sm={4} className='py-3'>
-              <iframe
+              {/* <iframe
                 width="100%"
                 height="315"
                 src="https://www.youtube.com/embed/nK6NuHGeDrg?si=y1k8Wjgo5zPq3T7m"
@@ -156,7 +174,10 @@ const Home = () => {
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-              ></iframe>
+              ></iframe> */}
+              <video width="100%" height="auto" controls>
+                <source src={video3} type="video/mp4" />
+              </video>
             </Col>
           </Row>
           <div className="col-lg-12 text-center section-title">
@@ -164,6 +185,8 @@ const Home = () => {
           </div>
         </Container>
       </section>
+
+
 
       <section className="p70">
         <div className="container">
@@ -175,7 +198,7 @@ const Home = () => {
           <div className="row">
             <div className="col-lg-4 padding-15">
               <div className="blog-post">
-                <Image src={require('../assets/images/blog/blog-1.jpg')} alt="blog post" className='w-100' />
+                <Image src={require('../assets/images/blog/blog-1.webp')} alt="blog post" className='w-100' loading="lazy"/>
                 <div className="blog-content">
                   <span className="date">January 01, 2021</span>
                   <h3>
@@ -193,7 +216,7 @@ const Home = () => {
 
             <div className="col-lg-4 padding-15">
               <div className="blog-post">
-                <Image src={require('../assets/images/blog/blog-2.jpg')} alt="blog post" className='w-100' />
+                <Image src={require('../assets/images/blog/blog-2.webp')} alt="blog post" className='w-100' loading="lazy"/>
                 <div className="blog-content">
                   <span className="date">December 19, 2022</span>
                   <h3>
@@ -212,7 +235,7 @@ const Home = () => {
 
             <div className="col-lg-4 padding-15">
               <div className="blog-post">
-                <Image src={require('../assets/images/blog/blog-3.jpg')} alt="blog post" className='w-100' />
+                <Image src={require('../assets/images/blog/blog-3.webp')} alt="blog post" className='w-100' loading="lazy"/>
                 <div className="blog-content">
                   <span className="date">December 19, 2022</span>
                   <h3><a href="#">सफरनामा: एक बाल अखबार का</a></h3>

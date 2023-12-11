@@ -65,7 +65,8 @@ const Language = () => {
             <p>
                 Self-image plays an important role in the practice of learning something. Learning in a healthy environment is critical for both the mental and physical development of a child. That’s why it is important to know how well a child understands emotions and how well s/he is able to express them in the class. We regularly make them speak on such topics, to boost their self-esteem and confidence.
             </p>
-
+            <a href='https://www.youtube.com/embed/KoiZwiVBd4c?si=BqFkj3oqYW1WZTcD' target='_blank'>Youtube channel to library sessions </a>
+            {/* 
             <Row>
                 <Col sm={3}>
                     <iframe width="100%" height="250" src="https://www.youtube.com/embed/KoiZwiVBd4c?si=BqFkj3oqYW1WZTcD" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
@@ -79,7 +80,7 @@ const Language = () => {
                     <iframe width="100%" height="250" src="https://www.youtube.com/embed/OBZbjA5AFrQ?si=zu2q0Vh-Ift5vVrk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     <p className='fw-bold main-color'>Understanding Word Order- A multilingual Approach </p>
                 </Col>
-            </Row>
+            </Row> */}
         </>
     )
 }
