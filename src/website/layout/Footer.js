@@ -21,26 +21,26 @@ const Footer = () => {
                 <p>We have been actively working on this journey with members of denotified tribes and the urban poor since 1998.</p>
                 <hr />
                 <ul className="socials">
-                  <li><a href="https://www.facebook.com/" target="_blank"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
-                  <li><a href="https://www.instagram.com/" target="_blank"><i className="fa fa-instagram" aria-hidden="true"></i></a></li>
-                  <li><a href="https://www.youtube.com/@muskaanbhopal" target="_blank"><i className="fa fa-youtube" aria-hidden="true"></i></a></li>
+                  <li><a href="https://www.facebook.com/" target="_blank" aria-label="Facebook Page"><i className="fa fa-facebook" aria-hidden="true"></i></a></li>
+                  <li><a href="https://www.instagram.com/" target="_blank" aria-label="Instagram Profile"><i className="fa fa-instagram" aria-hidden="true" ></i></a></li>
+                  <li><a href="https://www.youtube.com/@muskaanbhopal" target="_blank" aria-label="YouTube Channel"><i className="fa fa-youtube" aria-hidden="true"></i></a></li>
                 </ul>
               </div>
             </Col>
             <Col sm={8} >
               <Row className='pt-4'>
-                <Col sm={3} xs={6}>
-                  <ul className="links-footer">
-                    <h6>Work</h6>
+                <Col sm={3} xs={6} className='links-footer'>
+                  <p style={{fontSize:'18px'}}><strong>Work</strong></p>
+                  <ul className='p-0'>
                     <li><Link to="/work/education" onClick={scrollToTop}>Education</Link></li>
                     <li><Link to="/work/liveLihoods" onClick={scrollToTop}>Livelihoods</Link></li>
                     <li><Link to="/work/sustainable-living" onClick={scrollToTop}>Sustainable Livings</Link></li>
                     <li><Link to="/work/publication" onClick={scrollToTop}>Publication</Link> </li>
                   </ul>
                 </Col>
-                <Col sm={3} xs={6}>
-                  <ul className="links-footer">
-                    <h6>About US</h6>
+                <Col sm={3} xs={6} className='links-footer'>
+                  <p style={{fontSize:'18px'}}><strong>About US</strong></p>
+                  <ul className='p-0'>
                     <li><Link to="/about-us/history" onClick={scrollToTop}>History</Link></li>
                     <li><Link to="/about-us/mission/" onClick={scrollToTop}>Mission</Link></li>
                     <li><Link to="/about-us/our-team/" onClick={scrollToTop}>Our Team</Link> </li>
@@ -49,10 +49,10 @@ const Footer = () => {
                     <li><Link to="" onClick={scrollToTop}>Privacy Policy</Link></li>
                   </ul>
                 </Col>
-                <Col sm={6} xs={12} className="links-footer">
-                  <h6>Corporate address</h6>
+                <Col sm={6} xs={12}>
+                  <p style={{fontSize:'18px'}}><strong>Corporate address</strong></p>
                   <p>Muskaan, Plot No. 264-65, Behind Canara Bank, Neelbad, Bhopal, India – 462 044</p>
-                  <h6>Connect with us</h6>
+                  <p><strong>Connect with us</strong></p>
                   <p>
                     {/* For any enquiry call us at: +91 7405297103<br /> */}
                     Email: muskaan@muskaan.org</p>
@@ -67,7 +67,7 @@ const Footer = () => {
         <Container>
           <Row>
             <Col sm={8}>© 2023 Muskaan. All Rights Reserved</Col>
-            <Col sm={4} className="text-right">Powered by <a href="">SynQues</a></Col>
+            <Col sm={4} className="text-right">Powered by <a href="https://www.synques.in/" target='_blank'>SynQues</a></Col>
           </Row>
         </Container>
       </div>

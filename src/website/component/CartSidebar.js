@@ -40,7 +40,7 @@ const CartSidebar = ({ isOpen, closeSidebar }) => {
     return (
         <div className={`cart-sidebar  ${isOpen ? 'open' : ''}`}>
             <div className='cart-side'>
-                <button type='button' className='btn button-toggle1' onClick={closeSidebar}>
+                <button type='button' className='btn button-toggle1' id="cartToggle" aria-label="Toggle Cart" onClick={closeSidebar}>
                     <i className="fa fa-times" aria-hidden="true"></i>
                 </button>
                 <h6 className='text-center py-2'>Total Item</h6>

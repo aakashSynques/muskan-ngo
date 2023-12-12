@@ -1,5 +1,6 @@
 
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
+
 import { Routes, Route, BrowserRouter } from 'react-router-dom';
 import Home from './website/pages/Home';
 import './admin/assets/style.css'
@@ -55,6 +56,9 @@ import AdminOrders from "./admin/pages/AdminOrders";
 import AdminOrderDetails from "./admin/pages/AdminOrderDetails";
 import Financial from './website/pages/aboutPages/Financial';
 import { Navigate } from 'react-router-dom';
+
+
+// const Home = lazy(() => import('./website/pages/Home'));
 
 
 const AdminLayout = ({ children }) => {

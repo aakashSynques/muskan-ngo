@@ -31,8 +31,8 @@ const Home = () => {
           </Col>
           <Col sm={6}>
             <div className="about-image about-one-img d-none d-sm-block">
-              <img src={about1} alt="muskaan ngo" className="shadow d-none d-sm-block" loading="lazy"/>
-              <img src={about2} alt="muskaan ngo" className="shadow"  loading="lazy"/>
+              <img src={about1} alt="muskaan ngo" className="shadow d-none d-sm-block img-fluid"   loading="lazy"  height="auto"/>
+              <img src={about2} alt="muskaan ngo" className="shadow imh-fluid" loading="lazy" height="auto"/>
             </div>
           </Col>
         </Row>
@@ -51,23 +51,27 @@ const Home = () => {
             <WorkBox
               imageSrc={require('../assets/images/workimge/education.png')}
               title="EDUCATION"
+              alt='education'
               description="More than 90% of children of marginalized communities do not finish school."
               link="/work/education"
             />
             <WorkBox
               imageSrc={require('../assets/images/workimge/capable.png')}
+              alt='empowering-children-and-youth'
               title="EMPOWERING CHILDREN AND YOUTH"
               description="We believe that with the kind of energy that youth contains."
               link='/work/empowering-children-and-youth'
             />
             <WorkBox
               imageSrc={require('../assets/images/workimge/life.png')}
+             alt="issues-of-dignity-and-survival"
               title="ISSUES OF DIGNITY AND SURVIVAL"
               description="The current atmosphere demands documentation that proves the."
               link='/work/issues-of-dignity-and-survival'
             />
             <WorkBox
               imageSrc={require('../assets/images/workimge/livelyhood-2.png')}
+              alt='liveLihoods'
               title="LIVELIHOODS"
               description="With the challenges of Covid-19 pandemic and the lockdowns."
               link='/work/liveLihoods'
@@ -75,6 +79,7 @@ const Home = () => {
 
             <WorkBox
               imageSrc={require('../assets/images/workimge/living.png')}
+              alt='sustainable-living'        
               title="SUSTAINABLE LIVING"
               description="We believe in the philosophy of sustainable living that aims"
               link='/work/sustainable-living'
@@ -84,6 +89,7 @@ const Home = () => {
               title="PUBLICATIONS"
               description="Muskaan Publication Catalouge"
               link='/work/publication'
+              alt='publication'
             />
           </Row>
         </Container>
@@ -100,16 +106,20 @@ const Home = () => {
             <Col lg={2}></Col>
             <Col lg={4} className="padding-15 pstn-relative">
               <Link to='/books'>
-                <Image src={require('../assets/images/shopimg1.jpg')} fluid alt="Books" className='w-100' loading="lazy"/>
-                <h3 className="img-text">Books</h3>
+                <Image src={require('../assets/images/shopimg1.webp')} 
+                alt="Assorted books on a shelf" 
+                role="img" 
+                loading="lazy"                 
+                aria-label="Assorted books"
+                className="w-100 img-fluid"/>
+               <h3 className="img-text">Books</h3>
               </Link>
-
             </Col>
             <Col lg={4} className="padding-15 pstn-relative">
-              <Image src={require('../assets/images/shoimg2.jpg')} fluid alt="Diaries" className='w-100' loading="lazy"/>
+              <Image src={require('../assets/images/shoimg2 .webp')}  alt="diaries" role="img"  className='w-100' loading="lazy"  aria-label="Diaries"/>
               <h3 className="img-text">Diaries</h3>
             </Col>
-            {/* <Col lg={4} className="padding-15 pstn-relative">
+           {/* <Col lg={4} className="padding-15 pstn-relative">
               <Image src={require('../assets/images/shopimg3.jpg')} fluid alt="Face Masks" className='w-100' />
               <h3 className="img-text">Face Masks</h3>
             </Col> */}
@@ -117,10 +127,6 @@ const Home = () => {
           </Row>
         </Container>
       </section>
-
-
-
-
 
       <section className='bg-light p70'>
         <Container>
@@ -131,7 +137,7 @@ const Home = () => {
           </Row>
           <Row>
 
-            <Col sm={4} className='py-3'>
+            <Col sm={4} className='py-3'> 
               {/* <iframe
                 width="100%"
                 height="315"
@@ -145,9 +151,15 @@ const Home = () => {
               {/* <Youtube width="100%" height="315px" videoId="otCK_01YrLo?feature=shared"/> */}
               {/* <Youtube width="100%" height="315px" videoId="otCK_01YrLo&t=2s" /> */}
 
-              <video width="100%" height="auto" controls>
+              {/* <video width="100%" height="auto" controls>
                 <source src={video1} type="video/mp4" />
-              </video>
+              </video> */}
+
+              <video width="100%" height="auto" controls="">
+        <track kind="captions" src="path/to/captions.vtt" srclang="en" label="English" />
+        <source src={video1} type="video/mp4" />
+      </video>
+
             </Col>
 
 
@@ -162,6 +174,7 @@ const Home = () => {
                 allowFullScreen
               ></iframe> */}
               <video width="100%" height="auto" controls>
+              <track kind="captions" src="path/to/captions.vtt" srclang="en" label="English" />
                 <source src={video2} type="video/mp4" />
               </video>
             </Col>
@@ -176,6 +189,7 @@ const Home = () => {
                 allowFullScreen
               ></iframe> */}
               <video width="100%" height="auto" controls>
+              <track kind="captions" src="path/to/captions.vtt" srclang="en" label="English" />
                 <source src={video3} type="video/mp4" />
               </video>
             </Col>
@@ -198,9 +212,10 @@ const Home = () => {
           <div className="row">
             <div className="col-lg-4 padding-15">
               <div className="blog-post">
-                <Image src={require('../assets/images/blog/blog-1.webp')} alt="blog post" className='w-100' loading="lazy"/>
-                <div className="blog-content">
-                  <span className="date">January 01, 2021</span>
+                <Image src={require('../assets/images/blog/blog-1.webp')} alt="blog post" className='w-100' loading="lazy"             width="100%" height="auto"/>
+                <div class="blog-content" style={{ backgroundColor: '#F5F5F5', color: '#333' }}>
+
+                  <span className="date"  style={{color: '#000'}}>January 01, 2021</span>
                   <h3>
                     <a href="#">पायल खो गई</a>
                   </h3>
@@ -216,9 +231,9 @@ const Home = () => {
 
             <div className="col-lg-4 padding-15">
               <div className="blog-post">
-                <Image src={require('../assets/images/blog/blog-2.webp')} alt="blog post" className='w-100' loading="lazy"/>
-                <div className="blog-content">
-                  <span className="date">December 19, 2022</span>
+                <Image src={require('../assets/images/blog/blog-2.webp')} alt="blog post" className='w-100' loading="lazy"             width="100%" height="auto"/>
+                <div class="blog-content" style={{ backgroundColor: '#F5F5F5', color: '#333' }}>
+                  <span className="date"  style={{color: '#000'}}>December 19, 2022</span>
                   <h3>
                     <a href="#" className='text-dark'>इंग्लिश रीडर किन मानकों पर है खरी</a>
                   </h3>
@@ -235,9 +250,10 @@ const Home = () => {
 
             <div className="col-lg-4 padding-15">
               <div className="blog-post">
-                <Image src={require('../assets/images/blog/blog-3.webp')} alt="blog post" className='w-100' loading="lazy"/>
-                <div className="blog-content">
-                  <span className="date">December 19, 2022</span>
+                <Image src={require('../assets/images/blog/blog-3.webp')} alt="blog post" className='w-100' loading="lazy" />
+                <div class="blog-content" style={{ backgroundColor: '#F5F5F5', color: '#333' }}>
+
+                  <span className="date"  style={{color: '#000'}}>December 19, 2022</span>
                   <h3><a href="#">सफरनामा: एक बाल अखबार का</a></h3>
                   <p>
                     By महेश झरबड़े

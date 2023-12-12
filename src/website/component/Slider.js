@@ -17,13 +17,25 @@ const Slider = () => {
         <div>
             <Carousel activeIndex={index} onSelect={handleSelect} indicators={false}>
                 <Carousel.Item>
-                    <img
-                        fetchpriority="high"
-                        className="d-block w-100"
+                    {/* <img
+                        className="d-block w-100 slider-img"
                         src={slider1}
                         alt="muskaan ngo"
                         title='muskaan ngo'
-                        loading="lazy"
+                 loading="eager"
+                        width="1900" height="800"  rel="preload" as="image"
+                    /> */}
+
+
+                    <img
+                        className="d-block w-100 slider-img"
+                        src={slider1}
+                        alt="muskaan ngo"
+                        loading="eager"
+                        width="1900"
+                        height="800"
+                        rel="preload"
+                        as="image"
                     />
                     {/* <Carousel.Caption className='banner-text'>
                         <h2>Together we<br />
@@ -31,16 +43,20 @@ const Slider = () => {
                         <p>Help today because tomorrow you may be the one who needs helping!<br />
                             Forget what you can get and see what you can give.</p>
                     </Carousel.Caption> */}
+
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                        fetchpriority="high"
-                        className="d-block w-100"
+                        className="d-block w-100 slider-img"
                         src={slider2}
                         alt="muskaan ngo"
                         title='muskaan ngo'
-                        loading="lazy"
+                        loading="eager"
+                        width="1900" height="800"
+                         rel="preload" as="image"
                     />
+
+
                     {/* 
                     <Carousel.Caption className='banner-text'>
                         <h2>Give a little. Change a lot.</h2>

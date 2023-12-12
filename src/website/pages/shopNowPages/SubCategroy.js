@@ -190,14 +190,15 @@ const SubCategory = () => {
                             </Col>
                             <Col sm={9} className='border-left  lg-ps-4 md-ps-0' style={{ borderLeft: "1px solid" }}>
                                 <Row>
-                                    <Col sm={6} className=''>
-                                    </Col>
-                                    <Col sm={6} className='text-end'>
+                                    {/* <Col sm={1} className=''>
+                                    </Col> */}
+                                    <Col sm={12} className='text-end my-2'>
                                         <span className='font-14'><strong>Sort by</strong>  &nbsp; : &nbsp;
                                             <Sorting handleSortChange={handleSortChange} />
                                         </span>
                                     </Col>
                                 </Row>
+
 
                                 <Row sm={1} lg={3} xs={1} className='pt-3'>                                    
                                     {filteredProducts.length === 0 ? (

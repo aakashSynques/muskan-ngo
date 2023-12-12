@@ -117,7 +117,7 @@ const History = () => {
                 <Tab eventKey="tab1" title="1997 - 1998">
                   <Row>
                     <Col lg={5} md={12}>
-                      <Image src={require('../../assets/images/histry1.jpg')} alt="" className='img-fluid rounded-2' />
+                      <Image src={require('../../assets/images/histry1.jpg')} alt="" className='img-fluid rounded-2 pb-2' />
                     </Col>
                     <Col lg={7} md={12}>
                       <h4 className='main-color'>1997 - 1998: Commitment to Education</h4>
@@ -128,7 +128,7 @@ const History = () => {
                 <Tab eventKey="tab2" title="1998 – 2005">
                   <Row>
                     <Col sm={5}>
-                      <Image src={require('../../assets/images/history2.jpg')} alt="" className='img-fluid rounded-2' />
+                      <Image src={require('../../assets/images/history2.jpg')} alt="" className='img-fluid rounded-2 pb-2' />
                     </Col>
                     <Col sm={7}>
                       <h4 className='main-color'>1998 – 2005: Challenging Educational Barriers and Seeking Solutions</h4>
@@ -146,7 +146,7 @@ const History = () => {
                 <Tab eventKey="tab3" title="2005 – 2015">
                   <Row>
                     <Col sm={5}>
-                      <Image src={require('../../assets/images/history3.jpg')} alt="" className='img-fluid rounded-2' />
+                      <Image src={require('../../assets/images/history3.jpg')} alt="" className='img-fluid rounded-2 pb-2' />
                     </Col>
                     <Col sm={7}>
                       <h4 className='main-color'>2005 – 2015: Empowering Education and Community Development Initiatives</h4>
@@ -186,7 +186,7 @@ const History = () => {
                 <Tab eventKey="tab4" title="2015 – 2019">
                   <Row>
                     <Col sm={5}>
-                      <Image src={require('../../assets/images/history4.jpg')} alt="" className='img-fluid rounded-2' />
+                      <Image src={require('../../assets/images/history4.jpg')} alt="" className='img-fluid rounded-2 pb-2' />
                     </Col>
                     <Col sm={7}>
                       <h4 className='main-color'>2015 – 2019: Strategic Community Interventions & Multi-Faceted Initiatives</h4>
@@ -209,7 +209,7 @@ const History = () => {
                 <Tab eventKey="tab5" title="2019-2023">
                   <Row>
                     <Col sm={5}>
-                      <Image src={require('../../assets/images/history5.jpg')} alt="" className='img-fluid rounded-2' />
+                      <Image src={require('../../assets/images/history5.jpg')} alt="" className='img-fluid rounded-2 pb-2' />
                     </Col>
                     <Col sm={7}>
                       <h4 className='main-color'>2019-2023: Education, Community Interventions & Functionary Sensitization</h4>

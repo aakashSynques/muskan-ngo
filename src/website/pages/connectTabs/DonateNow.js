@@ -147,7 +147,7 @@ const DonateNow = () => {
   return (
     <>
       <p><em><strong>Together, let’s make the world one bit better!</strong></em></p>
-      {/* <div className="button-list">
+      <div className="button-list">
         <hr />
         <h5 className="mb-0 p-0"> <strong>Choose Contribution Amount <span className='text-danger'>*</span> </strong></h5>
 
@@ -214,7 +214,7 @@ const DonateNow = () => {
         )}
 
         <h6 className='py-2 mt-4 main-color'>Your contribution amount: <i class="fa fa-inr"></i> {donationAmount || customAmount || 0}</h6>
-      </div> */}
+      </div>
 
       <div className='parsnal-info'>
         <hr />
