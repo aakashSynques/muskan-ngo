@@ -259,6 +259,9 @@ const AdminAttributes = () => {
     getAttributeList();
   }, []);
 
+
+
+  console.log('attributeData', attributeData)
   return (
     <div className="container-fluid">
       <Breadcrumb className="p-2">

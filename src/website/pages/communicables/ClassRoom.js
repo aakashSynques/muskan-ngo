@@ -31,7 +31,7 @@ const ClassRoom = () => {
 
             </Container> */}
             <div className='report-table-font'>
-                <table className="table">
+                <table className="table table-responsive">
                     <thead>
                         <tr>
                             <th scope="col">Writer(s)</th>

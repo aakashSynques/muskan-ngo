@@ -56,6 +56,11 @@ import AdminOrders from "./admin/pages/AdminOrders";
 import AdminOrderDetails from "./admin/pages/AdminOrderDetails";
 import Financial from './website/pages/aboutPages/Financial';
 import { Navigate } from 'react-router-dom';
+import AdminDonateHeads from './admin/pages/AdminDonateHeads';
+import AdminJobsList from './admin/pages/AdminJobsList';
+import AdminVolunteer from './admin/pages/AdminVolunteer';
+import AdminInternship from './admin/pages/AdminInternship';
+import AdminContact from './admin/pages/AdminContact';
 
 
 // const Home = lazy(() => import('./website/pages/Home'));
@@ -108,6 +113,7 @@ function App() {
         <Route path='/communicables/blog/' element={<Layout><Blog /></Layout>} />
 
 
+
         <Route path='/wishlist' element={<Layout><Wishlist /></Layout>} />
         <Route path='/cart' element={<Layout><CartItems /></Layout>} />
         <Route path='/account/login' element={<Layout><Login /></Layout>} />
@@ -135,6 +141,12 @@ function App() {
         <Route path="/admin/:order_status/orders" element={<AdminLayout><AdminOrders /> </AdminLayout>} />
         <Route path="/admin/:order_status/orders/:customer_id" element={<AdminLayout><AdminOrders /> </AdminLayout>} />
         <Route path="/admin/order/:cust_order_id/:enc" element={<AdminLayout><AdminOrderDetails /> </AdminLayout>} />
+        <Route path='/admin/donate-heads' element={<AdminLayout><AdminDonateHeads /></AdminLayout>} />
+        <Route path='/admin/jobs-list' element={<AdminLayout><AdminJobsList /></AdminLayout>} />
+        <Route path='/admin/volunteer-list' element={<AdminLayout><AdminVolunteer /></AdminLayout>} />
+        <Route path='/admin/internship-list' element={<AdminLayout><AdminInternship /></AdminLayout>} />
+
+        <Route path='/admin/contact-list' element={<AdminLayout><AdminContact /></AdminLayout>} />
 
       </Routes>
     </BrowserRouter>

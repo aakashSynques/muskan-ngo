@@ -11,10 +11,8 @@ const Language = () => {
             <p>The storytelling session is not confined to reading out stories from books. Children try to assume and add more incidents to the existing story,
                 sometimes they form new stories or write their own experiences in any language they know, and those who cannot write, narrate them through their
                 drawings or orally.</p>
-            <Image src={require('../../../assets/images/7.jpg')} alt="" className='w-20 me-5' />
-            <Image src={require('../../../assets/images/8.png')} alt="" className='w-25' />
-
-
+            <Image src={require('../../../assets/images/7.jpg')} alt="" className='me-5' fluid />
+            <Image src={require('../../../assets/images/8.png')} alt="" className='w-25' fluid/>
 
             <h5 className="fst-italic mt-5">Circle-Time</h5>
             <Row>
@@ -23,7 +21,7 @@ const Language = () => {
                     </p>
                 </Col>
                 <Col sm={4}>
-                    <Image src={require('../../../assets/images/6.jpg')} alt="" className='w-75' />
+                    <Image src={require('../../../assets/images/6.jpg')} alt=""   fluid/>
                 </Col>
             </Row>
 
@@ -32,13 +30,13 @@ const Language = () => {
             <p>It is one more way to teach them language and create more curiosity. They prepare their own set of questions to be asked during a visit, as a result, they learn new things and relate to them.</p>
             <Row>
                 <Col sm={4}>
-                    <Image src={require('../../../assets/images/3.jpg')} alt="" className='w-75' />
+                    <Image src={require('../../../assets/images/3.jpg')} alt=""  fluid />
                 </Col>
                 <Col sm={4}>
-                    <Image src={require('../../../assets/images/4.jpg')} alt="" className='w-75' />
+                    <Image src={require('../../../assets/images/4.jpg')} alt=""  fluid />
                 </Col>
                 <Col sm={4}>
-                    <Image src={require('../../../assets/images/5.jpg')} alt="" className='w-75' />
+                    <Image src={require('../../../assets/images/5.jpg')} alt=""  fluid />
                 </Col>
             </Row>
 
@@ -52,7 +50,7 @@ const Language = () => {
                     </p>
                 </Col>
                 <Col sm={4}>
-                    <Image src={require('../../../assets/images/1.jpg')} alt="" className='w-75' />
+                    <Image src={require('../../../assets/images/1.jpg')} alt=""  fluid />
                 </Col>
             </Row>
 

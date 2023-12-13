@@ -5,11 +5,12 @@ import ReCAPTCHA from 'react-google-recaptcha';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import Contect from './connectTabs/Contect';
-import Career from './connectTabs/Career';
+
 import Internship from './connectTabs/Internship';
 import Volunteer from './connectTabs/Volunteer';
-import Jobs from './connectTabs/Jobs';
 import DonateNow from './connectTabs/DonateNow';
+import Jobs from './connectTabs/Jobs';
+
 
 
 const Connect = () => {
@@ -27,16 +28,15 @@ const Connect = () => {
           <Tabs
             defaultActiveKey="one"
             id="fill-tab-example"
-            
-            // fill
+
+          // fill
           >
 
             <Tab eventKey="one" title="Donate Now">
               <DonateNow />
             </Tab>
             <Tab eventKey="two" title="Jobs">
-              {/* <Jobs /> */}
-              <Career />
+              <Jobs />
             </Tab>
             <Tab eventKey="five" title="Volunteer">
               <Volunteer />

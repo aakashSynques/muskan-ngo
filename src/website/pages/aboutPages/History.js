@@ -114,7 +114,7 @@ const History = () => {
                 className="mb-5 mt-4"
                 justify
               >
-                <Tab eventKey="tab1" title="1997 - 1998">
+                <Tab eventKey="tab1" title="1997-1998">
                   <Row>
                     <Col lg={5} md={12}>
                       <Image src={require('../../assets/images/histry1.jpg')} alt="" className='img-fluid rounded-2 pb-2' />
@@ -125,7 +125,7 @@ const History = () => {
                     </Col>
                   </Row>
                 </Tab>
-                <Tab eventKey="tab2" title="1998 – 2005">
+                <Tab eventKey="tab2" title="1998-2005">
                   <Row>
                     <Col sm={5}>
                       <Image src={require('../../assets/images/history2.jpg')} alt="" className='img-fluid rounded-2 pb-2' />
@@ -143,7 +143,7 @@ const History = () => {
                     </Col>
                   </Row>
                 </Tab>
-                <Tab eventKey="tab3" title="2005 – 2015">
+                <Tab eventKey="tab3" title="2005-2015">
                   <Row>
                     <Col sm={5}>
                       <Image src={require('../../assets/images/history3.jpg')} alt="" className='img-fluid rounded-2 pb-2' />
@@ -183,7 +183,7 @@ const History = () => {
                     </Col>
                   </Row>
                 </Tab>
-                <Tab eventKey="tab4" title="2015 – 2019">
+                <Tab eventKey="tab4" title="2015-2019">
                   <Row>
                     <Col sm={5}>
                       <Image src={require('../../assets/images/history4.jpg')} alt="" className='img-fluid rounded-2 pb-2' />

@@ -19,41 +19,43 @@ const IndigenousEducation = () => {
             <p>Mental Health – We recognize that colonialism has resulted in inter-generational trauma that has been exacerbated by the conditions of poverty and deprivation, more so in urban contexts. Therefore our programs are premised on caring and undoing the damage that has been caused by external forces and has lead to dysfunctional mechanisms of surviving.</p>
             <p>Residential Educational Endeavours – We strongly believe that children need to be anchored within their community roots, and recognize that residential arrangement has a risk of dislocating children. But as communities, where deprivation is at extremely high levels and cultural norms of early marriages are not changing at the pace that would have been helpful for children, parents and individual children struggle to make formal education a real option for themselves. In these circumstances, we find that residential spaces can prove to be a support but the functioning of this arrangement should not be disdainful of community life.</p>
             <p>In Muskaan, the boundaries between the community and the school are not at all rigid. Parents come here at any time they want to meet the children or may be just passing by, and similarly, children are encouraged to go back home on weekends or when their parents need them. We also discourage children from joining the hostel in the first decade of their lives, where the parental and community bonding is what would hold them in life.</p>
+            <div className='table-responsive'>
+                <table className="table table-bordered table-responsive">
 
-            <table className="table table-bordered">
-
-                <tbody>
-                    <tr>
-                        <td>बहुभाषीय कक्षा में व्याकरण के नियमों को ढूँढ़ना</td>
-                        <td><a href='https://www.eklavya.in/magazine-activity/sandarbh-magazines/304-sandarbh-101-to-110/sandarbh-issue-102/1225-bahubhshi-kaksha-me-vyakran-ke-niyamo-ko-dhundna' className='main-color'>
-                            https://www.eklavya.in/magazine-activity/sandarbh-magazines/304-sandarbh-101-to-110/sandarbh-issue-102/1225-bahubhshi-kaksha-me-vyakran-ke-niyamo-ko-dhundna
-                        </a>
-                            <p className='text-secondary'>*this is also in the section in classroom experiences in communicables, so if it is to be linked to the same file.</p>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Lesson Plans</td>
-                        <td>
-                            <a href='' className='main-color' > Possessive Nouns,</a>
-                            <a href='' className='main-color' >Word Order Manual </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Workshop Report</td>
-                        <td>
-                            <a href='' className='main-color' > Final Report – MLE workshop 2015 </a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Are mega residential schools wiping out India’s adivasi culture by Malvika Gupta and Felix Padel</td>
-                        <td>
-                            <a href='https://www.thehindu.com/society/children-from-tribal-communities-are-being-corralled-into-mass-schools-that-are-wiping-out-cultures/article33818793.ece' className='main-color' >
-                                https://www.thehindu.com/society/children-from-tribal-communities-are-being-corralled-into-mass-schools-that-are-wiping-out-cultures/article33818793.ece
+                    <tbody>
+                        <tr>
+                            <td>बहुभाषीय कक्षा में व्याकरण के नियमों को ढूँढ़ना</td>
+                            <td><a href='https://www.eklavya.in/magazine-activity/sandarbh-magazines/304-sandarbh-101-to-110/sandarbh-issue-102/1225-bahubhshi-kaksha-me-vyakran-ke-niyamo-ko-dhundna' className='main-color'>
+                                https://www.eklavya.in/magazine-activity/sandarbh-magazines/304-sandarbh-101-to-110/sandarbh-issue-102/1225-bahubhshi-kaksha-me-vyakran-ke-niyamo-ko-dhundna
                             </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                                <p className='text-secondary'>*this is also in the section in classroom experiences in communicables, so if it is to be linked to the same file.</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Lesson Plans</td>
+                            <td>
+                                <a href='' className='main-color' > Possessive Nouns,</a>
+                                <a href='' className='main-color' >Word Order Manual </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Workshop Report</td>
+                            <td>
+                                <a href='' className='main-color' > Final Report – MLE workshop 2015 </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Are mega residential schools wiping out India’s adivasi culture by Malvika Gupta and Felix Padel</td>
+                            <td>
+                                <a href='https://www.thehindu.com/society/children-from-tribal-communities-are-being-corralled-into-mass-schools-that-are-wiping-out-cultures/article33818793.ece' className='main-color' >
+                                    https://www.thehindu.com/society/children-from-tribal-communities-are-being-corralled-into-mass-schools-that-are-wiping-out-cultures/article33818793.ece
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
 
         </>
     )

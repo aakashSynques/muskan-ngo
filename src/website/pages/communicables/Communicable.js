@@ -19,7 +19,7 @@ const Communicable = () => {
                     <h1>Communicables</h1>
                 </Container>
             </div>
-            <div className='mt-5'>
+            <div className='mt-5 communicable'>
                 <Container>
                     <Accordion defaultActiveKey="0">
                         <Accordion.Item eventKey="0">

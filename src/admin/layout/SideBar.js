@@ -75,9 +75,30 @@ const SideBar = ({ children }) => {
               </Nav.Item >
 
               <Nav.Item className="py-2 px-2">
-                <Link className="text-white py-2" to="/admin/2/orders">   Orders</Link>
+                <Link className="text-white py-2" to="/admin/2/orders"> Orders</Link>
               </Nav.Item >
 
+
+
+              <hr />
+              <Nav.Item className="py-2 px-2">
+                <Link className="text-white py-2" to="/admin/donate-heads"> Donate Heads</Link>
+              </Nav.Item >
+
+              <Nav.Item className="py-2 px-2">
+                <Link className="text-white py-2" to="/admin/jobs-list">Jobs</Link>
+              </Nav.Item >
+              <Nav.Item className="py-2 px-2">
+                <Link className="text-white py-2" to="/admin/volunteer-list">Volunteer</Link>
+              </Nav.Item >
+              <Nav.Item className="py-2 px-2">
+                <Link className="text-white py-2" to="/admin/internship-list">Internship</Link>
+              </Nav.Item >
+              <Nav.Item className="py-2 px-2">
+                <Link className="text-white py-2" to="/admin/contact-list">Contact Us</Link>
+              </Nav.Item >
+
+              <hr />
               <Nav.Item className="py-2 px-2">
                 <Link className="text-white py-2" to="/admin" onClick={handleLogout}>
                   Log Out
