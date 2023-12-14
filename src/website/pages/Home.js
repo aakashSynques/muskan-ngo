@@ -7,7 +7,6 @@ import about2 from '../assets/images/about2.jpg'
 import { Link } from 'react-router-dom'
 import WorkBox from '../component/WorkBox'
 import '../assets/css/style.css'
-import Youtube from 'react-lazyload-youtube'
 import 'react-lazyload-youtube/dist/index.css'
 import video1 from '../assets/video/video1.mp4'
 import video2 from '../assets/video/video2.mp4'
@@ -158,8 +157,8 @@ const Home = () => {
               <video width="100%" height="auto" controls>
                 {/* <track kind="captions" src="path/to/captions.vtt" srclang="en" label="English" /> */}
                 <source src={video1} type="video/mp4" />
+                <source src="movie.ogg" type="video/ogg" />
               </video>
-
             </Col>
 
 
@@ -174,7 +173,7 @@ const Home = () => {
                 allowFullScreen
               ></iframe> */}
               <video width="100%" height="auto" controls>
-                <track kind="captions" src="path/to/captions.vtt" srclang="en" label="English" />
+                <track kind="captions" src={video2} srclang="en" label="English" />
                 <source src={video2} type="video/mp4" />
               </video>
             </Col>
@@ -189,7 +188,7 @@ const Home = () => {
                 allowFullScreen
               ></iframe> */}
               <video width="100%" height="auto" controls>
-                <track kind="captions" src="path/to/captions.vtt" srclang="en" label="English" />
+                <track kind="captions" src={video3} srclang="en" label="English" />
                 <source src={video3} type="video/mp4" />
               </video>
             </Col>
@@ -252,7 +251,6 @@ const Home = () => {
               <div className="blog-post">
                 <Image src={require('../assets/images/blog/blog-3.webp')} alt="blog post" className='w-100' loading="lazy" />
                 <div class="blog-content" style={{ backgroundColor: '#F5F5F5', color: '#333' }}>
-
                   <span className="date" style={{ color: '#000' }}>December 19, 2022</span>
                   <h3><a href="#">सफरनामा: एक बाल अखबार का</a></h3>
                   <p>

@@ -58,12 +58,17 @@ const MainHeader = () => {
         <>
             <HeaderTop />
             <div className={`overlay ${isOverlayActive ? 'active' : ''}`} onClick={closeCartSidebar}></div>
-
             <section className='navigation'>
                 <Navbar collapseOnSelect expand="lg">
                     <Container>
                         <Navbar.Brand href="/">
-                            <img src={logo} alt="Logo" className="logo-width" />
+                            {/* <img src={logo} alt="Logo" className="logo-width" /> */}
+                            <picture>
+                                <source srcSet={require('../assets/images/Muskaan-logo.webp')} type="image/webp" className='logo-width' />
+                                <source srcSet={require('../assets/images/Muskaan-logo.avif')} type="image/avif" className='logo-width' />
+                                <img decoding="async" loading="lazy" src={require('../assets/images/Muskaan-logo.webp')} alt="Muskaan ngo" className="img-fluid logo-width" />
+                            </picture>
+
                         </Navbar.Brand>
 
                         {isCategoryPage && (
@@ -101,10 +106,10 @@ const MainHeader = () => {
                                 </Nav.Item>
 
                                 <NavDropdown title="About Us" className="custom-dropdown" tabindex="0"
-                                aria-label="about us"
+                                    aria-label="about us"
                                     id="about-us-dropdown" aria-expanded="false" role="button">
                                     <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="history" as={Link} to="/about-us/history" className='py-0'  aria-label='history'>
+                                        <Nav.Link eventKey="history" as={Link} to="/about-us/history" className='py-0' aria-label='history'>
                                             History
                                         </Nav.Link>
                                     </NavDropdown.Item>
@@ -148,7 +153,7 @@ const MainHeader = () => {
 
 
                                 <NavDropdown title="Work" className="custom-dropdown" id="work-dropdown" aria-expanded="false"
-                                aria-label='work' role="button" tabindex="0" >
+                                    aria-label='work' role="button" tabindex="0" >
                                     <NavDropdown.Item className='rounded-0'>
                                         <Nav.Link eventKey="education" as={Link} to="/work/education" className='py-0' aria-label='Education'>
                                             Education
@@ -167,7 +172,7 @@ const MainHeader = () => {
                                     </NavDropdown.Item>
 
                                     <NavDropdown.Item className='rounded-0'>
-                                        <Nav.Link eventKey="liveLihoods" as={Link} to="/work/liveLihoods" className='py-0' aria-label='Livelihoods'> 
+                                        <Nav.Link eventKey="liveLihoods" as={Link} to="/work/liveLihoods" className='py-0' aria-label='Livelihoods'>
                                             Livelihoods
                                         </Nav.Link>
                                     </NavDropdown.Item>

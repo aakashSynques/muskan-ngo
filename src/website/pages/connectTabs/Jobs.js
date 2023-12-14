@@ -76,26 +76,17 @@ const Career = () => {
             setIsSubmitting(true); // Set loading state to true
 
             if (validateForm()) {
-                // const body = {
-                //     full_name: formData.fullName,
-                //     email: formData.email,
-                //     phoneNo: formData.phoneNo,
-                //     city: formData.city,
-                //     address: formData.address,
-                //     state: formData.state,
-                //     pincode: formData.pincode,
-                //     file: formData.file,
-                // };
-                const body = new FormData();
-                body.append('full_name', formData.fullName);
-                body.append('email', formData.email);
-                body.append('phoneNo', formData.phoneNo);
-                body.append('city', formData.city);
-                body.append('address', formData.address);
-                body.append('state', formData.state);
-                body.append('pincode', formData.pincode);
-                body.append('file', formData.file); // Make sure formData.file is a File object
-                console.log('FormData:', body);
+                const body = {
+                    full_name: formData.fullName,
+                    email: formData.email,
+                    phoneNo: formData.phoneNo,
+                    city: formData.city,
+                    address: formData.address,
+                    state: formData.state,
+                    pincode: formData.pincode,
+                    file: formData.file,
+                };
+                // console.log([...body.entries()]);
 
                 const response = await fetch('/form/save-career', 'POST', body, null);
                 if (response.data) {
